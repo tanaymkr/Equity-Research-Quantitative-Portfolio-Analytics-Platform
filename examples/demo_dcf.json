@@ -1,0 +1,23 @@
+{
+  "company": {
+    "name": "Demo Industrials Ltd",
+    "currency": "INR",
+    "financial_unit": "crore",
+    "base_year": 2026,
+    "revenue": 10000.0,
+    "cash": 850.0,
+    "debt": 1600.0,
+    "shares_outstanding": 120.0
+  },
+  "assumptions": {
+    "revenue_growth": [0.12, 0.105, 0.09, 0.075, 0.06],
+    "ebit_margin": [0.155, 0.16, 0.165, 0.168, 0.17],
+    "tax_rate": 0.25,
+    "depreciation_pct_revenue": 0.035,
+    "capex_pct_revenue": 0.05,
+    "nwc_pct_revenue": 0.12,
+    "wacc": 0.105,
+    "terminal_growth": 0.05
+  }
+}
+
