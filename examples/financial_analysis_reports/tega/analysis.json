@@ -1,0 +1,288 @@
+{
+  "history": {
+    "company": {
+      "name": "Tega Industries Limited",
+      "ticker": "TEGA",
+      "currency": "INR",
+      "financial_unit": "million",
+      "statement_basis": "consolidated",
+      "data_kind": "reported"
+    },
+    "as_of": "2025-08-05",
+    "sources": [
+      {
+        "source_id": "tega_aug2024",
+        "title": "Tega investor presentation, 8 August 2024",
+        "published_on": "2024-08-08",
+        "locator": "PDF page 7, slide 6, Consolidated Profit & Loss Statement, FY24 column",
+        "url": "https://www.tegaindustries.com/images/media/Intimation_for_Investor_Presentation_-_08_08_2024.pdf"
+      },
+      {
+        "source_id": "tega_aug2025",
+        "title": "Tega investor presentation, 5 August 2025",
+        "published_on": "2025-08-05",
+        "locator": "PDF page 7, slide 6, Consolidated Profit & Loss Statement, FY25 column",
+        "url": "https://www.tegaindustries.com/images/media/Intimation_for_Investor_Presentation_-_05_08_2025.pdf"
+      }
+    ],
+    "annuals": [
+      {
+        "fiscal_year": 2024,
+        "period_end": "2024-03-31",
+        "source_id": "tega_aug2024",
+        "revenue": 14927.1,
+        "months": 12,
+        "ebit": 2522.9,
+        "depreciation_amortisation": 636.8,
+        "net_income": 1938.6,
+        "net_income_to_owners": null,
+        "finance_costs": 319.5,
+        "total_assets": null,
+        "total_liabilities": null,
+        "total_equity": null,
+        "equity_to_owners": null,
+        "current_assets": null,
+        "current_liabilities": null,
+        "cash_and_equivalents": null,
+        "total_debt": null,
+        "operating_cash_flow": null,
+        "capex": null,
+        "notes": "Operating EBIT derived as displayed EBITDA 3159.7 less depreciation 636.8 = 2522.9. The presentation's EBIT 2745.0 includes other income 222.1; this module excludes it. Revenue and PAT are transcribed from the FY24 column. No owners' profit split or balances were supplied."
+      },
+      {
+        "fiscal_year": 2025,
+        "period_end": "2025-03-31",
+        "source_id": "tega_aug2025",
+        "revenue": 16386.5,
+        "months": 12,
+        "ebit": 2384.8,
+        "depreciation_amortisation": 1013.3,
+        "net_income": 2001.2,
+        "net_income_to_owners": null,
+        "finance_costs": 269.0,
+        "total_assets": null,
+        "total_liabilities": null,
+        "total_equity": null,
+        "equity_to_owners": null,
+        "current_assets": null,
+        "current_liabilities": null,
+        "cash_and_equivalents": null,
+        "total_debt": null,
+        "operating_cash_flow": null,
+        "capex": null,
+        "notes": "Operating EBIT derived as displayed EBITDA 3829.6 less other income 431.5 less depreciation 1013.3 = 2384.8. Operating EBITDA is therefore 3398.1. Revenue and PAT are transcribed from the FY25 column. The source rounds to one decimal."
+      }
+    ],
+    "notes": "Historical two-year INCOME-STATEMENT example only, transcribed from company investor presentations. This is not a complete five-year company dataset, a current financial update, or a DCF valuation. Balance-sheet and cash-flow inputs are deliberately absent. Operating EBIT excludes other income and joint-venture results. EBITDA is reconstructed consistently as operating EBIT plus depreciation; it may differ from a presentation headline. Source amounts are INR million, not crore (divide by 10 to convert to crore)."
+  },
+  "years": [
+    {
+      "fiscal_year": 2024,
+      "metrics": {
+        "revenue": {
+          "value": 14927.1,
+          "unit": "INR million",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "no immediately preceding annual period"
+        },
+        "net_income_growth": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "no immediately preceding annual period"
+        },
+        "ebitda": {
+          "value": 3159.7,
+          "unit": "INR million",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.1690147449940042,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.21167540915516073,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.12987117390517916,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "roa": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "roce": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "current_ratio": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "net_debt": {
+          "value": null,
+          "unit": "INR million",
+          "reason": "missing input"
+        },
+        "net_debt_to_ebitda": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "finance_cost_coverage": {
+          "value": 7.8964006259780914,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing numerator or denominator"
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "capex_to_revenue": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing numerator or denominator"
+        },
+        "cash_flow_after_capex": {
+          "value": null,
+          "unit": "INR million",
+          "reason": "missing input"
+        }
+      },
+      "warnings": []
+    },
+    {
+      "fiscal_year": 2025,
+      "metrics": {
+        "revenue": {
+          "value": 16386.5,
+          "unit": "INR million",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": 0.09776848818591688,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_income_growth": {
+          "value": 0.03229134426906022,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda": {
+          "value": 3398.1000000000004,
+          "unit": "INR million",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.14553443383272818,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.2073719220089708,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.12212491990357917,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing opening or closing balance"
+        },
+        "roa": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing opening or closing balance"
+        },
+        "roce": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing opening or closing balance"
+        },
+        "current_ratio": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "net_debt": {
+          "value": null,
+          "unit": "INR million",
+          "reason": "missing input"
+        },
+        "net_debt_to_ebitda": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "finance_cost_coverage": {
+          "value": 8.865427509293681,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing numerator or denominator"
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": null,
+          "unit": "multiple",
+          "reason": "missing numerator or denominator"
+        },
+        "capex_to_revenue": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "missing numerator or denominator"
+        },
+        "cash_flow_after_capex": {
+          "value": null,
+          "unit": "INR million",
+          "reason": "missing input"
+        }
+      },
+      "warnings": []
+    }
+  ],
+  "revenue_cagr": {
+    "value": 0.09776848818591688,
+    "unit": "fraction",
+    "reason": null
+  },
+  "cagr_intervals": 1
+}

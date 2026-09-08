@@ -1,0 +1,653 @@
+{
+  "history": {
+    "company": {
+      "name": "Demo Industrials Ltd",
+      "ticker": "DEMO",
+      "currency": "INR",
+      "financial_unit": "crore",
+      "statement_basis": "consolidated",
+      "data_kind": "synthetic"
+    },
+    "as_of": "2026-09-07",
+    "sources": [
+      {
+        "source_id": "synthetic_v1",
+        "title": "Synthetic financial-history fixture",
+        "published_on": "2026-09-07",
+        "locator": "examples/demo_financial_history.json; generated for learning and testing",
+        "url": null
+      }
+    ],
+    "annuals": [
+      {
+        "fiscal_year": 2022,
+        "period_end": "2022-03-31",
+        "source_id": "synthetic_v1",
+        "revenue": 6600.0,
+        "months": 12,
+        "ebit": 792.0,
+        "depreciation_amortisation": 231.0,
+        "net_income": 510.0,
+        "net_income_to_owners": 510.0,
+        "finance_costs": 135.0,
+        "total_assets": 5800.0,
+        "total_liabilities": 2400.0,
+        "total_equity": 3400.0,
+        "equity_to_owners": 3400.0,
+        "current_assets": 2550.0,
+        "current_liabilities": 1400.0,
+        "cash_and_equivalents": 450.0,
+        "total_debt": 1700.0,
+        "operating_cash_flow": 670.0,
+        "capex": 330.0,
+        "notes": ""
+      },
+      {
+        "fiscal_year": 2023,
+        "period_end": "2023-03-31",
+        "source_id": "synthetic_v1",
+        "revenue": 7300.0,
+        "months": 12,
+        "ebit": 949.0,
+        "depreciation_amortisation": 255.5,
+        "net_income": 620.0,
+        "net_income_to_owners": 620.0,
+        "finance_costs": 132.0,
+        "total_assets": 6300.0,
+        "total_liabilities": 2500.0,
+        "total_equity": 3800.0,
+        "equity_to_owners": 3800.0,
+        "current_assets": 2850.0,
+        "current_liabilities": 1450.0,
+        "cash_and_equivalents": 500.0,
+        "total_debt": 1650.0,
+        "operating_cash_flow": 830.0,
+        "capex": 365.0,
+        "notes": ""
+      },
+      {
+        "fiscal_year": 2024,
+        "period_end": "2024-03-31",
+        "source_id": "synthetic_v1",
+        "revenue": 8100.0,
+        "months": 12,
+        "ebit": 1134.0,
+        "depreciation_amortisation": 283.5,
+        "net_income": 750.0,
+        "net_income_to_owners": 750.0,
+        "finance_costs": 128.0,
+        "total_assets": 6800.0,
+        "total_liabilities": 2600.0,
+        "total_equity": 4200.0,
+        "equity_to_owners": 4200.0,
+        "current_assets": 3200.0,
+        "current_liabilities": 1500.0,
+        "cash_and_equivalents": 600.0,
+        "total_debt": 1600.0,
+        "operating_cash_flow": 960.0,
+        "capex": 405.0,
+        "notes": ""
+      },
+      {
+        "fiscal_year": 2025,
+        "period_end": "2025-03-31",
+        "source_id": "synthetic_v1",
+        "revenue": 9000.0,
+        "months": 12,
+        "ebit": 1323.0,
+        "depreciation_amortisation": 315.0,
+        "net_income": 875.0,
+        "net_income_to_owners": 875.0,
+        "finance_costs": 132.0,
+        "total_assets": 7500.0,
+        "total_liabilities": 2850.0,
+        "total_equity": 4650.0,
+        "equity_to_owners": 4650.0,
+        "current_assets": 3500.0,
+        "current_liabilities": 1650.0,
+        "cash_and_equivalents": 700.0,
+        "total_debt": 1650.0,
+        "operating_cash_flow": 1170.0,
+        "capex": 450.0,
+        "notes": ""
+      },
+      {
+        "fiscal_year": 2026,
+        "period_end": "2026-03-31",
+        "source_id": "synthetic_v1",
+        "revenue": 10000.0,
+        "months": 12,
+        "ebit": 1500.0,
+        "depreciation_amortisation": 350.0,
+        "net_income": 1000.0,
+        "net_income_to_owners": 1000.0,
+        "finance_costs": 128.0,
+        "total_assets": 8200.0,
+        "total_liabilities": 3000.0,
+        "total_equity": 5200.0,
+        "equity_to_owners": 5200.0,
+        "current_assets": 3900.0,
+        "current_liabilities": 1700.0,
+        "cash_and_equivalents": 850.0,
+        "total_debt": 1600.0,
+        "operating_cash_flow": 1330.0,
+        "capex": 500.0,
+        "notes": ""
+      }
+    ],
+    "notes": "Five-year synthetic teaching dataset. All figures are invented. FY2026 revenue, cash and debt match the Milestone 1 DCF anchor. EBITDA is operating EBIT plus D&A; total debt includes leases in this example. This is not Tega data."
+  },
+  "years": [
+    {
+      "fiscal_year": 2022,
+      "metrics": {
+        "revenue": {
+          "value": 6600.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "no immediately preceding annual period"
+        },
+        "net_income_growth": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "no immediately preceding annual period"
+        },
+        "ebitda": {
+          "value": 1023.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.12,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.155,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.07727272727272727,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "roa": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "roce": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "current_ratio": {
+          "value": 1.8214285714285714,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.5,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": 1250.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": 1.2218963831867058,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 5.866666666666666,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.10151515151515152,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 1.3137254901960784,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.05,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 340.0,
+          "unit": "INR crore",
+          "reason": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "fiscal_year": 2023,
+      "metrics": {
+        "revenue": {
+          "value": 7300.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": 0.10606060606060597,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_income_growth": {
+          "value": 0.21568627450980382,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda": {
+          "value": 1204.5,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.13,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.165,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.08493150684931507,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": 0.17222222222222222,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roa": {
+          "value": 0.1024793388429752,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roce": {
+          "value": 0.2051891891891892,
+          "unit": "fraction",
+          "reason": null
+        },
+        "current_ratio": {
+          "value": 1.9655172413793103,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.4342105263157895,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": 1150.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": 0.9547530095475301,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 7.1893939393939394,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.1136986301369863,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 1.3387096774193548,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.05,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 465.0,
+          "unit": "INR crore",
+          "reason": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "fiscal_year": 2024,
+      "metrics": {
+        "revenue": {
+          "value": 8100.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": 0.1095890410958904,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_income_growth": {
+          "value": 0.20967741935483875,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda": {
+          "value": 1417.5,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.14,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.175,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.09259259259259259,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": 0.1875,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roa": {
+          "value": 0.11450381679389313,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roce": {
+          "value": 0.22344827586206897,
+          "unit": "fraction",
+          "reason": null
+        },
+        "current_ratio": {
+          "value": 2.1333333333333333,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.38095238095238093,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": 1000.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": 0.7054673721340388,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 8.859375,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.11851851851851852,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 1.28,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.05,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 555.0,
+          "unit": "INR crore",
+          "reason": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "fiscal_year": 2025,
+      "metrics": {
+        "revenue": {
+          "value": 9000.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": 0.11111111111111116,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_income_growth": {
+          "value": 0.16666666666666674,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda": {
+          "value": 1638.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.147,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.182,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.09722222222222222,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": 0.1977401129943503,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roa": {
+          "value": 0.12237762237762238,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roce": {
+          "value": 0.23730941704035874,
+          "unit": "fraction",
+          "reason": null
+        },
+        "current_ratio": {
+          "value": 2.121212121212121,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.3548387096774194,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": 950.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": 0.57997557997558,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 10.022727272727273,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.13,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 1.3371428571428572,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.05,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 720.0,
+          "unit": "INR crore",
+          "reason": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "fiscal_year": 2026,
+      "metrics": {
+        "revenue": {
+          "value": 10000.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": 0.11111111111111116,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_income_growth": {
+          "value": 0.1428571428571428,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda": {
+          "value": 1850.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.15,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.185,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.1,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": 0.20304568527918782,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roa": {
+          "value": 0.12738853503184713,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roce": {
+          "value": 0.242914979757085,
+          "unit": "fraction",
+          "reason": null
+        },
+        "current_ratio": {
+          "value": 2.2941176470588234,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.3076923076923077,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": 750.0,
+          "unit": "INR crore",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": 0.40540540540540543,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 11.71875,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.133,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 1.33,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.05,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 830.0,
+          "unit": "INR crore",
+          "reason": null
+        }
+      },
+      "warnings": []
+    }
+  ],
+  "revenue_cagr": {
+    "value": 0.10946604715661645,
+    "unit": "fraction",
+    "reason": null
+  },
+  "cagr_intervals": 4
+}
