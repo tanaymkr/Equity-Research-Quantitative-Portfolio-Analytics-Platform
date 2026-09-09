@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "company": "Tega Industries Limited",
+  "currency": "INR",
+  "financial_unit": "million",
+  "statement_basis": "consolidated",
+  "data_kind": "reported",
+  "as_of": "2025-08-26",
+  "base_year": 2025,
+  "source": {
+    "title": "Tega Industries Limited Annual Report 2024-25",
+    "url": "https://nsearchives.nseindia.com/corporate/TEGA_26082025192638_Intimation_Notice_AGM_2025_sd.pdf",
+    "published_on": "2025-08-26",
+    "audit_report_date": "2025-05-15",
+    "locators": {
+      "balance_sheet": "PDF page 224; printed page 242",
+      "income_statement": "PDF page 225; printed page 243",
+      "equity_movements": "PDF pages 226-227",
+      "cash_flow": "PDF pages 228-229",
+      "ppe": "Note 3(a), PDF page 244",
+      "leases": "Note 3(b), PDF pages 246-249",
+      "cwip": "Note 3(c), PDF page 250",
+      "intangibles": "Notes 3(d)-3(e), PDF pages 252-253",
+      "share_count": "Note 19A, PDF page 264",
+      "depreciation_expense": "Note 36, PDF page 281",
+      "debt_reconciliation": "Note 41(c), PDF pages 293-294"
+    }
+  },
+  "notes": [
+    "This is a historical FY2025 case, not a current Tega valuation. Later acquisitions, financing and FY2026 results are not included.",
+    "All currency amounts and share counts use million units. One crore equals ten million.",
+    "Rounded statement dashes are represented as zero only where the source reports a dash. Noncontrolling interests are below the report's rounding threshold, not proven economically zero.",
+    "Assets, liabilities and equity preserve reported line items, with term/current debt and payables aggregated into analytical pools. Debt pools exclude accrued interest, which remains in other financial liabilities.",
+    "Historical debt reconciliations include accrued interest as explicitly named; their closing amounts are not identical to principal-only balance-sheet pools.",
+    "Historic rounding differences up to INR 0.02 million are disclosed and checked; no balancing entry is added.",
+    "Cash capex is the investing cash outflow for capital assets. Asset additions, CWIP transfers and noncash lease additions have different scopes and must not be substituted for cash capex."
+  ],
+  "annuals": [
+    {
+      "fiscal_year": 2024,
+      "period_end": "2024-03-31",
+      "assets": {
+        "ppe": 3481.71,
+        "rou_assets": 1795.99,
+        "cwip": 107.18,
+        "investment_property": 34.09,
+        "goodwill": 614.19,
+        "intangibles": 76.3,
+        "intangibles_under_development": 1.86,
+        "joint_venture": 311.69,
+        "other_noncurrent_financial_assets": 60.93,
+        "noncurrent_tax_assets": 78.47,
+        "deferred_tax_assets": 189.31,
+        "other_noncurrent_assets": 13.4,
+        "inventories": 3701.48,
+        "current_investments": 2479.18,
+        "receivables": 4472.93,
+        "cash": 863.17,
+        "other_bank_balances": 3.94,
+        "current_loans": 0.87,
+        "other_current_financial_assets": 108.99,
+        "contract_assets": 9.31,
+        "current_tax_assets": 60.37,
+        "other_current_assets": 436.03
+      },
+      "liabilities": {
+        "term_debt": 1421.92,
+        "revolver": 1009.52,
+        "leases": 648.71,
+        "other_noncurrent_financial_liabilities": 9.49,
+        "noncurrent_provisions": 0.53,
+        "deferred_tax_liabilities": 53.32,
+        "payables": 1833.94,
+        "other_current_financial_liabilities": 610.92,
+        "current_provisions": 193.41,
+        "current_tax_liabilities": 187.82,
+        "other_current_liabilities": 1013.62
+      },
+      "equity": {
+        "share_capital": 665.35,
+        "retained_earnings": 9016.64,
+        "other_reserves": 2236.2,
+        "noncontrolling_interest": 0.0
+      },
+      "income": {
+        "revenue": 14927.14,
+        "other_income": 222.05,
+        "materials": 6959.6,
+        "inventory_change_expense": -504.46,
+        "employee_expense": 2198.63,
+        "other_expense": 3113.65,
+        "finance_cost": 319.54,
+        "depreciation_amortisation": 636.82,
+        "joint_venture_profit": 44.32,
+        "profit_before_tax": 2469.73,
+        "current_tax": 564.06,
+        "deferred_tax": -32.9,
+        "net_income": 1938.57,
+        "other_comprehensive_income": -382.99,
+        "operating_ebitda": 3159.72,
+        "operating_ebit": 2522.9
+      },
+      "cash_flow": {
+        "operating_adjustments": {
+          "depreciation_amortisation": 636.82,
+          "finance_cost_addback": 299.51,
+          "interest_income": -41.1,
+          "bad_debts_and_loss_allowance": 112.24,
+          "claims": -0.07,
+          "fair_value_investments": -148.8,
+          "investment_disposal_gains": -25.27,
+          "derivative_mark_to_market": 30.39,
+          "derivative_settlement": -77.12,
+          "liability_writeback": 0.0,
+          "asset_disposal_loss": -3.89,
+          "joint_venture_profit": -44.32,
+          "warranty_provision": 20.67,
+          "inventory_provision": 42.88,
+          "other_noncash": 0.61,
+          "unrealised_foreign_exchange": 71.95
+        },
+        "working_capital_movements": {
+          "other_financial_and_other_assets": -719.05,
+          "inventories": -975.16,
+          "financial_other_liabilities_and_provisions": 1291.85
+        },
+        "income_tax_paid": -420.45,
+        "investing": {
+          "capital_asset_purchases": -554.12,
+          "asset_disposal_proceeds": 10.24,
+          "investment_purchases": -3543.9,
+          "investment_sales": 3131.86,
+          "bank_deposits_placed": -164.96,
+          "bank_deposits_matured": 186.94,
+          "interest_received": 16.06,
+          "joint_venture_dividend": 11.25
+        },
+        "financing": {
+          "equity_issuance": 5.59,
+          "term_principal_repayment": -268.35,
+          "short_term_net_borrowing": -400.31,
+          "derivative_settlement": 77.12,
+          "borrowing_interest_paid": -238.09,
+          "lease_interest_paid": -66.28,
+          "lease_principal_paid": -129.12,
+          "dividends_paid": -132.9
+        },
+        "operating_total": 2521.42,
+        "investing_total": -906.63,
+        "financing_total": -1152.34,
+        "opening_cash": 457.21,
+        "exchange_effect_on_cash": -56.49,
+        "closing_cash": 863.17
+      },
+      "reported_totals": {
+        "assets": 18901.39,
+        "liabilities": 6983.2,
+        "equity": 11918.19,
+        "current_assets": 12136.27,
+        "current_liabilities": 5260.99,
+        "noncurrent_borrowings": 1162.27,
+        "current_borrowings": 1269.17,
+        "current_term_maturities": 259.65,
+        "noncurrent_leases": 496.6,
+        "current_leases": 152.11,
+        "accrued_term_interest": 5.28,
+        "accrued_short_term_interest": 1.87,
+        "shares_outstanding_million": 66.535492
+      }
+    },
+    {
+      "fiscal_year": 2025,
+      "period_end": "2025-03-31",
+      "assets": {
+        "ppe": 3658.4,
+        "rou_assets": 1831.17,
+        "cwip": 457.12,
+        "investment_property": 36.72,
+        "goodwill": 611.24,
+        "intangibles": 88.87,
+        "intangibles_under_development": 21.72,
+        "joint_venture": 221.29,
+        "other_noncurrent_financial_assets": 46.54,
+        "noncurrent_tax_assets": 63.14,
+        "deferred_tax_assets": 368.82,
+        "other_noncurrent_assets": 20.41,
+        "inventories": 4145.25,
+        "current_investments": 2397.45,
+        "receivables": 5010.47,
+        "cash": 1142.95,
+        "other_bank_balances": 68.61,
+        "current_loans": 0.57,
+        "other_current_financial_assets": 91.13,
+        "contract_assets": 0.0,
+        "current_tax_assets": 30.55,
+        "other_current_assets": 639.6
+      },
+      "liabilities": {
+        "term_debt": 1190.62,
+        "revolver": 1428.67,
+        "leases": 677.2,
+        "other_noncurrent_financial_liabilities": 3.88,
+        "noncurrent_provisions": 0.41,
+        "deferred_tax_liabilities": 62.01,
+        "payables": 2223.22,
+        "other_current_financial_liabilities": 196.07,
+        "current_provisions": 248.12,
+        "current_tax_liabilities": 307.17,
+        "other_current_liabilities": 647.73
+      },
+      "equity": {
+        "share_capital": 665.35,
+        "retained_earnings": 10876.91,
+        "other_reserves": 2424.66,
+        "noncontrolling_interest": 0.0
+      },
+      "income": {
+        "revenue": 16386.51,
+        "other_income": 431.54,
+        "materials": 7177.15,
+        "inventory_change_expense": -192.63,
+        "employee_expense": 2492.07,
+        "other_expense": 3511.83,
+        "finance_cost": 269.04,
+        "depreciation_amortisation": 1013.32,
+        "joint_venture_profit": 44.71,
+        "profit_before_tax": 2591.98,
+        "current_tax": 749.43,
+        "deferred_tax": -158.65,
+        "net_income": 2001.2,
+        "other_comprehensive_income": 180.6,
+        "operating_ebitda": 3398.09,
+        "operating_ebit": 2384.77
+      },
+      "cash_flow": {
+        "operating_adjustments": {
+          "depreciation_amortisation": 1013.32,
+          "finance_cost_addback": 257.96,
+          "interest_income": -43.27,
+          "bad_debts_and_loss_allowance": 19.05,
+          "claims": 16.28,
+          "fair_value_investments": -123.5,
+          "investment_disposal_gains": -72.18,
+          "derivative_mark_to_market": 57.97,
+          "derivative_settlement": -21.74,
+          "liability_writeback": -55.13,
+          "asset_disposal_loss": 0.83,
+          "joint_venture_profit": -44.71,
+          "warranty_provision": 30.18,
+          "inventory_provision": 100.42,
+          "other_noncash": -0.55,
+          "unrealised_foreign_exchange": 120.33
+        },
+        "working_capital_movements": {
+          "other_financial_and_other_assets": -735.65,
+          "inventories": -455.4,
+          "financial_other_liabilities_and_provisions": -110.96
+        },
+        "income_tax_paid": -594.93,
+        "investing": {
+          "capital_asset_purchases": -1701.8,
+          "asset_disposal_proceeds": 3.92,
+          "investment_purchases": -3504.1,
+          "investment_sales": 3781.46,
+          "bank_deposits_placed": -74.48,
+          "bank_deposits_matured": 10.02,
+          "interest_received": 34.83,
+          "joint_venture_dividend": 135.0
+        },
+        "financing": {
+          "equity_issuance": 0.0,
+          "term_principal_repayment": -199.03,
+          "short_term_net_borrowing": 372.8,
+          "derivative_settlement": 21.74,
+          "borrowing_interest_paid": -198.94,
+          "lease_interest_paid": -60.27,
+          "lease_principal_paid": -183.42,
+          "dividends_paid": -133.07
+        },
+        "operating_total": 1950.3,
+        "investing_total": -1315.15,
+        "financing_total": -380.19,
+        "opening_cash": 863.17,
+        "exchange_effect_on_cash": 24.82,
+        "closing_cash": 1142.95
+      },
+      "reported_totals": {
+        "assets": 20952.02,
+        "liabilities": 6985.1,
+        "equity": 13966.92,
+        "current_assets": 13526.58,
+        "current_liabilities": 5430.29,
+        "noncurrent_borrowings": 990.65,
+        "current_borrowings": 1628.64,
+        "current_term_maturities": 199.97,
+        "noncurrent_leases": 497.86,
+        "current_leases": 179.34,
+        "accrued_term_interest": 2.83,
+        "accrued_short_term_interest": 3.73,
+        "shares_outstanding_million": 66.535492
+      }
+    }
+  ],
+  "fy2025_reconciliations": {
+    "term_debt_including_accrued_interest": {
+      "opening": 1427.2,
+      "cash_principal_movement": -199.03,
+      "interest_accrual": 97.72,
+      "interest_paid": -100.83,
+      "exchange": -30.75,
+      "other": -0.86,
+      "closing": 1193.45
+    },
+    "short_term_debt_including_accrued_interest": {
+      "opening": 1011.39,
+      "cash_principal_movement": 372.8,
+      "interest_accrual": 99.97,
+      "interest_paid": -98.11,
+      "exchange": 46.36,
+      "other": 0.0,
+      "closing": 1432.41
+    },
+    "lease_liability": {
+      "opening": 648.71,
+      "new_leases_noncash": 173.19,
+      "cash_principal_movement": -183.42,
+      "interest_accrual": 60.27,
+      "interest_paid": -60.27,
+      "exchange": 43.31,
+      "other": -4.59,
+      "closing": 677.2
+    },
+    "ppe_net": {
+      "opening": 3481.71,
+      "gross_additions": 879.32,
+      "gross_disposals": -119.84,
+      "disposed_accumulated_depreciation": 115.08,
+      "exchange_on_cost": 160.99,
+      "exchange_on_accumulated_depreciation": -63.8,
+      "depreciation": -795.07,
+      "closing": 3658.4
+    },
+    "rou_net": {
+      "opening": 1795.99,
+      "gross_additions": 176.52,
+      "gross_disposals": -63.53,
+      "disposed_accumulated_depreciation": 59.49,
+      "exchange_on_cost": 66.62,
+      "exchange_on_accumulated_depreciation": -21.28,
+      "depreciation": -182.64,
+      "closing": 1831.17
+    },
+    "intangibles_net": {
+      "opening": 76.3,
+      "gross_additions": 47.51,
+      "gross_disposals": -3.98,
+      "disposed_accumulated_amortisation": 3.98,
+      "exchange_on_cost": 2.88,
+      "exchange_on_accumulated_amortisation": -2.21,
+      "amortisation": -35.61,
+      "closing": 88.87
+    },
+    "cwip": {
+      "opening": 107.18,
+      "additions": 545.84,
+      "capitalised": -226.07,
+      "exchange": 30.17,
+      "closing": 457.12
+    },
+    "intangibles_under_development": {
+      "opening": 1.86,
+      "additions": 21.72,
+      "capitalised": -1.86,
+      "exchange": 0.0,
+      "closing": 21.72
+    },
+    "equity": {
+      "opening": 11918.19,
+      "net_income": 2001.2,
+      "other_comprehensive_income": 180.6,
+      "dividends": -133.07,
+      "closing": 13966.92
+    }
+  },
+  "fy2025_asset_cohorts": [
+    {
+      "name": "ppe_land",
+      "account": "ppe",
+      "net_book_value": 698.51
+    },
+    {
+      "name": "ppe_buildings",
+      "account": "ppe",
+      "net_book_value": 1140.99
+    },
+    {
+      "name": "ppe_plant_and_wear_parts",
+      "account": "ppe",
+      "net_book_value": 1641.66
+    },
+    {
+      "name": "ppe_furniture",
+      "account": "ppe",
+      "net_book_value": 66.89
+    },
+    {
+      "name": "ppe_vehicles",
+      "account": "ppe",
+      "net_book_value": 43.75
+    },
+    {
+      "name": "ppe_office",
+      "account": "ppe",
+      "net_book_value": 58.5
+    },
+    {
+      "name": "ppe_electrical",
+      "account": "ppe",
+      "net_book_value": 8.1
+    },
+    {
+      "name": "rou_land",
+      "account": "rou_assets",
+      "net_book_value": 1014.15
+    },
+    {
+      "name": "rou_buildings",
+      "account": "rou_assets",
+      "net_book_value": 216.2
+    },
+    {
+      "name": "rou_plant",
+      "account": "rou_assets",
+      "net_book_value": 523.7
+    },
+    {
+      "name": "rou_office",
+      "account": "rou_assets",
+      "net_book_value": 34.55
+    },
+    {
+      "name": "rou_vehicles",
+      "account": "rou_assets",
+      "net_book_value": 42.57
+    },
+    {
+      "name": "software",
+      "account": "intangibles",
+      "net_book_value": 76.59
+    },
+    {
+      "name": "brand",
+      "account": "intangibles",
+      "net_book_value": 12.28
+    }
+  ]
+}

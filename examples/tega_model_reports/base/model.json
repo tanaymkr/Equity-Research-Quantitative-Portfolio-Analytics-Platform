@@ -1,0 +1,2244 @@
+{
+  "company": "Tega Industries Limited",
+  "label": "Illustrative analyst assumptions for a historical FY2025 case",
+  "as_of": "2025-08-26",
+  "currency": "INR",
+  "financial_unit": "million",
+  "historical_rounding_tolerance": 0.02,
+  "opening_balance_sheet_rounding_residual": 1.8189894035458565e-12,
+  "historical_checks": [
+    {
+      "name": "FY2024 assets total",
+      "calculated": 18901.39,
+      "reported": 18901.39,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 liabilities total",
+      "calculated": 6983.2,
+      "reported": 6983.2,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 equity total",
+      "calculated": 11918.189999999999,
+      "reported": 11918.19,
+      "residual": -1.8189894035458565e-12,
+      "passed": true
+    },
+    {
+      "name": "FY2024 balance sheet",
+      "calculated": 18901.39,
+      "reported": 18901.39,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 borrowing pools",
+      "calculated": 2431.44,
+      "reported": 2431.44,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 term current maturities",
+      "calculated": 1421.92,
+      "reported": 1421.92,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 lease pool",
+      "calculated": 648.71,
+      "reported": 648.71,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 operating EBITDA",
+      "calculated": 3159.719999999998,
+      "reported": 3159.72,
+      "residual": -1.8189894035458565e-12,
+      "passed": true
+    },
+    {
+      "name": "FY2024 operating EBIT",
+      "calculated": 2522.8999999999996,
+      "reported": 2522.9,
+      "residual": -4.547473508864641e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2024 profit before tax",
+      "calculated": 2469.7300000000005,
+      "reported": 2469.73,
+      "residual": 4.547473508864641e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2024 net income",
+      "calculated": 1938.5700000000002,
+      "reported": 1938.57,
+      "residual": 2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2024 operating cash flow",
+      "calculated": 2521.42,
+      "reported": 2521.42,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 investing cash flow",
+      "calculated": -906.63,
+      "reported": -906.63,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2024 financing cash flow",
+      "calculated": -1152.3400000000001,
+      "reported": -1152.34,
+      "residual": -2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2024 cash roll",
+      "calculated": 863.1700000000001,
+      "reported": 863.17,
+      "residual": 1.1368683772161603e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2024 cash to balance sheet",
+      "calculated": 863.17,
+      "reported": 863.17,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 assets total",
+      "calculated": 20952.02,
+      "reported": 20952.02,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 liabilities total",
+      "calculated": 6985.099999999999,
+      "reported": 6985.1,
+      "residual": -9.094947017729282e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 equity total",
+      "calculated": 13966.92,
+      "reported": 13966.92,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 balance sheet",
+      "calculated": 20952.02,
+      "reported": 20952.02,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 borrowing pools",
+      "calculated": 2619.29,
+      "reported": 2619.29,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 term current maturities",
+      "calculated": 1190.62,
+      "reported": 1190.62,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 lease pool",
+      "calculated": 677.2,
+      "reported": 677.2,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 operating EBITDA",
+      "calculated": 3398.0899999999983,
+      "reported": 3398.09,
+      "residual": -1.8189894035458565e-12,
+      "passed": true
+    },
+    {
+      "name": "FY2025 operating EBIT",
+      "calculated": 2384.77,
+      "reported": 2384.77,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 profit before tax",
+      "calculated": 2591.98,
+      "reported": 2591.98,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 net income",
+      "calculated": 2001.2000000000003,
+      "reported": 2001.2,
+      "residual": 2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 operating cash flow",
+      "calculated": 1950.2999999999997,
+      "reported": 1950.3,
+      "residual": -2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 investing cash flow",
+      "calculated": -1315.1499999999999,
+      "reported": -1315.15,
+      "residual": 2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 financing cash flow",
+      "calculated": -380.19,
+      "reported": -380.19,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 cash roll",
+      "calculated": 1142.9499999999996,
+      "reported": 1142.95,
+      "residual": -4.547473508864641e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 cash to balance sheet",
+      "calculated": 1142.95,
+      "reported": 1142.95,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 opening cash",
+      "calculated": 863.17,
+      "reported": 863.17,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 term_debt_including_accrued_interest roll",
+      "calculated": 1193.45,
+      "reported": 1193.45,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 short_term_debt_including_accrued_interest roll",
+      "calculated": 1432.41,
+      "reported": 1432.41,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 lease_liability roll",
+      "calculated": 677.2,
+      "reported": 677.2,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 ppe_net roll",
+      "calculated": 3658.39,
+      "reported": 3658.4,
+      "residual": -0.010000000000218279,
+      "passed": true
+    },
+    {
+      "name": "FY2025 rou_net roll",
+      "calculated": 1831.17,
+      "reported": 1831.17,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 intangibles_net roll",
+      "calculated": 88.86999999999999,
+      "reported": 88.87,
+      "residual": -1.4210854715202004e-14,
+      "passed": true
+    },
+    {
+      "name": "FY2025 cwip roll",
+      "calculated": 457.12000000000006,
+      "reported": 457.12,
+      "residual": 5.684341886080802e-14,
+      "passed": true
+    },
+    {
+      "name": "FY2025 intangibles_under_development roll",
+      "calculated": 21.72,
+      "reported": 21.72,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 equity roll",
+      "calculated": 13966.92,
+      "reported": 13966.92,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 lease_liability opening to statement",
+      "calculated": 648.71,
+      "reported": 648.71,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 lease_liability closing to statement",
+      "calculated": 677.2,
+      "reported": 677.2,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 ppe_net opening to statement",
+      "calculated": 3481.71,
+      "reported": 3481.71,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 ppe_net closing to statement",
+      "calculated": 3658.4,
+      "reported": 3658.4,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 rou_net opening to statement",
+      "calculated": 1795.99,
+      "reported": 1795.99,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 rou_net closing to statement",
+      "calculated": 1831.17,
+      "reported": 1831.17,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 intangibles_net opening to statement",
+      "calculated": 76.3,
+      "reported": 76.3,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 intangibles_net closing to statement",
+      "calculated": 88.87,
+      "reported": 88.87,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 cwip opening to statement",
+      "calculated": 107.18,
+      "reported": 107.18,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 cwip closing to statement",
+      "calculated": 457.12,
+      "reported": 457.12,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 intangibles_under_development opening to statement",
+      "calculated": 1.86,
+      "reported": 1.86,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 intangibles_under_development closing to statement",
+      "calculated": 21.72,
+      "reported": 21.72,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 equity opening to statement",
+      "calculated": 11918.19,
+      "reported": 11918.19,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 equity closing to statement",
+      "calculated": 13966.92,
+      "reported": 13966.92,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 term_debt_including_accrued_interest opening to statement",
+      "calculated": 1427.2,
+      "reported": 1427.2,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 term_debt_including_accrued_interest closing to statement",
+      "calculated": 1193.45,
+      "reported": 1193.4499999999998,
+      "residual": 2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 short_term_debt_including_accrued_interest opening to statement",
+      "calculated": 1011.39,
+      "reported": 1011.39,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 short_term_debt_including_accrued_interest closing to statement",
+      "calculated": 1432.41,
+      "reported": 1432.4,
+      "residual": 0.009999999999990905,
+      "passed": true
+    },
+    {
+      "name": "FY2025 D&A notes to income statement",
+      "calculated": 1013.32,
+      "reported": 1013.32,
+      "residual": 0.0,
+      "passed": true
+    },
+    {
+      "name": "FY2025 opening cohort ppe",
+      "calculated": 3658.3999999999996,
+      "reported": 3658.4,
+      "residual": -4.547473508864641e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 opening cohort rou_assets",
+      "calculated": 1831.1699999999998,
+      "reported": 1831.17,
+      "residual": -2.2737367544323206e-13,
+      "passed": true
+    },
+    {
+      "name": "FY2025 opening cohort intangibles",
+      "calculated": 88.87,
+      "reported": 88.87,
+      "residual": 0.0,
+      "passed": true
+    }
+  ],
+  "assumptions": {
+    "schema_version": 1,
+    "label": "Illustrative analyst assumptions for a historical FY2025 case",
+    "base_year": 2025,
+    "revenue_growth": [
+      0.1,
+      0.09,
+      0.08,
+      0.07,
+      0.06
+    ],
+    "ebitda_margin": [
+      0.205,
+      0.21,
+      0.21,
+      0.21,
+      0.21
+    ],
+    "receivable_days": [
+      110,
+      108,
+      106,
+      104,
+      102
+    ],
+    "inventory_pct_revenue": [
+      0.25,
+      0.245,
+      0.24,
+      0.235,
+      0.23
+    ],
+    "payables_pct_revenue": [
+      0.135,
+      0.135,
+      0.135,
+      0.135,
+      0.135
+    ],
+    "cash_capex_pct_revenue": [
+      0.08,
+      0.075,
+      0.07,
+      0.065,
+      0.06
+    ],
+    "term_principal_repayment": [
+      199.97,
+      200,
+      200,
+      200,
+      200
+    ],
+    "lease_principal_repayment": [
+      179.34,
+      170,
+      160,
+      150,
+      140
+    ],
+    "new_lease_assets": [
+      175,
+      185,
+      195,
+      205,
+      215
+    ],
+    "term_interest_rate": 0.085,
+    "revolver_interest_rate": 0.095,
+    "lease_interest_rate": 0.09,
+    "tax_rate": 0.25,
+    "dividend_payout_ratio": 0.1,
+    "minimum_cash": 500.0,
+    "revolver_limit": 4000.0,
+    "sweep_excess_cash_to_revolver": true,
+    "tangible_capex_share": 0.95,
+    "commissioning_fraction": 0.8,
+    "new_ppe_life_years": 8.0,
+    "new_intangible_life_years": 4.0,
+    "new_rou_life_years": 6.0,
+    "opening_remaining_life_years": {
+      "ppe_land": null,
+      "ppe_buildings": 25,
+      "ppe_plant_and_wear_parts": 3,
+      "ppe_furniture": 5,
+      "ppe_vehicles": 4,
+      "ppe_office": 3,
+      "ppe_electrical": 5,
+      "rou_land": 50,
+      "rou_buildings": 12,
+      "rou_plant": 5,
+      "rou_office": 3,
+      "rou_vehicles": 3,
+      "software": 3,
+      "brand": 2
+    },
+    "joint_venture_profit": 44.71,
+    "joint_venture_dividend": 44.71,
+    "dcf": {
+      "wacc": 0.12,
+      "terminal_growth": 0.04,
+      "terminal_roic": 0.15,
+      "joint_venture_value": 221.29,
+      "investment_property_value": 36.72,
+      "noncontrolling_interest_value": 0.0
+    },
+    "notes": [
+      "Every forecast input is an analyst illustration, not company guidance, a committed credit facility or a researched investment recommendation.",
+      "FY2026 term and lease principal payments start from disclosed FY2025 current maturities. Later repayments are assumed, not a contractual maturity ladder.",
+      "Remaining lives are estimates for aggregated opening asset groups, not reported remaining lives. Plant includes short-lived customer wear parts; an assumed blended life simplifies the forecast.",
+      "Cash capex enters CWIP/development; the commissioning fraction transfers available balances into new PPE/intangible cohorts. New cohorts receive half-year depreciation and full-year charges thereafter, capped at book value. Zero residual values are assumed.",
+      "Interest uses opening principal, with repayments, revolver draws and cash sweep at year end. All forecast interest is paid in financing cash flow in the same year. Opening accrued interest balances are held constant.",
+      "New leases create equal asset/liability additions in the forecast. Historical differences are preserved. Lease additions are economic capex in FCFF because lease liabilities are deducted in the DCF bridge.",
+      "Only receivables, inventories and trade payables drive working-capital movements. Other operating accounts are held constant individually.",
+      "Equity-accounted JV profit is after the JV own tax. No additional group-level tax on JV profit or dividends is assumed. Forecast group tax applies to EBIT less finance costs, floored at zero.",
+      "Other income, future OCI, FX, acquisitions, disposals, impairments, equity issuance and tax-loss carryforwards are not forecast. JV profit/dividend are flat. Existing deferred-tax and tax payable/receivable balances are held constant; forecast tax expense equals cash tax.",
+      "All retained cash above the assumed minimum first repays the revolver. The assumed revolver limit is not a verified bank commitment; exceeding it is an error.",
+      "DCF is a fiscal-year-end FY2025 illustration using information published by 26 August 2025, not a point-in-time backtest at 31 March. Terminal FCFF uses reinvestment equal to g/ROIC of terminal NOPAT. WACC, growth, ROIC and nonoperating values have not been independently calibrated."
+    ]
+  },
+  "historical_source": {
+    "title": "Tega Industries Limited Annual Report 2024-25",
+    "url": "https://nsearchives.nseindia.com/corporate/TEGA_26082025192638_Intimation_Notice_AGM_2025_sd.pdf",
+    "published_on": "2025-08-26",
+    "audit_report_date": "2025-05-15",
+    "locators": {
+      "balance_sheet": "PDF page 224; printed page 242",
+      "income_statement": "PDF page 225; printed page 243",
+      "equity_movements": "PDF pages 226-227",
+      "cash_flow": "PDF pages 228-229",
+      "ppe": "Note 3(a), PDF page 244",
+      "leases": "Note 3(b), PDF pages 246-249",
+      "cwip": "Note 3(c), PDF page 250",
+      "intangibles": "Notes 3(d)-3(e), PDF pages 252-253",
+      "share_count": "Note 19A, PDF page 264",
+      "depreciation_expense": "Note 36, PDF page 281",
+      "debt_reconciliation": "Note 41(c), PDF pages 293-294"
+    }
+  },
+  "years": [
+    {
+      "fiscal_year": 2026,
+      "income": {
+        "revenue": 18025.161,
+        "ebitda": 3695.158005,
+        "depreciation_amortisation": 954.0284428666668,
+        "ebit": 2741.129562133333,
+        "joint_venture_profit": 44.71,
+        "finance_cost": 297.87435,
+        "profit_before_tax": 2487.965212133333,
+        "taxable_profit": 2443.255212133333,
+        "tax": 610.8138030333332,
+        "net_income": 1877.1514090999997
+      },
+      "balance_sheet": {
+        "assets": {
+          "ppe": 4390.3790770000005,
+          "rou_assets": 1822.8403333333333,
+          "cwip": 365.4064471999999,
+          "investment_property": 36.72,
+          "goodwill": 611.24,
+          "intangibles": 122.87445080000008,
+          "intangibles_under_development": 18.764128800000023,
+          "joint_venture": 221.29,
+          "other_noncurrent_financial_assets": 46.54,
+          "noncurrent_tax_assets": 63.14,
+          "deferred_tax_assets": 368.82,
+          "other_noncurrent_assets": 20.41,
+          "inventories": 4506.29025,
+          "current_investments": 2397.45,
+          "receivables": 5432.240301369863,
+          "cash": 500.0,
+          "other_bank_balances": 68.61,
+          "current_loans": 0.57,
+          "other_current_financial_assets": 91.13,
+          "contract_assets": 0.0,
+          "current_tax_assets": 30.55,
+          "other_current_assets": 639.6
+        },
+        "liabilities": {
+          "term_debt": 990.6499999999999,
+          "revolver": 536.2119853131942,
+          "leases": 672.86,
+          "other_noncurrent_financial_liabilities": 3.88,
+          "noncurrent_provisions": 0.41,
+          "deferred_tax_liabilities": 62.01,
+          "payables": 2433.3967350000003,
+          "other_current_financial_liabilities": 196.07,
+          "current_provisions": 248.12,
+          "current_tax_liabilities": 307.17,
+          "other_current_liabilities": 647.73
+        },
+        "equity": {
+          "share_capital": 665.35,
+          "retained_earnings": 12566.34626819,
+          "other_reserves": 2424.66,
+          "noncontrolling_interest": 0.0
+        },
+        "total_assets": 21754.864988503195,
+        "total_liabilities": 6098.508720313194,
+        "total_equity": 15656.35626819
+      },
+      "cash_flow": {
+        "opening_cash": 1142.95,
+        "net_income": 1877.1514090999997,
+        "depreciation_amortisation": 954.0284428666668,
+        "finance_cost_addback": 297.87435,
+        "joint_venture_profit_deduction": -44.71,
+        "change_in_working_capital": -572.6338163698601,
+        "operating": 2511.710385596806,
+        "cash_capex": -1442.01288,
+        "joint_venture_dividend": 44.71,
+        "investing": -1397.30288,
+        "term_repayment": -199.97,
+        "lease_principal_repayment": -179.34,
+        "interest_paid": -297.87435,
+        "dividends": -187.71514090999997,
+        "revolver_draw": 0,
+        "revolver_repayment": -892.4580146868059,
+        "financing": -1757.3575055968058,
+        "closing_cash": 500.0
+      },
+      "asset_schedule": [
+        {
+          "name": "ppe_land",
+          "account": "ppe",
+          "opening": 698.51,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 698.51
+        },
+        {
+          "name": "ppe_buildings",
+          "account": "ppe",
+          "opening": 1140.99,
+          "additions": 0.0,
+          "depreciation_amortisation": 45.6396,
+          "closing": 1095.3504
+        },
+        {
+          "name": "ppe_plant_and_wear_parts",
+          "account": "ppe",
+          "opening": 1641.66,
+          "additions": 0.0,
+          "depreciation_amortisation": 547.22,
+          "closing": 1094.44
+        },
+        {
+          "name": "ppe_furniture",
+          "account": "ppe",
+          "opening": 66.89,
+          "additions": 0.0,
+          "depreciation_amortisation": 13.378,
+          "closing": 53.512
+        },
+        {
+          "name": "ppe_vehicles",
+          "account": "ppe",
+          "opening": 43.75,
+          "additions": 0.0,
+          "depreciation_amortisation": 10.9375,
+          "closing": 32.8125
+        },
+        {
+          "name": "ppe_office",
+          "account": "ppe",
+          "opening": 58.5,
+          "additions": 0.0,
+          "depreciation_amortisation": 19.5,
+          "closing": 39.0
+        },
+        {
+          "name": "ppe_electrical",
+          "account": "ppe",
+          "opening": 8.1,
+          "additions": 0.0,
+          "depreciation_amortisation": 1.6199999999999999,
+          "closing": 6.4799999999999995
+        },
+        {
+          "name": "rou_land",
+          "account": "rou_assets",
+          "opening": 1014.15,
+          "additions": 0.0,
+          "depreciation_amortisation": 20.283,
+          "closing": 993.867
+        },
+        {
+          "name": "rou_buildings",
+          "account": "rou_assets",
+          "opening": 216.2,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.016666666666666,
+          "closing": 198.18333333333334
+        },
+        {
+          "name": "rou_plant",
+          "account": "rou_assets",
+          "opening": 523.7,
+          "additions": 0.0,
+          "depreciation_amortisation": 104.74000000000001,
+          "closing": 418.96000000000004
+        },
+        {
+          "name": "rou_office",
+          "account": "rou_assets",
+          "opening": 34.55,
+          "additions": 0.0,
+          "depreciation_amortisation": 11.516666666666666,
+          "closing": 23.03333333333333
+        },
+        {
+          "name": "rou_vehicles",
+          "account": "rou_assets",
+          "opening": 42.57,
+          "additions": 0.0,
+          "depreciation_amortisation": 14.19,
+          "closing": 28.380000000000003
+        },
+        {
+          "name": "software",
+          "account": "intangibles",
+          "opening": 76.59,
+          "additions": 0.0,
+          "depreciation_amortisation": 25.53,
+          "closing": 51.06
+        },
+        {
+          "name": "brand",
+          "account": "intangibles",
+          "opening": 12.28,
+          "additions": 0.0,
+          "depreciation_amortisation": 6.14,
+          "closing": 6.14
+        },
+        {
+          "name": "ppe_2026",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 1461.6257888,
+          "depreciation_amortisation": 91.3516118,
+          "closing": 1370.274177
+        },
+        {
+          "name": "intangibles_2026",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 75.05651520000008,
+          "depreciation_amortisation": 9.38206440000001,
+          "closing": 65.67445080000007
+        },
+        {
+          "name": "rou_2026",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 175,
+          "depreciation_amortisation": 14.583333333333334,
+          "closing": 160.41666666666666
+        }
+      ],
+      "construction_schedule": {
+        "cwip": {
+          "opening": 457.12,
+          "cash_additions": 1369.912236,
+          "commissioned": 1461.6257888,
+          "closing": 365.4064471999999
+        },
+        "development": {
+          "opening": 21.72,
+          "cash_additions": 72.1006440000001,
+          "commissioned": 75.05651520000008,
+          "closing": 18.764128800000023
+        }
+      },
+      "debt_schedule": [
+        {
+          "pool": "term_debt",
+          "opening": 1190.62,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 199.97,
+          "interest_expense_and_cash_paid": 101.2027,
+          "closing": 990.6499999999999
+        },
+        {
+          "pool": "revolver",
+          "opening": 1428.67,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 892.4580146868059,
+          "interest_expense_and_cash_paid": 135.72365000000002,
+          "closing": 536.2119853131942
+        },
+        {
+          "pool": "leases",
+          "opening": 677.2,
+          "cash_draw": 0,
+          "noncash_new_leases": 175,
+          "principal_repayment": 179.34,
+          "interest_expense_and_cash_paid": 60.948,
+          "closing": 672.86
+        }
+      ],
+      "nopat": 2055.8471715999995,
+      "delta_operating_working_capital": 572.6338163698601,
+      "new_leased_assets_economic_capex": 175,
+      "fcff": 820.2289180968062,
+      "checks": {
+        "balance_sheet_residual": 0.0,
+        "change_in_opening_rounding_residual": -1.8189894035458565e-12,
+        "cash_roll_residual": -2.2737367544323206e-13,
+        "retained_earnings_residual": 4.831690603168681e-13
+      }
+    },
+    {
+      "fiscal_year": 2027,
+      "income": {
+        "revenue": 19647.42549,
+        "ebitda": 4125.9593529,
+        "depreciation_amortisation": 1182.2705921735417,
+        "ebit": 2943.688760726459,
+        "joint_venture_profit": 44.71,
+        "finance_cost": 195.70278860475344,
+        "profit_before_tax": 2792.6959721217054,
+        "taxable_profit": 2747.9859721217053,
+        "tax": 686.9964930304263,
+        "net_income": 2105.699479091279
+      },
+      "balance_sheet": {
+        "assets": {
+          "ppe": 4893.344888421875,
+          "rou_assets": 1794.5106666666666,
+          "cwip": 353.05710267250004,
+          "investment_property": 36.72,
+          "goodwill": 611.24,
+          "intangibles": 137.14970407125014,
+          "intangibles_under_development": 18.488394877500014,
+          "joint_venture": 221.29,
+          "other_noncurrent_financial_assets": 46.54,
+          "noncurrent_tax_assets": 63.14,
+          "deferred_tax_assets": 368.82,
+          "other_noncurrent_assets": 20.41,
+          "inventories": 4813.61924505,
+          "current_investments": 2397.45,
+          "receivables": 5813.484802520548,
+          "cash": 728.0634362418125,
+          "other_bank_balances": 68.61,
+          "current_loans": 0.57,
+          "other_current_financial_assets": 91.13,
+          "contract_assets": 0.0,
+          "current_tax_assets": 30.55,
+          "other_current_assets": 639.6
+        },
+        "liabilities": {
+          "term_debt": 790.6499999999999,
+          "revolver": 0.0,
+          "leases": 687.86,
+          "other_noncurrent_financial_liabilities": 3.88,
+          "noncurrent_provisions": 0.41,
+          "deferred_tax_liabilities": 62.01,
+          "payables": 2652.4024411500004,
+          "other_current_financial_liabilities": 196.07,
+          "current_provisions": 248.12,
+          "current_tax_liabilities": 307.17,
+          "other_current_liabilities": 647.73
+        },
+        "equity": {
+          "share_capital": 665.35,
+          "retained_earnings": 14461.47579937215,
+          "other_reserves": 2424.66,
+          "noncontrolling_interest": 0.0
+        },
+        "total_assets": 23147.788240522154,
+        "total_liabilities": 5596.30244115,
+        "total_equity": 17551.48579937215
+      },
+      "cash_flow": {
+        "opening_cash": 500.0,
+        "net_income": 2105.699479091279,
+        "depreciation_amortisation": 1182.2705921735417,
+        "finance_cost_addback": 195.70278860475344,
+        "joint_venture_profit_deduction": -44.71,
+        "change_in_working_capital": -469.5677900506862,
+        "operating": 2969.3950698188883,
+        "cash_capex": -1473.5569117500002,
+        "joint_venture_dividend": 44.71,
+        "investing": -1428.8469117500001,
+        "term_repayment": -200,
+        "lease_principal_repayment": -170,
+        "interest_paid": -195.70278860475344,
+        "dividends": -210.5699479091279,
+        "revolver_draw": 0,
+        "revolver_repayment": -536.2119853131942,
+        "financing": -1312.4847218270756,
+        "closing_cash": 728.0634362418125
+      },
+      "asset_schedule": [
+        {
+          "name": "ppe_land",
+          "account": "ppe",
+          "opening": 698.51,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 698.51
+        },
+        {
+          "name": "ppe_buildings",
+          "account": "ppe",
+          "opening": 1095.3504,
+          "additions": 0.0,
+          "depreciation_amortisation": 45.6396,
+          "closing": 1049.7108
+        },
+        {
+          "name": "ppe_plant_and_wear_parts",
+          "account": "ppe",
+          "opening": 1094.44,
+          "additions": 0.0,
+          "depreciation_amortisation": 547.22,
+          "closing": 547.22
+        },
+        {
+          "name": "ppe_furniture",
+          "account": "ppe",
+          "opening": 53.512,
+          "additions": 0.0,
+          "depreciation_amortisation": 13.378,
+          "closing": 40.134
+        },
+        {
+          "name": "ppe_vehicles",
+          "account": "ppe",
+          "opening": 32.8125,
+          "additions": 0.0,
+          "depreciation_amortisation": 10.9375,
+          "closing": 21.875
+        },
+        {
+          "name": "ppe_office",
+          "account": "ppe",
+          "opening": 39.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 19.5,
+          "closing": 19.5
+        },
+        {
+          "name": "ppe_electrical",
+          "account": "ppe",
+          "opening": 6.4799999999999995,
+          "additions": 0.0,
+          "depreciation_amortisation": 1.6199999999999999,
+          "closing": 4.859999999999999
+        },
+        {
+          "name": "rou_land",
+          "account": "rou_assets",
+          "opening": 993.867,
+          "additions": 0.0,
+          "depreciation_amortisation": 20.283,
+          "closing": 973.584
+        },
+        {
+          "name": "rou_buildings",
+          "account": "rou_assets",
+          "opening": 198.18333333333334,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.016666666666666,
+          "closing": 180.16666666666669
+        },
+        {
+          "name": "rou_plant",
+          "account": "rou_assets",
+          "opening": 418.96000000000004,
+          "additions": 0.0,
+          "depreciation_amortisation": 104.74000000000001,
+          "closing": 314.22
+        },
+        {
+          "name": "rou_office",
+          "account": "rou_assets",
+          "opening": 23.03333333333333,
+          "additions": 0.0,
+          "depreciation_amortisation": 11.516666666666666,
+          "closing": 11.516666666666666
+        },
+        {
+          "name": "rou_vehicles",
+          "account": "rou_assets",
+          "opening": 28.380000000000003,
+          "additions": 0.0,
+          "depreciation_amortisation": 14.19,
+          "closing": 14.190000000000003
+        },
+        {
+          "name": "software",
+          "account": "intangibles",
+          "opening": 51.06,
+          "additions": 0.0,
+          "depreciation_amortisation": 25.53,
+          "closing": 25.53
+        },
+        {
+          "name": "brand",
+          "account": "intangibles",
+          "opening": 6.14,
+          "additions": 0.0,
+          "depreciation_amortisation": 6.14,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_2026",
+          "account": "ppe",
+          "opening": 1370.274177,
+          "additions": 0.0,
+          "depreciation_amortisation": 182.7032236,
+          "closing": 1187.5709534
+        },
+        {
+          "name": "intangibles_2026",
+          "account": "intangibles",
+          "opening": 65.67445080000007,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.76412880000002,
+          "closing": 46.91032200000005
+        },
+        {
+          "name": "rou_2026",
+          "account": "rou_assets",
+          "opening": 160.41666666666666,
+          "additions": 0.0,
+          "depreciation_amortisation": 29.166666666666668,
+          "closing": 131.25
+        },
+        {
+          "name": "ppe_2027",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 1412.22841069,
+          "depreciation_amortisation": 88.264275668125,
+          "closing": 1323.9641350218749
+        },
+        {
+          "name": "intangibles_2027",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 73.9535795100001,
+          "depreciation_amortisation": 9.244197438750012,
+          "closing": 64.70938207125009
+        },
+        {
+          "name": "rou_2027",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 185,
+          "depreciation_amortisation": 15.416666666666666,
+          "closing": 169.58333333333334
+        }
+      ],
+      "construction_schedule": {
+        "cwip": {
+          "opening": 365.4064471999999,
+          "cash_additions": 1399.8790661625,
+          "commissioned": 1412.22841069,
+          "closing": 353.05710267250004
+        },
+        "development": {
+          "opening": 18.764128800000023,
+          "cash_additions": 73.67784558750009,
+          "commissioned": 73.9535795100001,
+          "closing": 18.488394877500014
+        }
+      },
+      "debt_schedule": [
+        {
+          "pool": "term_debt",
+          "opening": 990.6499999999999,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 200,
+          "interest_expense_and_cash_paid": 84.20524999999999,
+          "closing": 790.6499999999999
+        },
+        {
+          "pool": "revolver",
+          "opening": 536.2119853131942,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 536.2119853131942,
+          "interest_expense_and_cash_paid": 50.94013860475345,
+          "closing": 0.0
+        },
+        {
+          "pool": "leases",
+          "opening": 672.86,
+          "cash_draw": 0,
+          "noncash_new_leases": 185,
+          "principal_repayment": 170,
+          "interest_expense_and_cash_paid": 60.5574,
+          "closing": 687.86
+        }
+      ],
+      "nopat": 2207.7665705448444,
+      "delta_operating_working_capital": 469.5677900506862,
+      "new_leased_assets_economic_capex": 185,
+      "fcff": 1261.9124609176995,
+      "checks": {
+        "balance_sheet_residual": 3.637978807091713e-12,
+        "change_in_opening_rounding_residual": 1.8189894035458565e-12,
+        "cash_roll_residual": -2.2737367544323206e-13,
+        "retained_earnings_residual": -6.821210263296962e-13
+      }
+    },
+    {
+      "fiscal_year": 2028,
+      "income": {
+        "revenue": 21219.219529200003,
+        "ebitda": 4456.036101132,
+        "depreciation_amortisation": 1402.7880583382685,
+        "ebit": 3053.2480427937317,
+        "joint_venture_profit": 44.71,
+        "finance_cost": 129.11264999999997,
+        "profit_before_tax": 2968.8453927937317,
+        "taxable_profit": 2924.1353927937316,
+        "tax": 731.0338481984329,
+        "net_income": 2237.811544595299
+      },
+      "balance_sheet": {
+        "assets": {
+          "ppe": 5218.91941450885,
+          "rou_assets": 1744.5143333333333,
+          "cwip": 352.8270402728598,
+          "investment_property": 36.72,
+          "goodwill": 611.24,
+          "intangibles": 139.29614465454014,
+          "intangibles_under_development": 18.551132645940015,
+          "joint_venture": 221.29,
+          "other_noncurrent_financial_assets": 46.54,
+          "noncurrent_tax_assets": 63.14,
+          "deferred_tax_assets": 368.82,
+          "other_noncurrent_assets": 20.41,
+          "inventories": 5092.612687008001,
+          "current_investments": 2397.45,
+          "receivables": 6162.293890671782,
+          "cash": 1883.926182854616,
+          "other_bank_balances": 68.61,
+          "current_loans": 0.57,
+          "other_current_financial_assets": 91.13,
+          "contract_assets": 0.0,
+          "current_tax_assets": 30.55,
+          "other_current_assets": 639.6
+        },
+        "liabilities": {
+          "term_debt": 590.6499999999999,
+          "revolver": 0.0,
+          "leases": 722.86,
+          "other_noncurrent_financial_liabilities": 3.88,
+          "noncurrent_provisions": 0.41,
+          "deferred_tax_liabilities": 62.01,
+          "payables": 2864.5946364420006,
+          "other_current_financial_liabilities": 196.07,
+          "current_provisions": 248.12,
+          "current_tax_liabilities": 307.17,
+          "other_current_liabilities": 647.73
+        },
+        "equity": {
+          "share_capital": 665.35,
+          "retained_earnings": 16475.50618950792,
+          "other_reserves": 2424.66,
+          "noncontrolling_interest": 0.0
+        },
+        "total_assets": 25209.01082594992,
+        "total_liabilities": 5643.494636442,
+        "total_equity": 19565.516189507918
+      },
+      "cash_flow": {
+        "opening_cash": 728.0634362418125,
+        "net_income": 2237.811544595299,
+        "depreciation_amortisation": 1402.7880583382685,
+        "finance_cost_addback": 129.11264999999997,
+        "joint_venture_profit_deduction": -44.71,
+        "change_in_working_capital": -415.6103348172337,
+        "operating": 3309.3919181163337,
+        "cash_capex": -1485.3453670440003,
+        "joint_venture_dividend": 44.71,
+        "investing": -1440.6353670440003,
+        "term_repayment": -200,
+        "lease_principal_repayment": -160,
+        "interest_paid": -129.11264999999997,
+        "dividends": -223.78115445952992,
+        "revolver_draw": 0,
+        "revolver_repayment": -0.0,
+        "financing": -712.8938044595299,
+        "closing_cash": 1883.926182854616
+      },
+      "asset_schedule": [
+        {
+          "name": "ppe_land",
+          "account": "ppe",
+          "opening": 698.51,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 698.51
+        },
+        {
+          "name": "ppe_buildings",
+          "account": "ppe",
+          "opening": 1049.7108,
+          "additions": 0.0,
+          "depreciation_amortisation": 45.6396,
+          "closing": 1004.0712000000001
+        },
+        {
+          "name": "ppe_plant_and_wear_parts",
+          "account": "ppe",
+          "opening": 547.22,
+          "additions": 0.0,
+          "depreciation_amortisation": 547.22,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_furniture",
+          "account": "ppe",
+          "opening": 40.134,
+          "additions": 0.0,
+          "depreciation_amortisation": 13.378,
+          "closing": 26.756
+        },
+        {
+          "name": "ppe_vehicles",
+          "account": "ppe",
+          "opening": 21.875,
+          "additions": 0.0,
+          "depreciation_amortisation": 10.9375,
+          "closing": 10.9375
+        },
+        {
+          "name": "ppe_office",
+          "account": "ppe",
+          "opening": 19.5,
+          "additions": 0.0,
+          "depreciation_amortisation": 19.5,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_electrical",
+          "account": "ppe",
+          "opening": 4.859999999999999,
+          "additions": 0.0,
+          "depreciation_amortisation": 1.6199999999999999,
+          "closing": 3.2399999999999993
+        },
+        {
+          "name": "rou_land",
+          "account": "rou_assets",
+          "opening": 973.584,
+          "additions": 0.0,
+          "depreciation_amortisation": 20.283,
+          "closing": 953.3009999999999
+        },
+        {
+          "name": "rou_buildings",
+          "account": "rou_assets",
+          "opening": 180.16666666666669,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.016666666666666,
+          "closing": 162.15000000000003
+        },
+        {
+          "name": "rou_plant",
+          "account": "rou_assets",
+          "opening": 314.22,
+          "additions": 0.0,
+          "depreciation_amortisation": 104.74000000000001,
+          "closing": 209.48000000000002
+        },
+        {
+          "name": "rou_office",
+          "account": "rou_assets",
+          "opening": 11.516666666666666,
+          "additions": 0.0,
+          "depreciation_amortisation": 11.516666666666666,
+          "closing": 0.0
+        },
+        {
+          "name": "rou_vehicles",
+          "account": "rou_assets",
+          "opening": 14.190000000000003,
+          "additions": 0.0,
+          "depreciation_amortisation": 14.19,
+          "closing": 3.552713678800501e-15
+        },
+        {
+          "name": "software",
+          "account": "intangibles",
+          "opening": 25.53,
+          "additions": 0.0,
+          "depreciation_amortisation": 25.53,
+          "closing": 0.0
+        },
+        {
+          "name": "brand",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_2026",
+          "account": "ppe",
+          "opening": 1187.5709534,
+          "additions": 0.0,
+          "depreciation_amortisation": 182.7032236,
+          "closing": 1004.8677298
+        },
+        {
+          "name": "intangibles_2026",
+          "account": "intangibles",
+          "opening": 46.91032200000005,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.76412880000002,
+          "closing": 28.14619320000003
+        },
+        {
+          "name": "rou_2026",
+          "account": "rou_assets",
+          "opening": 131.25,
+          "additions": 0.0,
+          "depreciation_amortisation": 29.166666666666668,
+          "closing": 102.08333333333333
+        },
+        {
+          "name": "ppe_2027",
+          "account": "ppe",
+          "opening": 1323.9641350218749,
+          "additions": 0.0,
+          "depreciation_amortisation": 176.52855133625,
+          "closing": 1147.4355836856248
+        },
+        {
+          "name": "intangibles_2027",
+          "account": "intangibles",
+          "opening": 64.70938207125009,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.488394877500024,
+          "closing": 46.22098719375006
+        },
+        {
+          "name": "rou_2027",
+          "account": "rou_assets",
+          "opening": 169.58333333333334,
+          "additions": 0.0,
+          "depreciation_amortisation": 30.833333333333332,
+          "closing": 138.75
+        },
+        {
+          "name": "ppe_2028",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 1411.3081610914405,
+          "depreciation_amortisation": 88.20676006821503,
+          "closing": 1323.1014010232254
+        },
+        {
+          "name": "intangibles_2028",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 74.20453058376006,
+          "depreciation_amortisation": 9.275566322970008,
+          "closing": 64.92896426079005
+        },
+        {
+          "name": "rou_2028",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 195,
+          "depreciation_amortisation": 16.25,
+          "closing": 178.75
+        }
+      ],
+      "construction_schedule": {
+        "cwip": {
+          "opening": 353.05710267250004,
+          "cash_additions": 1411.0780986918003,
+          "commissioned": 1411.3081610914405,
+          "closing": 352.8270402728598
+        },
+        "development": {
+          "opening": 18.488394877500014,
+          "cash_additions": 74.26726835220006,
+          "commissioned": 74.20453058376006,
+          "closing": 18.551132645940015
+        }
+      },
+      "debt_schedule": [
+        {
+          "pool": "term_debt",
+          "opening": 790.6499999999999,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 200,
+          "interest_expense_and_cash_paid": 67.20524999999999,
+          "closing": 590.6499999999999
+        },
+        {
+          "pool": "revolver",
+          "opening": 0.0,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 0.0,
+          "interest_expense_and_cash_paid": 0.0,
+          "closing": 0.0
+        },
+        {
+          "pool": "leases",
+          "opening": 687.86,
+          "cash_draw": 0,
+          "noncash_new_leases": 195,
+          "principal_repayment": 160,
+          "interest_expense_and_cash_paid": 61.907399999999996,
+          "closing": 722.86
+        }
+      ],
+      "nopat": 2289.9360320952987,
+      "delta_operating_working_capital": 415.6103348172337,
+      "new_leased_assets_economic_capex": 195,
+      "fcff": 1596.7683885723332,
+      "checks": {
+        "balance_sheet_residual": 3.637978807091713e-12,
+        "change_in_opening_rounding_residual": 1.8189894035458565e-12,
+        "cash_roll_residual": 1.1368683772161603e-13,
+        "retained_earnings_residual": 1.9895196601282805e-13
+      }
+    },
+    {
+      "fiscal_year": 2029,
+      "income": {
+        "revenue": 22704.564896244006,
+        "ebitda": 4767.958628211241,
+        "depreciation_amortisation": 1012.6228443827898,
+        "ebit": 3755.3357838284514,
+        "joint_venture_profit": 44.71,
+        "finance_cost": 115.26265,
+        "profit_before_tax": 3684.7831338284514,
+        "taxable_profit": 3640.0731338284513,
+        "tax": 910.0182834571128,
+        "net_income": 2774.7648503713385
+      },
+      "balance_sheet": {
+        "assets": {
+          "ppe": 5927.824461398116,
+          "rou_assets": 1696.8913333333333,
+          "cwip": 350.9667845231853,
+          "investment_property": 36.72,
+          "goodwill": 611.24,
+          "intangibles": 148.1311663222132,
+          "intangibles_under_development": 18.468193711746608,
+          "joint_venture": 221.29,
+          "other_noncurrent_financial_assets": 46.54,
+          "noncurrent_tax_assets": 63.14,
+          "deferred_tax_assets": 368.82,
+          "other_noncurrent_assets": 20.41,
+          "inventories": 5335.572750617342,
+          "current_investments": 2397.45,
+          "receivables": 6469.245888244867,
+          "cash": 3218.6502376842654,
+          "other_bank_balances": 68.61,
+          "current_loans": 0.57,
+          "other_current_financial_assets": 91.13,
+          "contract_assets": 0.0,
+          "current_tax_assets": 30.55,
+          "other_current_assets": 639.6
+        },
+        "liabilities": {
+          "term_debt": 390.64999999999986,
+          "revolver": 0.0,
+          "leases": 777.86,
+          "other_noncurrent_financial_liabilities": 3.88,
+          "noncurrent_provisions": 0.41,
+          "deferred_tax_liabilities": 62.01,
+          "payables": 3065.116260992941,
+          "other_current_financial_liabilities": 196.07,
+          "current_provisions": 248.12,
+          "current_tax_liabilities": 307.17,
+          "other_current_liabilities": 647.73
+        },
+        "equity": {
+          "share_capital": 665.35,
+          "retained_earnings": 18972.794554842123,
+          "other_reserves": 2424.66,
+          "noncontrolling_interest": 0.0
+        },
+        "total_assets": 27761.820815835068,
+        "total_liabilities": 5699.016260992941,
+        "total_equity": 22062.80455484212
+      },
+      "cash_flow": {
+        "opening_cash": 1883.926182854616,
+        "net_income": 2774.7648503713385,
+        "depreciation_amortisation": 1012.6228443827898,
+        "finance_cost_addback": 115.26265,
+        "joint_venture_profit_deduction": -44.71,
+        "change_in_working_capital": -349.3904366314855,
+        "operating": 3508.549908122643,
+        "cash_capex": -1475.7967182558605,
+        "joint_venture_dividend": 44.71,
+        "investing": -1431.0867182558604,
+        "term_repayment": -200,
+        "lease_principal_repayment": -150,
+        "interest_paid": -115.26265,
+        "dividends": -277.47648503713384,
+        "revolver_draw": 0,
+        "revolver_repayment": -0.0,
+        "financing": -742.7391350371338,
+        "closing_cash": 3218.6502376842654
+      },
+      "asset_schedule": [
+        {
+          "name": "ppe_land",
+          "account": "ppe",
+          "opening": 698.51,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 698.51
+        },
+        {
+          "name": "ppe_buildings",
+          "account": "ppe",
+          "opening": 1004.0712000000001,
+          "additions": 0.0,
+          "depreciation_amortisation": 45.6396,
+          "closing": 958.4316000000001
+        },
+        {
+          "name": "ppe_plant_and_wear_parts",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_furniture",
+          "account": "ppe",
+          "opening": 26.756,
+          "additions": 0.0,
+          "depreciation_amortisation": 13.378,
+          "closing": 13.378
+        },
+        {
+          "name": "ppe_vehicles",
+          "account": "ppe",
+          "opening": 10.9375,
+          "additions": 0.0,
+          "depreciation_amortisation": 10.9375,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_office",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_electrical",
+          "account": "ppe",
+          "opening": 3.2399999999999993,
+          "additions": 0.0,
+          "depreciation_amortisation": 1.6199999999999999,
+          "closing": 1.6199999999999994
+        },
+        {
+          "name": "rou_land",
+          "account": "rou_assets",
+          "opening": 953.3009999999999,
+          "additions": 0.0,
+          "depreciation_amortisation": 20.283,
+          "closing": 933.0179999999999
+        },
+        {
+          "name": "rou_buildings",
+          "account": "rou_assets",
+          "opening": 162.15000000000003,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.016666666666666,
+          "closing": 144.13333333333338
+        },
+        {
+          "name": "rou_plant",
+          "account": "rou_assets",
+          "opening": 209.48000000000002,
+          "additions": 0.0,
+          "depreciation_amortisation": 104.74000000000001,
+          "closing": 104.74000000000001
+        },
+        {
+          "name": "rou_office",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "rou_vehicles",
+          "account": "rou_assets",
+          "opening": 3.552713678800501e-15,
+          "additions": 0.0,
+          "depreciation_amortisation": 3.552713678800501e-15,
+          "closing": 0.0
+        },
+        {
+          "name": "software",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "brand",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_2026",
+          "account": "ppe",
+          "opening": 1004.8677298,
+          "additions": 0.0,
+          "depreciation_amortisation": 182.7032236,
+          "closing": 822.1645062
+        },
+        {
+          "name": "intangibles_2026",
+          "account": "intangibles",
+          "opening": 28.14619320000003,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.76412880000002,
+          "closing": 9.382064400000012
+        },
+        {
+          "name": "rou_2026",
+          "account": "rou_assets",
+          "opening": 102.08333333333333,
+          "additions": 0.0,
+          "depreciation_amortisation": 29.166666666666668,
+          "closing": 72.91666666666666
+        },
+        {
+          "name": "ppe_2027",
+          "account": "ppe",
+          "opening": 1147.4355836856248,
+          "additions": 0.0,
+          "depreciation_amortisation": 176.52855133625,
+          "closing": 970.9070323493748
+        },
+        {
+          "name": "intangibles_2027",
+          "account": "intangibles",
+          "opening": 46.22098719375006,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.488394877500024,
+          "closing": 27.732592316250038
+        },
+        {
+          "name": "rou_2027",
+          "account": "rou_assets",
+          "opening": 138.75,
+          "additions": 0.0,
+          "depreciation_amortisation": 30.833333333333332,
+          "closing": 107.91666666666667
+        },
+        {
+          "name": "ppe_2028",
+          "account": "ppe",
+          "opening": 1323.1014010232254,
+          "additions": 0.0,
+          "depreciation_amortisation": 176.41352013643007,
+          "closing": 1146.6878808867955
+        },
+        {
+          "name": "intangibles_2028",
+          "account": "intangibles",
+          "opening": 64.92896426079005,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.551132645940015,
+          "closing": 46.37783161485004
+        },
+        {
+          "name": "rou_2028",
+          "account": "rou_assets",
+          "opening": 178.75,
+          "additions": 0.0,
+          "depreciation_amortisation": 32.5,
+          "closing": 146.25
+        },
+        {
+          "name": "ppe_2029",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 1403.867138092742,
+          "depreciation_amortisation": 87.74169613079637,
+          "closing": 1316.1254419619456
+        },
+        {
+          "name": "intangibles_2029",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 73.87277484698643,
+          "depreciation_amortisation": 9.234096855873304,
+          "closing": 64.63867799111313
+        },
+        {
+          "name": "rou_2029",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 205,
+          "depreciation_amortisation": 17.083333333333332,
+          "closing": 187.91666666666666
+        }
+      ],
+      "construction_schedule": {
+        "cwip": {
+          "opening": 352.8270402728598,
+          "cash_additions": 1402.0068823430674,
+          "commissioned": 1403.867138092742,
+          "closing": 350.9667845231853
+        },
+        "development": {
+          "opening": 18.551132645940015,
+          "cash_additions": 73.78983591279302,
+          "commissioned": 73.87277484698643,
+          "closing": 18.468193711746608
+        }
+      },
+      "debt_schedule": [
+        {
+          "pool": "term_debt",
+          "opening": 590.6499999999999,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 200,
+          "interest_expense_and_cash_paid": 50.20524999999999,
+          "closing": 390.64999999999986
+        },
+        {
+          "pool": "revolver",
+          "opening": 0.0,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 0.0,
+          "interest_expense_and_cash_paid": 0.0,
+          "closing": 0.0
+        },
+        {
+          "pool": "leases",
+          "opening": 722.86,
+          "cash_draw": 0,
+          "noncash_new_leases": 205,
+          "principal_repayment": 150,
+          "interest_expense_and_cash_paid": 65.0574,
+          "closing": 777.86
+        }
+      ],
+      "nopat": 2816.5018378713385,
+      "delta_operating_working_capital": 349.3904366314855,
+      "new_leased_assets_economic_capex": 205,
+      "fcff": 1798.9375273667824,
+      "checks": {
+        "balance_sheet_residual": 7.275957614183426e-12,
+        "change_in_opening_rounding_residual": 5.4569682106375694e-12,
+        "cash_roll_residual": 6.821210263296962e-13,
+        "retained_earnings_residual": -1.4210854715202004e-12
+      }
+    },
+    {
+      "fiscal_year": 2030,
+      "income": {
+        "revenue": 24066.838790018646,
+        "ebitda": 5054.036145903916,
+        "depreciation_amortisation": 1219.484773755352,
+        "ebit": 3834.551372148564,
+        "joint_venture_profit": 44.71,
+        "finance_cost": 103.21265,
+        "profit_before_tax": 3776.048722148564,
+        "taxable_profit": 3731.338722148564,
+        "tax": 932.834680537141,
+        "net_income": 2843.214041611423
+      },
+      "balance_sheet": {
+        "assets": {
+          "ppe": 6448.1406207295295,
+          "rou_assets": 1624.2683333333332,
+          "cwip": 344.5553191108494,
+          "investment_property": 36.72,
+          "goodwill": 611.24,
+          "intangibles": 146.7094777442884,
+          "intangibles_under_development": 18.133742016360515,
+          "joint_venture": 221.29,
+          "other_noncurrent_financial_assets": 46.54,
+          "noncurrent_tax_assets": 63.14,
+          "deferred_tax_assets": 368.82,
+          "other_noncurrent_assets": 20.41,
+          "inventories": 5535.372921704289,
+          "current_investments": 2397.45,
+          "receivables": 6725.5275522791835,
+          "cash": 4940.842462027093,
+          "other_bank_balances": 68.61,
+          "current_loans": 0.57,
+          "other_current_financial_assets": 91.13,
+          "contract_assets": 0.0,
+          "current_tax_assets": 30.55,
+          "other_current_assets": 639.6
+        },
+        "liabilities": {
+          "term_debt": 190.64999999999986,
+          "revolver": 0.0,
+          "leases": 852.86,
+          "other_noncurrent_financial_liabilities": 3.88,
+          "noncurrent_provisions": 0.41,
+          "deferred_tax_liabilities": 62.01,
+          "payables": 3249.0232366525174,
+          "other_current_financial_liabilities": 196.07,
+          "current_provisions": 248.12,
+          "current_tax_liabilities": 307.17,
+          "other_current_liabilities": 647.73
+        },
+        "equity": {
+          "share_capital": 665.35,
+          "retained_earnings": 21531.687192292404,
+          "other_reserves": 2424.66,
+          "noncontrolling_interest": 0.0
+        },
+        "total_assets": 30379.620428944927,
+        "total_liabilities": 5757.9232366525175,
+        "total_equity": 24621.697192292402
+      },
+      "cash_flow": {
+        "opening_cash": 3218.6502376842654,
+        "net_income": 2843.214041611423,
+        "depreciation_amortisation": 1219.484773755352,
+        "finance_cost_addback": 103.21265,
+        "joint_venture_profit_deduction": -44.71,
+        "change_in_working_capital": -272.17485946168745,
+        "operating": 3849.026605905088,
+        "cash_capex": -1444.0103274011187,
+        "joint_venture_dividend": 44.71,
+        "investing": -1399.3003274011187,
+        "term_repayment": -200,
+        "lease_principal_repayment": -140,
+        "interest_paid": -103.21265,
+        "dividends": -284.3214041611423,
+        "revolver_draw": 0,
+        "revolver_repayment": -0.0,
+        "financing": -727.5340541611423,
+        "closing_cash": 4940.842462027093
+      },
+      "asset_schedule": [
+        {
+          "name": "ppe_land",
+          "account": "ppe",
+          "opening": 698.51,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 698.51
+        },
+        {
+          "name": "ppe_buildings",
+          "account": "ppe",
+          "opening": 958.4316000000001,
+          "additions": 0.0,
+          "depreciation_amortisation": 45.6396,
+          "closing": 912.7920000000001
+        },
+        {
+          "name": "ppe_plant_and_wear_parts",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_furniture",
+          "account": "ppe",
+          "opening": 13.378,
+          "additions": 0.0,
+          "depreciation_amortisation": 13.378,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_vehicles",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_office",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_electrical",
+          "account": "ppe",
+          "opening": 1.6199999999999994,
+          "additions": 0.0,
+          "depreciation_amortisation": 1.6199999999999994,
+          "closing": 0.0
+        },
+        {
+          "name": "rou_land",
+          "account": "rou_assets",
+          "opening": 933.0179999999999,
+          "additions": 0.0,
+          "depreciation_amortisation": 20.283,
+          "closing": 912.7349999999999
+        },
+        {
+          "name": "rou_buildings",
+          "account": "rou_assets",
+          "opening": 144.13333333333338,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.016666666666666,
+          "closing": 126.11666666666672
+        },
+        {
+          "name": "rou_plant",
+          "account": "rou_assets",
+          "opening": 104.74000000000001,
+          "additions": 0.0,
+          "depreciation_amortisation": 104.74000000000001,
+          "closing": 0.0
+        },
+        {
+          "name": "rou_office",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "rou_vehicles",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "software",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "brand",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 0.0,
+          "depreciation_amortisation": 0.0,
+          "closing": 0.0
+        },
+        {
+          "name": "ppe_2026",
+          "account": "ppe",
+          "opening": 822.1645062,
+          "additions": 0.0,
+          "depreciation_amortisation": 182.7032236,
+          "closing": 639.4612826
+        },
+        {
+          "name": "intangibles_2026",
+          "account": "intangibles",
+          "opening": 9.382064400000012,
+          "additions": 0.0,
+          "depreciation_amortisation": 9.382064400000012,
+          "closing": 0.0
+        },
+        {
+          "name": "rou_2026",
+          "account": "rou_assets",
+          "opening": 72.91666666666666,
+          "additions": 0.0,
+          "depreciation_amortisation": 29.166666666666668,
+          "closing": 43.749999999999986
+        },
+        {
+          "name": "ppe_2027",
+          "account": "ppe",
+          "opening": 970.9070323493748,
+          "additions": 0.0,
+          "depreciation_amortisation": 176.52855133625,
+          "closing": 794.3784810131249
+        },
+        {
+          "name": "intangibles_2027",
+          "account": "intangibles",
+          "opening": 27.732592316250038,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.488394877500024,
+          "closing": 9.244197438750014
+        },
+        {
+          "name": "rou_2027",
+          "account": "rou_assets",
+          "opening": 107.91666666666667,
+          "additions": 0.0,
+          "depreciation_amortisation": 30.833333333333332,
+          "closing": 77.08333333333334
+        },
+        {
+          "name": "ppe_2028",
+          "account": "ppe",
+          "opening": 1146.6878808867955,
+          "additions": 0.0,
+          "depreciation_amortisation": 176.41352013643007,
+          "closing": 970.2743607503654
+        },
+        {
+          "name": "intangibles_2028",
+          "account": "intangibles",
+          "opening": 46.37783161485004,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.551132645940015,
+          "closing": 27.826698968910023
+        },
+        {
+          "name": "rou_2028",
+          "account": "rou_assets",
+          "opening": 146.25,
+          "additions": 0.0,
+          "depreciation_amortisation": 32.5,
+          "closing": 113.75
+        },
+        {
+          "name": "ppe_2029",
+          "account": "ppe",
+          "opening": 1316.1254419619456,
+          "additions": 0.0,
+          "depreciation_amortisation": 175.48339226159274,
+          "closing": 1140.6420497003528
+        },
+        {
+          "name": "intangibles_2029",
+          "account": "intangibles",
+          "opening": 64.63867799111313,
+          "additions": 0.0,
+          "depreciation_amortisation": 18.468193711746608,
+          "closing": 46.17048427936652
+        },
+        {
+          "name": "rou_2029",
+          "account": "rou_assets",
+          "opening": 187.91666666666666,
+          "additions": 0.0,
+          "depreciation_amortisation": 34.166666666666664,
+          "closing": 153.75
+        },
+        {
+          "name": "ppe_2030",
+          "account": "ppe",
+          "opening": 0.0,
+          "additions": 1378.2212764433987,
+          "depreciation_amortisation": 86.13882977771242,
+          "closing": 1292.0824466656863
+        },
+        {
+          "name": "intangibles_2030",
+          "account": "intangibles",
+          "opening": 0.0,
+          "additions": 72.53496806544209,
+          "depreciation_amortisation": 9.06687100818026,
+          "closing": 63.46809705726183
+        },
+        {
+          "name": "rou_2030",
+          "account": "rou_assets",
+          "opening": 0.0,
+          "additions": 215,
+          "depreciation_amortisation": 17.916666666666668,
+          "closing": 197.08333333333334
+        }
+      ],
+      "construction_schedule": {
+        "cwip": {
+          "opening": 350.9667845231853,
+          "cash_additions": 1371.8098110310627,
+          "commissioned": 1378.2212764433987,
+          "closing": 344.5553191108494
+        },
+        "development": {
+          "opening": 18.468193711746608,
+          "cash_additions": 72.200516370056,
+          "commissioned": 72.53496806544209,
+          "closing": 18.133742016360515
+        }
+      },
+      "debt_schedule": [
+        {
+          "pool": "term_debt",
+          "opening": 390.64999999999986,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 200,
+          "interest_expense_and_cash_paid": 33.20524999999999,
+          "closing": 190.64999999999986
+        },
+        {
+          "pool": "revolver",
+          "opening": 0.0,
+          "cash_draw": 0,
+          "noncash_new_leases": 0,
+          "principal_repayment": 0.0,
+          "interest_expense_and_cash_paid": 0.0,
+          "closing": 0.0
+        },
+        {
+          "pool": "leases",
+          "opening": 777.86,
+          "cash_draw": 0,
+          "noncash_new_leases": 215,
+          "principal_repayment": 140,
+          "interest_expense_and_cash_paid": 70.0074,
+          "closing": 852.86
+        }
+      ],
+      "nopat": 2875.913529111423,
+      "delta_operating_working_capital": 272.17485946168745,
+      "new_leased_assets_economic_capex": 215,
+      "fcff": 2164.213116003969,
+      "checks": {
+        "balance_sheet_residual": 7.275957614183426e-12,
+        "change_in_opening_rounding_residual": 5.4569682106375694e-12,
+        "cash_roll_residual": -1.1368683772161603e-13,
+        "retained_earnings_residual": 5.684341886080802e-14
+      }
+    }
+  ],
+  "dcf": {
+    "available": true,
+    "basis": "Historical FY2025 illustrative DCF",
+    "valuation_date": "2025-03-31",
+    "information_as_of": "2025-08-26",
+    "discounted_fcff": [
+      732.3472483007197,
+      1005.9888878489312,
+      1136.548199318636,
+      1143.2573205624758,
+      1228.0326435190839
+    ],
+    "terminal_nopat": 2990.95007027588,
+    "terminal_reinvestment": 797.5866854069014,
+    "terminal_fcff": 2193.3633848689788,
+    "terminal_value": 27417.042310862238,
+    "pv_terminal_value": 15557.166111556355,
+    "enterprise_value": 20803.3404111062,
+    "bridge": {
+      "cash": 1142.95,
+      "current_investments": 2397.45,
+      "joint_venture_value_assumption": 221.29,
+      "investment_property_value_assumption": 36.72,
+      "term_debt": -1190.62,
+      "revolver": -1428.67,
+      "lease_debt": -677.2,
+      "noncontrolling_interest_value_assumption": -0.0,
+      "accrued_borrowing_interest": -6.5600000000000005
+    },
+    "equity_value": 21298.7004111062,
+    "shares_outstanding_million": 66.535492,
+    "value_per_share_inr": 320.11036171651364,
+    "terminal_share_of_enterprise_value": 0.7478205809318444
+  }
+}

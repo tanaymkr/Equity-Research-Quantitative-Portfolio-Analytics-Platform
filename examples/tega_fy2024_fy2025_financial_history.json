@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "company": {
+    "name": "Tega Industries Limited",
+    "ticker": "TEGA.NS",
+    "currency": "INR",
+    "financial_unit": "million",
+    "statement_basis": "consolidated",
+    "data_kind": "reported"
+  },
+  "as_of": "2025-08-26",
+  "sources": [
+    {
+      "source_id": "tega_ar_2025",
+      "title": "Tega Industries Limited Annual Report 2024-25",
+      "published_on": "2025-08-26",
+      "url": "https://nsearchives.nseindia.com/corporate/TEGA_26082025192638_Intimation_Notice_AGM_2025_sd.pdf",
+      "locator": "Consolidated statements, PDF pages 224-229; notes 3, 19 and 41"
+    }
+  ],
+  "annuals": [
+    {
+      "fiscal_year": 2024,
+      "period_end": "2024-03-31",
+      "source_id": "tega_ar_2025",
+      "revenue": 14927.14,
+      "ebit": 2522.9,
+      "depreciation_amortisation": 636.82,
+      "net_income": 1938.57,
+      "net_income_to_owners": 1938.57,
+      "finance_costs": 319.54,
+      "total_assets": 18901.39,
+      "total_liabilities": 6983.2,
+      "total_equity": 11918.19,
+      "equity_to_owners": 11918.19,
+      "current_assets": 12136.27,
+      "current_liabilities": 5260.99,
+      "cash_and_equivalents": 863.17,
+      "total_debt": 3080.15,
+      "operating_cash_flow": 2521.42,
+      "capex": 554.12,
+      "notes": "Source figures are rounded to INR 0.01 million; NCI rounds to zero."
+    },
+    {
+      "fiscal_year": 2025,
+      "period_end": "2025-03-31",
+      "source_id": "tega_ar_2025",
+      "revenue": 16386.51,
+      "ebit": 2384.77,
+      "depreciation_amortisation": 1013.32,
+      "net_income": 2001.2,
+      "net_income_to_owners": 2001.2,
+      "finance_costs": 269.04,
+      "total_assets": 20952.02,
+      "total_liabilities": 6985.1,
+      "total_equity": 13966.92,
+      "equity_to_owners": 13966.92,
+      "current_assets": 13526.58,
+      "current_liabilities": 5430.29,
+      "cash_and_equivalents": 1142.95,
+      "total_debt": 3296.49,
+      "operating_cash_flow": 1950.3,
+      "capex": 1701.8,
+      "notes": "Source figures are rounded to INR 0.01 million; NCI rounds to zero."
+    }
+  ],
+  "notes": "Audited historical FY2024/FY2025 case. Operating EBIT excludes other income and equity-accounted JV profit. Total debt includes leases, excludes accrued interest. Cash capex is a positive magnitude. Not a current valuation."
+}

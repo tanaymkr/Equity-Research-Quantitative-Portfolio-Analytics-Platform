@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "label": "Illustrative analyst assumptions for a historical FY2025 case",
+  "base_year": 2025,
+  "revenue_growth": [
+    0.1,
+    0.09,
+    0.08,
+    0.07,
+    0.06
+  ],
+  "ebitda_margin": [
+    0.205,
+    0.21,
+    0.21,
+    0.21,
+    0.21
+  ],
+  "receivable_days": [
+    110,
+    108,
+    106,
+    104,
+    102
+  ],
+  "inventory_pct_revenue": [
+    0.25,
+    0.245,
+    0.24,
+    0.235,
+    0.23
+  ],
+  "payables_pct_revenue": [
+    0.135,
+    0.135,
+    0.135,
+    0.135,
+    0.135
+  ],
+  "cash_capex_pct_revenue": [
+    0.08,
+    0.075,
+    0.07,
+    0.065,
+    0.06
+  ],
+  "term_principal_repayment": [
+    199.97,
+    200,
+    200,
+    200,
+    200
+  ],
+  "lease_principal_repayment": [
+    179.34,
+    170,
+    160,
+    150,
+    140
+  ],
+  "new_lease_assets": [
+    175,
+    185,
+    195,
+    205,
+    215
+  ],
+  "term_interest_rate": 0.085,
+  "revolver_interest_rate": 0.095,
+  "lease_interest_rate": 0.09,
+  "tax_rate": 0.25,
+  "dividend_payout_ratio": 0.1,
+  "minimum_cash": 500.0,
+  "revolver_limit": 4000.0,
+  "sweep_excess_cash_to_revolver": true,
+  "tangible_capex_share": 0.95,
+  "commissioning_fraction": 0.8,
+  "new_ppe_life_years": 8.0,
+  "new_intangible_life_years": 4.0,
+  "new_rou_life_years": 6.0,
+  "opening_remaining_life_years": {
+    "ppe_land": null,
+    "ppe_buildings": 25,
+    "ppe_plant_and_wear_parts": 3,
+    "ppe_furniture": 5,
+    "ppe_vehicles": 4,
+    "ppe_office": 3,
+    "ppe_electrical": 5,
+    "rou_land": 50,
+    "rou_buildings": 12,
+    "rou_plant": 5,
+    "rou_office": 3,
+    "rou_vehicles": 3,
+    "software": 3,
+    "brand": 2
+  },
+  "joint_venture_profit": 44.71,
+  "joint_venture_dividend": 44.71,
+  "dcf": {
+    "wacc": 0.12,
+    "terminal_growth": 0.04,
+    "terminal_roic": 0.15,
+    "joint_venture_value": 221.29,
+    "investment_property_value": 36.72,
+    "noncontrolling_interest_value": 0.0
+  },
+  "notes": [
+    "Every forecast input is an analyst illustration, not company guidance, a committed credit facility or a researched investment recommendation.",
+    "FY2026 term and lease principal payments start from disclosed FY2025 current maturities. Later repayments are assumed, not a contractual maturity ladder.",
+    "Remaining lives are estimates for aggregated opening asset groups, not reported remaining lives. Plant includes short-lived customer wear parts; an assumed blended life simplifies the forecast.",
+    "Cash capex enters CWIP/development; the commissioning fraction transfers available balances into new PPE/intangible cohorts. New cohorts receive half-year depreciation and full-year charges thereafter, capped at book value. Zero residual values are assumed.",
+    "Interest uses opening principal, with repayments, revolver draws and cash sweep at year end. All forecast interest is paid in financing cash flow in the same year. Opening accrued interest balances are held constant.",
+    "New leases create equal asset/liability additions in the forecast. Historical differences are preserved. Lease additions are economic capex in FCFF because lease liabilities are deducted in the DCF bridge.",
+    "Only receivables, inventories and trade payables drive working-capital movements. Other operating accounts are held constant individually.",
+    "Equity-accounted JV profit is after the JV own tax. No additional group-level tax on JV profit or dividends is assumed. Forecast group tax applies to EBIT less finance costs, floored at zero.",
+    "Other income, future OCI, FX, acquisitions, disposals, impairments, equity issuance and tax-loss carryforwards are not forecast. JV profit/dividend are flat. Existing deferred-tax and tax payable/receivable balances are held constant; forecast tax expense equals cash tax.",
+    "All retained cash above the assumed minimum first repays the revolver. The assumed revolver limit is not a verified bank commitment; exceeding it is an error.",
+    "DCF is a fiscal-year-end FY2025 illustration using information published by 26 August 2025, not a point-in-time backtest at 31 March. Terminal FCFF uses reinvestment equal to g/ROIC of terminal NOPAT. WACC, growth, ROIC and nonoperating values have not been independently calibrated."
+  ]
+}
