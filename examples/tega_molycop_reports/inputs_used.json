@@ -1,0 +1,762 @@
+{
+  "facts": {
+    "company": "Tega Industries Limited",
+    "ticker": "NSE:TEGA",
+    "information_cutoff": "2026-09-11",
+    "valuation_date": "2026-06-30",
+    "status": "Provisional acquisition DCF; incomplete financing and opening-balance disclosures",
+    "units": {
+      "tega": "INR million",
+      "molycop": "USD million",
+      "shares": "actual shares",
+      "volume": "million tonnes"
+    },
+    "sources": {
+      "closing": {
+        "date": "2026-06-01",
+        "title": "Final acquisition closing filing",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q1/20260602_065818.pdf",
+        "location": "pages 1-8"
+      },
+      "agreement": {
+        "date": "2025-11-29",
+        "title": "Equity purchase agreement disclosure",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2025/Q3/Intimation-for-execution-of-Equity-Purchase-Agreement---29.11.2025.pdf",
+        "location": "Annexure A"
+      },
+      "shareholders": {
+        "date": "2025-11-29",
+        "title": "Shareholders, subscription and investment deeds",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2025/Q3/Intimation-for-execution-of-Shareholders-Deed---29.11.2025.pdf",
+        "location": "pages 3-9; initial ordinary ownership subsequently changed"
+      },
+      "announcement": {
+        "date": "2025-09-10",
+        "title": "Original acquisition presentation",
+        "url": "https://www.tegaindustries.com/images/media/Intimation_on_proposed_acquisition_-_10_09_2025.pdf",
+        "location": "Molycop financial history; original funding and ownership superseded"
+      },
+      "annual26": {
+        "date": "2026-08-28",
+        "title": "Tega annual report FY2025-26",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf",
+        "location": "consolidated statements; notes 13, 14, 19A, 36, 47"
+      },
+      "q1_results": {
+        "date": "2026-08-13",
+        "title": "Q1 FY2027 statutory results",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260813_145142.pdf",
+        "location": "PDF pages 10-12; consolidated P&L, segments and acquisition note 5"
+      },
+      "q1_deck": {
+        "date": "2026-08-13",
+        "title": "Q1 FY2027 investor presentation",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260813_151914.pdf",
+        "location": "PDF pages 5-7; Tega and Molycop separately"
+      },
+      "q1_call": {
+        "date": "2026-08-13",
+        "title": "Q1 FY2027 earnings call, filed August 20",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260820_123940.pdf",
+        "location": "printed pages 4, 6-13; actual performance and forward guidance"
+      },
+      "fy26_call": {
+        "date": "2026-06-02",
+        "title": "FY2026 earnings call",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q1/20260608_232901.pdf",
+        "location": "printed pages 5-9, 12-14; newer August guidance takes precedence"
+      },
+      "sp": {
+        "date": "2026-06-16",
+        "title": "S&P final Molycop debt rating rationale",
+        "url": "https://www.spglobal.com/ratings/en/regulatory/article/-/view/type/HTML/id/3581730",
+        "location": "financing, earnout and rating-adjusted debt; agency estimates are not audited accounts"
+      },
+      "icra": {
+        "date": "2026-05-19",
+        "title": "ICRA Tega financing rationale",
+        "url": "https://www.icra.in/Rating/ShowRationalReportFilePdf/143093",
+        "location": "pages 1 and 7; preference cash deferral and parent loan maturity; pre-closing"
+      },
+      "pending_issue": {
+        "date": "2026-08-22",
+        "title": "Proposed Apollo preferential cash issue",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260822_115252.pdf",
+        "location": "pages 1-4; subject to approvals, not issued shares"
+      },
+      "sept_update": {
+        "date": "2026-09-08",
+        "title": "Clarification of proposed allottee ownership",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260908_125014.pdf",
+        "location": "page 1; does not announce completed allotment"
+      }
+    },
+    "deal": {
+      "source_ids": [
+        "closing",
+        "q1_results",
+        "sp",
+        "icra"
+      ],
+      "closed": "2026-06-01",
+      "tega_ordinary_contribution_usd_m": 394.295423,
+      "apollo_ordinary_contribution_usd_m": 74.107477,
+      "ordinary_ownership_note": "Use the contribution ratio (84.1787%); closing filing rounds to 84.2%.",
+      "apollo_preference_issue_usd_m": 270.0,
+      "headline_enterprise_value_usd_m_approx": 1500.0,
+      "cash_purchase_at_close_usd_m_approx": 393.0,
+      "escrow_included_in_cash_purchase_usd_m": 18.0,
+      "earnout_max_usd_m": 120.0,
+      "earnout_deadline": "2030-03-01",
+      "earnout_conditions": "Closing filing: performance tests within 45 months. S&P links tests to Cobre Panama/Grasberg shipments, volumes and EBITDA; exact thresholds not available in reviewed public disclosures.",
+      "accounting_purchase_consideration_usd_m": 442.7,
+      "accounting_purchase_consideration_inr_m": 41907.13,
+      "provisional_intangibles_usd_m": 362.3,
+      "provisional_goodwill_usd_m": 527.74,
+      "provisional_intangibles_inr_m": 34295.32,
+      "provisional_goodwill_inr_m": 49956.87,
+      "ppa_finalization_deadline": "2027-06-01",
+      "term_loan_at_close_usd_m": 700.0,
+      "term_loan_maturity": "2033-06-01",
+      "abl_limit_usd_m": 220.0,
+      "abl_drawn_at_close_usd_m": 138.0,
+      "abl_maturity": "2031-06-01",
+      "parent_acquisition_loan_inr_m": 15000.0,
+      "parent_loan_maturity_month": "2033-05",
+      "preference_initial_cash_deferral_years": 7.5,
+      "preference_coupon_or_pik_rate": null,
+      "preference_contractual_redemption_date": null,
+      "debt_contractual_interest_rates": null
+    },
+    "tega_fy2026": {
+      "source_ids": [
+        "annual26",
+        "q1_results"
+      ],
+      "period_end": "2026-03-31",
+      "revenue": 16919.36,
+      "consumables_gross_revenue": 14339.9,
+      "equipment_revenue": 2687.53,
+      "intersegment_revenue": 108.07,
+      "other_income": 816.17,
+      "reported_ebitda_including_other_income": 3127.57,
+      "transaction_expense": 775.77,
+      "depreciation_amortization": 951.15,
+      "finance_cost": 226.02,
+      "tax_expense": 584.59,
+      "pat": 1426.53,
+      "cash_from_operations": 3503.39,
+      "cash_capex": 1359.36,
+      "cash_lease_principal": 250.64,
+      "cash_lease_interest": 62.62,
+      "cash": 11638.86,
+      "bank_deposits": 9585.33,
+      "restricted_deposits": 69.46,
+      "unpaid_dividend_bank": 0.48,
+      "current_investments": 1987.24,
+      "borrowings_noncurrent": 1275.6,
+      "borrowings_current": 1900.53,
+      "lease_liabilities": 807.88,
+      "receivables": 4518.51,
+      "inventory": 4369.48,
+      "payables": 3335.43,
+      "jv_investment": 282.06,
+      "investment_property": 43.08,
+      "ppe": 3817.73,
+      "cwip": 1072.15,
+      "right_of_use_assets": 1963.21,
+      "intangible_assets": 52.09,
+      "intangible_development": 35.95,
+      "assets": 43145.0,
+      "liabilities": 9073.24,
+      "equity": 34071.76,
+      "shares": 75127698,
+      "shares_issued_november2025": 8592206,
+      "november2025_issue_price_inr": 1994.0
+    },
+    "q1_fy2027": {
+      "source_ids": [
+        "q1_results",
+        "q1_deck",
+        "q1_call"
+      ],
+      "period_end": "2026-06-30",
+      "molycop_months_consolidated": 1,
+      "tega_revenue": 4318.02,
+      "tega_consumables_gross_revenue": 3971.79,
+      "tega_equipment_revenue": 357.79,
+      "tega_intersegment_revenue": 11.56,
+      "tega_other_income": 256.52,
+      "tega_adjusted_ebitda_including_other_income": 1011.29,
+      "tega_transaction_expense": 56.52,
+      "tega_da": 251.26,
+      "tega_finance_cost": 193.23,
+      "molycop_revenue_inr_m": 12916.4,
+      "molycop_other_income_inr_m": -82.39,
+      "molycop_adjusted_ebitda_including_other_income_inr_m": 1628.12,
+      "molycop_adjusted_ebitda_usd_m_rounded": 17.2,
+      "molycop_operating_ebitda_inr_m": 1710.51,
+      "molycop_da_inr_m": 484.98,
+      "molycop_finance_cost_inr_m": 973.85,
+      "molycop_transaction_expense_inr_m": 1853.03,
+      "group_transaction_expense": 1909.55,
+      "group_revenue": 17234.42,
+      "group_assets": 225707.18,
+      "group_liabilities": 184387.09,
+      "group_pat": -1082.52,
+      "owners_pat": -861.89,
+      "nci_pat": -220.63,
+      "molycop_net_debt_usd_m": 672.5,
+      "molycop_net_debt_inr_m_rounded": 63660.0,
+      "group_debt_including_preferences_inr_m_rounded": 112000.0,
+      "group_preferences_inr_m_rounded": 26000.0,
+      "molycop_june_volume_m_tonnes": 0.109,
+      "detailed_post_close_balance_sheet": null
+    },
+    "molycop_history": {
+      "source_ids": [
+        "announcement",
+        "q1_call"
+      ],
+      "year_end_month": "June",
+      "fy2023_revenue_usd_m": 1811.0,
+      "fy2024_revenue_usd_m": 1625.0,
+      "fy2025_revenue_usd_m": 1539.0,
+      "fy2025_ebitda_usd_m": 172.0,
+      "fy2025_volume_m_tonnes": 1.223,
+      "fy2026_revenue_usd_m": null,
+      "fy2026_ebitda_usd_m": 191.0,
+      "fy2026_volume_m_tonnes": 1.204,
+      "status_fy2026": "Management-reported full-year EBITDA and volume; detailed audited Molycop statements not obtained. EBITDA definition normalized in assumptions."
+    },
+    "management_guidance": {
+      "source_ids": [
+        "q1_call"
+      ],
+      "tega_consumables_long_term_growth": 0.15,
+      "molycop_ten_month_volume_growth_approx": 0.05,
+      "molycop_ten_month_ebitda_growth_approx": 0.04,
+      "cost_synergies_usd_m": 20.0,
+      "cost_synergy_time_years": [
+        2.0,
+        2.5
+      ],
+      "revenue_synergies_quantified": null,
+      "molycop_fy2027_ten_month_capex_usd_m": 28.0,
+      "molycop_normalized_annual_capex_usd_m_approx": 32.0,
+      "tega_fy2027_capex_usd_m_approx": 40.0,
+      "tega_fy2027_finance_cost_inr_m_range": [
+        1100.0,
+        1200.0
+      ],
+      "molycop_ten_month_interest_plus_principal_usd_m_approx": 70.0,
+      "noncore_asset_sale_proceeds": null
+    },
+    "pending_equity_issue": {
+      "source_ids": [
+        "pending_issue",
+        "sept_update"
+      ],
+      "status": "Proposed; subject to shareholder and regulatory approvals",
+      "additional_shares": 478435,
+      "price_inr": 1994.0,
+      "gross_proceeds_inr_m": 953.99939,
+      "included_in_main_share_count": false
+    }
+  },
+  "assumptions": {
+    "note": "Every number in this file is a modeling choice, even when anchored to guidance. Read rationale and source IDs before editing. No scenario probabilities or live market price are assumed.",
+    "years": [
+      2027,
+      2028,
+      2029,
+      2030,
+      2031,
+      2032,
+      2033,
+      2034
+    ],
+    "shared": {
+      "fx_inr_per_usd": 94.66171003717473,
+      "fx_rationale": "Derived from management's rounded June-end net debt: INR63660m / USD672.5m. A reporting-date translation proxy, NOT a verified spot quote. USD business is valued in USD and converted once.",
+      "fx_source_ids": [
+        "q1_call"
+      ],
+      "closing_funding_fx_inr_per_usd": 94.66171003717473,
+      "closing_fx_rationale": "Assumes the June-end translation proxy for Tega's June 1 contribution; actual transaction FX/hedge settlement remains to be reconciled.",
+      "q1_legacy_operating_cash_after_interest_tax_inr_m": 600.0,
+      "q1_legacy_cash_capex_fraction_of_fy27": 0.25,
+      "q1_legacy_lease_principal_inr_m": 62.66,
+      "q1_legacy_other_principal_inr_m": 70.0,
+      "q1_legacy_other_cash_movement_inr_m": 0.0,
+      "opening_bridge_rationale": "June 30 legacy cash is not disclosed separately. Roll March unrestricted liquidity forward using the disclosed contribution and parent loan, Q1 Tega transaction fees, and the above cash-flow estimates. Principal repayments reduce cash and debt equally. Do not add March fundraising cash to post-acquisition equity for free.",
+      "opening_bridge_source_ids": [
+        "annual26",
+        "closing",
+        "q1_deck",
+        "fy26_call",
+        "q1_call"
+      ],
+      "legacy_june_nwc_increment_inr_m": 0.0,
+      "legacy_opening_commissioned_q1_capex_fraction": 0.2,
+      "legacy_annual_new_lease_assets_inr_m": 350.0,
+      "molycop_annual_new_lease_assets_usd_m": 3.0,
+      "molycop_annual_lease_principal_usd_m": 3.0,
+      "legacy_new_asset_life_years": 8.0,
+      "molycop_new_asset_life_years": 10.0,
+      "new_lease_asset_life_years": 6.0,
+      "molycop_existing_asset_remaining_life_years": 8.0,
+      "molycop_ppa_intangible_life_years": 15.0,
+      "molycop_ppa_tax_deductible_fraction": 0.0,
+      "molycop_fy2026_ebitda_operating_adjustment_usd_m": 0.0,
+      "asset_rationale": "Legacy March assets are rolled forward with assumed Q1 commissioning and reported Q1 D&A. Molycop annual D&A starts at June D&A x 12, split between the provisional intangible base / assumed 15-year life and a residual existing-asset charge; that residual is capitalized over 8 assumed remaining years. These are modeling asset balances, not reported PPE. No goodwill amortization or unverified acquisition tax shield.",
+      "asset_source_ids": [
+        "annual26",
+        "q1_deck",
+        "q1_results"
+      ],
+      "molycop_other_claims_usd_m": 50.0,
+      "molycop_other_claims_rationale": "Conservative provisional reserve based on S&P's other debt adjustments; includes unallocated lease/pension/other claims and lower-level minority/JV scope uncertainty. It is not a verified fair value or a second deduction of Apollo's ordinary interest. Sensitivity shows 0/50/100. Replace after reconciling the net-debt definition and subsidiary claims.",
+      "molycop_other_claims_source_ids": [
+        "sp",
+        "closing"
+      ],
+      "preference_fair_value_usd_m": 270.0,
+      "preference_assumed_pik_rate": 0.12,
+      "preference_assumed_cash_rate_after_deferral": 0.12,
+      "preference_rationale": "USD270m issue value is a provisional June-end fair-value proxy. Contractual return, redemption premium and exit rights are not quantified in the reviewed filings. The 12% PIK/cash schedule is an analyst stress assumption, NOT a disclosed coupon. Perpetual instrument: no invented mandatory redemption. DCF deducts today's claim once; future PIK is not subtracted again from FCFF.",
+      "preference_source_ids": [
+        "closing",
+        "shareholders",
+        "icra",
+        "sp"
+      ],
+      "legacy_minimum_cash_inr_m": 500.0,
+      "legacy_debt_interest_rate": 0.07,
+      "molycop_net_debt_interest_rate_proxy": 0.09,
+      "molycop_fy27_ten_month_cash_interest_usd_m": 63.0,
+      "molycop_fy27_ten_month_scheduled_principal_usd_m": 7.0,
+      "legacy_scheduled_annual_principal_inr_m": 550.0,
+      "molycop_cash_retention_for_debt_fraction": 0.7,
+      "financing_rationale": "Cash-interest and repayment schedules are estimates. USD63m interest + USD7m bank principal matches the approximate USD70m ten-month guidance, but the split is not disclosed. Lease principal is separately assumed USD3m annually, matching new lease liabilities and keeping the provisional other-claims reserve stable. Later 9% is a cash-interest/net-debt proxy, not a contractual loan rate. 70% cash retention and parent sweeps are choices, not covenants. Required new funding and contractual maturity review years are flagged.",
+      "financing_source_ids": [
+        "q1_call",
+        "sp",
+        "icra"
+      ],
+      "earned_income_tax_rate_legacy": 0.25,
+      "earned_income_tax_rate_molycop": 0.27,
+      "tax_rationale": "Normalized marginal cash-tax assumptions; no cross-country loss sharing, acquired tax-loss benefit, or automatic deduction of PPA amortization.",
+      "unquantified_asset_sale_proceeds_usd_m": 0.0,
+      "pending_issue_expenses_inr_m": 0.0,
+      "pending_issue_rationale": "Only a separate pro-forma sensitivity adds the proposed 478435 shares and INR953.99939m cash together. Gross proceeds assumed available; issuance expenses default zero and can be edited. Main issued-share count is unchanged."
+    },
+    "scenarios": {
+      "downside": {
+        "rationale": "Weaker demand and pricing, slower cost savings, working-capital pressure, higher discount rates; no mine-restart windfall and no earnout payment. Forecast inputs are analyst stress assumptions.",
+        "source_ids": [
+          "q1_call",
+          "fy26_call",
+          "sp"
+        ],
+        "legacy_consumables_growth": [
+          0.08,
+          0.08,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "equipment_growth": [
+          0.0,
+          0.08,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "consumables_operating_ebitda_margin": [
+          0.19,
+          0.19,
+          0.195,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "equipment_operating_ebitda_margin": [
+          0.09,
+          0.1,
+          0.11,
+          0.11,
+          0.11,
+          0.11,
+          0.11,
+          0.11
+        ],
+        "legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_volume_growth": [
+          0.0,
+          0.01,
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02
+        ],
+        "molycop_price_growth": [
+          -0.03,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_core_ebitda_per_tonne_growth": [
+          0,
+          -0.02,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_first_year_total_ebitda_growth": -0.08,
+        "molycop_cost_synergies_usd_m": [
+          0,
+          2,
+          5,
+          8,
+          10,
+          10,
+          10,
+          10
+        ],
+        "molycop_integration_cash_cost_usd_m": [
+          5,
+          4,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "legacy_capex_fy27_usd_m": 40.0,
+        "legacy_later_capex_revenue_fraction": 0.07,
+        "molycop_capex_fy27_ten_month_usd_m": 28.0,
+        "molycop_later_annual_capex_usd_m": [
+          0,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "legacy_receivable_days": 110,
+        "legacy_inventory_revenue_fraction": 0.28,
+        "legacy_payable_revenue_fraction": 0.17,
+        "molycop_opening_nwc_revenue_fraction": 0.2,
+        "molycop_forecast_nwc_revenue_fraction": 0.23,
+        "earnout_usd_m": 0.0,
+        "earnout_payment_date": "2030-03-01",
+        "legacy_wacc_inr": 0.14,
+        "molycop_wacc_usd": 0.12,
+        "legacy_terminal_growth_inr": 0.03,
+        "molycop_terminal_growth_usd": 0.02,
+        "legacy_terminal_roic": 0.13,
+        "molycop_terminal_roic": 0.1
+      },
+      "base": {
+        "rationale": "Consumables growth starts at management's 15%; equipment recovery is modeled at 15% after the weak Q1. Molycop starts near 5% volume and 4% EBITDA growth, using a uniform-month proxy for the undisclosed comparable ten months. USD20m cost savings phase in, with no quantified cross-selling or asset sales. First-year EBITDA already includes first-year savings: no double count. The USD20m synergy guidance is interpreted as an annual EBITDA run-rate saving once achieved; the transcript does not supply a detailed annual savings bridge. This interpretation is tested separately.",
+        "source_ids": [
+          "q1_call",
+          "q1_deck",
+          "sp"
+        ],
+        "legacy_consumables_growth": [
+          0.15,
+          0.15,
+          0.14,
+          0.12,
+          0.1,
+          0.09,
+          0.08,
+          0.07
+        ],
+        "equipment_growth": [
+          0.15,
+          0.15,
+          0.12,
+          0.1,
+          0.08,
+          0.07,
+          0.06,
+          0.05
+        ],
+        "consumables_operating_ebitda_margin": [
+          0.21,
+          0.215,
+          0.22,
+          0.225,
+          0.225,
+          0.225,
+          0.225,
+          0.225
+        ],
+        "equipment_operating_ebitda_margin": [
+          0.12,
+          0.125,
+          0.13,
+          0.13,
+          0.13,
+          0.13,
+          0.13,
+          0.13
+        ],
+        "legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_volume_growth": [
+          0.05,
+          0.05,
+          0.05,
+          0.04,
+          0.035,
+          0.03,
+          0.03,
+          0.03
+        ],
+        "molycop_price_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_first_year_total_ebitda_growth": 0.04,
+        "molycop_cost_synergies_usd_m": [
+          2,
+          10,
+          18,
+          20,
+          20,
+          20,
+          20,
+          20
+        ],
+        "molycop_integration_cash_cost_usd_m": [
+          2,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "legacy_capex_fy27_usd_m": 40.0,
+        "legacy_later_capex_revenue_fraction": 0.055,
+        "molycop_capex_fy27_ten_month_usd_m": 28.0,
+        "molycop_later_annual_capex_usd_m": [
+          0,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38
+        ],
+        "legacy_receivable_days": 103,
+        "legacy_inventory_revenue_fraction": 0.258,
+        "legacy_payable_revenue_fraction": 0.197,
+        "molycop_opening_nwc_revenue_fraction": 0.2,
+        "molycop_forecast_nwc_revenue_fraction": 0.2,
+        "earnout_usd_m": 60.0,
+        "earnout_payment_date": "2030-03-01",
+        "legacy_wacc_inr": 0.12,
+        "molycop_wacc_usd": 0.105,
+        "legacy_terminal_growth_inr": 0.04,
+        "molycop_terminal_growth_usd": 0.025,
+        "legacy_terminal_roic": 0.16,
+        "molycop_terminal_roic": 0.13
+      },
+      "upside": {
+        "rationale": "Faster demand and mine recovery, modest incremental cross-selling, full USD20m savings sooner, better cash conversion and lower discount rates. Pays the full earnout. Incremental sales and timings are analyst assumptions, not management promises.",
+        "source_ids": [
+          "q1_call",
+          "sp"
+        ],
+        "legacy_consumables_growth": [
+          0.18,
+          0.18,
+          0.17,
+          0.15,
+          0.13,
+          0.11,
+          0.1,
+          0.09
+        ],
+        "equipment_growth": [
+          0.25,
+          0.2,
+          0.15,
+          0.12,
+          0.1,
+          0.09,
+          0.08,
+          0.07
+        ],
+        "consumables_operating_ebitda_margin": [
+          0.22,
+          0.23,
+          0.235,
+          0.24,
+          0.24,
+          0.24,
+          0.24,
+          0.24
+        ],
+        "equipment_operating_ebitda_margin": [
+          0.13,
+          0.13,
+          0.135,
+          0.135,
+          0.135,
+          0.135,
+          0.135,
+          0.135
+        ],
+        "legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          200,
+          450,
+          700,
+          800,
+          900,
+          1000,
+          1100
+        ],
+        "molycop_volume_growth": [
+          0.07,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.04,
+          0.04,
+          0.035
+        ],
+        "molycop_price_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0.01,
+          0.01,
+          0.005,
+          0,
+          0,
+          0,
+          0
+        ],
+        "molycop_first_year_total_ebitda_growth": 0.08,
+        "molycop_cost_synergies_usd_m": [
+          3,
+          15,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20
+        ],
+        "molycop_integration_cash_cost_usd_m": [
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "legacy_capex_fy27_usd_m": 40.0,
+        "legacy_later_capex_revenue_fraction": 0.06,
+        "molycop_capex_fy27_ten_month_usd_m": 28.0,
+        "molycop_later_annual_capex_usd_m": [
+          0,
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46
+        ],
+        "legacy_receivable_days": 100,
+        "legacy_inventory_revenue_fraction": 0.25,
+        "legacy_payable_revenue_fraction": 0.2,
+        "molycop_opening_nwc_revenue_fraction": 0.2,
+        "molycop_forecast_nwc_revenue_fraction": 0.18,
+        "earnout_usd_m": 120.0,
+        "earnout_payment_date": "2029-03-01",
+        "legacy_wacc_inr": 0.105,
+        "molycop_wacc_usd": 0.09,
+        "legacy_terminal_growth_inr": 0.045,
+        "molycop_terminal_growth_usd": 0.03,
+        "legacy_terminal_roic": 0.18,
+        "molycop_terminal_roic": 0.16
+      }
+    }
+  },
+  "user_reference_price_inr_unverified": 1700.0
+}

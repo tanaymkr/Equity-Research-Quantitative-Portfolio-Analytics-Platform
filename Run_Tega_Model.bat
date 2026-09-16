@@ -10,7 +10,7 @@ python run_tega_model.py
 :finished
 if errorlevel 1 goto failed
 echo.
-echo Open outputs\tega_fy2025 for the generated reports.
+echo Open outputs\tega_molycop\report.html for all three acquisition scenarios.
 pause
 exit /b 0
 :failed

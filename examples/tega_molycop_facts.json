@@ -1,0 +1,265 @@
+{
+  "company": "Tega Industries Limited",
+  "ticker": "NSE:TEGA",
+  "information_cutoff": "2026-09-11",
+  "valuation_date": "2026-06-30",
+  "status": "Provisional acquisition DCF; incomplete financing and opening-balance disclosures",
+  "units": {
+    "tega": "INR million",
+    "molycop": "USD million",
+    "shares": "actual shares",
+    "volume": "million tonnes"
+  },
+  "sources": {
+    "closing": {
+      "date": "2026-06-01",
+      "title": "Final acquisition closing filing",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q1/20260602_065818.pdf",
+      "location": "pages 1-8"
+    },
+    "agreement": {
+      "date": "2025-11-29",
+      "title": "Equity purchase agreement disclosure",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2025/Q3/Intimation-for-execution-of-Equity-Purchase-Agreement---29.11.2025.pdf",
+      "location": "Annexure A"
+    },
+    "shareholders": {
+      "date": "2025-11-29",
+      "title": "Shareholders, subscription and investment deeds",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2025/Q3/Intimation-for-execution-of-Shareholders-Deed---29.11.2025.pdf",
+      "location": "pages 3-9; initial ordinary ownership subsequently changed"
+    },
+    "announcement": {
+      "date": "2025-09-10",
+      "title": "Original acquisition presentation",
+      "url": "https://www.tegaindustries.com/images/media/Intimation_on_proposed_acquisition_-_10_09_2025.pdf",
+      "location": "Molycop financial history; original funding and ownership superseded"
+    },
+    "annual26": {
+      "date": "2026-08-28",
+      "title": "Tega annual report FY2025-26",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf",
+      "location": "consolidated statements; notes 13, 14, 19A, 36, 47"
+    },
+    "q1_results": {
+      "date": "2026-08-13",
+      "title": "Q1 FY2027 statutory results",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260813_145142.pdf",
+      "location": "PDF pages 10-12; consolidated P&L, segments and acquisition note 5"
+    },
+    "q1_deck": {
+      "date": "2026-08-13",
+      "title": "Q1 FY2027 investor presentation",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260813_151914.pdf",
+      "location": "PDF pages 5-7; Tega and Molycop separately"
+    },
+    "q1_call": {
+      "date": "2026-08-13",
+      "title": "Q1 FY2027 earnings call, filed August 20",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260820_123940.pdf",
+      "location": "printed pages 4, 6-13; actual performance and forward guidance"
+    },
+    "fy26_call": {
+      "date": "2026-06-02",
+      "title": "FY2026 earnings call",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q1/20260608_232901.pdf",
+      "location": "printed pages 5-9, 12-14; newer August guidance takes precedence"
+    },
+    "sp": {
+      "date": "2026-06-16",
+      "title": "S&P final Molycop debt rating rationale",
+      "url": "https://www.spglobal.com/ratings/en/regulatory/article/-/view/type/HTML/id/3581730",
+      "location": "financing, earnout and rating-adjusted debt; agency estimates are not audited accounts"
+    },
+    "icra": {
+      "date": "2026-05-19",
+      "title": "ICRA Tega financing rationale",
+      "url": "https://www.icra.in/Rating/ShowRationalReportFilePdf/143093",
+      "location": "pages 1 and 7; preference cash deferral and parent loan maturity; pre-closing"
+    },
+    "pending_issue": {
+      "date": "2026-08-22",
+      "title": "Proposed Apollo preferential cash issue",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260822_115252.pdf",
+      "location": "pages 1-4; subject to approvals, not issued shares"
+    },
+    "sept_update": {
+      "date": "2026-09-08",
+      "title": "Clarification of proposed allottee ownership",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260908_125014.pdf",
+      "location": "page 1; does not announce completed allotment"
+    }
+  },
+  "deal": {
+    "source_ids": [
+      "closing",
+      "q1_results",
+      "sp",
+      "icra"
+    ],
+    "closed": "2026-06-01",
+    "tega_ordinary_contribution_usd_m": 394.295423,
+    "apollo_ordinary_contribution_usd_m": 74.107477,
+    "ordinary_ownership_note": "Use the contribution ratio (84.1787%); closing filing rounds to 84.2%.",
+    "apollo_preference_issue_usd_m": 270.0,
+    "headline_enterprise_value_usd_m_approx": 1500.0,
+    "cash_purchase_at_close_usd_m_approx": 393.0,
+    "escrow_included_in_cash_purchase_usd_m": 18.0,
+    "earnout_max_usd_m": 120.0,
+    "earnout_deadline": "2030-03-01",
+    "earnout_conditions": "Closing filing: performance tests within 45 months. S&P links tests to Cobre Panama/Grasberg shipments, volumes and EBITDA; exact thresholds not available in reviewed public disclosures.",
+    "accounting_purchase_consideration_usd_m": 442.7,
+    "accounting_purchase_consideration_inr_m": 41907.13,
+    "provisional_intangibles_usd_m": 362.3,
+    "provisional_goodwill_usd_m": 527.74,
+    "provisional_intangibles_inr_m": 34295.32,
+    "provisional_goodwill_inr_m": 49956.87,
+    "ppa_finalization_deadline": "2027-06-01",
+    "term_loan_at_close_usd_m": 700.0,
+    "term_loan_maturity": "2033-06-01",
+    "abl_limit_usd_m": 220.0,
+    "abl_drawn_at_close_usd_m": 138.0,
+    "abl_maturity": "2031-06-01",
+    "parent_acquisition_loan_inr_m": 15000.0,
+    "parent_loan_maturity_month": "2033-05",
+    "preference_initial_cash_deferral_years": 7.5,
+    "preference_coupon_or_pik_rate": null,
+    "preference_contractual_redemption_date": null,
+    "debt_contractual_interest_rates": null
+  },
+  "tega_fy2026": {
+    "source_ids": [
+      "annual26",
+      "q1_results"
+    ],
+    "period_end": "2026-03-31",
+    "revenue": 16919.36,
+    "consumables_gross_revenue": 14339.9,
+    "equipment_revenue": 2687.53,
+    "intersegment_revenue": 108.07,
+    "other_income": 816.17,
+    "reported_ebitda_including_other_income": 3127.57,
+    "transaction_expense": 775.77,
+    "depreciation_amortization": 951.15,
+    "finance_cost": 226.02,
+    "tax_expense": 584.59,
+    "pat": 1426.53,
+    "cash_from_operations": 3503.39,
+    "cash_capex": 1359.36,
+    "cash_lease_principal": 250.64,
+    "cash_lease_interest": 62.62,
+    "cash": 11638.86,
+    "bank_deposits": 9585.33,
+    "restricted_deposits": 69.46,
+    "unpaid_dividend_bank": 0.48,
+    "current_investments": 1987.24,
+    "borrowings_noncurrent": 1275.6,
+    "borrowings_current": 1900.53,
+    "lease_liabilities": 807.88,
+    "receivables": 4518.51,
+    "inventory": 4369.48,
+    "payables": 3335.43,
+    "jv_investment": 282.06,
+    "investment_property": 43.08,
+    "ppe": 3817.73,
+    "cwip": 1072.15,
+    "right_of_use_assets": 1963.21,
+    "intangible_assets": 52.09,
+    "intangible_development": 35.95,
+    "assets": 43145.0,
+    "liabilities": 9073.24,
+    "equity": 34071.76,
+    "shares": 75127698,
+    "shares_issued_november2025": 8592206,
+    "november2025_issue_price_inr": 1994.0
+  },
+  "q1_fy2027": {
+    "source_ids": [
+      "q1_results",
+      "q1_deck",
+      "q1_call"
+    ],
+    "period_end": "2026-06-30",
+    "molycop_months_consolidated": 1,
+    "tega_revenue": 4318.02,
+    "tega_consumables_gross_revenue": 3971.79,
+    "tega_equipment_revenue": 357.79,
+    "tega_intersegment_revenue": 11.56,
+    "tega_other_income": 256.52,
+    "tega_adjusted_ebitda_including_other_income": 1011.29,
+    "tega_transaction_expense": 56.52,
+    "tega_da": 251.26,
+    "tega_finance_cost": 193.23,
+    "molycop_revenue_inr_m": 12916.4,
+    "molycop_other_income_inr_m": -82.39,
+    "molycop_adjusted_ebitda_including_other_income_inr_m": 1628.12,
+    "molycop_adjusted_ebitda_usd_m_rounded": 17.2,
+    "molycop_operating_ebitda_inr_m": 1710.51,
+    "molycop_da_inr_m": 484.98,
+    "molycop_finance_cost_inr_m": 973.85,
+    "molycop_transaction_expense_inr_m": 1853.03,
+    "group_transaction_expense": 1909.55,
+    "group_revenue": 17234.42,
+    "group_assets": 225707.18,
+    "group_liabilities": 184387.09,
+    "group_pat": -1082.52,
+    "owners_pat": -861.89,
+    "nci_pat": -220.63,
+    "molycop_net_debt_usd_m": 672.5,
+    "molycop_net_debt_inr_m_rounded": 63660.0,
+    "group_debt_including_preferences_inr_m_rounded": 112000.0,
+    "group_preferences_inr_m_rounded": 26000.0,
+    "molycop_june_volume_m_tonnes": 0.109,
+    "detailed_post_close_balance_sheet": null
+  },
+  "molycop_history": {
+    "source_ids": [
+      "announcement",
+      "q1_call"
+    ],
+    "year_end_month": "June",
+    "fy2023_revenue_usd_m": 1811.0,
+    "fy2024_revenue_usd_m": 1625.0,
+    "fy2025_revenue_usd_m": 1539.0,
+    "fy2025_ebitda_usd_m": 172.0,
+    "fy2025_volume_m_tonnes": 1.223,
+    "fy2026_revenue_usd_m": null,
+    "fy2026_ebitda_usd_m": 191.0,
+    "fy2026_volume_m_tonnes": 1.204,
+    "status_fy2026": "Management-reported full-year EBITDA and volume; detailed audited Molycop statements not obtained. EBITDA definition normalized in assumptions."
+  },
+  "management_guidance": {
+    "source_ids": [
+      "q1_call"
+    ],
+    "tega_consumables_long_term_growth": 0.15,
+    "molycop_ten_month_volume_growth_approx": 0.05,
+    "molycop_ten_month_ebitda_growth_approx": 0.04,
+    "cost_synergies_usd_m": 20.0,
+    "cost_synergy_time_years": [
+      2.0,
+      2.5
+    ],
+    "revenue_synergies_quantified": null,
+    "molycop_fy2027_ten_month_capex_usd_m": 28.0,
+    "molycop_normalized_annual_capex_usd_m_approx": 32.0,
+    "tega_fy2027_capex_usd_m_approx": 40.0,
+    "tega_fy2027_finance_cost_inr_m_range": [
+      1100.0,
+      1200.0
+    ],
+    "molycop_ten_month_interest_plus_principal_usd_m_approx": 70.0,
+    "noncore_asset_sale_proceeds": null
+  },
+  "pending_equity_issue": {
+    "source_ids": [
+      "pending_issue",
+      "sept_update"
+    ],
+    "status": "Proposed; subject to shareholder and regulatory approvals",
+    "additional_shares": 478435,
+    "price_inr": 1994.0,
+    "gross_proceeds_inr_m": 953.99939,
+    "included_in_main_share_count": false
+  }
+}

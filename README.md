@@ -7,6 +7,33 @@ The project is being built as production-style analytical software: financial
 logic lives in reusable Python modules, inputs are explicit and testable, and
 the eventual Streamlit application will consume the same analytics layer.
 
+## Tega + Molycop acquisition update
+
+The Tega launcher now runs an acquisition DCF using final June 2026 deal terms,
+FY2026 accounts and the first post-acquisition results. It includes separate
+business forecasts, ownership, preference shares, earnout, parent funding,
+dilution, asset schedules and three scenarios.
+
+**This is a provisional research model.** Value date: **30 June 2026**.
+Reviewed-source cutoff: **11 September 2026**. Missing cash-flow, working-capital
+and preference-return disclosures remain explicit assumptions. Outputs are not
+validated current price targets or a point-in-time backtest.
+
+- [Start here: install, run and edit](START_TEGA_MODEL.md)
+- [Facts, assumptions and code walkthrough](docs/TEGA_MOLYCOP_MODEL.md)
+- [Precomputed scenarios](examples/tega_molycop_reports/scenarios.md)
+- [Validation and open inputs](docs/TEGA_MOLYCOP_VALIDATION.md)
+
+With Python 3.11+, double-click `Run_Tega_Model.bat`, or run:
+
+```text
+python run_tega_model.py
+```
+
+Open `outputs/tega_molycop/report.html`. No extra runtime packages are needed.
+The old linked model remains available with
+`python run_tega_model.py --historical-fy2025`; its outputs are historical.
+
 ## Current milestone
 
 Milestone 1 establishes a working discounted cash flow (DCF) engine with:
@@ -19,8 +46,8 @@ Milestone 1 establishes a working discounted cash flow (DCF) engine with:
 - WACC versus terminal-growth sensitivity analysis;
 - input validation, a command-line interface, and automated tests.
 
-All values in the included example are synthetic. They are for demonstrating
-the model, not for making an investment decision.
+The generic `demo_dcf.json` is synthetic. Tega's reported-history files contain
+sourced company figures; forecast assumptions are separately identified.
 
 ## Quick start
 
@@ -73,4 +100,3 @@ The detailed delivery plan is in [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md).
 The engine is unit-agnostic, but all monetary inputs must use the same unit.
 For example, if revenue, cash, and debt are in INR crore and shares outstanding
 are in crore shares, the resulting value per share is in INR.
-

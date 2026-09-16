@@ -1,0 +1,197 @@
+[
+  {
+    "parameter": "Molycop USD WACC",
+    "input": 0.09,
+    "value_per_share_inr": 818.1814206156099
+  },
+  {
+    "parameter": "Molycop USD WACC",
+    "input": 0.105,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Molycop USD WACC",
+    "input": 0.12,
+    "value_per_share_inr": 266.1133368569338
+  },
+  {
+    "parameter": "Legacy INR WACC",
+    "input": 0.105,
+    "value_per_share_inr": 582.6958978474551
+  },
+  {
+    "parameter": "Legacy INR WACC",
+    "input": 0.12,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Legacy INR WACC",
+    "input": 0.14,
+    "value_per_share_inr": 413.0640264015246
+  },
+  {
+    "parameter": "Molycop terminal USD growth",
+    "input": 0.02,
+    "value_per_share_inr": 476.7640284970338
+  },
+  {
+    "parameter": "Molycop terminal USD growth",
+    "input": 0.025,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Molycop terminal USD growth",
+    "input": 0.03,
+    "value_per_share_inr": 507.427544999352
+  },
+  {
+    "parameter": "Legacy terminal INR growth",
+    "input": 0.03,
+    "value_per_share_inr": 480.71884498447355
+  },
+  {
+    "parameter": "Legacy terminal INR growth",
+    "input": 0.04,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Legacy terminal INR growth",
+    "input": 0.045,
+    "value_per_share_inr": 497.5294997050789
+  },
+  {
+    "parameter": "Preference current fair value (USD m)",
+    "input": 270,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Preference current fair value (USD m)",
+    "input": 330,
+    "value_per_share_inr": 427.67758667990614
+  },
+  {
+    "parameter": "Preference current fair value (USD m)",
+    "input": 400,
+    "value_per_share_inr": 353.43134675704516
+  },
+  {
+    "parameter": "Other claims reserve (USD m)",
+    "input": 0,
+    "value_per_share_inr": 544.3502494158305
+  },
+  {
+    "parameter": "Other claims reserve (USD m)",
+    "input": 50,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Other claims reserve (USD m)",
+    "input": 100,
+    "value_per_share_inr": 438.284192383172
+  },
+  {
+    "parameter": "Earnout cash payment (USD m)",
+    "input": 0,
+    "value_per_share_inr": 535.4269767671927
+  },
+  {
+    "parameter": "Earnout cash payment (USD m)",
+    "input": 60,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Earnout cash payment (USD m)",
+    "input": 120,
+    "value_per_share_inr": 447.20746503180976
+  },
+  {
+    "parameter": "Legacy Q1 cash flow estimate (INR m)",
+    "input": 0,
+    "value_per_share_inr": 483.33081886705776
+  },
+  {
+    "parameter": "Legacy Q1 cash flow estimate (INR m)",
+    "input": 600,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Legacy Q1 cash flow estimate (INR m)",
+    "input": 1200,
+    "value_per_share_inr": 499.3036229319447
+  },
+  {
+    "parameter": "Molycop forecast NWC / revenue",
+    "input": 0.18,
+    "value_per_share_inr": 529.1492363622006
+  },
+  {
+    "parameter": "Molycop forecast NWC / revenue",
+    "input": 0.2,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Molycop forecast NWC / revenue",
+    "input": 0.23,
+    "value_per_share_inr": 434.5691977054527
+  },
+  {
+    "parameter": "Molycop FY26 EBITDA operating adjustment (USD m)",
+    "input": -10,
+    "value_per_share_inr": 393.6257648666016
+  },
+  {
+    "parameter": "Molycop FY26 EBITDA operating adjustment (USD m)",
+    "input": 0,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Molycop FY26 EBITDA operating adjustment (USD m)",
+    "input": 10,
+    "value_per_share_inr": 589.0086769324016
+  },
+  {
+    "parameter": "Translation INR/USD; closing payment FX fixed",
+    "input": 90,
+    "value_per_share_inr": 466.3911614251752
+  },
+  {
+    "parameter": "Translation INR/USD; closing payment FX fixed",
+    "input": 94.66171003717473,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Translation INR/USD; closing payment FX fixed",
+    "input": 100,
+    "value_per_share_inr": 519.8609381284748
+  },
+  {
+    "parameter": "Closing payment INR/USD; valuation FX fixed",
+    "input": 90,
+    "value_per_share_inr": 515.7834428115735
+  },
+  {
+    "parameter": "Closing payment INR/USD; valuation FX fixed",
+    "input": 94.66171003717473,
+    "value_per_share_inr": 491.31722089950125
+  },
+  {
+    "parameter": "Closing payment INR/USD; valuation FX fixed",
+    "input": 100,
+    "value_per_share_inr": 463.3000800177343
+  },
+  {
+    "parameter": "Cost savings after FY2027 / base ramp",
+    "input": 0.0,
+    "value_per_share_inr": 356.3356774673723
+  },
+  {
+    "parameter": "Cost savings after FY2027 / base ramp",
+    "input": 0.5,
+    "value_per_share_inr": 423.82644918343703
+  },
+  {
+    "parameter": "Cost savings after FY2027 / base ramp",
+    "input": 1.0,
+    "value_per_share_inr": 491.31722089950125
+  }
+]

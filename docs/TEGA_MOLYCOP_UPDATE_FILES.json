@@ -1,0 +1,171 @@
+{
+  "repository": "https://github.com/tanaymkr/Equity-Research-Quantitative-Portfolio-Analytics-Platform",
+  "base_commit": "6e5073f6dade2fd96dc52bd6f8977527b2b79abf",
+  "prepared_date": "2026-09-16",
+  "research_cutoff": "2026-09-11",
+  "valuation_date": "2026-06-30",
+  "status": "Provisional acquisition DCF; not a validated current price target.",
+  "remote_repository_modified": false,
+  "install": "Copy all files into the existing repository, merging folders and replacing only the five listed modified files. See START_TEGA_MODEL.md.",
+  "file_count": 25,
+  "modified_count": 5,
+  "added_count": 20,
+  "validation": {
+    "pytest_tests": 66,
+    "pytest_subtests": 14,
+    "ruff_check": "passed",
+    "report_check": "Offline HTML structure, values, navigation and input snapshot consistency checked. No browser visual inspection."
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "action": "modify",
+      "sha256": "6ca2a83b3920a343925cd35160d9e4f86303d4fa4e8ccffc667b10f56d1d096c",
+      "bytes": 3593
+    },
+    {
+      "path": "Run_Tega_Model.bat",
+      "action": "modify",
+      "sha256": "8801a180ac3ad4bbfe06bb4fae7d0cdab50df6f03819b1c27a03621c1f59cda9",
+      "bytes": 446
+    },
+    {
+      "path": "START_TEGA_MODEL.md",
+      "action": "modify",
+      "sha256": "89d0ee7930f9d271b34479d57c90621c419c7f12c6fc8cbe58ceff252aba3ab9",
+      "bytes": 4325
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_MODEL.md",
+      "action": "add",
+      "sha256": "84ccc37fcd1595388114c93c11861d700759e47a9897f54356eb783a5ff8cd53",
+      "bytes": 11999
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_VALIDATION.md",
+      "action": "add",
+      "sha256": "f24afa38fcd20a8964da335c5797a9251fa79108d56ae496cab9b06b6d8cf0e5",
+      "bytes": 2763
+    },
+    {
+      "path": "examples/tega_molycop_assumptions.json",
+      "action": "add",
+      "sha256": "9bc9801fb544fb941f261061d2411791b5e0bdb8f4ffeadea9f282347a46327a",
+      "bytes": 14010
+    },
+    {
+      "path": "examples/tega_molycop_facts.json",
+      "action": "add",
+      "sha256": "72ec53f4194385e048d178559b20257af2ecaaca47e6ccc7f46ca5695d022d8c",
+      "bytes": 9997
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/forecast.md",
+      "action": "add",
+      "sha256": "f940d6a72f43b8094e86d5f79b27f9c6b3b78140b0c53b3915bd361aaffde5e8",
+      "bytes": 8929
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/model.json",
+      "action": "add",
+      "sha256": "e406a1d719483adaff4a1047143d3ad9e02bd02d499527fcaf3c9ef30bcba730",
+      "bytes": 44494
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/forecast.md",
+      "action": "add",
+      "sha256": "fcb21a458927ca6e9e37e5283e1e0ff4080e18522acbf64cbb025b5dd1e10642",
+      "bytes": 8637
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/model.json",
+      "action": "add",
+      "sha256": "5b3a28851db298fcdc1e48d08755e5daee92cf31779710ab0757b790c33d960c",
+      "bytes": 44214
+    },
+    {
+      "path": "examples/tega_molycop_reports/inputs_used.json",
+      "action": "add",
+      "sha256": "cccf79c8013abc6688680401d8b0d1ab23fa7225c39423f377708a473c05a036",
+      "bytes": 25603
+    },
+    {
+      "path": "examples/tega_molycop_reports/report.html",
+      "action": "add",
+      "sha256": "a41d4ce4d50fa604620f7a831a7314981147a56b99933ec7e88056abee7ef252",
+      "bytes": 62362
+    },
+    {
+      "path": "examples/tega_molycop_reports/scenarios.md",
+      "action": "add",
+      "sha256": "e8c955d08e91ef96e66550db7e4b7fb5538e51cbfaaef8f627201e051d8b8336",
+      "bytes": 8445
+    },
+    {
+      "path": "examples/tega_molycop_reports/sensitivity.json",
+      "action": "add",
+      "sha256": "a248b530690d95de3ee97ef2962f4889d9623915c1be7583c2b1f3e75491b45f",
+      "bytes": 4929
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/forecast.md",
+      "action": "add",
+      "sha256": "91dc7b397800e5bb8758dc8217f90118474066408421b17b063bee9593ae91de",
+      "bytes": 8637
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/model.json",
+      "action": "add",
+      "sha256": "ac6cb38456fed688de1b4cbe42e0c6cda32136bb24656404c9e3bd93968b1e51",
+      "bytes": 44118
+    },
+    {
+      "path": "run_tega_model.py",
+      "action": "modify",
+      "sha256": "e1de90fd07606a02da4bc33f30e38d3242870fb218bf9c82eb39d3644ed4edc0",
+      "bytes": 526
+    },
+    {
+      "path": "run_tega_scenarios.py",
+      "action": "modify",
+      "sha256": "dec52fb6de4e76e6f3bec8837e4e99df7ccc7df5925f0cf9ebd21e47effbfe73",
+      "bytes": 6350
+    },
+    {
+      "path": "src/equity_analytics/acquisition/__init__.py",
+      "action": "add",
+      "sha256": "4c4d908236d720ffc361d81f87b88c717a2ab5bb88bf9d7d1f09bacc94586f42",
+      "bytes": 205
+    },
+    {
+      "path": "src/equity_analytics/acquisition/__main__.py",
+      "action": "add",
+      "sha256": "390042bf7e325fa0c96fb84859fcbea563eca9b34e2a77c41947a966346f8a92",
+      "bytes": 2367
+    },
+    {
+      "path": "src/equity_analytics/acquisition/engine.py",
+      "action": "add",
+      "sha256": "176cb6736ac282c904c3cfd73f0860acb40a21ed2e1445608ddf5a0a6706c6ff",
+      "bytes": 31896
+    },
+    {
+      "path": "src/equity_analytics/acquisition/reporting.py",
+      "action": "add",
+      "sha256": "f56cf3dbcea1d5f51dc6d53cc246a2d7f89c8c37f8c38549f5500a64f0ebe4f5",
+      "bytes": 20815
+    },
+    {
+      "path": "tests/test_acquisition.py",
+      "action": "add",
+      "sha256": "72a3c86150270b3536ba1b7fb20ce527137087e74bd0be89a6d4546df1a3b575",
+      "bytes": 10088
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_UPDATE_FILES.json",
+      "action": "add",
+      "sha256": null,
+      "note": "This manifest does not hash itself."
+    }
+  ]
+}

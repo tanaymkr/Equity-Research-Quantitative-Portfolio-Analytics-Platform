@@ -1,48 +1,100 @@
-# Start here: Tega's reported statements and linked model
+# Start here: Tega + Molycop acquisition DCF
 
-This update adds an audited historical Tega case and a linked five-year forecast to your existing Python project.
+The acquisition is incorporated in the Python valuation using final closing
+terms, Tega FY2026 accounts, June 2026 acquired earnings and August guidance.
 
-**The historical inputs are actual consolidated FY2024 and FY2025 figures. Forecast assumptions are illustrative. This is a dated FY2025 case, not a current Tega valuation.** FY2026 results and subsequent acquisitions/financing are not included.
+**The model is provisional.** It values the business at 30 June 2026 using
+reviewed disclosures through 11 September 2026. Some opening balances and
+financing terms remain assumptions. It is not a live September price target.
 
-## Add the update through GitHub Desktop
+## Open the result first
 
-1. Open GitHub Desktop and select `Equity-Research-Quantitative-Portfolio-Analytics-Platform`.
-2. Click **Fetch origin**. If **Pull origin** appears, click it.
-3. Select **Repository → Show in Explorer**. This opens the correct local repository folder.
-4. Extract the downloaded `tega-linked-model-update.zip` using **Extract All** in File Explorer.
-5. Open the extracted `tega-linked-model-update` folder. Copy **everything inside it** into your local repository folder. `START_TEGA_MODEL.md` and `run_tega_model.py` should sit beside your existing `README.md`. Merge the `src`, `examples`, `docs`, `notebooks`, and `tests` folders when Windows asks. Do not place the whole extracted folder inside the repository.
-6. Return to GitHub Desktop. The package contains new files only; the existing project files should not show edits or deletions. Review the file list.
-7. Enter the commit summary `Add Tega reported statements and linked financial model`, then click **Commit to main**.
-8. Click **Push origin**. On GitHub, open **Actions** and wait for the new CI run to turn green.
+After extracting the ZIP, double-click:
 
-The package was prepared against main commit `27a44c22a48fb46bdd786ddc4f32a4dabf776323`. The existing DCF demo and earlier financial-analysis files continue to work.
+`examples/tega_molycop_reports/report.html`
 
-## Read the result before running anything
+Your normal browser opens the precomputed report; Python is not needed to read
+it. On GitHub, use [the Markdown comparison](examples/tega_molycop_reports/scenarios.md),
+since GitHub normally displays HTML source instead of rendering an uploaded page.
 
-Open these files on GitHub:
+The report includes three cases, the equity bridge, asset and financing schedules,
+sensitivities and sources. A downside equity shortfall is a conditional stress
+result, not a forecast that the quoted share price becomes zero.
 
-- [Audited historical statements and source checks](examples/tega_model_reports/base/historical_statements.md)
-- [Linked forecast, debt schedule, asset schedule and DCF](examples/tega_model_reports/base/forecast.md)
-- [Scenario comparison and WACC/g sensitivity](examples/tega_model_reports/scenarios.md)
-- [Code walkthrough and modeling conventions](docs/TEGA_MODEL_METHODS.md)
-- [Source map and verification evidence](docs/TEGA_MODEL_VALIDATION.md)
+## Copy the update into your repository
 
-The precomputed reports let you inspect the output without installing or running Python.
+1. In GitHub Desktop, select your repository and click **Fetch origin**.
+   If **Pull origin** appears, click it.
+2. Select **Repository → Show in Explorer**.
+3. Right-click `tega-molycop-acquisition-update.zip` and choose **Extract All**.
+4. Open the extracted `tega-molycop-acquisition-update` folder. Copy **all its
+   contents** into the repository folder opened in step 2. Merge the folders.
+   Replace the five existing files when Windows asks: `README.md`,
+   `START_TEGA_MODEL.md`, `Run_Tega_Model.bat`, `run_tega_model.py`, and
+   `run_tega_scenarios.py`.
+5. The launchers must sit beside your existing `README.md`. Do not create a
+   second nested project folder.
+6. Review GitHub Desktop's changes: additions and the five edits above, with
+   no deletions. This ZIP contains only the acquisition update.
+7. Use commit summary **Add Tega Molycop acquisition DCF and source register**.
+   Click **Commit to main**, then **Push origin**.
+8. Open the repository's **Actions** tab to inspect the CI result.
 
-## Run locally without PowerShell
+Prepared against main commit `6e5073f6dade2fd96dc52bd6f8977527b2b79abf`.
+If you have edited the five existing files, compare your edits before replacing
+them. `docs/TEGA_MOLYCOP_UPDATE_FILES.json` lists every package file.
 
-If Python 3.11 or later is installed, double-click **Run_Tega_Model.bat** in File Explorer. It runs the model and leaves the window open so you can read any error. The runner writes `model.json`, `forecast.md`, and `historical_statements.md` into `outputs/tega_fy2025`.
+## Run without PowerShell
 
-Alternatively, open the project in VS Code, open `run_tega_model.py`, and click **Run Python File**. No additional runtime packages or live-data credentials are required.
+With Python 3.11+ installed, double-click **Run_Tega_Model.bat**.
+Then open **outputs → tega_molycop → report.html** in File Explorer.
 
-## Change an assumption
+Alternatively, use VS Code's **Run Python File** on `run_tega_model.py`, or run
+either command in **Command Prompt**, opened in the repository folder:
 
-Open `examples/tega_fy2025_forecast_assumptions.json` in VS Code or another text editor. Change `revenue_growth`, `ebitda_margin`, collection days, capex, asset lives or debt assumptions, then run the model again. A decimal `0.10` means 10%. Each annual array covers FY2026 through FY2030 in order.
+```text
+python run_tega_model.py
+python run_tega_scenarios.py
+```
 
-Keep the historical statements file as reported. The assumptions file is the place to make forecast changes. Scenario examples have separate `downside` and `upside` assumptions files; the methods guide explains how to run them.
+Both launchers produce all three acquisition scenarios. No internet connection,
+live-data credentials or extra runtime packages are needed.
 
-## What this milestone completes
+To compare against a price you supply without changing the valuation:
 
-The project now has sourced historical statements, historical asset/debt/cash reconciliations, forecast working capital, depreciation and amortisation, debt and lease schedules, linked financial statements, and a DCF using the forecast's FCFF.
+```text
+python run_tega_model.py --reference-price 1700
+```
 
-The next research task is to extend the historical period and replace the illustrative assumptions with a documented investment thesis. A current Tega valuation also requires the later reporting period, acquisition and financing details, current diluted shares, and researched valuation assumptions.
+This comparison is marked unverified and is never used to fit the forecast.
+
+## Change assumptions
+
+Open `examples/tega_molycop_assumptions.json` in VS Code.
+
+- `shared` contains opening cash estimates, FX, asset lives, taxes and financing.
+- `scenarios` contains `downside`, `base` and `upside` operating/valuation inputs.
+- Arrays cover **FY2027 through FY2034**, in order.
+- `0.15` means 15%. Molycop is in **USD million**; legacy Tega is in **INR million**.
+- The facts file uses **actual shares**, not crore shares or million shares.
+
+Keep `examples/tega_molycop_facts.json` for verified disclosures. A `null` means
+an item was not established, not zero. Rerun after editing. Fresh outputs go to
+`outputs/tega_molycop`; the committed example report remains a fixed snapshot.
+
+## Original linked model
+
+The FY2025 model and its historical files remain available:
+
+```text
+python run_tega_model.py --historical-fy2025
+python run_tega_scenarios.py --historical-fy2025
+```
+
+The new acquisition module provides cash-flow, asset and financing schedules.
+It does **not** claim to be a completed statutory three-statement forecast of
+the combined group. That requires missing post-close balance-sheet detail and
+finalized purchase accounting.
+
+Read [the model walkthrough](docs/TEGA_MOLYCOP_MODEL.md) and
+[validation and open inputs](docs/TEGA_MOLYCOP_VALIDATION.md).

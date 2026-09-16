@@ -12,6 +12,12 @@ from pathlib import Path
 def main() -> None:
     root = Path(__file__).resolve().parent
     sys.path.insert(0, str(root / "src"))
+    if "--historical-fy2025" not in sys.argv:
+        from equity_analytics.acquisition.__main__ import main as acquisition_main
+
+        acquisition_main(default_root=root)
+        return
+    sys.argv.remove("--historical-fy2025")
     from equity_analytics.forecasting import ModelInputError, build_forecast, load_json
     from equity_analytics.forecasting.reporting import write_reports
 
@@ -131,7 +137,7 @@ def main() -> None:
         "- [Audited historical statements](base/historical_statements.md)",
         "",
         (
-            "Reproduce this report with `python run_tega_scenarios.py`. "
+            "Reproduce this report with `python run_tega_scenarios.py --historical-fy2025`. "
             "It writes fresh outputs under `outputs/tega_scenarios`."
         ),
         "",
