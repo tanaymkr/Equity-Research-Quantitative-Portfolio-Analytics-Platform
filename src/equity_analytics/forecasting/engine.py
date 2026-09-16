@@ -10,7 +10,12 @@ from copy import deepcopy
 from dataclasses import dataclass
 from math import isfinite
 
-from .inputs import ModelInputError, reconcile_history, validate_assumptions
+from .inputs import (
+    ModelInputError,
+    asset_cohorts,
+    reconcile_history,
+    validate_assumptions,
+)
 
 
 class FundingError(ModelInputError):
@@ -135,7 +140,7 @@ def build_forecast(case: dict, assumptions: dict) -> dict:
         sum(assets.values()) - sum(liabilities.values()) - sum(equity.values())
     )
     cohorts = []
-    for row in case["fy2025_asset_cohorts"]:
+    for row in asset_cohorts(case):
         life = a["opening_remaining_life_years"][row["name"]]
         cohorts.append(
             AssetCohort(
@@ -344,6 +349,7 @@ def build_forecast(case: dict, assumptions: dict) -> dict:
             }
         )
     result = {
+        "base_year": case["base_year"],
         "company": case["company"],
         "label": a["label"],
         "as_of": case["as_of"],

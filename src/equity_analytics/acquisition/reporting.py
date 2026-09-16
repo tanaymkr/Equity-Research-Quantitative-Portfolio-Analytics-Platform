@@ -7,6 +7,8 @@ from copy import deepcopy
 from html import escape
 from pathlib import Path
 
+from equity_analytics.forecasting.reporting import write_historical_reports
+
 from .engine import build_acquisition_model
 
 
@@ -357,7 +359,16 @@ def _case_tables(result):
     )
 
 
-def write_reports(facts, assumptions, results, output: Path, reference_price=None):
+def write_reports(
+    facts,
+    assumptions,
+    results,
+    output: Path,
+    reference_price=None,
+    *,
+    statements=None,
+    historical_checks=None,
+):
     output.mkdir(parents=True, exist_ok=True)
     sensitivity = sensitivities(facts, assumptions)
     summary_rows = []
@@ -404,6 +415,20 @@ def write_reports(facts, assumptions, results, output: Path, reference_price=Non
         f"<p>{escape(timing)}</p>",
         "<nav><a href='#base'>Base</a><a href='#downside'>Downside</a><a href='#upside'>Upside</a><a href='#sensitivity'>Sensitivity</a><a href='#sources'>Sources</a></nav>",
     ]
+    if statements is not None:
+        write_historical_reports(statements, historical_checks, output)
+        statement_text = f"The complete FY26 statements are the source for the legacy inputs. {len(historical_checks)} historical reconciliation checks passed."
+        md += [
+            "## Complete FY26 statements",
+            "",
+            statement_text,
+            "",
+            "[Income statement, balance sheet, cash flows and notes](historical_statements.md)",
+            "",
+        ]
+        html += [
+            f"<section><h2>Complete FY26 statements</h2><p>{statement_text}</p><p><a href='historical_statements.html'>Open the audited statements and supporting reconciliations</a></p><p>The acquisition cash/debt bridge below starts from these March balances; its June estimates remain labeled.</p></section>"
+        ]
     if reference_price is not None:
         base = results["base"]["equity_bridge"]
         target_equity = reference_price * base["issued_shares"] / 1_000_000

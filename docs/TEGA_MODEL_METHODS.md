@@ -1,5 +1,8 @@
 # How the linked Tega model works
 
+This document describes the FY25 archive. For FY26 statements and the current
+model paths, read [the FY26 walkthrough](TEGA_FY2026_STATEMENTS.md).
+
 This is a historical FY2025 learning and research case. Reported FY2024/FY2025 statements are sourced from Tega's audited consolidated accounts. All future operating and valuation inputs are explicitly illustrative analyst assumptions.
 
 ## Files and reading order
@@ -147,8 +150,8 @@ All annual FCFF and terminal value are discounted at year end. The equity bridge
 Each scenario JSON is a complete, editable assumption set. In **Command Prompt** from the repository folder:
 
 ```bat
-python run_tega_model.py --assumptions examples/tega_fy2025_downside_assumptions.json --output outputs/tega_downside
-python run_tega_model.py --assumptions examples/tega_fy2025_upside_assumptions.json --output outputs/tega_upside
+python run_tega_model.py --historical-fy2025 --assumptions examples/tega_fy2025_downside_assumptions.json --output outputs/tega_downside
+python run_tega_model.py --historical-fy2025 --assumptions examples/tega_fy2025_upside_assumptions.json --output outputs/tega_upside
 ```
 
 The base case is the default when no options are passed. Precomputed scenario summaries explain exactly which operating inputs differ. The scenarios have no assigned probabilities and are not estimates of actual FY2026 performance.

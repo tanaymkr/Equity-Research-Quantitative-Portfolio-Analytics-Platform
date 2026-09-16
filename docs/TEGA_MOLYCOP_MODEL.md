@@ -116,6 +116,16 @@ schedules, **not a completed statutory combined three-statement forecast**. The
 old linked three-statement engine remains intact. No balancing plug hides missing
 post-close account detail.
 
+## FY26 statement integration
+
+The complete FY26 statements now live in
+`examples/tega_fy2026_reported_statements.json`. The acquisition facts file
+references that file; its earlier duplicated FY26 financial block has been
+removed. `acquisition/history.py` validates all 92 historical checks and derives
+all legacy annual inputs before the DCF runs. The report now includes the full
+statements and supporting reconciliations. See
+[the FY26 walkthrough](TEGA_FY2026_STATEMENTS.md).
+
 ## Code path
 
 | File | Purpose |

@@ -127,52 +127,6 @@
     "preference_contractual_redemption_date": null,
     "debt_contractual_interest_rates": null
   },
-  "tega_fy2026": {
-    "source_ids": [
-      "annual26",
-      "q1_results"
-    ],
-    "period_end": "2026-03-31",
-    "revenue": 16919.36,
-    "consumables_gross_revenue": 14339.9,
-    "equipment_revenue": 2687.53,
-    "intersegment_revenue": 108.07,
-    "other_income": 816.17,
-    "reported_ebitda_including_other_income": 3127.57,
-    "transaction_expense": 775.77,
-    "depreciation_amortization": 951.15,
-    "finance_cost": 226.02,
-    "tax_expense": 584.59,
-    "pat": 1426.53,
-    "cash_from_operations": 3503.39,
-    "cash_capex": 1359.36,
-    "cash_lease_principal": 250.64,
-    "cash_lease_interest": 62.62,
-    "cash": 11638.86,
-    "bank_deposits": 9585.33,
-    "restricted_deposits": 69.46,
-    "unpaid_dividend_bank": 0.48,
-    "current_investments": 1987.24,
-    "borrowings_noncurrent": 1275.6,
-    "borrowings_current": 1900.53,
-    "lease_liabilities": 807.88,
-    "receivables": 4518.51,
-    "inventory": 4369.48,
-    "payables": 3335.43,
-    "jv_investment": 282.06,
-    "investment_property": 43.08,
-    "ppe": 3817.73,
-    "cwip": 1072.15,
-    "right_of_use_assets": 1963.21,
-    "intangible_assets": 52.09,
-    "intangible_development": 35.95,
-    "assets": 43145.0,
-    "liabilities": 9073.24,
-    "equity": 34071.76,
-    "shares": 75127698,
-    "shares_issued_november2025": 8592206,
-    "november2025_issue_price_inr": 1994.0
-  },
   "q1_fy2027": {
     "source_ids": [
       "q1_results",
@@ -261,5 +215,6 @@
     "price_inr": 1994.0,
     "gross_proceeds_inr_m": 953.99939,
     "included_in_main_share_count": false
-  }
+  },
+  "reported_statements_file": "tega_fy2026_reported_statements.json"
 }

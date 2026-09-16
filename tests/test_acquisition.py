@@ -6,6 +6,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from equity_analytics.acquisition import AcquisitionInputError, build_acquisition_model
+from equity_analytics.acquisition.history import load_acquisition_facts
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -13,7 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 class AcquisitionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.facts = json.loads((ROOT / "examples/tega_molycop_facts.json").read_text())
+        cls.facts, _, _ = load_acquisition_facts(
+            ROOT / "examples/tega_molycop_facts.json"
+        )
         cls.assumptions = json.loads(
             (ROOT / "examples/tega_molycop_assumptions.json").read_text()
         )

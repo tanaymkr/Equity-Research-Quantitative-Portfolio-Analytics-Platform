@@ -11,20 +11,22 @@ from .inputs import ModelInputError, load_json
 from .reporting import write_reports
 
 
-def main(default_root: Path | None = None) -> None:
+def main(default_root: Path | None = None, default_base_year: int = 2026) -> None:
     root = default_root or Path.cwd()
-    parser = argparse.ArgumentParser(description="Tega FY2025 historical model")
+    parser = argparse.ArgumentParser(description="Tega reported-history linked model")
     parser.add_argument(
         "--statements",
         type=Path,
-        default=root / "examples/tega_fy2025_reported_statements.json",
+        default=root / f"examples/tega_fy{default_base_year}_reported_statements.json",
     )
     parser.add_argument(
         "--assumptions",
         type=Path,
-        default=root / "examples/tega_fy2025_forecast_assumptions.json",
+        default=root / f"examples/tega_fy{default_base_year}_forecast_assumptions.json",
     )
-    parser.add_argument("--output", type=Path, default=root / "outputs/tega_fy2025")
+    parser.add_argument(
+        "--output", type=Path, default=root / f"outputs/tega_fy{default_base_year}"
+    )
     args = parser.parse_args()
     try:
         case, assumptions = load_json(args.statements), load_json(args.assumptions)
@@ -33,7 +35,9 @@ def main(default_root: Path | None = None) -> None:
     except (ModelInputError, OSError) as exc:
         print(f"Model stopped: {exc}", file=sys.stderr)
         raise SystemExit(2) from exc
-    print("Historical FY2025 case; illustrative forecast, not a current valuation.")
+    print(
+        f"Historical FY{case['base_year']} case; legacy-only illustrative forecast. Acquisition excluded."
+    )
     print(f"Historical checks passed: {len(result['historical_checks'])}")
     print(f"Forecast years balanced: {len(result['years'])}")
     print(f"Reports: {args.output.resolve()}")

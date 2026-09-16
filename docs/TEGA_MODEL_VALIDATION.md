@@ -1,5 +1,8 @@
 # Tega model: sources and verification
 
+This document records the original FY25 archive. The current FY26 source and its
+92 reconciliations are documented in [the FY26 walkthrough](TEGA_FY2026_STATEMENTS.md).
+
 ## Repository reviewed
 
 - Repository: [tanaymkr/Equity-Research-Quantitative-Portfolio-Analytics-Platform](https://github.com/tanaymkr/Equity-Research-Quantitative-Portfolio-Analytics-Platform)
@@ -31,7 +34,7 @@ The report contains consolidated FY2025 statements and FY2024 comparisons. The s
 | D&A expense by class | Note 36, PDF page 281 |
 | Debt and accrued-interest reconciliation | Note 41(c), PDF pages 293–294 |
 
-The official investor page lists a FY2026 annual report, but that report could not be retrieved during this work. This package therefore remains a clearly dated FY2025 historical case. It does not claim to contain the latest available financial period or subsequent acquisition/financing information.
+At the time of this original FY25 package, the FY26 report had not been retrieved. That limitation has now been resolved: the full FY26 statements and notes are incorporated in `examples/tega_fy2026_reported_statements.json`. This document and the FY25 source files remain an archive of the earlier case.
 
 ## Reported values used to anchor the model
 
@@ -89,7 +92,7 @@ Commands used for the normal project checks:
 ```text
 python -m pytest
 python -m ruff check .
-python run_tega_scenarios.py --output examples/tega_model_reports
+python run_tega_scenarios.py --historical-fy2025 --output examples/tega_model_reports
 ```
 
 The testing environment used isolated local development dependencies; the model itself uses the Python standard library. `Run_Tega_Model.bat` has been inspected but could not be executed on this Linux verification environment. Its underlying Python launcher was run successfully.

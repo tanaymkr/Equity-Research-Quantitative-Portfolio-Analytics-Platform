@@ -13,7 +13,10 @@ def main() -> None:
     else:
         from equity_analytics.acquisition.__main__ import main as run
 
-    run(default_root=root)
+    if run.__module__ == "equity_analytics.forecasting.__main__":
+        run(default_root=root, default_base_year=2025)
+    else:
+        run(default_root=root)
 
 
 if __name__ == "__main__":

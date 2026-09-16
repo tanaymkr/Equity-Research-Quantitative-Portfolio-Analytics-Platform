@@ -1,11 +1,11 @@
 # Acquisition model: validation and open inputs
 
-Base commit: `6e5073f6dade2fd96dc52bd6f8977527b2b79abf`.
+FY26 integration base commit: `371e3cf53833328767b1854a75e3fcd2faf90ff2`.
 Package date: 16 September 2026. Reviewed-source cutoff: 11 September 2026.
 Valuation date: 30 June 2026. No remote repository writes were made.
 
-The local suite passes **66 tests plus 14 subtests**, including the original
-DCF, financial-history and linked-forecast tests and 15 acquisition tests.
+The local suite passes **79 tests plus 14 subtests**, including the original
+DCF, financial-history and linked-forecast tests 15 acquisition tests and 13 FY26 integration checks.
 Ruff lint passes. Q1 segment/P&L tables were visually checked against official
 PDFs. Report tables are generated from JSON and code, not manually entered.
 
@@ -13,6 +13,12 @@ New checks cover acquisition timing, excluding other income, ownership after
 senior claims, duplicate deductions, the cash/debt funding bridge, shares and
 pending cash dilution, preference PIK, book-versus-tax amortization, asset/debt
 roll-forwards, terminal reinvestment, sensitivity directions and invalid inputs.
+
+The complete FY26 statements now pass 92 historical reconciliations and are
+the shared input to the acquisition DCF, the FY26 legacy-only linked model
+and the ratio module. The legacy control balances for FY2027-FY2031. Its scope
+excludes the acquisition; the default launcher retains Molycop. See
+[the FY26 source walkthrough](TEGA_FY2026_STATEMENTS.md).
 
 ## Inputs still requiring evidence
 

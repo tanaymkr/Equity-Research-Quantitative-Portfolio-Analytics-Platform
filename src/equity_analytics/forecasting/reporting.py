@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from .inputs import historical_rolls
+
 
 def money(value: float) -> str:
     return f"{value:,.2f}"
@@ -19,131 +21,152 @@ def _table(labels: list[str], rows: list[tuple]) -> list[str]:
     ]
 
 
-def historical_markdown(case: dict, result: dict) -> str:
-    source = case["source"]
+def historical_tables(case, checks):
+    """One table source for HTML and Markdown, including every cash-flow line."""
     annuals = case["annuals"]
-    lines = [
-        "# Tega: audited FY2024 and FY2025 historical statements",
-        "",
-        "Consolidated; INR million. One crore = ten million.",
-        "",
-        (
-            f"Source: [{source['title']}]({source['url']}). "
-            f"Information cutoff: {case['as_of']}."
-        ),
-        "",
-        (
-            "These are reported historical figures. The separate forecast uses "
-            "illustrative analyst assumptions and does not incorporate FY2026 "
-            "results or subsequent acquisitions."
-        ),
-        "",
-    ]
+    labels = ["Account"] + [f"FY{y['fiscal_year']} actual" for y in annuals]
     for title, section in [
         ("Income statement", "income"),
         ("Assets", "assets"),
         ("Liabilities", "liabilities"),
         ("Equity", "equity"),
+        ("Reported classifications and totals", "reported_totals"),
     ]:
-        lines += [f"## {title}", ""]
-        lines += _table(
-            ["Account", "FY2024 actual", "FY2025 actual"],
+        yield (
+            title,
+            labels,
             [
-                (k.replace("_", " "), *[money(y[section][k]) for y in annuals])
+                [k.replace("_", " ")]
+                + [
+                    f"{y[section][k]:.6f}"
+                    if k == "shares_outstanding_million"
+                    else money(y[section][k])
+                    for y in annuals
+                ]
                 for k in annuals[0][section]
             ],
         )
-    lines += [
-        (
-            "Liabilities use principal pools: term debt includes its current "
-            "maturities; the revolver excludes those maturities. Lease principal "
-            "is separate. Other reserves exclude retained earnings."
-        ),
-        "",
-        "## Reported balance sheet classifications and totals",
-        "",
+    rows = [
+        ["Profit before tax"]
+        + [money(y["income"]["profit_before_tax"]) for y in annuals]
     ]
-    lines += _table(
-        ["Account", "FY2024 actual", "FY2025 actual"],
-        [
-            (k.replace("_", " "), *[money(y["reported_totals"][k]) for y in annuals])
-            for k in annuals[0]["reported_totals"]
-            if k != "shares_outstanding_million"
-        ],
-    )
-    lines += [
-        "Shares outstanding: 66.535492 million in both years (note 19A).",
-        "",
-        "## Cash flow statement",
-        "",
-        "Cash inflows/addbacks are positive; cash outflows/deductions are negative.",
-        "",
-    ]
-    cf_rows = [
-        (
-            "Profit before tax",
-            *[money(y["income"]["profit_before_tax"]) for y in annuals],
+    for section in [
+        "operating_adjustments",
+        "working_capital_movements",
+        "investing",
+        "financing",
+    ]:
+        if section == "investing":
+            for key in ["income_tax_paid", "operating_total"]:
+                rows.append(
+                    [key.replace("_", " ")]
+                    + [money(y["cash_flow"][key]) for y in annuals]
+                )
+        names = dict.fromkeys(k for y in annuals for k in y["cash_flow"][section])
+        rows.extend(
+            [
+                [k.replace("_", " ")]
+                + [money(y["cash_flow"][section].get(k, 0)) for y in annuals]
+                for k in names
+            ]
         )
-    ]
-    for section in ["operating_adjustments", "working_capital_movements"]:
-        cf_rows += [
-            (k.replace("_", " "), *[money(y["cash_flow"][section][k]) for y in annuals])
-            for k in annuals[0]["cash_flow"][section]
-        ]
-    for k in ["income_tax_paid", "operating_total"]:
-        cf_rows.append(
-            (k.replace("_", " "), *[money(y["cash_flow"][k]) for y in annuals])
-        )
-    for section in ["investing", "financing"]:
-        cf_rows += [
-            (k.replace("_", " "), *[money(y["cash_flow"][section][k]) for y in annuals])
-            for k in annuals[0]["cash_flow"][section]
-        ]
-        cf_rows.append(
-            (
-                section + " total",
-                *[money(y["cash_flow"][section + "_total"]) for y in annuals],
+        if section in {"investing", "financing"}:
+            rows.append(
+                [section + " total"]
+                + [money(y["cash_flow"][section + "_total"]) for y in annuals]
             )
+    for key in ["opening_cash", "exchange_effect_on_cash", "closing_cash"]:
+        rows.append(
+            [key.replace("_", " ")] + [money(y["cash_flow"][key]) for y in annuals]
         )
-    for k in ["opening_cash", "exchange_effect_on_cash", "closing_cash"]:
-        cf_rows.append(
-            (k.replace("_", " "), *[money(y["cash_flow"][k]) for y in annuals])
+    yield "Cash flow statement", labels, rows
+    for section, data in case.get("base_year_disclosures", {}).items():
+        values = data if isinstance(data, dict) else {section: data}
+        yield (
+            f"FY{case['base_year']} {section.replace('_', ' ')}",
+            ["Disclosed item", "Value (INR m unless shares/EPS)"],
+            [
+                [k.replace("_", " "), f"{v:.6f}" if "shares_million" in k else money(v)]
+                for k, v in values.items()
+            ],
         )
-    lines += _table(["Account", "FY2024 actual", "FY2025 actual"], cf_rows)
-    lines += [
-        "## FY2025 supporting reconciliations",
-        "",
-        (
-            "Positive debt movements increase the liability. Interest accruals "
-            "and payments cancel when equal; FX and new leases can change debt "
-            "without borrowing cash. 'Other' preserves the source classification."
-        ),
-        "",
-    ]
-    for name, roll in case["fy2025_reconciliations"].items():
-        lines += [f"### {name.replace('_', ' ')}", ""]
-        lines += _table(
+    for name, roll in historical_rolls(case).items():
+        yield (
+            f"FY{case['base_year']} {name.replace('_', ' ')}",
             ["Movement", "INR million"],
-            [(k.replace("_", " "), money(v)) for k, v in roll.items()],
+            [[k.replace("_", " "), money(v)] for k, v in roll.items()],
         )
-    lines += [
-        "## Source reconciliation checks",
-        "",
-        (
-            "Tolerance is INR 0.02 million for the report's rounding. "
-            "Residuals are displayed; no adjustment is inserted."
-        ),
-        "",
-    ]
-    lines += _table(
+    yield (
+        "Historical reconciliation checks",
         ["Check", "Calculated minus reported", "Result"],
         [
-            (c["name"], f"{c['residual']:.4f}", "PASS" if c["passed"] else "FAIL")
-            for c in result["historical_checks"]
+            [c["name"], f"{c['residual']:.6f}", "PASS" if c["passed"] else "FAIL"]
+            for c in checks
         ],
     )
-    lines += ["## Notes", "", *[f"- {n}" for n in case["notes"]], ""]
+
+
+def historical_markdown(case: dict, result: dict) -> str:
+    source = case["source"]
+    years = ", ".join(f"FY{y['fiscal_year']}" for y in case["annuals"])
+    lines = [
+        f"# Tega: audited {years} statements",
+        "",
+        "Consolidated; INR million. One crore = ten million. Shares use million units except the explicitly labeled new-share count; EPS and issue price are INR/share.",
+        "",
+        f"Source: [{source['title']}]({source['url']}). Information cutoff: {case['as_of']}.",
+        "",
+        "These are reported actuals. Forecast assumptions and later acquisition adjustments are separate. Historical rounding tolerance: INR0.02m; no balancing entry is inserted.",
+        "",
+    ]
+    for title, labels, rows in historical_tables(case, result["historical_checks"]):
+        lines += [f"## {title}", ""] + _table(labels, rows)
+    lines += ["## Source locations", ""] + [
+        f"- {k.replace('_', ' ')}: {v}" for k, v in source["locators"].items()
+    ]
+    lines += ["", "## Notes", ""] + [f"- {n}" for n in case["notes"]] + [""]
     return "\n".join(lines)
+
+
+def write_historical_reports(case, checks, output):
+    from html import escape
+
+    path = Path(output)
+    path.mkdir(parents=True, exist_ok=True)
+    (path / "historical_statements.md").write_text(
+        historical_markdown(case, {"historical_checks": checks}), encoding="utf-8"
+    )
+    (path / "reported_statements_used.json").write_text(
+        json.dumps(case, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    (path / "historical_checks.json").write_text(
+        json.dumps(checks, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    html = [
+        "<!doctype html><html lang='en'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Tega reported statements</title><style>body{font:16px/1.5 system-ui,sans-serif;color:#172536;max-width:1100px;margin:auto;padding:24px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:right}td:first-child,th:first-child{text-align:left}th{background:#edf2f8}.wrap{overflow-x:auto}h2{margin-top:30px}</style>",
+        f"<h1>Tega: FY{case['base_year']} reported statements</h1><p>Consolidated; INR million. Historical statements and supporting notes. Shares are in millions except the new-share count; EPS and issue price are INR/share.</p><p><a href='{escape(case['source']['url'], quote=True)}'>Official annual report</a> · {len(checks)} reconciliation checks passed.</p>",
+    ]
+    for title, labels, rows in historical_tables(case, checks):
+        html += [
+            f"<h2>{escape(title)}</h2><div class='wrap'><table><thead><tr>"
+            + "".join(f"<th>{escape(str(v))}</th>" for v in labels)
+            + "</tr></thead><tbody>"
+        ]
+        html += [
+            "<tr>" + "".join(f"<td>{escape(str(v))}</td>" for v in row) + "</tr>"
+            for row in rows
+        ]
+        html += ["</tbody></table></div>"]
+    html += (
+        ["<h2>Source locations</h2><ul>"]
+        + [
+            f"<li>{escape(k)}: {escape(v)}</li>"
+            for k, v in case["source"]["locators"].items()
+        ]
+        + ["</ul><h2>Notes</h2><ul>"]
+    )
+    html += [f"<li>{escape(note)}</li>" for note in case["notes"]] + ["</ul></html>"]
+    (path / "historical_statements.html").write_text("\n".join(html), encoding="utf-8")
 
 
 def forecast_markdown(result: dict) -> str:
@@ -155,7 +178,7 @@ def forecast_markdown(result: dict) -> str:
         result["label"],
         "",
         (
-            "**Historical FY2025 case. Forecast values are illustrative. "
+            f"**Historical FY{result.get('base_year', 2025)} case. Forecast values are illustrative. "
             "This is not a current Tega valuation or company guidance.**"
         ),
         "",
@@ -227,8 +250,8 @@ def forecast_markdown(result: dict) -> str:
     if dcf["available"]:
         lines += [
             (
-                "Fiscal-year-end reference: 31 March 2025; information was available "
-                "by 26 August 2025. This is not a point-in-time March backtest. "
+                f"Fiscal-year-end reference: 31 March {result.get('base_year', 2025)}; information cutoff {result['as_of']}. "
+                "This is not a point-in-time March backtest. "
                 "All WACC, terminal and nonoperating value inputs are assumptions."
             ),
             "",
@@ -369,6 +392,4 @@ def write_reports(case: dict, result: dict, output: str | Path) -> None:
         json.dumps(result, indent=2, allow_nan=False) + "\n", encoding="utf-8"
     )
     (path / "forecast.md").write_text(forecast_markdown(result), encoding="utf-8")
-    (path / "historical_statements.md").write_text(
-        historical_markdown(case, result), encoding="utf-8"
-    )
+    write_historical_reports(case, result["historical_checks"], path)

@@ -27,6 +27,10 @@ def _finite(value, path="input"):
 
 
 def _validate(facts, assumptions, case):
+    if "tega_fy2026" not in facts:
+        raise AcquisitionInputError(
+            "Load the complete FY26 statements with load_acquisition_facts first"
+        )
     _finite(facts)
     _finite(assumptions)
     if facts["ticker"] != "NSE:TEGA":
@@ -723,6 +727,7 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "scenario": scenario,
         "valuation_date": facts["valuation_date"],
         "information_cutoff": facts["information_cutoff"],
+        "reported_history": deepcopy(facts.get("reported_history")),
         "status": facts["status"],
         "warnings": warnings,
         "opening_bridge_inr_m": bridge,

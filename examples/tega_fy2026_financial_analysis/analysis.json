@@ -1,0 +1,281 @@
+{
+  "history": {
+    "company": {
+      "name": "Tega Industries Limited",
+      "ticker": "TEGA.NS",
+      "currency": "INR",
+      "financial_unit": "million",
+      "statement_basis": "consolidated",
+      "data_kind": "reported"
+    },
+    "as_of": "2026-08-28",
+    "sources": [
+      {
+        "source_id": "tega_ar_2026",
+        "title": "Tega Industries Limited Annual Report 2025-26",
+        "published_on": "2026-08-28",
+        "locator": "PDF page 202; printed page 222; PDF pages 206-207; printed pages 226-227",
+        "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf"
+      }
+    ],
+    "annuals": [
+      {
+        "fiscal_year": 2025,
+        "period_end": "2025-03-31",
+        "source_id": "tega_ar_2026",
+        "revenue": 16386.51,
+        "months": 12,
+        "ebit": 2384.77,
+        "depreciation_amortisation": 1013.32,
+        "net_income": 2001.2,
+        "net_income_to_owners": 2001.2,
+        "finance_costs": 269.04,
+        "total_assets": 20952.02,
+        "total_liabilities": 6985.1,
+        "total_equity": 13966.92,
+        "equity_to_owners": 13966.92,
+        "current_assets": 13526.58,
+        "current_liabilities": 5430.29,
+        "cash_and_equivalents": 1142.95,
+        "total_debt": 3296.49,
+        "operating_cash_flow": 1950.3,
+        "capex": 1701.8,
+        "notes": "Derived from complete reported statements. EBIT excludes other income/JV profit; debt includes leases. NCI profit rounds to zero in these Tega accounts."
+      },
+      {
+        "fiscal_year": 2026,
+        "period_end": "2026-03-31",
+        "source_id": "tega_ar_2026",
+        "revenue": 16919.36,
+        "months": 12,
+        "ebit": 1360.25,
+        "depreciation_amortisation": 951.15,
+        "net_income": 1426.53,
+        "net_income_to_owners": 1426.53,
+        "finance_costs": 226.02,
+        "total_assets": 43145.0,
+        "total_liabilities": 9073.24,
+        "total_equity": 34071.76,
+        "equity_to_owners": 34071.76,
+        "current_assets": 34009.17,
+        "current_liabilities": 7212.68,
+        "cash_and_equivalents": 11638.86,
+        "total_debt": 3984.01,
+        "operating_cash_flow": 3503.39,
+        "capex": 1359.36,
+        "notes": "Derived from complete reported statements. EBIT excludes other income/JV profit; debt includes leases. NCI profit rounds to zero in these Tega accounts."
+      }
+    ],
+    "notes": "Reported history, derived from the reconciled full statements. No forecast values. FY26 expenses include acquisition transaction costs. Returns use average balances."
+  },
+  "years": [
+    {
+      "fiscal_year": 2025,
+      "metrics": {
+        "revenue": {
+          "value": 16386.51,
+          "unit": "INR million",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "no immediately preceding annual period"
+        },
+        "net_income_growth": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "no immediately preceding annual period"
+        },
+        "ebitda": {
+          "value": 3398.09,
+          "unit": "INR million",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.14553251424494906,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.20737118520050948,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.12212484537586102,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "roa": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "roce": {
+          "value": null,
+          "unit": "fraction",
+          "reason": "requires immediately preceding year-end balance"
+        },
+        "current_ratio": {
+          "value": 2.490949838774725,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.23602125593903306,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": 2153.54,
+          "unit": "INR million",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": 0.6337501361058712,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 8.863997918525126,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.11901863178919735,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 0.9745652608434938,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.10385371869910066,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 248.5,
+          "unit": "INR million",
+          "reason": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "fiscal_year": 2026,
+      "metrics": {
+        "revenue": {
+          "value": 16919.36,
+          "unit": "INR million",
+          "reason": null
+        },
+        "revenue_growth": {
+          "value": 0.03251760136844273,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_income_growth": {
+          "value": -0.2871627023785729,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda": {
+          "value": 2311.4,
+          "unit": "INR million",
+          "reason": null
+        },
+        "ebit_margin": {
+          "value": 0.0803960669907136,
+          "unit": "fraction",
+          "reason": null
+        },
+        "ebitda_margin": {
+          "value": 0.13661273239649727,
+          "unit": "fraction",
+          "reason": null
+        },
+        "net_margin": {
+          "value": 0.08431347285003687,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roe": {
+          "value": 0.059390890840464394,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roa": {
+          "value": 0.044511585718025576,
+          "unit": "fraction",
+          "reason": null
+        },
+        "roce": {
+          "value": 0.05287241723440623,
+          "unit": "fraction",
+          "reason": null
+        },
+        "current_ratio": {
+          "value": 4.715191856563718,
+          "unit": "multiple",
+          "reason": null
+        },
+        "debt_to_equity": {
+          "value": 0.11692997367908203,
+          "unit": "multiple",
+          "reason": null
+        },
+        "net_debt": {
+          "value": -7654.85,
+          "unit": "INR million",
+          "reason": null
+        },
+        "net_debt_to_ebitda": {
+          "value": -3.3117807389460934,
+          "unit": "multiple",
+          "reason": null
+        },
+        "finance_cost_coverage": {
+          "value": 6.018272719228387,
+          "unit": "multiple",
+          "reason": null
+        },
+        "operating_cash_flow_margin": {
+          "value": 0.20706397877933916,
+          "unit": "fraction",
+          "reason": null
+        },
+        "operating_cash_flow_to_net_income": {
+          "value": 2.4558824560296664,
+          "unit": "multiple",
+          "reason": null
+        },
+        "capex_to_revenue": {
+          "value": 0.08034346452820909,
+          "unit": "fraction",
+          "reason": null
+        },
+        "cash_flow_after_capex": {
+          "value": 2144.0299999999997,
+          "unit": "INR million",
+          "reason": null
+        }
+      },
+      "warnings": []
+    }
+  ],
+  "revenue_cagr": {
+    "value": 0.03251760136844273,
+    "unit": "fraction",
+    "reason": null
+  },
+  "cagr_intervals": 1
+}

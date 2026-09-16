@@ -5,7 +5,10 @@ import json
 import math
 from pathlib import Path
 
+from equity_analytics.forecasting.inputs import ModelInputError, load_json
+
 from .engine import AcquisitionInputError, build_acquisition_model
+from .history import load_acquisition_facts
 from .reporting import write_reports
 
 
@@ -22,6 +25,9 @@ def main(default_root=None):
         type=Path,
         default=root / "examples/tega_molycop_assumptions.json",
     )
+    parser.add_argument(
+        "--statements", type=Path, help="Override the complete FY26 statement source"
+    )
     parser.add_argument("--output", type=Path, default=root / "outputs/tega_molycop")
     parser.add_argument(
         "--reference-price",
@@ -34,17 +40,28 @@ def main(default_root=None):
     ):
         parser.error("--reference-price must be a positive finite number")
     try:
-        facts = json.loads(args.facts.read_text(encoding="utf-8"))
-        assumptions = json.loads(args.assumptions.read_text(encoding="utf-8"))
+        facts, statements, historical_checks = load_acquisition_facts(
+            args.facts, args.statements
+        )
+        assumptions = load_json(args.assumptions)
         results = {
             name: build_acquisition_model(facts, assumptions, name)
             for name in ("downside", "base", "upside")
         }
-        write_reports(facts, assumptions, results, args.output, args.reference_price)
+        write_reports(
+            facts,
+            assumptions,
+            results,
+            args.output,
+            args.reference_price,
+            statements=statements,
+            historical_checks=historical_checks,
+        )
     except (
         OSError,
         json.JSONDecodeError,
         AcquisitionInputError,
+        ModelInputError,
         KeyError,
         TypeError,
     ) as exc:
@@ -52,6 +69,7 @@ def main(default_root=None):
     print(
         "PROVISIONAL acquisition DCF; value date 2026-06-30; research through 2026-09-11."
     )
+    print(f"FY26 statement reconciliation checks passed: {len(historical_checks)}")
     for name, result in results.items():
         b = result["equity_bridge"]
         text = (

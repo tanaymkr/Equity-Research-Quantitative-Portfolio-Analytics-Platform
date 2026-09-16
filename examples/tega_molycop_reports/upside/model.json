@@ -4,6 +4,34 @@
   "scenario": "upside",
   "valuation_date": "2026-06-30",
   "information_cutoff": "2026-09-11",
+  "reported_history": {
+    "file": "tega_fy2026_reported_statements.json",
+    "base_year": 2026,
+    "source": {
+      "title": "Tega Industries Limited Annual Report 2025-26",
+      "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf",
+      "published_on": "2026-08-28",
+      "audit_report_date": "2026-05-29",
+      "locators": {
+        "balance_sheet": "PDF page 202; printed page 222",
+        "income_statement": "PDF page 203; printed page 223",
+        "equity_movements": "PDF pages 204-205; printed pages 224-225",
+        "cash_flow": "PDF pages 206-207; printed pages 226-227",
+        "ppe": "Note 3(a), PDF page 220",
+        "leases": "Note 3(b), PDF pages 222-225",
+        "cwip": "Note 3(c), PDF page 226",
+        "intangibles": "Notes 3(d)-3(e), PDF pages 227-228",
+        "cash_and_bank": "Notes 13-14, PDF page 234",
+        "share_count": "Note 19A, PDF pages 236-238; weighted average shares/EPS: Note 43, PDF page 264",
+        "equity": "Note 19C, PDF page 239",
+        "current_debt": "Note 24, PDF page 242",
+        "debt_reconciliation": "Note 41(c), PDF pages 261-262",
+        "segments": "Note 42, PDF page 263",
+        "transaction_expenses": "Note 47, PDF page 270"
+      }
+    },
+    "reconciliation_checks_passed": 92
+  },
   "status": "Provisional acquisition DCF; incomplete financing and opening-balance disclosures",
   "warnings": [
     "Provisional model: June 30 valuation using information published through September 11, 2026; not a September spot-price target or point-in-time backtest.",

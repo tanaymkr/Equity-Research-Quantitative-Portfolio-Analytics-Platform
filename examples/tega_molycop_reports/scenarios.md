@@ -10,6 +10,12 @@ PROVISIONAL. Valuation date: 30 June 2026. Research cutoff: 11 September 2026. R
 
 FY2027 is April 2026–March 2027. Molycop is consolidated June–March (10 months). Actual June is retained; only July–March (9 months) is discounted as future cash flow. The legacy business similarly excludes its actual April–June quarter. End-period discounting uses actual days / 365. USD and INR discount rates remain separate.
 
+## Complete FY26 statements
+
+The complete FY26 statements are the source for the legacy inputs. 92 historical reconciliation checks passed.
+
+[Income statement, balance sheet, cash flows and notes](historical_statements.md)
+
 ## Comparison supplied by the user
 
 User-supplied comparison price: INR 1,700.00 (unverified; not a live quote). Holding the base legacy valuation and all claims fixed would require a Molycop EV of USD 2,565.50m, versus the model's USD 1,425.95m. This is an algebraic comparison, not a change to the forecast or a valuation recommendation.
@@ -102,7 +108,7 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 - 2025-11-29: [Equity purchase agreement disclosure](https://www.tegaindustries.com/assets/pdfs/int/2025/Q3/Intimation-for-execution-of-Equity-Purchase-Agreement---29.11.2025.pdf) — Annexure A (`agreement`).
 - 2025-11-29: [Shareholders, subscription and investment deeds](https://www.tegaindustries.com/assets/pdfs/int/2025/Q3/Intimation-for-execution-of-Shareholders-Deed---29.11.2025.pdf) — pages 3-9; initial ordinary ownership subsequently changed (`shareholders`).
 - 2025-09-10: [Original acquisition presentation](https://www.tegaindustries.com/images/media/Intimation_on_proposed_acquisition_-_10_09_2025.pdf) — Molycop financial history; original funding and ownership superseded (`announcement`).
-- 2026-08-28: [Tega annual report FY2025-26](https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf) — consolidated statements; notes 13, 14, 19A, 36, 47 (`annual26`).
+- 2026-08-28: [Tega Industries Limited Annual Report 2025-26](https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf) — Full consolidated statements and supporting notes; see historical_statements.md for PDF pages (`annual26`).
 - 2026-08-13: [Q1 FY2027 statutory results](https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260813_145142.pdf) — PDF pages 10-12; consolidated P&L, segments and acquisition note 5 (`q1_results`).
 - 2026-08-13: [Q1 FY2027 investor presentation](https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260813_151914.pdf) — PDF pages 5-7; Tega and Molycop separately (`q1_deck`).
 - 2026-08-13: [Q1 FY2027 earnings call, filed August 20](https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260820_123940.pdf) — printed pages 4, 6-13; actual performance and forward guidance (`q1_call`).

@@ -7,6 +7,17 @@ The project is being built as production-style analytical software: financial
 logic lives in reusable Python modules, inputs are explicit and testable, and
 the eventual Streamlit application will consume the same analytics layer.
 
+## FY26 statements are now connected
+
+The complete audited FY25/FY26 consolidated statements and supporting notes now
+feed the acquisition DCF and financial-ratio module from one source file. The
+historical validator runs 92 reconciliations. A separate legacy-only linked
+forecast now starts from FY26 actuals; the default Tega launcher retains Molycop.
+
+- [Read the complete FY26 statements](examples/tega_molycop_reports/historical_statements.md)
+- [Source details and model connections](docs/TEGA_FY2026_STATEMENTS.md)
+- [Install and run the update](START_TEGA_MODEL.md)
+
 ## Tega + Molycop acquisition update
 
 The Tega launcher now runs an acquisition DCF using final June 2026 deal terms,

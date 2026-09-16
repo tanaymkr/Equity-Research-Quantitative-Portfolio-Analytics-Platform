@@ -192,8 +192,33 @@ def _numeric_map(
         number(value, f"{name}.{key}", 0 if nonnegative else None)
 
 
+def asset_cohorts(case: dict) -> list[dict]:
+    return case[
+        "fy2025_asset_cohorts" if case["schema_version"] == 1 else "asset_cohorts"
+    ]
+
+
+def historical_rolls(case: dict) -> dict:
+    return case[
+        "fy2025_reconciliations" if case["schema_version"] == 1 else "reconciliations"
+    ]
+
+
 def reconcile_history(case: dict) -> list[dict]:
     """Return all audit residuals, including rounding; reject failed checks."""
+    version = case.get("schema_version")
+    if type(version) is not int or version not in (1, 2):
+        raise ModelInputError("supported statement schema versions are 1 and 2")
+    base_year = case.get("base_year")
+    if type(base_year) is not int or not 2000 <= base_year <= 2100:
+        raise ModelInputError("invalid base year")
+    if version == 1 and base_year != 2025:
+        raise ModelInputError("schema version 1 requires FY2025")
+    supporting_keys = (
+        {"fy2025_reconciliations", "fy2025_asset_cohorts"}
+        if version == 1
+        else {"reconciliations", "asset_cohorts", "base_year_disclosures"}
+    )
     keys(
         case,
         {
@@ -208,21 +233,19 @@ def reconcile_history(case: dict) -> list[dict]:
             "source",
             "notes",
             "annuals",
-            "fy2025_reconciliations",
-            "fy2025_asset_cohorts",
-        },
+        }
+        | supporting_keys,
         "case",
     )
-    if type(case["schema_version"]) is not int or case["schema_version"] != 1:
-        raise ModelInputError("only schema_version 1 is supported")
     if (
         case["currency"],
         case["financial_unit"],
         case["statement_basis"],
         case["data_kind"],
-        case["base_year"],
-    ) != ("INR", "million", "consolidated", "reported", 2025):
-        raise ModelInputError("this case schema requires reported FY2025 INR million")
+    ) != ("INR", "million", "consolidated", "reported"):
+        raise ModelInputError(
+            "reported consolidated INR million statements are required"
+        )
     source = case["source"]
     keys(
         source,
@@ -239,7 +262,9 @@ def reconcile_history(case: dict) -> list[dict]:
     ):
         raise ModelInputError("source dates are inconsistent with as_of")
     if not isinstance(case["annuals"], list) or len(case["annuals"]) != 2:
-        raise ModelInputError("this historical case requires FY2024 and FY2025")
+        raise ModelInputError(
+            "two consecutive annual statements ending at base_year are required"
+        )
     checks = []
 
     def check(name: str, calculated: float, reported: float) -> None:
@@ -254,7 +279,7 @@ def reconcile_history(case: dict) -> list[dict]:
             }
         )
 
-    for year, row in zip([2024, 2025], case["annuals"], strict=True):
+    for year, row in zip([base_year - 1, base_year], case["annuals"], strict=True):
         keys(
             row,
             {
@@ -270,7 +295,7 @@ def reconcile_history(case: dict) -> list[dict]:
             f"FY{year}",
         )
         if type(row["fiscal_year"]) is not int or row["fiscal_year"] != year:
-            raise ModelInputError("annuals must be ordered FY2024, FY2025")
+            raise ModelInputError("annuals must be ordered and end at base_year")
         if (
             row["period_end"] != f"{year}-03-31"
             or _dates(row["period_end"], "period_end") > published
@@ -396,11 +421,11 @@ def reconcile_history(case: dict) -> list[dict]:
         )
         check(f"FY{year} cash to balance sheet", cf["closing_cash"], a["cash"])
     check(
-        "FY2025 opening cash",
+        f"FY{base_year} opening cash",
         case["annuals"][1]["cash_flow"]["opening_cash"],
         case["annuals"][0]["assets"]["cash"],
     )
-    rolls = case["fy2025_reconciliations"]
+    rolls = historical_rolls(case)
     expected_rolls = {
         "term_debt_including_accrued_interest",
         "short_term_debt_including_accrued_interest",
@@ -412,14 +437,14 @@ def reconcile_history(case: dict) -> list[dict]:
         "intangibles_under_development",
         "equity",
     }
-    keys(rolls, expected_rolls, "fy2025_reconciliations")
+    keys(rolls, expected_rolls, "reconciliations")
     for name, row in rolls.items():
         if not isinstance(row, dict) or not {"opening", "closing"} <= row.keys():
             raise ModelInputError(f"{name}: missing opening/closing")
         for field, value in row.items():
             number(value, f"{name}.{field}")
         check(
-            f"FY2025 {name} roll",
+            f"FY{base_year} {name} roll",
             sum(v for k, v in row.items() if k != "closing"),
             row["closing"],
         )
@@ -435,7 +460,7 @@ def reconcile_history(case: dict) -> list[dict]:
     for roll_name, (section, field) in links.items():
         for index, endpoint in [(0, "opening"), (1, "closing")]:
             check(
-                f"FY2025 {roll_name} {endpoint} to statement",
+                f"FY{base_year} {roll_name} {endpoint} to statement",
                 rolls[roll_name][endpoint],
                 case["annuals"][index][section][field],
             )
@@ -450,12 +475,12 @@ def reconcile_history(case: dict) -> list[dict]:
         for index, endpoint in [(0, "opening"), (1, "closing")]:
             row = case["annuals"][index]
             check(
-                f"FY2025 {roll_name} {endpoint} to statement",
+                f"FY{base_year} {roll_name} {endpoint} to statement",
                 rolls[roll_name][endpoint],
                 row["liabilities"][pool] + row["reported_totals"][accrued],
             )
     check(
-        "FY2025 D&A notes to income statement",
+        f"FY{base_year} D&A notes to income statement",
         -rolls["ppe_net"]["depreciation"]
         - rolls["rou_net"]["depreciation"]
         - rolls["intangibles_net"]["amortisation"],
@@ -463,9 +488,9 @@ def reconcile_history(case: dict) -> list[dict]:
     )
     names = set()
     cohort_totals = {"ppe": 0.0, "rou_assets": 0.0, "intangibles": 0.0}
-    if not isinstance(case["fy2025_asset_cohorts"], list):
+    if not isinstance(asset_cohorts(case), list):
         raise ModelInputError("asset cohorts must be a list")
-    for row in case["fy2025_asset_cohorts"]:
+    for row in asset_cohorts(case):
         keys(row, {"name", "account", "net_book_value"}, "asset cohort")
         if row["name"] in names or row["account"] not in cohort_totals:
             raise ModelInputError("duplicate asset cohort or invalid account")
@@ -473,10 +498,12 @@ def reconcile_history(case: dict) -> list[dict]:
         cohort_totals[row["account"]] += number(row["net_book_value"], "book value", 0)
     for account, value in cohort_totals.items():
         check(
-            f"FY2025 opening cohort {account}",
+            f"FY{base_year} opening cohort {account}",
             value,
             case["annuals"][-1]["assets"][account],
         )
+    if version == 2:
+        _reconcile_disclosures(case, check)
     failed = [c for c in checks if not c["passed"]]
     if failed:
         raise ModelInputError(
@@ -542,7 +569,7 @@ def validate_assumptions(a: dict, case: dict) -> int:
     if a["revolver_limit"] < case["annuals"][-1]["liabilities"]["revolver"]:
         raise ModelInputError("revolver limit is below the opening balance")
     lives = a["opening_remaining_life_years"]
-    keys(lives, {r["name"] for r in case["fy2025_asset_cohorts"]}, "remaining lives")
+    keys(lives, {r["name"] for r in asset_cohorts(case)}, "remaining lives")
     for name, life in lives.items():
         if name == "ppe_land":
             if life is not None:
@@ -559,3 +586,213 @@ def validate_assumptions(a: dict, case: dict) -> int:
     ):
         raise ModelInputError("WACC and terminal ROIC must exceed growth and be <= 1")
     return horizon
+
+
+def _reconcile_disclosures(case, check):
+    row = case["annuals"][-1]
+    a, inc, cf, totals = [
+        row[k] for k in ("assets", "income", "cash_flow", "reported_totals")
+    ]
+    details = case["base_year_disclosures"]
+    required = {
+        "income_totals",
+        "oci_components",
+        "cash_flow_subtotals",
+        "cash_and_bank",
+        "trade_payables",
+        "segment_revenue",
+        "equity_issue",
+        "transaction_expense",
+    }
+    keys(details, required, "base_year_disclosures")
+    for section, values in details.items():
+        for key, value in (
+            values.items() if isinstance(values, dict) else [(section, values)]
+        ):
+            number(value, f"{section}.{key}")
+    tag = f"FY{case['base_year']}"
+
+    def c(label, calculated, reported):
+        check(f"{tag} {label}", calculated, reported)
+
+    t = details["income_totals"]
+    c("income total", inc["revenue"] + inc["other_income"], t["total_income"])
+    c(
+        "expense total",
+        sum(
+            inc[k]
+            for k in (
+                "materials",
+                "inventory_change_expense",
+                "employee_expense",
+                "other_expense",
+                "finance_cost",
+                "depreciation_amortisation",
+            )
+        ),
+        t["total_expenses"],
+    )
+    c(
+        "pre-JV profit",
+        t["total_income"] - t["total_expenses"],
+        t["profit_before_jv_and_tax"],
+    )
+    c("total tax", inc["current_tax"] + inc["deferred_tax"], t["total_tax"])
+    c(
+        "OCI components",
+        sum(details["oci_components"].values()),
+        inc["other_comprehensive_income"],
+    )
+    c(
+        "total comprehensive income",
+        inc["net_income"] + inc["other_comprehensive_income"],
+        t["total_comprehensive_income"],
+    )
+    c(
+        "profit attribution",
+        t["profit_attributable_to_owners"] + t["profit_attributable_to_nci"],
+        inc["net_income"],
+    )
+    c(
+        "OCI attribution",
+        t["oci_attributable_to_owners"] + t["oci_attributable_to_nci"],
+        inc["other_comprehensive_income"],
+    )
+    number(t["weighted_average_shares_million"], "weighted shares", 0.000001)
+    c(
+        "basic EPS",
+        t["profit_attributable_to_owners"] / t["weighted_average_shares_million"],
+        t["basic_eps_inr"],
+    )
+    c("diluted EPS (no dilutive instruments)", t["basic_eps_inr"], t["diluted_eps_inr"])
+    subtotals = details["cash_flow_subtotals"]
+    c(
+        "pre-working-capital cash",
+        inc["profit_before_tax"] + sum(cf["operating_adjustments"].values()),
+        subtotals["operating_profit_before_working_capital"],
+    )
+    c(
+        "cash generated from operations",
+        subtotals["operating_profit_before_working_capital"]
+        + sum(cf["working_capital_movements"].values()),
+        subtotals["cash_generated_from_operations"],
+    )
+    c(
+        "net cash increase before exchange",
+        cf["operating_total"] + cf["investing_total"] + cf["financing_total"],
+        subtotals["net_increase_before_exchange"],
+    )
+    bank = details["cash_and_bank"]
+    c(
+        "cash note",
+        bank["cash_on_hand"]
+        + bank["current_bank_accounts"]
+        + bank["deposits_under_three_months"],
+        a["cash"],
+    )
+    c(
+        "other bank note",
+        bank["other_bank_deposits"] + bank["unpaid_dividend_accounts"],
+        a["other_bank_balances"],
+    )
+    number(
+        bank["pledged_bank_deposits"],
+        "pledged bank deposits",
+        0,
+        bank["other_bank_deposits"],
+    )
+    c(
+        "payables note",
+        sum(details["trade_payables"].values()),
+        row["liabilities"]["payables"],
+    )
+    seg = details["segment_revenue"]
+    c(
+        "segment revenue",
+        seg["consumables_gross"] + seg["equipment"] - seg["intersegment"],
+        inc["revenue"],
+    )
+    issue = details["equity_issue"]
+    c(
+        "share issue cash",
+        issue["new_shares"] * issue["issue_price_inr"] / 1e6 - issue["issue_cost"],
+        cf["financing"]["equity_issuance"],
+    )
+    c(
+        "share issue proceeds",
+        issue["net_cash_proceeds"],
+        cf["financing"]["equity_issuance"],
+    )
+    # Shares use actual units here, avoiding currency rounding tolerance on share counts.
+    delta_shares = round(
+        (
+            totals["shares_outstanding_million"]
+            - case["annuals"][-2]["reported_totals"]["shares_outstanding_million"]
+        )
+        * 1e6
+    )
+    c("issued share count", delta_shares, issue["new_shares"])
+    rolls = historical_rolls(case)
+    c(
+        "term cash to debt roll",
+        cf["financing"]["term_borrowing_proceeds"]
+        + cf["financing"]["term_principal_repayment"],
+        rolls["term_debt_including_accrued_interest"]["cash_principal_movement"],
+    )
+    c(
+        "short debt cash to debt roll",
+        cf["financing"]["short_term_net_borrowing"],
+        rolls["short_term_debt_including_accrued_interest"]["cash_principal_movement"],
+    )
+    c(
+        "lease cash to debt roll",
+        cf["financing"]["lease_principal_paid"],
+        rolls["lease_liability"]["cash_principal_movement"],
+    )
+    c(
+        "cash interest to debt rolls",
+        cf["financing"]["borrowing_interest_paid"],
+        rolls["term_debt_including_accrued_interest"]["interest_paid"]
+        + rolls["short_term_debt_including_accrued_interest"]["interest_paid"],
+    )
+    for year in case["annuals"]:
+        aa, ll, tt = year["assets"], year["liabilities"], year["reported_totals"]
+        current_assets = sum(
+            aa[k]
+            for k in (
+                "inventories",
+                "current_investments",
+                "receivables",
+                "cash",
+                "other_bank_balances",
+                "current_loans",
+                "other_current_financial_assets",
+                "contract_assets",
+                "current_tax_assets",
+                "other_current_assets",
+            )
+        )
+        current_liabilities = (
+            tt["current_borrowings"]
+            + tt["current_leases"]
+            + sum(
+                ll[k]
+                for k in (
+                    "payables",
+                    "other_current_financial_liabilities",
+                    "current_provisions",
+                    "current_tax_liabilities",
+                    "other_current_liabilities",
+                )
+            )
+        )
+        check(
+            f"FY{year['fiscal_year']} current assets",
+            current_assets,
+            tt["current_assets"],
+        )
+        check(
+            f"FY{year['fiscal_year']} current liabilities",
+            current_liabilities,
+            tt["current_liabilities"],
+        )
