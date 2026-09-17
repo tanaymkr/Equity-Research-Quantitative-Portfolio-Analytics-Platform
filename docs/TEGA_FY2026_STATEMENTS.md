@@ -58,7 +58,7 @@ from reported earnings. Forecast operating margins are explicit assumptions.
 
 ## Where the numbers flow
 
-`tega_fy2026_reported_statements.json` feeds all three paths:
+`tega_fy2026_reported_statements.json` feeds both active paths:
 
 1. **Default acquisition valuation:** `run_tega_model.py` resolves the statement
    file referenced in `tega_molycop_facts.json`, runs all historical checks and
@@ -66,14 +66,7 @@ from reported earnings. Forecast operating margins are explicit assumptions.
    debt, working capital, asset balances, nonoperating assets and issued shares.
    The duplicated FY26 financial block was removed from the editable acquisition
    facts file. A missing or unreconciled statement file stops the run.
-2. **Linked legacy control:** `run_tega_fy2026.py` starts its income statement,
-   balance sheet, cash flow, asset and debt schedules at the FY26 actual close
-   and forecasts FY2027-FY2031 using `tega_fy2026_forecast_assumptions.json`.
-   This is a legacy-only counterfactual excluding subsequent acquisition funding
-   and Molycop. Its valuation is not a current group target and must not be added
-   to the acquisition DCF. Forecast cash/debt and retained earnings are linked;
-   forecast assumptions, including asset lives, remain estimates.
-3. **Financial ratios:** `run_financial_analysis.py` accepts the same complete
+2. **Financial ratios:** `run_financial_analysis.py` accepts the same complete
    statement file, validates it, and derives its inputs without a second editable
    FY26 dataset.
 
@@ -91,13 +84,13 @@ It includes every statement row, supporting reconciliations and source locations
 Optional commands in Command Prompt, opened in the repository folder:
 
 ```text
-python run_tega_fy2026.py
+python run_tega_model.py
 python run_financial_analysis.py examples/tega_fy2026_reported_statements.json --output-dir outputs/history-tega-fy2026
-python run_tega_model.py --historical-fy2025
 ```
 
-The FY25 archive remains available. Its source files and assumptions have not
-been repurposed as FY26 data.
+The older FY25-based forecasts and the separate legacy-only forecast have been
+removed. Audited FY24/FY25 source files remain available for historical analysis;
+FY26 actuals remain the current model's historical foundation.
 
 ## Effect on the acquisition DCF
 

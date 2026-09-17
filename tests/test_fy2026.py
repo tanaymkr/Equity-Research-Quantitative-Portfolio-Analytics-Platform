@@ -92,8 +92,8 @@ def test_cash_restriction_change_flows_from_notes_to_acquisition_equity(history)
     )
 
 
-def test_legacy_fy26_forecast_starts_from_correct_actuals(history):
-    a = load_json(ROOT / "examples/tega_fy2026_forecast_assumptions.json")
+def test_generic_engine_accepts_fy26_actuals(history, linked_assumptions):
+    a = linked_assumptions(history)
     before = deepcopy(history)
     result = build_forecast(history, a)
     assert [r["fiscal_year"] for r in result["years"]] == list(range(2027, 2032))

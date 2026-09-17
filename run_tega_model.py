@@ -1,4 +1,4 @@
-"""Convenience launcher: uses this repository's src and example inputs."""
+"""Run the combined Tega-Molycop DCF using reported FY26 statements."""
 
 import sys
 from pathlib import Path
@@ -7,16 +7,9 @@ from pathlib import Path
 def main() -> None:
     root = Path(__file__).resolve().parent
     sys.path.insert(0, str(root / "src"))
-    if "--historical-fy2025" in sys.argv:
-        sys.argv.remove("--historical-fy2025")
-        from equity_analytics.forecasting.__main__ import main as run
-    else:
-        from equity_analytics.acquisition.__main__ import main as run
+    from equity_analytics.acquisition.__main__ import main as run
 
-    if run.__module__ == "equity_analytics.forecasting.__main__":
-        run(default_root=root, default_base_year=2025)
-    else:
-        run(default_root=root)
+    run(default_root=root)
 
 
 if __name__ == "__main__":

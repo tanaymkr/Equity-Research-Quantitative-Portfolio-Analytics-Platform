@@ -1,7 +1,7 @@
 """Linked income, balance sheet, cash flow, asset and financing schedules.
 
 This is a deliberately bounded annual model, not a statutory consolidation engine.
-Conventions and omitted items are described in docs/TEGA_MODEL_METHODS.md.
+Callers must supply their own inputs; no company forecast defaults are retained.
 """
 
 from __future__ import annotations

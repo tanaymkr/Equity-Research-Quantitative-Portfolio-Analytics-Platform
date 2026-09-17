@@ -25,8 +25,8 @@ def case():
 
 
 @pytest.fixture
-def assumptions():
-    return load_json(ROOT / "examples/tega_fy2025_forecast_assumptions.json")
+def assumptions(case, linked_assumptions):
+    return linked_assumptions(case)
 
 
 def test_reported_history_reconciles_and_preserves_rounding(case):

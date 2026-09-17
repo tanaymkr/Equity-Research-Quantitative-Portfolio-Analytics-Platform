@@ -11,8 +11,9 @@ the eventual Streamlit application will consume the same analytics layer.
 
 The complete audited FY25/FY26 consolidated statements and supporting notes now
 feed the acquisition DCF and financial-ratio module from one source file. The
-historical validator runs 92 reconciliations. A separate legacy-only linked
-forecast now starts from FY26 actuals; the default Tega launcher retains Molycop.
+historical validator runs 92 reconciliations. The combined Tega-Molycop DCF is
+the single Tega valuation model; its forecasts start in FY27. The superseded
+forecasts and separate legacy-only case have been removed.
 
 - [Read the complete FY26 statements](examples/tega_molycop_reports/historical_statements.md)
 - [Source details and model connections](docs/TEGA_FY2026_STATEMENTS.md)
@@ -42,8 +43,8 @@ python run_tega_model.py
 ```
 
 Open `outputs/tega_molycop/report.html`. No extra runtime packages are needed.
-The old linked model remains available with
-`python run_tega_model.py --historical-fy2025`; its outputs are historical.
+`run_tega_scenarios.py` is an alias for the same combined model.
+For cleanup instructions, see [Remove old Tega forecasts](docs/TEGA_FORECAST_CLEANUP.md).
 
 ## Current milestone
 

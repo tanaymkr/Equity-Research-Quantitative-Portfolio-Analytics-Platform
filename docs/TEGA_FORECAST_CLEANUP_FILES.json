@@ -1,0 +1,108 @@
+{
+  "base_commit": "bb6624abb7d183fc3398f293d3ef36d778ad8f41",
+  "purpose": "Remove superseded Tega forecasts; retain FY26 actuals and the combined Tega-Molycop DCF.",
+  "remove_files": [
+    {
+      "path": "docs/TEGA_MODEL_METHODS.md",
+      "git_blob_sha": "b7e97e4819e33eae544e2a323f56d8c5f12d2412"
+    },
+    {
+      "path": "examples/tega_fy2025_downside_assumptions.json",
+      "git_blob_sha": "f4c512ada9fa91526c772aba4c3629589dd92a17"
+    },
+    {
+      "path": "examples/tega_fy2025_forecast_assumptions.json",
+      "git_blob_sha": "8f682a78e6a33b65583138a7b303b144b3823eaf"
+    },
+    {
+      "path": "examples/tega_fy2025_upside_assumptions.json",
+      "git_blob_sha": "01137ffe6f9f5bf31865ad6fe3f5d4873ba016aa"
+    },
+    {
+      "path": "examples/tega_fy2026_forecast_assumptions.json",
+      "git_blob_sha": "901a2e0a239f4282fd9994acedbdbfa565c5fb5c"
+    },
+    {
+      "path": "examples/tega_fy2026_model_reports/forecast.md",
+      "git_blob_sha": "e5337e4f2c265cde3288ac07441d8188ee26c3db"
+    },
+    {
+      "path": "examples/tega_fy2026_model_reports/historical_checks.json",
+      "git_blob_sha": "d06d5e64932caba4a2f816817bd4b642d5176121"
+    },
+    {
+      "path": "examples/tega_fy2026_model_reports/historical_statements.html",
+      "git_blob_sha": "ae3641873754ed7fd30e715900655142541198de"
+    },
+    {
+      "path": "examples/tega_fy2026_model_reports/historical_statements.md",
+      "git_blob_sha": "534a46e702dfc7fa256b9f0d8b3732ff5d4f4159"
+    },
+    {
+      "path": "examples/tega_fy2026_model_reports/model.json",
+      "git_blob_sha": "bd7d566b1e72e02140d94e7443a50b3c28a514d9"
+    },
+    {
+      "path": "examples/tega_fy2026_model_reports/reported_statements_used.json",
+      "git_blob_sha": "71ce8b4cd9e584b0b4c5a6d42dfb2f48e4d1b764"
+    },
+    {
+      "path": "examples/tega_model_reports/base/forecast.md",
+      "git_blob_sha": "22aca7b230477787a929832c9c4546850080bca1"
+    },
+    {
+      "path": "examples/tega_model_reports/base/historical_statements.md",
+      "git_blob_sha": "737dd738821ea793e4923813b13161d59bf656d9"
+    },
+    {
+      "path": "examples/tega_model_reports/base/model.json",
+      "git_blob_sha": "f7668f17a0ba91aadc4213618fe54c782badbd75"
+    },
+    {
+      "path": "examples/tega_model_reports/downside/forecast.md",
+      "git_blob_sha": "0008551c0a4757e543c76c33b69c0275a6ede292"
+    },
+    {
+      "path": "examples/tega_model_reports/downside/historical_statements.md",
+      "git_blob_sha": "737dd738821ea793e4923813b13161d59bf656d9"
+    },
+    {
+      "path": "examples/tega_model_reports/downside/model.json",
+      "git_blob_sha": "b1b334c755667ba709190be35f6e940c3a30b62f"
+    },
+    {
+      "path": "examples/tega_model_reports/scenarios.json",
+      "git_blob_sha": "366637b7ed931b9d4aefbe84710dff8f05bae87f"
+    },
+    {
+      "path": "examples/tega_model_reports/scenarios.md",
+      "git_blob_sha": "222b14b433221e16f83659e7122fb7d41e29917e"
+    },
+    {
+      "path": "examples/tega_model_reports/upside/forecast.md",
+      "git_blob_sha": "66670cc69749dfaff3255e0a341e3f1af1779a93"
+    },
+    {
+      "path": "examples/tega_model_reports/upside/historical_statements.md",
+      "git_blob_sha": "737dd738821ea793e4923813b13161d59bf656d9"
+    },
+    {
+      "path": "examples/tega_model_reports/upside/model.json",
+      "git_blob_sha": "fa41d1f4beda35ea096e2a1722f8e67c779aa2d7"
+    },
+    {
+      "path": "notebooks/tega_linked_model_walkthrough.ipynb",
+      "git_blob_sha": "89dccf192b1237e0998f428a290b60e4173eb761"
+    },
+    {
+      "path": "run_tega_fy2026.py",
+      "git_blob_sha": "c207b967e193823af7932abb2e1909d90d27545b"
+    }
+  ],
+  "preserved": [
+    "examples/tega_fy2026_reported_statements.json",
+    "examples/tega_molycop_facts.json",
+    "examples/tega_molycop_assumptions.json",
+    "examples/tega_molycop_reports/"
+  ]
+}

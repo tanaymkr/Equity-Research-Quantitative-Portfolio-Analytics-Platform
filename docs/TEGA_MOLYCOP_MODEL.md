@@ -135,7 +135,7 @@ statements and supporting reconciliations. See
 | `src/equity_analytics/acquisition/engine.py` | Funding bridge, operating forecasts, D&A, FCFF, DCF and claims |
 | `src/equity_analytics/acquisition/reporting.py` | Tables, sensitivities, HTML and Markdown |
 | `src/equity_analytics/acquisition/__main__.py` | Load, calculate and export |
-| `run_tega_model.py` / `run_tega_scenarios.py` | Simple launchers; historical mode retained |
+| `run_tega_model.py` / `run_tega_scenarios.py` | Launch the same combined model |
 | `tests/test_acquisition.py` | Financial regression checks |
 
 1. **Opening bridge:** roll March unrestricted liquidity forward with new debt,
