@@ -4,6 +4,11 @@ The Tega model reads the complete audited FY26 consolidated income statement,
 balance sheet and cash-flow statement, validates 92 historical reconciliations,
 and uses that common source for the acquisition DCF. FY25 comparatives are included.
 Forecast assumptions cover FY2027-FY2034 and include Molycop.
+All monetary model inputs and reports use INR million, with INR per share for
+valuations. USD-origin amounts use the 2 September 2026 closing rate of INR94.97.
+Each scenario now has one group DCF, with cash flows combined before discounting.
+Business operating schedules are retained; separate business DCFs are removed.
+To install this update, follow [the single-DCF guide](docs/TEGA_SINGLE_DCF.md).
 
 The earlier forecasts and separate legacy-only case have been removed. To apply
 this cleanup to an existing checkout, follow
@@ -43,8 +48,13 @@ and [the acquisition scenarios](examples/tega_molycop_reports/scenarios.md).
 - Acquisition facts: `examples/tega_molycop_facts.json`, which references the
   audited statement file and contains the deal and post-close disclosures.
 
-Keep historical facts separate from estimates. Tega amounts use INR million;
-Molycop amounts use USD million. `0.15` means 15%.
+Group valuation settings are `group_wacc_inr`, `group_terminal_growth_inr` and
+`group_terminal_roic` in each scenario. The former separate-business settings
+are rejected to prevent accidentally running the retired method.
+
+Keep historical facts separate from estimates. Both businesses use INR million;
+`0.15` means 15%. Currency metadata records the fixed conversion date and source;
+changing metadata alone does not reconvert the monetary inputs.
 
 The reported statements also feed financial ratios:
 

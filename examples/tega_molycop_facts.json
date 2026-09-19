@@ -6,9 +6,10 @@
   "status": "Provisional acquisition DCF; incomplete financing and opening-balance disclosures",
   "units": {
     "tega": "INR million",
-    "molycop": "USD million",
+    "molycop": "INR million",
     "shares": "actual shares",
-    "volume": "million tonnes"
+    "volume": "million tonnes",
+    "per_tonne": "INR per tonne"
   },
   "sources": {
     "closing": {
@@ -88,6 +89,12 @@
       "title": "Clarification of proposed allottee ownership",
       "url": "https://www.tegaindustries.com/assets/pdfs/int/2026/Q2/20260908_125014.pdf",
       "location": "page 1; does not announce completed allotment"
+    },
+    "fx_20260902": {
+      "date": "2026-09-02",
+      "title": "Reuters: Indian rupee closing exchange rate",
+      "url": "https://www.reuters.com/world/india/rbis-bid-lift-indian-rupee-put-test-by-oil-us-yields-2026-09-02/",
+      "location": "September 2 closing rate: INR94.97 per US dollar; market close, not the official reference fixing"
     }
   },
   "deal": {
@@ -98,34 +105,34 @@
       "icra"
     ],
     "closed": "2026-06-01",
-    "tega_ordinary_contribution_usd_m": 394.295423,
-    "apollo_ordinary_contribution_usd_m": 74.107477,
+    "tega_ordinary_contribution_inr_m": 37446.23632231,
+    "apollo_ordinary_contribution_inr_m": 7037.98709069,
     "ordinary_ownership_note": "Use the contribution ratio (84.1787%); closing filing rounds to 84.2%.",
-    "apollo_preference_issue_usd_m": 270.0,
-    "headline_enterprise_value_usd_m_approx": 1500.0,
-    "cash_purchase_at_close_usd_m_approx": 393.0,
-    "escrow_included_in_cash_purchase_usd_m": 18.0,
-    "earnout_max_usd_m": 120.0,
+    "apollo_preference_issue_inr_m": 25641.9,
+    "headline_enterprise_value_inr_m_approx": 142455.0,
+    "cash_purchase_at_close_inr_m_approx": 37323.21,
+    "escrow_included_in_cash_purchase_inr_m": 1709.46,
+    "earnout_max_inr_m": 11396.4,
     "earnout_deadline": "2030-03-01",
     "earnout_conditions": "Closing filing: performance tests within 45 months. S&P links tests to Cobre Panama/Grasberg shipments, volumes and EBITDA; exact thresholds not available in reviewed public disclosures.",
-    "accounting_purchase_consideration_usd_m": 442.7,
-    "accounting_purchase_consideration_inr_m": 41907.13,
-    "provisional_intangibles_usd_m": 362.3,
-    "provisional_goodwill_usd_m": 527.74,
-    "provisional_intangibles_inr_m": 34295.32,
-    "provisional_goodwill_inr_m": 49956.87,
+    "accounting_purchase_consideration_inr_m": 42043.219,
+    "provisional_intangibles_inr_m": 34407.631,
+    "provisional_goodwill_inr_m": 50119.4678,
     "ppa_finalization_deadline": "2027-06-01",
-    "term_loan_at_close_usd_m": 700.0,
+    "term_loan_at_close_inr_m": 66479.0,
     "term_loan_maturity": "2033-06-01",
-    "abl_limit_usd_m": 220.0,
-    "abl_drawn_at_close_usd_m": 138.0,
+    "abl_limit_inr_m": 20893.4,
+    "abl_drawn_at_close_inr_m": 13105.86,
     "abl_maturity": "2031-06-01",
     "parent_acquisition_loan_inr_m": 15000.0,
     "parent_loan_maturity_month": "2033-05",
     "preference_initial_cash_deferral_years": 7.5,
     "preference_coupon_or_pik_rate": null,
     "preference_contractual_redemption_date": null,
-    "debt_contractual_interest_rates": null
+    "debt_contractual_interest_rates": null,
+    "reported_accounting_purchase_consideration_inr_m": 41907.13,
+    "reported_provisional_intangibles_inr_m": 34295.32,
+    "reported_provisional_goodwill_inr_m": 49956.87
   },
   "q1_fy2027": {
     "source_ids": [
@@ -147,7 +154,7 @@
     "molycop_revenue_inr_m": 12916.4,
     "molycop_other_income_inr_m": -82.39,
     "molycop_adjusted_ebitda_including_other_income_inr_m": 1628.12,
-    "molycop_adjusted_ebitda_usd_m_rounded": 17.2,
+    "molycop_adjusted_ebitda_inr_m_rounded": 1633.484,
     "molycop_operating_ebitda_inr_m": 1710.51,
     "molycop_da_inr_m": 484.98,
     "molycop_finance_cost_inr_m": 973.85,
@@ -159,12 +166,12 @@
     "group_pat": -1082.52,
     "owners_pat": -861.89,
     "nci_pat": -220.63,
-    "molycop_net_debt_usd_m": 672.5,
-    "molycop_net_debt_inr_m_rounded": 63660.0,
+    "molycop_net_debt_inr_m": 63867.325,
     "group_debt_including_preferences_inr_m_rounded": 112000.0,
     "group_preferences_inr_m_rounded": 26000.0,
     "molycop_june_volume_m_tonnes": 0.109,
-    "detailed_post_close_balance_sheet": null
+    "detailed_post_close_balance_sheet": null,
+    "reported_molycop_net_debt_inr_m_rounded": 63660.0
   },
   "molycop_history": {
     "source_ids": [
@@ -172,13 +179,13 @@
       "q1_call"
     ],
     "year_end_month": "June",
-    "fy2023_revenue_usd_m": 1811.0,
-    "fy2024_revenue_usd_m": 1625.0,
-    "fy2025_revenue_usd_m": 1539.0,
-    "fy2025_ebitda_usd_m": 172.0,
+    "fy2023_revenue_inr_m": 171990.67,
+    "fy2024_revenue_inr_m": 154326.25,
+    "fy2025_revenue_inr_m": 146158.83,
+    "fy2025_ebitda_inr_m": 16334.84,
     "fy2025_volume_m_tonnes": 1.223,
-    "fy2026_revenue_usd_m": null,
-    "fy2026_ebitda_usd_m": 191.0,
+    "fy2026_revenue_inr_m": null,
+    "fy2026_ebitda_inr_m": 18139.27,
     "fy2026_volume_m_tonnes": 1.204,
     "status_fy2026": "Management-reported full-year EBITDA and volume; detailed audited Molycop statements not obtained. EBITDA definition normalized in assumptions."
   },
@@ -189,20 +196,20 @@
     "tega_consumables_long_term_growth": 0.15,
     "molycop_ten_month_volume_growth_approx": 0.05,
     "molycop_ten_month_ebitda_growth_approx": 0.04,
-    "cost_synergies_usd_m": 20.0,
+    "cost_synergies_inr_m": 1899.4,
     "cost_synergy_time_years": [
       2.0,
       2.5
     ],
     "revenue_synergies_quantified": null,
-    "molycop_fy2027_ten_month_capex_usd_m": 28.0,
-    "molycop_normalized_annual_capex_usd_m_approx": 32.0,
-    "tega_fy2027_capex_usd_m_approx": 40.0,
+    "molycop_fy2027_ten_month_capex_inr_m": 2659.16,
+    "molycop_normalized_annual_capex_inr_m_approx": 3039.04,
+    "tega_fy2027_capex_inr_m_approx": 3798.8,
     "tega_fy2027_finance_cost_inr_m_range": [
       1100.0,
       1200.0
     ],
-    "molycop_ten_month_interest_plus_principal_usd_m_approx": 70.0,
+    "molycop_ten_month_interest_plus_principal_inr_m_approx": 6647.9,
     "noncore_asset_sale_proceeds": null
   },
   "pending_equity_issue": {
@@ -216,5 +223,16 @@
     "gross_proceeds_inr_m": 953.99939,
     "included_in_main_share_count": false
   },
-  "reported_statements_file": "tega_fy2026_reported_statements.json"
+  "reported_statements_file": "tega_fy2026_reported_statements.json",
+  "currency_basis": {
+    "currency": "INR",
+    "monetary_unit": "million",
+    "fx_date": "2026-09-02",
+    "inr_per_usd": 94.97,
+    "rate_type": "Indian onshore market closing rate reported by Reuters; not the FBIL reference fixing",
+    "source_url": "https://www.reuters.com/world/india/rbis-bid-lift-indian-rupee-put-test-by-oil-us-yields-2026-09-02/",
+    "method": "Constant exchange-rate conversion of USD-denominated monetary inputs at the selected rate. Already-reported INR amounts and the June 30 valuation date are unchanged. Valuation method and group discount assumptions are separately specified in the assumptions file.",
+    "original_model_commit": "5e8ca508c887cad04216d649d8445aed03859417"
+  },
+  "currency_note": "USD-origin values are translated at the selected rate. Reported INR accounting amounts retain historical translations, including the reported_ fields; translation does not restate audited accounts."
 }

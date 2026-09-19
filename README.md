@@ -7,6 +7,24 @@ The project is being built as production-style analytical software: financial
 logic lives in reusable Python modules, inputs are explicit and testable, and
 the eventual Streamlit application will consume the same analytics layer.
 
+## One group DCF per scenario
+
+Legacy Tega and Molycop retain operating schedules, but their cash flows are
+combined before discounting. Each scenario has one group discount rate, one
+terminal value and one enterprise-to-equity bridge. The cash flows and Molycop
+claims use Tega's 84.1787% ordinary ownership consistently. This proportionate
+economic valuation is not a statutory consolidated forecast.
+
+[Install the single-DCF update and read its assumptions](docs/TEGA_SINGLE_DCF.md).
+Group discount rates remain provisional; the change is more than a currency restatement.
+
+## INR model update
+
+The combined Tega-Molycop model now uses INR million throughout. USD-origin
+amounts use INR94.97 per dollar, the market closing rate on 2 September 2026.
+Reported INR statements retain their historical values. Read the
+[currency basis](docs/TEGA_INR_CONVERSION.md).
+
 ## FY26 statements are now connected
 
 The complete audited FY25/FY26 consolidated statements and supporting notes now

@@ -1,6 +1,7 @@
-"""Segment FCFF DCF, acquisition claims and illustrative financing schedules.
+"""Single group FCFF DCF, ownership-adjusted claims and financing schedules.
 
-All legacy amounts are INR million; all Molycop amounts are USD million.
+All monetary schedules use INR million; per-tonne amounts use INR per tonne.
+USD-origin inputs were translated once at the documented fixed exchange rate.
 No reported post-acquisition balance sheet is manufactured from forecast plugs.
 """
 
@@ -10,9 +11,47 @@ from copy import deepcopy
 from datetime import date
 from math import isfinite
 
+REFERENCE_FX_DATE = "2026-09-02"
+REFERENCE_FX_INR_PER_USD = 94.97
+
 
 class AcquisitionInputError(ValueError):
     """Invalid or internally inconsistent acquisition inputs."""
+
+
+def validate_currency_basis(facts, assumptions):
+    """Reject mixed-currency inputs and metadata-only FX changes."""
+    basis = facts.get("currency_basis", {})
+    if (
+        basis != assumptions.get("currency_basis")
+        or basis.get("currency") != "INR"
+        or basis.get("monetary_unit") != "million"
+        or basis.get("fx_date") != REFERENCE_FX_DATE
+        or basis.get("inr_per_usd") != REFERENCE_FX_INR_PER_USD
+        or facts.get("units", {}).get("molycop") != "INR million"
+    ):
+        raise AcquisitionInputError(
+            "Use matching INR inputs translated at 94.97 on 2026-09-02. "
+            "Changing FX metadata alone does not reconvert monetary inputs."
+        )
+
+    def reject_old_keys(value):
+        if isinstance(value, dict):
+            for key, item in value.items():
+                if "_usd_m" in key or key in {
+                    "fx_inr_per_usd",
+                    "closing_funding_fx_inr_per_usd",
+                    "molycop_wacc_usd",
+                    "molycop_terminal_growth_usd",
+                }:
+                    raise AcquisitionInputError(f"Mixed-currency input: {key}")
+                reject_old_keys(item)
+        elif isinstance(value, list):
+            for item in value:
+                reject_old_keys(item)
+
+    reject_old_keys(facts)
+    reject_old_keys(assumptions)
 
 
 def _finite(value, path="input"):
@@ -31,6 +70,7 @@ def _validate(facts, assumptions, case):
         raise AcquisitionInputError(
             "Load the complete FY26 statements with load_acquisition_facts first"
         )
+    validate_currency_basis(facts, assumptions)
     _finite(facts)
     _finite(assumptions)
     if facts["ticker"] != "NSE:TEGA":
@@ -58,22 +98,42 @@ def _validate(facts, assumptions, case):
                     f"{key}: margin must be between zero and one"
                 )
             if any(
-                word in key for word in ("capex", "synergies", "cost_usd", "cross_sell")
+                word in key for word in ("capex", "synergies", "cost_inr", "cross_sell")
             ) and any(v < 0 for v in values):
                 raise AcquisitionInputError(f"{key} cannot be negative")
-    for business, currency in (("legacy", "inr"), ("molycop", "usd")):
-        w, g, r = (
-            a[f"{business}_wacc_{currency}"],
-            a[f"{business}_terminal_growth_{currency}"],
-            a[f"{business}_terminal_roic"],
+    if assumptions.get("valuation_method") != "single_attributable_group_dcf":
+        raise AcquisitionInputError("Use the single group DCF assumptions file")
+    retired = {
+        "legacy_wacc_inr",
+        "legacy_terminal_growth_inr",
+        "legacy_terminal_roic",
+        "molycop_discount_rate",
+        "molycop_terminal_growth",
+        "molycop_terminal_roic",
+    }
+    if retired.intersection(a):
+        raise AcquisitionInputError("Separate business DCF assumptions are retired")
+    w, g, r = (
+        a["group_wacc_inr"],
+        a["group_terminal_growth_inr"],
+        a["group_terminal_roic"],
+    )
+    if not 0 <= g < w < 1 or not g < r <= 1:
+        raise AcquisitionInputError(
+            "Group DCF: require 0 <= g < WACC and g < ROIC <= 1"
         )
-        if not 0 <= g < w < 1 or r <= g or r > 1:
-            raise AcquisitionInputError(
-                f"{business}: require 0 <= g < WACC and g < ROIC <= 1"
-            )
+    contributions = [
+        facts["deal"][k]
+        for k in (
+            "tega_ordinary_contribution_inr_m",
+            "apollo_ordinary_contribution_inr_m",
+        )
+    ]
+    if min(contributions) < 0 or sum(contributions) <= 0:
+        raise AcquisitionInputError(
+            "Ordinary contributions must establish valid ownership"
+        )
     for key in (
-        "fx_inr_per_usd",
-        "closing_funding_fx_inr_per_usd",
         "legacy_new_asset_life_years",
         "molycop_new_asset_life_years",
         "molycop_ppa_intangible_life_years",
@@ -93,10 +153,10 @@ def _validate(facts, assumptions, case):
         if not 0 <= s[key] <= 1:
             raise AcquisitionInputError(f"{key} must be between zero and one")
     for key in (
-        "preference_fair_value_usd_m",
-        "molycop_other_claims_usd_m",
+        "preference_fair_value_inr_m",
+        "molycop_other_claims_inr_m",
         "legacy_annual_new_lease_assets_inr_m",
-        "molycop_annual_new_lease_assets_usd_m",
+        "molycop_annual_new_lease_assets_inr_m",
         "legacy_minimum_cash_inr_m",
         "preference_assumed_pik_rate",
         "preference_assumed_cash_rate_after_deferral",
@@ -105,7 +165,7 @@ def _validate(facts, assumptions, case):
             raise AcquisitionInputError(f"{key} cannot be negative")
     if facts["tega_fy2026"]["shares"] <= 0:
         raise AcquisitionInputError("Issued shares must be positive")
-    if not 0 <= a["earnout_usd_m"] <= facts["deal"]["earnout_max_usd_m"]:
+    if not 0 <= a["earnout_inr_m"] <= facts["deal"]["earnout_max_inr_m"]:
         raise AcquisitionInputError("Earnout exceeds the disclosed range")
     earn_date = date.fromisoformat(a["earnout_payment_date"])
     if (
@@ -130,13 +190,10 @@ def opening_bridge(facts, assumptions):
         - h["restricted_deposits"]
         + h["current_investments"]
     )
-    contribution = (
-        d["tega_ordinary_contribution_usd_m"] * s["closing_funding_fx_inr_per_usd"]
-    )
+    contribution = d["tega_ordinary_contribution_inr_m"]
     # Historical bridge must be identical across operating scenarios.
     capex = (
-        facts["management_guidance"]["tega_fy2027_capex_usd_m_approx"]
-        * s["fx_inr_per_usd"]
+        facts["management_guidance"]["tega_fy2027_capex_inr_m_approx"]
         * s["q1_legacy_cash_capex_fraction_of_fy27"]
     )
     repayment = (
@@ -237,17 +294,86 @@ class _Assets:
         }
 
 
-def _dcf(rows, wacc, growth, roic, tax):
+def _group_cashflows(legacy, molycop, ownership, legacy_tax, molycop_tax):
+    """Combine operating cash flows before a single discounting calculation.
+
+    These are proportionate economic cash flows, not statutory consolidated
+    statements. Molycop cash flows and its senior claims use the same ownership.
+    """
+    amount_keys = (
+        "revenue",
+        "operating_ebitda",
+        "integration_cash_cost",
+        "ebit",
+        "unlevered_cash_tax",
+        "closing_nwc",
+        "delta_nwc",
+        "fcff",
+        "opening_depreciable_book_proxy",
+        "opening_cwip_proxy",
+        "commissioned_assets",
+        "cash_capex",
+        "new_lease_assets",
+        "da",
+        "ppa_amortization",
+        "closing_cwip_proxy",
+        "closing_asset_book_proxy",
+        "asset_rollforward_residual",
+    )
+    result = []
+    for lrow, mrow in zip(legacy, molycop, strict=True):
+        timing = ("fiscal_year", "period_years", "discount_years")
+        if any(lrow[k] != mrow[k] for k in timing):
+            raise AcquisitionInputError(
+                "Align business cash-flow periods before combining"
+            )
+        row = {k: lrow[k] for k in timing}
+        row.update({k: lrow[k] + ownership * mrow[k] for k in amount_keys})
+        legacy_normalized_ebit = lrow["ebit"] + lrow["ppa_amortization"]
+        molycop_normalized_ebit = mrow["ebit"] + mrow["ppa_amortization"]
+        # Keep separate cash-tax rates and floors; do not invent cross-border loss relief.
+        row["normalized_terminal_nopat"] = (
+            legacy_normalized_ebit
+            - max(legacy_normalized_ebit, 0) * legacy_tax
+            + ownership
+            * (molycop_normalized_ebit - max(molycop_normalized_ebit, 0) * molycop_tax)
+        )
+        row.update(
+            {
+                "legacy_fcff": lrow["fcff"],
+                "molycop_fcff_before_ownership": mrow["fcff"],
+                "combined_fcff_before_ownership": lrow["fcff"] + mrow["fcff"],
+                "noncontrolling_fcff_excluded": (1 - ownership) * mrow["fcff"],
+                "ownership_fcff_residual": row["fcff"]
+                - lrow["fcff"]
+                - ownership * mrow["fcff"],
+                "fcff_identity_residual": row["fcff"]
+                - (
+                    row["ebit"]
+                    - row["integration_cash_cost"]
+                    - row["unlevered_cash_tax"]
+                    + row["da"]
+                    - row["cash_capex"]
+                    - row["new_lease_assets"]
+                    - row["delta_nwc"]
+                ),
+            }
+        )
+        result.append(row)
+    return result
+
+
+def _dcf(rows, wacc, growth, roic):
+    """Discount the combined attributable stream once, with one terminal value."""
     pv = sum(row["fcff"] / (1 + wacc) ** row["discount_years"] for row in rows)
     last = rows[-1]
-    # Acquisition amortization expires; terminal operating earnings are normalized.
-    terminal_ebit = (last["ebit"] + last["ppa_amortization"]) * (1 + growth)
-    nopat = terminal_ebit - max(terminal_ebit, 0) * tax
+    nopat = last["normalized_terminal_nopat"] * (1 + growth)
     reinvestment = max(nopat, 0) * growth / roic
     terminal_fcff = nopat - reinvestment
     tv = terminal_fcff / (wacc - growth)
     terminal_pv = tv / (1 + wacc) ** last["discount_years"]
     return {
+        "scope": "Tega-attributable group cash flows; proportionate enterprise value",
         "wacc": wacc,
         "terminal_growth": growth,
         "terminal_roic": roic,
@@ -297,9 +423,9 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
     """Illustrative liquidity checks; financing cash flows never reduce FCFF twice."""
     parent_debt = bridge["opening_gross_debt_including_leases_estimate"]
     parent_cash = bridge["opening_cash_estimate"]
-    mc_net = facts["q1_fy2027"]["molycop_net_debt_usd_m"]
+    mc_net = facts["q1_fy2027"]["molycop_net_debt_inr_m"]
     # June 1 issue accretes for one modeled month before this opening date.
-    pref = facts["deal"]["apollo_preference_issue_usd_m"] * (
+    pref = facts["deal"]["apollo_preference_issue_inr_m"] * (
         1 + s["preference_assumed_pik_rate"]
     ) ** (1 / 12)
     elapsed = 1 / 12
@@ -310,7 +436,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
     for i, (lrow, mrow) in enumerate(zip(legacy, molycop, strict=True)):
         fraction = lrow["period_years"]
         end = date(lrow["fiscal_year"], 3, 31)
-        earnout = a["earnout_usd_m"] if previous_date < earn_date <= end else 0.0
+        earnout = a["earnout_inr_m"] if previous_date < earn_date <= end else 0.0
         pik_years = min(fraction, max(deferral - elapsed, 0.0))
         pik = pref * ((1 + s["preference_assumed_pik_rate"]) ** pik_years - 1)
         pref_cash = (
@@ -319,7 +445,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
             * (fraction - pik_years)
         )
         mc_interest = (
-            s["molycop_fy27_ten_month_cash_interest_usd_m"] * 0.9
+            s["molycop_fy27_ten_month_cash_interest_inr_m"] * 0.9
             if i == 0
             else max(mc_net, 0) * s["molycop_net_debt_interest_rate_proxy"]
         )
@@ -328,7 +454,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
             mrow["unlevered_cash_tax"],
             mc_interest * s["earned_income_tax_rate_molycop"],
         )
-        lease_principal = s["molycop_annual_lease_principal_usd_m"] * fraction
+        lease_principal = s["molycop_annual_lease_principal_inr_m"] * fraction
         mc_cash_available = (
             mrow["fcff"]
             + mrow["new_lease_assets"]
@@ -339,9 +465,9 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
             - pref_cash
         )
         mandatory = (
-            s["molycop_fy27_ten_month_scheduled_principal_usd_m"] * 0.9
+            s["molycop_fy27_ten_month_scheduled_principal_inr_m"] * 0.9
             if i == 0
-            else 7.0
+            else s["molycop_later_annual_scheduled_principal_inr_m"]
         )
         paydown = min(
             max(mc_net, 0),
@@ -354,7 +480,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
         new_funding = max(paydown - mc_cash_available, 0.0)
         distribution = max(mc_cash_available - paydown, 0.0)
         closing_mc_net = mc_net - paydown + new_funding
-        parent_receipt = distribution * ownership * s["fx_inr_per_usd"]
+        parent_receipt = distribution * ownership
         parent_interest = parent_debt * s["legacy_debt_interest_rate"] * fraction
         parent_tax_shield = min(
             lrow["unlevered_cash_tax"],
@@ -399,21 +525,21 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
         result.append(
             {
                 "fiscal_year": lrow["fiscal_year"],
-                "molycop_opening_net_debt_usd_m": mc_net,
-                "molycop_cash_interest_usd_m": mc_interest,
-                "molycop_cash_available_usd_m": mc_cash_available,
-                "earnout_cash_usd_m": earnout,
-                "molycop_debt_paydown_usd_m": paydown,
-                "molycop_required_new_funding_usd_m": new_funding,
-                "molycop_new_lease_liability_usd_m": mrow["new_lease_assets"],
-                "molycop_lease_principal_estimate_usd_m": lease_principal,
-                "molycop_closing_net_bank_debt_usd_m": closing_mc_net,
-                "molycop_ordinary_distribution_usd_m": distribution,
+                "molycop_opening_net_debt_inr_m": mc_net,
+                "molycop_cash_interest_inr_m": mc_interest,
+                "molycop_cash_available_inr_m": mc_cash_available,
+                "earnout_cash_inr_m": earnout,
+                "molycop_debt_paydown_inr_m": paydown,
+                "molycop_required_new_funding_inr_m": new_funding,
+                "molycop_new_lease_liability_inr_m": mrow["new_lease_assets"],
+                "molycop_lease_principal_estimate_inr_m": lease_principal,
+                "molycop_closing_net_bank_debt_inr_m": closing_mc_net,
+                "molycop_ordinary_distribution_inr_m": distribution,
                 "tega_share_of_distribution_inr_m": parent_receipt,
-                "preference_opening_assumed_balance_usd_m": pref,
-                "preference_non_cash_pik_usd_m": pik,
-                "preference_cash_return_usd_m": pref_cash,
-                "preference_closing_assumed_balance_usd_m": pref + pik,
+                "preference_opening_assumed_balance_inr_m": pref,
+                "preference_non_cash_pik_inr_m": pik,
+                "preference_cash_return_inr_m": pref_cash,
+                "preference_closing_assumed_balance_inr_m": pref + pik,
                 "parent_opening_gross_debt_inr_m": parent_debt,
                 "parent_cash_interest_inr_m": parent_interest,
                 "parent_scheduled_repayment_inr_m": parent_mandatory,
@@ -462,9 +588,9 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         facts["deal"],
         facts["molycop_history"],
     )
-    fx = s["fx_inr_per_usd"]
-    ownership = d["tega_ordinary_contribution_usd_m"] / (
-        d["tega_ordinary_contribution_usd_m"] + d["apollo_ordinary_contribution_usd_m"]
+    fx = facts["currency_basis"]["inr_per_usd"]
+    ownership = d["tega_ordinary_contribution_inr_m"] / (
+        d["tega_ordinary_contribution_inr_m"] + d["apollo_ordinary_contribution_inr_m"]
     )
     bridge = opening_bridge(facts, assumptions)
     capex_q1 = bridge["q1_cash_capex_estimate"]
@@ -480,17 +606,17 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
     legacy_cwip = h["cwip"] + h["intangible_development"] + capex_q1 - commission_q1
     la = _Assets(legacy_book, q["tega_da"] * 4, legacy_cwip)
     ppa_annual = (
-        d["provisional_intangibles_usd_m"] / s["molycop_ppa_intangible_life_years"]
+        d["provisional_intangibles_inr_m"] / s["molycop_ppa_intangible_life_years"]
     )
-    mc_existing_da = q["molycop_da_inr_m"] / fx * 12 - ppa_annual
+    mc_existing_da = q["molycop_da_inr_m"] * 12 - ppa_annual
     ma = _Assets(
         mc_existing_da * s["molycop_existing_asset_remaining_life_years"],
         mc_existing_da,
-        ppa_book=d["provisional_intangibles_usd_m"] - ppa_annual / 12,
+        ppa_book=d["provisional_intangibles_inr_m"] - ppa_annual / 12,
         ppa_life=s["molycop_ppa_intangible_life_years"] - 1 / 12,
     )
     # Full-year 2026 revenue is not reported: infer using FY25 price per tonne.
-    mc_price = mh["fy2025_revenue_usd_m"] / mh["fy2025_volume_m_tonnes"]
+    mc_price = mh["fy2025_revenue_inr_m"] / mh["fy2025_volume_m_tonnes"]
     mc_volume = mh["fy2026_volume_m_tonnes"]
     inferred_mc_revenue = mc_volume * mc_price
     previous_mc_nwc = inferred_mc_revenue * a["molycop_opening_nwc_revenue_fraction"]
@@ -521,7 +647,7 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
             else 0
         )
         lcapex = (
-            a["legacy_capex_fy27_usd_m"] * fx - capex_q1
+            a["legacy_capex_fy27_inr_m"] - capex_q1
             if i == 0
             else legacy_annual_revenue * a["legacy_later_capex_revenue_fraction"]
         )
@@ -570,12 +696,12 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         mc_volume *= 1 + a["molycop_volume_growth"][i]
         mc_price *= 1 + a["molycop_price_growth"][i]
         annual_mc_revenue = mc_volume * mc_price
-        synergy = a["molycop_cost_synergies_usd_m"][i]
+        synergy = a["molycop_cost_synergies_inr_m"][i]
         if i == 0:
             full_owned_ebitda = (
                 (
-                    mh["fy2026_ebitda_usd_m"]
-                    + s["molycop_fy2026_ebitda_operating_adjustment_usd_m"]
+                    mh["fy2026_ebitda_inr_m"]
+                    + s["molycop_fy2026_ebitda_operating_adjustment_inr_m"]
                 )
                 * (1 + a["molycop_first_year_total_ebitda_growth"])
                 * 10
@@ -583,19 +709,19 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
             )
             mc_core_per_tonne = (full_owned_ebitda - synergy) / (mc_volume * 10 / 12)
             full_owned_revenue = annual_mc_revenue * 10 / 12
-            mrev = full_owned_revenue - q["molycop_revenue_inr_m"] / fx
-            mebitda = full_owned_ebitda - q["molycop_operating_ebitda_inr_m"] / fx
-            mcapex = a["molycop_capex_fy27_ten_month_usd_m"] * 9 / 10
+            mrev = full_owned_revenue - q["molycop_revenue_inr_m"]
+            mebitda = full_owned_ebitda - q["molycop_operating_ebitda_inr_m"]
+            mcapex = a["molycop_capex_fy27_ten_month_inr_m"] * 9 / 10
         else:
             mc_core_per_tonne *= 1 + a["molycop_core_ebitda_per_tonne_growth"][i]
             full_owned_revenue = mrev = annual_mc_revenue
             full_owned_ebitda = mebitda = mc_volume * mc_core_per_tonne + synergy
-            mcapex = a["molycop_later_annual_capex_usd_m"][i]
+            mcapex = a["molycop_later_annual_capex_inr_m"][i]
         if min(lrev, mrev, lcapex, mcapex, mebitda, mc_core_per_tonne) < 0:
             raise AcquisitionInputError(
                 "Forecast is below actual YTD or implies negative core earnings/capex"
             )
-        mlease = s["molycop_annual_new_lease_assets_usd_m"] * fraction
+        mlease = s["molycop_annual_new_lease_assets_inr_m"] * fraction
         mas = ma.advance(
             fraction,
             mcapex,
@@ -608,7 +734,7 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         mr = _cashflow(
             mrev,
             mebitda,
-            a["molycop_integration_cash_cost_usd_m"][i],
+            a["molycop_integration_cash_cost_inr_m"][i],
             mnwc,
             previous_mc_nwc,
             mas,
@@ -624,49 +750,43 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
                 "owned_fiscal_year_operating_ebitda": full_owned_ebitda,
                 "annual_volume_run_rate_m_tonnes": mc_volume,
                 "annual_revenue_run_rate": annual_mc_revenue,
-                "price_per_tonne_usd_proxy": mc_price,
-                "core_ebitda_per_tonne_usd_proxy": mc_core_per_tonne,
+                "price_per_tonne_inr_proxy": mc_price,
+                "core_ebitda_per_tonne_inr_proxy": mc_core_per_tonne,
                 "cost_synergies": synergy,
                 "owned_months_in_fiscal_year": 10 if i == 0 else 12,
             }
         )
         molycop.append(mr)
         previous_legacy_nwc, previous_mc_nwc = lnwc, mnwc
-    lv = _dcf(
+    group = _group_cashflows(
         legacy,
-        a["legacy_wacc_inr"],
-        a["legacy_terminal_growth_inr"],
-        a["legacy_terminal_roic"],
-        s["earned_income_tax_rate_legacy"],
-    )
-    mv = _dcf(
         molycop,
-        a["molycop_wacc_usd"],
-        a["molycop_terminal_growth_usd"],
-        a["molycop_terminal_roic"],
+        ownership,
+        s["earned_income_tax_rate_legacy"],
         s["earned_income_tax_rate_molycop"],
+    )
+    group_value = _dcf(
+        group,
+        a["group_wacc_inr"],
+        a["group_terminal_growth_inr"],
+        a["group_terminal_roic"],
     )
     earn_years = (
         date.fromisoformat(a["earnout_payment_date"]) - date(2026, 6, 30)
     ).days / 365
-    earn_pv = a["earnout_usd_m"] / (1 + a["molycop_wacc_usd"]) ** earn_years
-    mc_residual = (
-        mv["enterprise_value"]
-        - q["molycop_net_debt_usd_m"]
-        - s["preference_fair_value_usd_m"]
-        - earn_pv
-        - s["molycop_other_claims_usd_m"]
+    earn_pv = a["earnout_inr_m"] / (1 + a["group_wacc_inr"]) ** earn_years
+    molycop_full_claims = (
+        q["molycop_net_debt_inr_m"]
+        + s["preference_fair_value_inr_m"]
+        + earn_pv
+        + s["molycop_other_claims_inr_m"]
     )
-    # No assumed parent guarantee or recapitalization below the MC ordinary equity layer.
-    mc_ordinary_equity = max(mc_residual, 0.0)
-    mc_tega = mc_ordinary_equity * ownership * fx
-    legacy_equity = (
-        lv["enterprise_value"]
-        - bridge["opening_net_debt_including_leases_estimate"]
-        + h["jv_investment"]
-        + h["investment_property"]
+    attributable_claims = (
+        bridge["opening_net_debt_including_leases_estimate"]
+        + ownership * molycop_full_claims
     )
-    raw_equity = legacy_equity + mc_tega
+    nonoperating = h["jv_investment"] + h["investment_property"]
+    raw_equity = group_value["enterprise_value"] - attributable_claims + nonoperating
     equity = max(raw_equity, 0.0)
     shares_m = h["shares"] / 1_000_000
     issue = facts["pending_equity_issue"]
@@ -682,16 +802,19 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "Molycop FY2026 revenue is inferred from volume and FY2025 realization; it is not reported revenue.",
         "Molycop FY2026 adjusted EBITDA is treated as operating EBITDA; full-year other income and the comparable ten-month earnings pattern are unavailable.",
         "Purchase accounting, intangible lives, tax deductibility, other senior claims and subsidiary minority/JV scope remain provisional.",
-        "WACCs, terminal growth and ROIC are analyst assumptions, not a measured current-market CAPM calibration.",
+        "One group discount rate, terminal growth and ROIC apply to the combined stream. Initial values carry over former legacy assumptions as provisional group choices; they are not calibrated group WACCs.",
+        "Ownership-adjusted economic DCF: include 100% legacy and Tega's share of Molycop cash flows and senior claims. These are not statutory consolidated financial statements.",
+        "One pooled equity calculation does not value separate subsidiary default options or limited-liability ring-fencing. It may understate downside equity where Molycop shortfalls cannot reach the parent; contractual support remains unresolved.",
+        "All USD-origin inputs use INR94.97 per USD at the September 2, 2026 market close. June 30 remains the valuation date; this is a later-date constant-currency restatement. Reported INR actuals are unchanged.",
         "Debt schedules estimate liquidity; they do not certify bank covenants, refinancing availability, preference exit rights or a statutory balanced forecast.",
     ]
-    if mc_residual < 0 or raw_equity < 0:
+    if raw_equity < 0:
         warnings.append(
-            "One equity layer is out of the money; zero floor assumes limited liability and no additional parent support obligation."
+            "Combined modeled equity is below zero and is floored once at zero; this is not a conclusion about legal debt recourse or an immediate cash shortfall."
         )
     if any(
         r["parent_required_new_funding_inr_m"] > 0.01
-        or r["molycop_required_new_funding_usd_m"] > 0.01
+        or r["molycop_required_new_funding_inr_m"] > 0.01
         for r in financing
     ):
         warnings.append(
@@ -709,15 +832,22 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         + q["tega_revenue"]
         - legacy[0]["full_fiscal_year_revenue"],
         "first_year_molycop_revenue_tie": molycop[0]["revenue"]
-        + q["molycop_revenue_inr_m"] / fx
+        + q["molycop_revenue_inr_m"]
         - molycop[0]["owned_fiscal_year_revenue"],
         "first_year_molycop_ebitda_tie": molycop[0]["operating_ebitda"]
-        + q["molycop_operating_ebitda_inr_m"] / fx
+        + q["molycop_operating_ebitda_inr_m"]
         - molycop[0]["owned_fiscal_year_operating_ebitda"],
         "max_asset_rollforward_residual": max(
             abs(r["asset_rollforward_residual"]) for r in legacy + molycop
         ),
-        "equity_bridge_residual": raw_equity - legacy_equity - mc_tega,
+        "max_group_ownership_fcff_residual": max(
+            abs(r["ownership_fcff_residual"]) for r in group
+        ),
+        "max_group_fcff_identity_residual": max(
+            abs(r["fcff_identity_residual"]) for r in group
+        ),
+        "equity_bridge_residual": raw_equity
+        - (group_value["enterprise_value"] - attributable_claims + nonoperating),
     }
     if any(abs(value) > 0.02 for value in checks.values()):
         raise AcquisitionInputError(f"Reconciliation failed: {checks}")
@@ -728,33 +858,37 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "valuation_date": facts["valuation_date"],
         "information_cutoff": facts["information_cutoff"],
         "reported_history": deepcopy(facts.get("reported_history")),
+        "currency_basis": deepcopy(facts["currency_basis"]),
+        "monetary_unit": "INR million",
         "status": facts["status"],
+        "valuation_method": "single_attributable_group_dcf",
         "warnings": warnings,
         "opening_bridge_inr_m": bridge,
-        "inferred_molycop_fy2026_revenue_usd_m": inferred_mc_revenue,
+        "inferred_molycop_fy2026_revenue_inr_m": inferred_mc_revenue,
         "legacy_forecast_inr_m": legacy,
-        "molycop_forecast_usd_m": molycop,
-        "legacy_dcf_inr_m": lv,
-        "molycop_dcf_usd_m": mv,
+        "molycop_forecast_inr_m": molycop,
+        "group_forecast_inr_m": group,
+        "group_dcf_inr_m": group_value,
         "equity_bridge": {
             "molycop_ordinary_ownership": ownership,
             "fx_inr_per_usd": fx,
-            "molycop_enterprise_value_usd_m": mv["enterprise_value"],
-            "molycop_net_debt_usd_m": q["molycop_net_debt_usd_m"],
-            "preference_fair_value_proxy_usd_m": s["preference_fair_value_usd_m"],
-            "earnout_present_value_usd_m": earn_pv,
-            "other_claims_reserve_usd_m": s["molycop_other_claims_usd_m"],
-            "molycop_raw_residual_usd_m": mc_residual,
-            "molycop_ordinary_equity_usd_m": mc_ordinary_equity,
-            "apollo_ordinary_equity_usd_m": mc_ordinary_equity * (1 - ownership),
-            "tega_molycop_interest_inr_m": mc_tega,
-            "legacy_enterprise_value_inr_m": lv["enterprise_value"],
+            "group_enterprise_value_inr_m": group_value["enterprise_value"],
             "legacy_net_debt_inr_m": bridge[
                 "opening_net_debt_including_leases_estimate"
             ],
-            "legacy_jv_and_property_book_proxy_inr_m": h["jv_investment"]
-            + h["investment_property"],
-            "legacy_equity_after_acquisition_funding_inr_m": legacy_equity,
+            "molycop_net_debt_full_inr_m": q["molycop_net_debt_inr_m"],
+            "molycop_net_debt_attributable_inr_m": ownership
+            * q["molycop_net_debt_inr_m"],
+            "preference_fair_value_full_inr_m": s["preference_fair_value_inr_m"],
+            "preference_fair_value_attributable_inr_m": ownership
+            * s["preference_fair_value_inr_m"],
+            "earnout_present_value_full_inr_m": earn_pv,
+            "earnout_present_value_attributable_inr_m": ownership * earn_pv,
+            "other_claims_full_inr_m": s["molycop_other_claims_inr_m"],
+            "other_claims_attributable_inr_m": ownership
+            * s["molycop_other_claims_inr_m"],
+            "total_attributable_claims_inr_m": attributable_claims,
+            "nonoperating_assets_inr_m": nonoperating,
             "raw_tega_equity_inr_m": raw_equity,
             "tega_equity_inr_m": equity,
             "issued_shares": h["shares"],

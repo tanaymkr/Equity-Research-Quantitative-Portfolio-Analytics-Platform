@@ -27,17 +27,17 @@ class AcquisitionTests(unittest.TestCase):
 
     def test_ten_owned_months_nine_future_months_and_no_june_double_count(self):
         q = self.facts["q1_fy2027"]
-        r = self.base["molycop_forecast_usd_m"][0]
-        fx = self.assumptions["shared"]["fx_inr_per_usd"]
+        r = self.base["molycop_forecast_inr_m"][0]
+        fx = self.facts["currency_basis"]["inr_per_usd"]
         self.assertEqual(r["owned_months_in_fiscal_year"], 10)
         self.assertEqual(r["period_years"], 0.75)
         self.assertAlmostEqual(
-            r["revenue"] + q["molycop_revenue_inr_m"] / fx,
+            r["revenue"] + q["molycop_revenue_inr_m"],
             r["owned_fiscal_year_revenue"],
         )
         self.assertAlmostEqual(
-            r["operating_ebitda"] + q["molycop_operating_ebitda_inr_m"] / fx,
-            191 * 1.04 * 10 / 12,
+            r["operating_ebitda"] + q["molycop_operating_ebitda_inr_m"],
+            191 * fx * 1.04 * 10 / 12,
         )
         self.assertAlmostEqual(r["discount_years"], 274 / 365)
 
@@ -50,21 +50,27 @@ class AcquisitionTests(unittest.TestCase):
         )
         self.assertAlmostEqual(q["molycop_operating_ebitda_inr_m"], 1628.12 - (-82.39))
 
-    def test_debt_preference_earnout_before_ordinary_ownership(self):
+    def test_group_equity_uses_matching_ownership_for_senior_claims(self):
         b = self.base["equity_bridge"]
-        residual = (
-            b["molycop_enterprise_value_usd_m"]
-            - 672.5
-            - 270
-            - 50
-            - b["earnout_present_value_usd_m"]
+        attributable_claims = b["legacy_net_debt_inr_m"] + b[
+            "molycop_ordinary_ownership"
+        ] * (
+            672.5 * 94.97
+            + 270 * 94.97
+            + 50 * 94.97
+            + b["earnout_present_value_full_inr_m"]
         )
         self.assertAlmostEqual(
-            b["tega_molycop_interest_inr_m"],
-            residual * b["molycop_ordinary_ownership"] * b["fx_inr_per_usd"],
+            b["total_attributable_claims_inr_m"], attributable_claims
+        )
+        self.assertAlmostEqual(
+            b["raw_tega_equity_inr_m"],
+            b["group_enterprise_value_inr_m"]
+            - attributable_claims
+            + b["nonoperating_assets_inr_m"],
         )
         f = deepcopy(self.facts)
-        f["q1_fy2027"]["molycop_net_debt_usd_m"] += 10
+        f["q1_fy2027"]["molycop_net_debt_inr_m"] += 10 * 94.97
         reduced = self.model(facts=f)["equity_bridge"]["value_per_share_inr"]
         expected_loss = (
             10
@@ -89,18 +95,25 @@ class AcquisitionTests(unittest.TestCase):
 
     def test_purchase_price_and_escrow_are_not_deducted_again(self):
         f = deepcopy(self.facts)
-        f["deal"]["cash_purchase_at_close_usd_m_approx"] += 10
-        f["deal"]["escrow_included_in_cash_purchase_usd_m"] += 2
-        f["deal"]["headline_enterprise_value_usd_m_approx"] += 100
+        f["deal"]["cash_purchase_at_close_inr_m_approx"] += 10
+        f["deal"]["escrow_included_in_cash_purchase_inr_m"] += 2
+        f["deal"]["headline_enterprise_value_inr_m_approx"] += 100
         self.assertEqual(
             self.base["equity_bridge"], self.model(facts=f)["equity_bridge"]
         )
 
     def test_parent_contribution_changes_value_once(self):
-        a = deepcopy(self.assumptions)
-        a["shared"]["closing_funding_fx_inr_per_usd"] += 1
-        result = self.model(a)
-        expected = 394.295423 / (75127698 / 1e6)
+        f = deepcopy(self.facts)
+        d = f["deal"]
+        # Increase contribution while holding the ordinary ownership ratio fixed.
+        ratio = (
+            d["apollo_ordinary_contribution_inr_m"]
+            / d["tega_ordinary_contribution_inr_m"]
+        )
+        d["tega_ordinary_contribution_inr_m"] += 94.97
+        d["apollo_ordinary_contribution_inr_m"] += 94.97 * ratio
+        result = self.model(facts=f)
+        expected = 94.97 / (75127698 / 1e6)
         self.assertAlmostEqual(
             self.base["equity_bridge"]["value_per_share_inr"]
             - result["equity_bridge"]["value_per_share_inr"],
@@ -130,21 +143,21 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(result["equity_bridge"], self.base["equity_bridge"])
         self.assertGreater(
             result["financing_schedule"][-1][
-                "preference_closing_assumed_balance_usd_m"
+                "preference_closing_assumed_balance_inr_m"
             ],
             self.base["financing_schedule"][-1][
-                "preference_closing_assumed_balance_usd_m"
+                "preference_closing_assumed_balance_inr_m"
             ],
         )
         for row in self.base["financing_schedule"][:-1]:
-            self.assertEqual(row["preference_cash_return_usd_m"], 0)
+            self.assertEqual(row["preference_cash_return_inr_m"], 0)
         self.assertGreater(
-            self.base["financing_schedule"][-1]["preference_cash_return_usd_m"], 0
+            self.base["financing_schedule"][-1]["preference_cash_return_inr_m"], 0
         )
 
     def test_ppa_book_amortization_does_not_create_automatic_tax_shield(self):
         rate = self.assumptions["shared"]["earned_income_tax_rate_molycop"]
-        for row in self.base["molycop_forecast_usd_m"]:
+        for row in self.base["molycop_forecast_inr_m"]:
             taxable = (
                 row["ebit"] - row["integration_cash_cost"] + row["ppa_amortization"]
             )
@@ -158,7 +171,7 @@ class AcquisitionTests(unittest.TestCase):
 
     def test_asset_and_financing_rollforwards(self):
         for row in (
-            self.base["legacy_forecast_inr_m"] + self.base["molycop_forecast_usd_m"]
+            self.base["legacy_forecast_inr_m"] + self.base["molycop_forecast_inr_m"]
         ):
             self.assertAlmostEqual(
                 row["closing_asset_book_proxy"],
@@ -173,21 +186,21 @@ class AcquisitionTests(unittest.TestCase):
             self.assertAlmostEqual(row["parent_debt_rollforward_residual"], 0)
             self.assertAlmostEqual(row["molycop_net_debt_rollforward_residual"], 0)
             self.assertGreaterEqual(row["parent_closing_cash_inr_m"], 500 - 1e-8)
-            self.assertGreaterEqual(row["molycop_closing_net_bank_debt_usd_m"], -1e-8)
+            self.assertGreaterEqual(row["molycop_closing_net_bank_debt_inr_m"], -1e-8)
 
     def test_savings_are_not_added_to_first_year_guidance_twice(self):
         a = deepcopy(self.assumptions)
-        a["scenarios"]["base"]["molycop_cost_synergies_usd_m"][0] += 3
-        changed = self.model(a)["molycop_forecast_usd_m"][0]
+        a["scenarios"]["base"]["molycop_cost_synergies_inr_m"][0] += 3
+        changed = self.model(a)["molycop_forecast_inr_m"][0]
         self.assertAlmostEqual(
             changed["owned_fiscal_year_operating_ebitda"],
-            self.base["molycop_forecast_usd_m"][0][
+            self.base["molycop_forecast_inr_m"][0][
                 "owned_fiscal_year_operating_ebitda"
             ],
         )
 
     def test_terminal_reinvestment_is_required(self):
-        for key in ("legacy_dcf_inr_m", "molycop_dcf_usd_m"):
+        for key in ("group_dcf_inr_m",):
             v = self.base[key]
             self.assertAlmostEqual(
                 v["terminal_fcff"],
@@ -197,10 +210,9 @@ class AcquisitionTests(unittest.TestCase):
     def test_claims_and_discount_sensitivity_have_expected_direction(self):
         value = self.base["equity_bridge"]["value_per_share_inr"]
         for scope, key, delta in (
-            ("shared", "preference_fair_value_usd_m", 50),
-            ("shared", "molycop_other_claims_usd_m", 20),
-            ("scenario", "molycop_wacc_usd", 0.01),
-            ("scenario", "legacy_wacc_inr", 0.01),
+            ("shared", "preference_fair_value_inr_m", 50),
+            ("shared", "molycop_other_claims_inr_m", 20),
+            ("scenario", "group_wacc_inr", 0.01),
         ):
             a = deepcopy(self.assumptions)
             target = a["shared"] if scope == "shared" else a["scenarios"]["base"]
@@ -212,9 +224,9 @@ class AcquisitionTests(unittest.TestCase):
 
     def test_invalid_financial_inputs_rejected(self):
         for key, value in (
-            ("molycop_wacc_usd", 0.01),
-            ("earnout_usd_m", 121),
-            ("molycop_terminal_roic", 0.01),
+            ("group_wacc_inr", 0.01),
+            ("earnout_inr_m", 121 * 94.97),
+            ("group_terminal_roic", 0.01),
             ("earnout_payment_date", "2031-01-01"),
         ):
             a = deepcopy(self.assumptions)
@@ -222,7 +234,7 @@ class AcquisitionTests(unittest.TestCase):
             with self.subTest(key=key), self.assertRaises(AcquisitionInputError):
                 self.model(a)
         a = deepcopy(self.assumptions)
-        a["shared"]["preference_fair_value_usd_m"] = float("nan")
+        a["shared"]["preference_fair_value_inr_m"] = float("nan")
         with self.assertRaises(AcquisitionInputError):
             self.model(a)
 

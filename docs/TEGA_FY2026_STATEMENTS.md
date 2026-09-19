@@ -105,3 +105,10 @@ through 11 September 2026. March actuals do not establish June closing cash,
 acquired working capital, preference-return economics or final purchase accounting.
 Those estimates remain labeled. A complete statutory forecast of the acquired
 group's balance sheet is still outside the available source detail.
+
+## Currency conversion update
+
+The combined model now uses INR million throughout. USD-origin acquisition
+figures use the 2 September 2026 closing rate of INR94.97 per dollar; reported
+INR statements remain unchanged. This FX change can change the combined DCF
+values. See [the conversion guide](TEGA_INR_CONVERSION.md).

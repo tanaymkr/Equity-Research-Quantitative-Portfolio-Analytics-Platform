@@ -1,0 +1,175 @@
+{
+  "base_commit": "5e8ca508c887cad04216d649d8445aed03859417",
+  "valuation_method": "single_attributable_group_dcf",
+  "scope": "One DCF per scenario; 100% legacy plus attributable Molycop cash flows and claims",
+  "currency": "INR million; INR per share and INR per tonne where labeled",
+  "fx_date": "2026-09-02",
+  "inr_per_usd": 94.97,
+  "included_prior_update": "INR conversion; do not apply the older INR-only ZIP afterward",
+  "added": [
+    "docs/TEGA_INR_CONVERSION.md",
+    "docs/TEGA_INR_UPDATE_FILES.json",
+    "docs/TEGA_SINGLE_DCF.md",
+    "docs/TEGA_SINGLE_DCF_UPDATE_FILES.json",
+    "tests/test_acquisition_group.py",
+    "tests/test_acquisition_inr.py"
+  ],
+  "modified": [
+    "README.md",
+    "START_TEGA_MODEL.md",
+    "docs/TEGA_FY2026_STATEMENTS.md",
+    "docs/TEGA_MOLYCOP_MODEL.md",
+    "docs/TEGA_MOLYCOP_VALIDATION.md",
+    "examples/tega_molycop_assumptions.json",
+    "examples/tega_molycop_facts.json",
+    "examples/tega_molycop_reports/base/forecast.md",
+    "examples/tega_molycop_reports/base/model.json",
+    "examples/tega_molycop_reports/downside/forecast.md",
+    "examples/tega_molycop_reports/downside/model.json",
+    "examples/tega_molycop_reports/inputs_used.json",
+    "examples/tega_molycop_reports/report.html",
+    "examples/tega_molycop_reports/scenarios.md",
+    "examples/tega_molycop_reports/sensitivity.json",
+    "examples/tega_molycop_reports/upside/forecast.md",
+    "examples/tega_molycop_reports/upside/model.json",
+    "src/equity_analytics/acquisition/__main__.py",
+    "src/equity_analytics/acquisition/engine.py",
+    "src/equity_analytics/acquisition/reporting.py",
+    "tests/test_acquisition.py"
+  ],
+  "deleted": [],
+  "validation": {
+    "pytest_passed": 105,
+    "subtests_passed": 13,
+    "ruff": "passed",
+    "historical_reconciliations": 92,
+    "historical_input_and_four_reports": "byte-for-byte unchanged",
+    "business_operating_funding_schedule_comparisons": 12,
+    "single_dcf_calls": "one per scenario, spy-verified",
+    "sensitivity_rows": 30,
+    "html": "table structure, anchors, links and sensitivity precision checked; no browser rendering claim",
+    "release_overlay": "reproduces all 14 report files"
+  },
+  "provisional_outputs": {
+    "downside": {
+      "price_inr": 0.0,
+      "raw_equity_inr_m": -34507.73016164263
+    },
+    "base": {
+      "price_inr": 335.2453067422842,
+      "raw_equity_inr_m": 25186.20816085169
+    },
+    "upside": {
+      "price_inr": 1199.4869733115622,
+      "raw_equity_inr_m": 90114.6950858851
+    }
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "git_blob_sha": "13a877c1fac0d0f38e26ce190ae820388668c813"
+    },
+    {
+      "path": "START_TEGA_MODEL.md",
+      "git_blob_sha": "5ab451c3f1c0661e18c66dda0ce194d0eebc0dae"
+    },
+    {
+      "path": "docs/TEGA_FY2026_STATEMENTS.md",
+      "git_blob_sha": "524746d41500bcca36e1b9591b53b7529f5580e5"
+    },
+    {
+      "path": "docs/TEGA_INR_CONVERSION.md",
+      "git_blob_sha": "7af900de6ed05f17ad2f4b6198c0951a8608b0ab"
+    },
+    {
+      "path": "docs/TEGA_INR_UPDATE_FILES.json",
+      "git_blob_sha": "f14debc0f0d22c07957e7da5510a5e285ddc5243"
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_MODEL.md",
+      "git_blob_sha": "5fcbab66bda6571e679b0565777f930378681d81"
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_VALIDATION.md",
+      "git_blob_sha": "7530b8f9a46180ea04535c7a8e0415d79cdf6b95"
+    },
+    {
+      "path": "docs/TEGA_SINGLE_DCF.md",
+      "git_blob_sha": "f5fe14bd9ff4edc31e93688e2d93b9bcf3586850"
+    },
+    {
+      "path": "examples/tega_molycop_assumptions.json",
+      "git_blob_sha": "331569acd9346a8e6803386edb796c5dc9582e9c"
+    },
+    {
+      "path": "examples/tega_molycop_facts.json",
+      "git_blob_sha": "5bd5acec94707089310cc71c01ab42cff0a15bd6"
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/forecast.md",
+      "git_blob_sha": "0eab9a79d5a1c6b6001226d9a0f521ab320fe665"
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/model.json",
+      "git_blob_sha": "43c66ec434bde4ea8acb67290d87cb2b55193388"
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/forecast.md",
+      "git_blob_sha": "b966211b6454d048602ca22be72e0a3a22450c67"
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/model.json",
+      "git_blob_sha": "abe8e8188de6ac45732014fee5cc3dba6e715a3d"
+    },
+    {
+      "path": "examples/tega_molycop_reports/inputs_used.json",
+      "git_blob_sha": "ae7b9c5ef7a71b5988abea01378c62af6d6801ab"
+    },
+    {
+      "path": "examples/tega_molycop_reports/report.html",
+      "git_blob_sha": "00d13d24a2ce29db93da21037bd434657e6d61aa"
+    },
+    {
+      "path": "examples/tega_molycop_reports/scenarios.md",
+      "git_blob_sha": "b7968bde2cd079b2e5a4ed24ea04980eb25dab80"
+    },
+    {
+      "path": "examples/tega_molycop_reports/sensitivity.json",
+      "git_blob_sha": "d22d0593d17965b989728b9fe1fa45338ae536dc"
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/forecast.md",
+      "git_blob_sha": "514c9c60d03c389c0d65a7743e69fbe9ba9ab476"
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/model.json",
+      "git_blob_sha": "14415400060c6111840f40a64502eade2cf7cf67"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/__main__.py",
+      "git_blob_sha": "2a4244168dc07e8fcd3babb32114703144633831"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/engine.py",
+      "git_blob_sha": "22d0fc448674853ce5760cf88fd3a1c1292252ac"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/reporting.py",
+      "git_blob_sha": "c99f0a4c1a2041c16a5ec268aa175635c88fe8be"
+    },
+    {
+      "path": "tests/test_acquisition.py",
+      "git_blob_sha": "a70ff226293c860a47eb084bcad6c29bfd3af0b9"
+    },
+    {
+      "path": "tests/test_acquisition_group.py",
+      "git_blob_sha": "06aba9c55da8727bd34aa49378070abe54103e03"
+    },
+    {
+      "path": "tests/test_acquisition_inr.py",
+      "git_blob_sha": "e1d510013cb18f88b6dc88ec02823a6c8c5b557f"
+    }
+  ],
+  "manifest_note": "Own hash omitted to avoid self-reference. Older manifests describe historical releases.",
+  "install": "Merge all files into the repository, replacing included files. No deletions. Run Run_Tega_Model.bat."
+}

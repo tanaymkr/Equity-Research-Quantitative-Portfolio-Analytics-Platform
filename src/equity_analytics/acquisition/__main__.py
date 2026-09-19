@@ -15,7 +15,7 @@ from .reporting import write_reports
 def main(default_root=None):
     root = Path(default_root or Path.cwd())
     parser = argparse.ArgumentParser(
-        description="Tega + Molycop provisional acquisition DCF"
+        description="Tega + Molycop single attributable group DCF"
     )
     parser.add_argument(
         "--facts", type=Path, default=root / "examples/tega_molycop_facts.json"
@@ -67,8 +67,9 @@ def main(default_root=None):
     ) as exc:
         parser.exit(1, f"Model could not run: {exc}\n")
     print(
-        "PROVISIONAL acquisition DCF; value date 2026-06-30; research through 2026-09-11."
+        "PROVISIONAL single group DCF; value date 2026-06-30; research through 2026-09-11."
     )
+    print("Amounts: INR million. USD conversion: 94.97, market close on 2026-09-02.")
     print(f"FY26 statement reconciliation checks passed: {len(historical_checks)}")
     for name, result in results.items():
         b = result["equity_bridge"]
