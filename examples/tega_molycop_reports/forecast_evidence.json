@@ -1,0 +1,1196 @@
+{
+  "review_date": "2026-09-20",
+  "priority": [
+    "user-approved revenue paths",
+    "management guidance within stated scope/period",
+    "verifiable comparable analyst consensus",
+    "available historical trend",
+    "unresolved: explicit provisional input or null"
+  ],
+  "historical_driver_calculations": {
+    "years": [
+      2024,
+      2025,
+      2026
+    ],
+    "method": "Arithmetic mean of available annual ratios; closing-balance/sales convention. FY26 transaction costs removed from operating cost mix only. Tax is unadjusted total accounting tax / PBT, a cash-tax proxy rather than a statutory marginal tax rate.",
+    "observations": [
+      {
+        "fiscal_year": 2024,
+        "receivable_days": 109.3725556268649,
+        "inventory_revenue_fraction": 0.24796980533444452,
+        "payable_revenue_fraction": 0.12285943589997816,
+        "other_operating_current_assets_revenue_fraction": 0.029834248221695517,
+        "other_operating_current_liabilities_revenue_fraction": 0.08086143762301419,
+        "cash_capex_revenue_fraction": 0.037121645539601025,
+        "effective_accounting_tax_rate": 0.21506804387524142,
+        "cfo_after_financing_interest": 2217.0499999999997,
+        "term_principal_repayment": 268.35,
+        "lease_principal_repayment": 129.12,
+        "materials_share_of_operating_cost": 0.5914295572011538,
+        "inventory_change_expense_share_of_operating_cost": -0.0428692100732361,
+        "employee_expense_share_of_operating_cost": 0.18684044590912877,
+        "other_expense_share_of_operating_cost": 0.26459920696295364
+      },
+      {
+        "fiscal_year": 2025,
+        "receivable_days": 111.60531132010418,
+        "inventory_revenue_fraction": 0.2529672273107575,
+        "payable_revenue_fraction": 0.1356737950912061,
+        "other_operating_current_assets_revenue_fraction": 0.0390321062874279,
+        "other_operating_current_liabilities_revenue_fraction": 0.054669969383352536,
+        "cash_capex_revenue_fraction": 0.10385371869910066,
+        "effective_accounting_tax_rate": 0.22792614140541206,
+        "cfo_after_financing_interest": 1691.09,
+        "term_principal_repayment": 199.03,
+        "lease_principal_repayment": 183.42,
+        "materials_share_of_operating_cost": 0.5525806834087594,
+        "inventory_change_expense_share_of_operating_cost": -0.01483090321994515,
+        "employee_expense_share_of_operating_cost": 0.1918686029555558,
+        "other_expense_share_of_operating_cost": 0.27038161685562984
+      },
+      {
+        "fiscal_year": 2026,
+        "receivable_days": 97.47745482098614,
+        "inventory_revenue_fraction": 0.2582532672630643,
+        "payable_revenue_fraction": 0.19713688933860382,
+        "other_operating_current_assets_revenue_fraction": 0.056137466192574655,
+        "other_operating_current_liabilities_revenue_fraction": 0.0705724093582736,
+        "cash_capex_revenue_fraction": 0.08034346452820909,
+        "effective_accounting_tax_rate": 0.29067882572894704,
+        "cfo_after_financing_interest": 3284.15,
+        "term_principal_repayment": 175.14,
+        "lease_principal_repayment": 250.64,
+        "materials_share_of_operating_cost": 0.5180430575346348,
+        "inventory_change_expense_share_of_operating_cost": -0.0227780271959827,
+        "employee_expense_share_of_operating_cost": 0.2023779314772281,
+        "other_expense_share_of_operating_cost": 0.3023570381841198
+      }
+    ],
+    "averages": {
+      "receivable_days": 106.15177392265174,
+      "inventory_revenue_fraction": 0.25306343330275544,
+      "payable_revenue_fraction": 0.15189004010992938,
+      "other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+      "other_operating_current_liabilities_revenue_fraction": 0.06870127212154678,
+      "cash_capex_revenue_fraction": 0.07377294292230359,
+      "effective_accounting_tax_rate": 0.2445576703365335,
+      "cfo_after_financing_interest": 2397.43,
+      "term_principal_repayment": 214.17333333333335,
+      "lease_principal_repayment": 187.72666666666666,
+      "materials_share_of_operating_cost": 0.5540177660481826,
+      "inventory_change_expense_share_of_operating_cost": -0.02682604682972132,
+      "employee_expense_share_of_operating_cost": 0.19369566011397088,
+      "other_expense_share_of_operating_cost": 0.27911262066756776
+    },
+    "source_urls": [
+      "https://nsearchives.nseindia.com/corporate/TEGA_26082025192638_Intimation_Notice_AGM_2025_sd.pdf",
+      "https://www.tegaindustries.com/assets/pdfs/int/2026/20260828_105759.pdf"
+    ]
+  },
+  "consensus_review": {
+    "review_date": "2026-09-20",
+    "snapshot_date": "2026-09-19",
+    "url": "https://trendlyne.com/equity/consensus-estimates/743298/TEGA/tega-industries-ltd/",
+    "analyst_count": 4,
+    "fy27_group_revenue_growth": 8.244,
+    "fy27_group_profit_growth": 2.127,
+    "use": "Comparison only. Public summary has no detailed segment/expense/BS/CF estimates, definitions or individual report dates. Do not override approved revenue or backsolve expenses from headline profit.",
+    "group_wacc": null,
+    "wacc_status": "No publicly verifiable analyst consensus WACC found for the enlarged group. A single provider discount-rate estimate is not consensus.",
+    "other_sources_checked": [
+      "https://trendlyne.com/research-reports/stock/743298/TEGA/tega-industries-ltd/",
+      "https://www.alphaspread.com/security/nse/tega/discount-rate",
+      "https://www.marketscreener.com/quote/stock/TEGA-INDUSTRIES-LIMITED-130552425/finances/"
+    ],
+    "access_limits": "Broker list exposed old reports; Alpha Spread and MarketScreener pages were not accessible. Absence of a verified public estimate does not mean none exists in paid research."
+  },
+  "limitations": [
+    "Only FY24-FY26 legacy statements and FY25-FY26 equipment margins are available in the reconciled source files; no invented four-year average.",
+    "Molycop full opening accounts, separate cash/gross bank debt, cost components, tax balances, provisions, and preference contractual return remain missing.",
+    "Forecast statement schedules are partial estimates. Totals, statutory PAT/EPS, retained earnings and the balance-sheet residual remain null where necessary; no balance-sheet plug.",
+    "Management consolidated ~15% EBITDA margin is a comparison check. The exact definition and different segment guidance/revenue assumptions do not support plugging earnings to force a match.",
+    "No quantified incremental cross-selling revenue is stacked on the approved growth paths."
+  ],
+  "drivers": [
+    {
+      "line_item": "Revenue by business",
+      "basis": "user_approved",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "q1_call"
+      ],
+      "method": "Exact approved paths. Molycop base 5% is revenue growth with flat realization; management supports FY27 volume only, not a commitment through FY34. Unquantified cross-sell add-on removed.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.legacy_consumables_growth": [
+          0.08,
+          0.08,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "scenarios.downside.equipment_growth": [
+          0.08,
+          0.08,
+          0.07,
+          0.06,
+          0.06,
+          0.05,
+          0.04,
+          0.04
+        ],
+        "scenarios.downside.molycop_volume_growth": [
+          0.0,
+          0.01,
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02
+        ],
+        "scenarios.downside.molycop_price_growth": [
+          -0.03,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.downside.legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.base.legacy_consumables_growth": [
+          0.15,
+          0.15,
+          0.14,
+          0.12,
+          0.1,
+          0.09,
+          0.08,
+          0.07
+        ],
+        "scenarios.base.equipment_growth": [
+          0.14,
+          0.14,
+          0.12,
+          0.1,
+          0.1,
+          0.08,
+          0.08,
+          0.07
+        ],
+        "scenarios.base.molycop_volume_growth": [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "scenarios.base.molycop_price_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.base.legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.upside.legacy_consumables_growth": [
+          0.18,
+          0.18,
+          0.17,
+          0.15,
+          0.13,
+          0.11,
+          0.1,
+          0.09
+        ],
+        "scenarios.upside.equipment_growth": [
+          0.18,
+          0.18,
+          0.16,
+          0.14,
+          0.12,
+          0.12,
+          0.12,
+          0.1
+        ],
+        "scenarios.upside.molycop_volume_growth": [
+          0.07,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.04,
+          0.04,
+          0.035
+        ],
+        "scenarios.upside.molycop_price_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.upside.legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "current_values": {
+        "scenarios.downside.legacy_consumables_growth": [
+          0.08,
+          0.08,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "scenarios.downside.equipment_growth": [
+          0.08,
+          0.08,
+          0.07,
+          0.06,
+          0.06,
+          0.05,
+          0.04,
+          0.04
+        ],
+        "scenarios.downside.molycop_volume_growth": [
+          0.0,
+          0.01,
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02
+        ],
+        "scenarios.downside.molycop_price_growth": [
+          -0.03,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.downside.legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.base.legacy_consumables_growth": [
+          0.15,
+          0.15,
+          0.14,
+          0.12,
+          0.1,
+          0.09,
+          0.08,
+          0.07
+        ],
+        "scenarios.base.equipment_growth": [
+          0.14,
+          0.14,
+          0.12,
+          0.1,
+          0.1,
+          0.08,
+          0.08,
+          0.07
+        ],
+        "scenarios.base.molycop_volume_growth": [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        "scenarios.base.molycop_price_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.base.legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.upside.legacy_consumables_growth": [
+          0.18,
+          0.18,
+          0.17,
+          0.15,
+          0.13,
+          0.11,
+          0.1,
+          0.09
+        ],
+        "scenarios.upside.equipment_growth": [
+          0.18,
+          0.18,
+          0.16,
+          0.14,
+          0.12,
+          0.12,
+          0.12,
+          0.1
+        ],
+        "scenarios.upside.molycop_volume_growth": [
+          0.07,
+          0.08,
+          0.07,
+          0.06,
+          0.05,
+          0.04,
+          0.04,
+          0.035
+        ],
+        "scenarios.upside.molycop_price_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.upside.legacy_incremental_cross_sell_revenue_inr_m": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Consumables EBITDA margin",
+      "basis": "management_range_interpretation",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "q1_call"
+      ],
+      "method": "20% / 21.5% / 23% for down/base/up. Applied as operating margin; presentation EBITDA can include other income, so definition remains a comparability risk.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.consumables_operating_ebitda_margin": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "scenarios.base.consumables_operating_ebitda_margin": [
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215
+        ],
+        "scenarios.upside.consumables_operating_ebitda_margin": [
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23
+        ]
+      },
+      "current_values": {
+        "scenarios.downside.consumables_operating_ebitda_margin": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        "scenarios.base.consumables_operating_ebitda_margin": [
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215,
+          0.215
+        ],
+        "scenarios.upside.consumables_operating_ebitda_margin": [
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23,
+          0.23
+        ]
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Equipment EBITDA margin",
+      "basis": "historical",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "Mean FY25/FY26 segment EBITDA/revenue, Note 42; same ratio across cases.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.equipment_operating_ebitda_margin": [
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239
+        ],
+        "scenarios.base.equipment_operating_ebitda_margin": [
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239
+        ],
+        "scenarios.upside.equipment_operating_ebitda_margin": [
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239
+        ]
+      },
+      "current_values": {
+        "scenarios.downside.equipment_operating_ebitda_margin": [
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239
+        ],
+        "scenarios.base.equipment_operating_ebitda_margin": [
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239
+        ],
+        "scenarios.upside.equipment_operating_ebitda_margin": [
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239,
+          0.12153226981989239
+        ]
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy cost components",
+      "basis": "historical_allocation",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "Average FY24-FY26 normalized cost shares allocate the margin-driven expense envelope; subtract FY26 transaction expense from historical other expense. This is an allocation, not independent component guidance.",
+      "status": "Applied",
+      "reviewed_values": {
+        "shared.legacy_operating_cost_mix": {
+          "materials": 0.5540177660481826,
+          "inventory_change_expense": -0.02682604682972132,
+          "employee_expense": 0.19369566011397088,
+          "other_expense": 0.27911262066756776
+        }
+      },
+      "current_values": {
+        "shared.legacy_operating_cost_mix": {
+          "materials": 0.5540177660481826,
+          "inventory_change_expense": -0.02682604682972132,
+          "employee_expense": 0.19369566011397088,
+          "other_expense": 0.27911262066756776
+        }
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Molycop FY27 EBITDA",
+      "basis": "management",
+      "period": "FY2027",
+      "source_ids": [
+        "q1_call"
+      ],
+      "method": "4% growth over comparable ten months; actual comparable ten-month earnings unavailable, so use FY26 EBITDA times 10/12 and remove reported June.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.molycop_first_year_total_ebitda_growth": 0.04,
+        "scenarios.base.molycop_first_year_total_ebitda_growth": 0.04,
+        "scenarios.upside.molycop_first_year_total_ebitda_growth": 0.04
+      },
+      "current_values": {
+        "scenarios.downside.molycop_first_year_total_ebitda_growth": 0.04,
+        "scenarios.base.molycop_first_year_total_ebitda_growth": 0.04,
+        "scenarios.upside.molycop_first_year_total_ebitda_growth": 0.04
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Molycop core profit and savings",
+      "basis": "management_with_timing_estimate",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "q1_call"
+      ],
+      "method": "Flat core profit per tonne following management approach; INR1899.4m cost-saving target in 2-2.5 years. Annual ramp/run-rate interpretation is modeled; first-year savings already in 4% guidance.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.downside.molycop_cost_synergies_inr_m": [
+          189.94,
+          949.7,
+          1709.46,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4
+        ],
+        "scenarios.base.molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.base.molycop_cost_synergies_inr_m": [
+          189.94,
+          949.7,
+          1709.46,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4
+        ],
+        "scenarios.upside.molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.upside.molycop_cost_synergies_inr_m": [
+          189.94,
+          949.7,
+          1709.46,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4
+        ]
+      },
+      "current_values": {
+        "scenarios.downside.molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.downside.molycop_cost_synergies_inr_m": [
+          189.94,
+          949.7,
+          1709.46,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4
+        ],
+        "scenarios.base.molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.base.molycop_cost_synergies_inr_m": [
+          189.94,
+          949.7,
+          1709.46,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4
+        ],
+        "scenarios.upside.molycop_core_ebitda_per_tonne_growth": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scenarios.upside.molycop_cost_synergies_inr_m": [
+          189.94,
+          949.7,
+          1709.46,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4,
+          1899.4
+        ]
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy trade and other operating working capital",
+      "basis": "historical",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "FY24-FY26 mean closing balance / revenue. Other operating current assets include contract assets; liabilities include current provisions. Treasury/derivative/tax balances are excluded.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.legacy_receivable_days": 106.15177392265174,
+        "scenarios.downside.legacy_inventory_revenue_fraction": 0.25306343330275544,
+        "scenarios.downside.legacy_payable_revenue_fraction": 0.15189004010992938,
+        "scenarios.downside.legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+        "scenarios.downside.legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678,
+        "scenarios.base.legacy_receivable_days": 106.15177392265174,
+        "scenarios.base.legacy_inventory_revenue_fraction": 0.25306343330275544,
+        "scenarios.base.legacy_payable_revenue_fraction": 0.15189004010992938,
+        "scenarios.base.legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+        "scenarios.base.legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678,
+        "scenarios.upside.legacy_receivable_days": 106.15177392265174,
+        "scenarios.upside.legacy_inventory_revenue_fraction": 0.25306343330275544,
+        "scenarios.upside.legacy_payable_revenue_fraction": 0.15189004010992938,
+        "scenarios.upside.legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+        "scenarios.upside.legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678
+      },
+      "current_values": {
+        "scenarios.downside.legacy_receivable_days": 106.15177392265174,
+        "scenarios.downside.legacy_inventory_revenue_fraction": 0.25306343330275544,
+        "scenarios.downside.legacy_payable_revenue_fraction": 0.15189004010992938,
+        "scenarios.downside.legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+        "scenarios.downside.legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678,
+        "scenarios.base.legacy_receivable_days": 106.15177392265174,
+        "scenarios.base.legacy_inventory_revenue_fraction": 0.25306343330275544,
+        "scenarios.base.legacy_payable_revenue_fraction": 0.15189004010992938,
+        "scenarios.base.legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+        "scenarios.base.legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678,
+        "scenarios.upside.legacy_receivable_days": 106.15177392265174,
+        "scenarios.upside.legacy_inventory_revenue_fraction": 0.25306343330275544,
+        "scenarios.upside.legacy_payable_revenue_fraction": 0.15189004010992938,
+        "scenarios.upside.legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
+        "scenarios.upside.legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy FY27 capex",
+      "basis": "management",
+      "period": "FY2027",
+      "source_ids": [
+        "q1_call"
+      ],
+      "method": "INR3798.8m translated from management USD40m, including Chile. Q1/future timing remains an estimate.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.legacy_capex_fy27_inr_m": 3798.8,
+        "scenarios.base.legacy_capex_fy27_inr_m": 3798.8,
+        "scenarios.upside.legacy_capex_fy27_inr_m": 3798.8
+      },
+      "current_values": {
+        "scenarios.downside.legacy_capex_fy27_inr_m": 3798.8,
+        "scenarios.base.legacy_capex_fy27_inr_m": 3798.8,
+        "scenarios.upside.legacy_capex_fy27_inr_m": 3798.8
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy later capex",
+      "basis": "historical",
+      "period": "FY2028-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "Mean FY24-FY26 cash capex / revenue; does not repeat FY27 Chile expansion ratio.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "scenarios.base.legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "scenarios.upside.legacy_later_capex_revenue_fraction": 0.07377294292230359
+      },
+      "current_values": {
+        "scenarios.downside.legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "scenarios.base.legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "scenarios.upside.legacy_later_capex_revenue_fraction": 0.07377294292230359
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Molycop capex",
+      "basis": "management_with_extrapolation",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "q1_call"
+      ],
+      "method": "FY27 INR2659.16m for ten months; FY28/29 down/base/up USD35/33/32m converted at 94.97, interpretations of low-mid30s. FY30 onward multiply FY29 capex by revenue growth cumulatively; no verified history beyond guidance.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.molycop_capex_fy27_ten_month_inr_m": 2659.16,
+        "scenarios.downside.molycop_later_annual_capex_inr_m": [
+          0,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95
+        ],
+        "scenarios.downside.molycop_capex_revenue_link_start_year": 2030,
+        "scenarios.base.molycop_capex_fy27_ten_month_inr_m": 2659.16,
+        "scenarios.base.molycop_later_annual_capex_inr_m": [
+          0,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01
+        ],
+        "scenarios.base.molycop_capex_revenue_link_start_year": 2030,
+        "scenarios.upside.molycop_capex_fy27_ten_month_inr_m": 2659.16,
+        "scenarios.upside.molycop_later_annual_capex_inr_m": [
+          0,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04
+        ],
+        "scenarios.upside.molycop_capex_revenue_link_start_year": 2030
+      },
+      "current_values": {
+        "scenarios.downside.molycop_capex_fy27_ten_month_inr_m": 2659.16,
+        "scenarios.downside.molycop_later_annual_capex_inr_m": [
+          0,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95,
+          3323.95
+        ],
+        "scenarios.downside.molycop_capex_revenue_link_start_year": 2030,
+        "scenarios.base.molycop_capex_fy27_ten_month_inr_m": 2659.16,
+        "scenarios.base.molycop_later_annual_capex_inr_m": [
+          0,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01,
+          3134.01
+        ],
+        "scenarios.base.molycop_capex_revenue_link_start_year": 2030,
+        "scenarios.upside.molycop_capex_fy27_ten_month_inr_m": 2659.16,
+        "scenarios.upside.molycop_later_annual_capex_inr_m": [
+          0,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04,
+          3039.04
+        ],
+        "scenarios.upside.molycop_capex_revenue_link_start_year": 2030
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy FY27 finance cost",
+      "basis": "management_range",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "q1_call",
+        "q1_deck"
+      ],
+      "method": "Down/base/up INR1200/1150/1100m less actual Q1 INR193.23m. Later annual rate inferred from remaining cost/opening debt and carried forward; financing uses expense as cash proxy.",
+      "status": "Applied",
+      "reviewed_values": {
+        "scenarios.downside.legacy_fy27_finance_cost_inr_m": 1200,
+        "scenarios.base.legacy_fy27_finance_cost_inr_m": 1150,
+        "scenarios.upside.legacy_fy27_finance_cost_inr_m": 1100
+      },
+      "current_values": {
+        "scenarios.downside.legacy_fy27_finance_cost_inr_m": 1200,
+        "scenarios.base.legacy_fy27_finance_cost_inr_m": 1150,
+        "scenarios.upside.legacy_fy27_finance_cost_inr_m": 1100
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy normalized tax",
+      "basis": "historical_proxy",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "FY24-FY26 mean accounting ETR =24.4558%; cash and deferred tax timing need further detail.",
+      "status": "Applied",
+      "reviewed_values": {
+        "shared.earned_income_tax_rate_legacy": 0.2445576703365335
+      },
+      "current_values": {
+        "shared.earned_income_tax_rate_legacy": 0.2445576703365335
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy opening CFO and scheduled repayments",
+      "basis": "history_with_timing_estimate",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "CFO uses mean FY24-FY26/4; FY27 repayments use March current maturities (quarter allocated Q1); later repayments use FY24-FY26 annual mean. Parent loan maturity still needs refinancing review.",
+      "status": "Applied",
+      "reviewed_values": {
+        "shared.q1_legacy_operating_cash_after_interest_tax_inr_m": 599.3575,
+        "shared.q1_legacy_lease_principal_inr_m": 67.22,
+        "shared.q1_legacy_other_principal_inr_m": 58.7225,
+        "shared.legacy_fy27_remaining_scheduled_principal_inr_m": 377.8275,
+        "shared.legacy_scheduled_annual_principal_inr_m": 401.9
+      },
+      "current_values": {
+        "shared.q1_legacy_operating_cash_after_interest_tax_inr_m": 599.3575,
+        "shared.q1_legacy_lease_principal_inr_m": 67.22,
+        "shared.q1_legacy_other_principal_inr_m": 58.7225,
+        "shared.legacy_fy27_remaining_scheduled_principal_inr_m": 377.8275,
+        "shared.legacy_scheduled_annual_principal_inr_m": 401.9
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Legacy new lease assets",
+      "basis": "latest_history",
+      "period": "FY2027-FY2034",
+      "source_ids": [
+        "annual26"
+      ],
+      "method": "FY26 reported ROU additions, scaled to forecast revenue. New liabilities equal model lease asset additions; actual contracts can differ.",
+      "status": "Applied",
+      "reviewed_values": {
+        "shared.legacy_annual_new_lease_assets_inr_m": 337.79
+      },
+      "current_values": {
+        "shared.legacy_annual_new_lease_assets_inr_m": 337.79
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Group WACC and terminal parameters",
+      "basis": "unresolved",
+      "period": "FY2027-FY2034",
+      "source_ids": [],
+      "method": "No verified public consensus group WACC; retain 14/12/10.5% scenario sensitivity inputs. Terminal growth and ROIC also remain provisional.",
+      "status": "Provisional; no consensus claim",
+      "reviewed_values": {
+        "scenarios.downside.group_wacc_inr": 0.14,
+        "scenarios.downside.group_terminal_growth_inr": 0.03,
+        "scenarios.downside.group_terminal_roic": 0.13,
+        "scenarios.base.group_wacc_inr": 0.12,
+        "scenarios.base.group_terminal_growth_inr": 0.04,
+        "scenarios.base.group_terminal_roic": 0.16,
+        "scenarios.upside.group_wacc_inr": 0.105,
+        "scenarios.upside.group_terminal_growth_inr": 0.045,
+        "scenarios.upside.group_terminal_roic": 0.18
+      },
+      "current_values": {
+        "scenarios.downside.group_wacc_inr": 0.14,
+        "scenarios.downside.group_terminal_growth_inr": 0.03,
+        "scenarios.downside.group_terminal_roic": 0.13,
+        "scenarios.base.group_wacc_inr": 0.12,
+        "scenarios.base.group_terminal_growth_inr": 0.04,
+        "scenarios.base.group_terminal_roic": 0.16,
+        "scenarios.upside.group_wacc_inr": 0.105,
+        "scenarios.upside.group_terminal_growth_inr": 0.045,
+        "scenarios.upside.group_terminal_roic": 0.18
+      },
+      "changed_since_review": false
+    },
+    {
+      "line_item": "Unresolved acquisition and schedule inputs",
+      "basis": "unresolved",
+      "period": "FY2027-FY2034",
+      "source_ids": [],
+      "method": "Carry forward explicit research inputs only to keep sensitivity schedules runnable: Molycop NWC/tax, asset lives/commissioning, integration costs, preference return/FV, other claims, earnout likelihood, interest/principal split, distributions and cash floors. No verified management/consensus/history replacement was obtained.",
+      "status": "Provisional; detailed source data required",
+      "reviewed_values": {
+        "shared.q1_legacy_cash_capex_fraction_of_fy27": 0.25,
+        "shared.q1_legacy_other_cash_movement_inr_m": 0.0,
+        "shared.legacy_june_nwc_increment_inr_m": 0.0,
+        "shared.legacy_opening_commissioned_q1_capex_fraction": 0.2,
+        "shared.molycop_annual_new_lease_assets_inr_m": 284.91,
+        "shared.molycop_annual_lease_principal_inr_m": 284.91,
+        "shared.legacy_new_asset_life_years": 8.0,
+        "shared.molycop_new_asset_life_years": 10.0,
+        "shared.new_lease_asset_life_years": 6.0,
+        "shared.molycop_existing_asset_remaining_life_years": 8.0,
+        "shared.molycop_ppa_intangible_life_years": 15.0,
+        "shared.molycop_ppa_tax_deductible_fraction": 0.0,
+        "shared.molycop_fy2026_ebitda_operating_adjustment_inr_m": 0.0,
+        "shared.molycop_other_claims_inr_m": 4748.5,
+        "shared.preference_fair_value_inr_m": 25641.9,
+        "shared.preference_assumed_pik_rate": 0.12,
+        "shared.preference_assumed_cash_rate_after_deferral": 0.12,
+        "shared.legacy_minimum_cash_inr_m": 500.0,
+        "shared.legacy_debt_interest_rate": 0.07,
+        "shared.molycop_net_debt_interest_rate_proxy": 0.09,
+        "shared.molycop_fy27_ten_month_cash_interest_inr_m": 5983.11,
+        "shared.molycop_fy27_ten_month_scheduled_principal_inr_m": 664.79,
+        "shared.molycop_cash_retention_for_debt_fraction": 0.7,
+        "shared.earned_income_tax_rate_molycop": 0.27,
+        "shared.unquantified_asset_sale_proceeds_inr_m": 0.0,
+        "shared.pending_issue_expenses_inr_m": 0.0,
+        "shared.molycop_later_annual_scheduled_principal_inr_m": 664.79,
+        "scenarios.downside.molycop_integration_cash_cost_inr_m": [
+          474.85,
+          379.88,
+          189.94,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scenarios.downside.molycop_opening_nwc_revenue_fraction": 0.2,
+        "scenarios.downside.molycop_forecast_nwc_revenue_fraction": 0.23,
+        "scenarios.downside.earnout_inr_m": 0.0,
+        "scenarios.base.molycop_integration_cash_cost_inr_m": [
+          189.94,
+          189.94,
+          94.97,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scenarios.base.molycop_opening_nwc_revenue_fraction": 0.2,
+        "scenarios.base.molycop_forecast_nwc_revenue_fraction": 0.2,
+        "scenarios.base.earnout_inr_m": 5698.2,
+        "scenarios.upside.molycop_integration_cash_cost_inr_m": [
+          284.91,
+          284.91,
+          94.97,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scenarios.upside.molycop_opening_nwc_revenue_fraction": 0.2,
+        "scenarios.upside.molycop_forecast_nwc_revenue_fraction": 0.18,
+        "scenarios.upside.earnout_inr_m": 11396.4
+      },
+      "current_values": {
+        "shared.q1_legacy_cash_capex_fraction_of_fy27": 0.25,
+        "shared.q1_legacy_other_cash_movement_inr_m": 0.0,
+        "shared.legacy_june_nwc_increment_inr_m": 0.0,
+        "shared.legacy_opening_commissioned_q1_capex_fraction": 0.2,
+        "shared.molycop_annual_new_lease_assets_inr_m": 284.91,
+        "shared.molycop_annual_lease_principal_inr_m": 284.91,
+        "shared.legacy_new_asset_life_years": 8.0,
+        "shared.molycop_new_asset_life_years": 10.0,
+        "shared.new_lease_asset_life_years": 6.0,
+        "shared.molycop_existing_asset_remaining_life_years": 8.0,
+        "shared.molycop_ppa_intangible_life_years": 15.0,
+        "shared.molycop_ppa_tax_deductible_fraction": 0.0,
+        "shared.molycop_fy2026_ebitda_operating_adjustment_inr_m": 0.0,
+        "shared.molycop_other_claims_inr_m": 4748.5,
+        "shared.preference_fair_value_inr_m": 25641.9,
+        "shared.preference_assumed_pik_rate": 0.12,
+        "shared.preference_assumed_cash_rate_after_deferral": 0.12,
+        "shared.legacy_minimum_cash_inr_m": 500.0,
+        "shared.legacy_debt_interest_rate": 0.07,
+        "shared.molycop_net_debt_interest_rate_proxy": 0.09,
+        "shared.molycop_fy27_ten_month_cash_interest_inr_m": 5983.11,
+        "shared.molycop_fy27_ten_month_scheduled_principal_inr_m": 664.79,
+        "shared.molycop_cash_retention_for_debt_fraction": 0.7,
+        "shared.earned_income_tax_rate_molycop": 0.27,
+        "shared.unquantified_asset_sale_proceeds_inr_m": 0.0,
+        "shared.pending_issue_expenses_inr_m": 0.0,
+        "shared.molycop_later_annual_scheduled_principal_inr_m": 664.79,
+        "scenarios.downside.molycop_integration_cash_cost_inr_m": [
+          474.85,
+          379.88,
+          189.94,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scenarios.downside.molycop_opening_nwc_revenue_fraction": 0.2,
+        "scenarios.downside.molycop_forecast_nwc_revenue_fraction": 0.23,
+        "scenarios.downside.earnout_inr_m": 0.0,
+        "scenarios.base.molycop_integration_cash_cost_inr_m": [
+          189.94,
+          189.94,
+          94.97,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scenarios.base.molycop_opening_nwc_revenue_fraction": 0.2,
+        "scenarios.base.molycop_forecast_nwc_revenue_fraction": 0.2,
+        "scenarios.base.earnout_inr_m": 5698.2,
+        "scenarios.upside.molycop_integration_cash_cost_inr_m": [
+          284.91,
+          284.91,
+          94.97,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scenarios.upside.molycop_opening_nwc_revenue_fraction": 0.2,
+        "scenarios.upside.molycop_forecast_nwc_revenue_fraction": 0.18,
+        "scenarios.upside.earnout_inr_m": 11396.4
+      },
+      "changed_since_review": false
+    }
+  ]
+}

@@ -70,6 +70,9 @@ def main(default_root=None):
         "PROVISIONAL single group DCF; value date 2026-06-30; research through 2026-09-11."
     )
     print("Amounts: INR million. USD conversion: 94.97, market close on 2026-09-02.")
+    print(
+        "Assumption review: 2026-09-20. Statement forecasts are partial; group WACC has no verified consensus source."
+    )
     print(f"FY26 statement reconciliation checks passed: {len(historical_checks)}")
     for name, result in results.items():
         b = result["equity_bridge"]

@@ -1,5 +1,10 @@
 # Tega + Molycop: single group DCF in INR
 
+Current revenue/financial-driver assumptions were updated on 20 September 2026.
+See [the source review and linked statement coverage](TEGA_REVENUE_DRIVERS_UPDATE.md).
+The single group DCF method below is retained; earlier operating-input descriptions
+are superseded where the new driver review differs.
+
 **Tega Industries Limited, NSE: TEGA.** All monetary model amounts below are
 **INR million**. Value date: **30 June 2026**. Financial research cutoff:
 **11 September 2026**. USD-origin amounts are converted at **INR94.97 per dollar**,

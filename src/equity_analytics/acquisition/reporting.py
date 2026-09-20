@@ -13,7 +13,7 @@ from .engine import build_acquisition_model
 
 
 def _n(value):
-    return f"{value:,.2f}"
+    return "Unresolved" if value is None else f"{value:,.2f}"
 
 
 def _table(headers, rows, html=False):
@@ -122,6 +122,24 @@ def sensitivities(facts, assumptions):
 def _case_tables(result):
     b = result["equity_bridge"]
     v = result["group_dcf_inr_m"]
+    a = result["scenario_assumptions"]
+    years = [r["fiscal_year"] for r in result["legacy_forecast_inr_m"]]
+    yield (
+        "Approved revenue growth (underlying annual rates)",
+        ["Business"] + [f"FY{y}" for y in years],
+        [
+            ["Legacy consumables"]
+            + [f"{x:.1%}" for x in a["legacy_consumables_growth"]],
+            ["Equipment"] + [f"{x:.1%}" for x in a["equipment_growth"]],
+            ["Molycop"]
+            + [
+                f"{(1 + x) * (1 + y) - 1:.1%}"
+                for x, y in zip(
+                    a["molycop_volume_growth"], a["molycop_price_growth"], strict=True
+                )
+            ],
+        ],
+    )
     yield (
         "One group DCF: cash flows attributable to Tega (INR million)",
         [
@@ -310,7 +328,11 @@ def _case_tables(result):
             [
                 [
                     r["fiscal_year"],
-                    _n(r["opening_depreciable_book_proxy"] + r["opening_cwip_proxy"]),
+                    _n(
+                        r["opening_depreciable_book_proxy"]
+                        + r["opening_cwip_proxy"]
+                        + r["nondepreciable_land"]
+                    ),
                 ]
                 + [
                     _n(r[k])
@@ -382,6 +404,93 @@ def _case_tables(result):
             for r in result["financing_schedule"]
         ],
     )
+    for business, rows in result.get("linked_statements_inr_m", {}).items():
+        for section in ("income", "balance_sheet", "cash_flow"):
+            yield (
+                f"{business.title()} {section.replace('_', ' ')}: partial forecast, INR million (FY27 July-March)",
+                ["Line item"] + [f"FY{r['fiscal_year']}" for r in rows],
+                [
+                    [key.replace("_", " ")] + [_n(r[section][key]) for r in rows]
+                    for key in rows[0][section]
+                ],
+            )
+    comparisons = result.get("guidance_comparisons", {})
+    if comparisons:
+        yield (
+            "Guidance comparison: full FY27 / owned ten months as indicated",
+            ["Item", "Model", "Guidance / interpretation"],
+            [
+                [
+                    "Legacy full-year finance cost, INR m",
+                    _n(comparisons["fy27_legacy_finance_cost_inr_m"]),
+                    "1,100–1,200",
+                ],
+                [
+                    "Molycop ten-month interest + principal, INR m",
+                    _n(comparisons["fy27_molycop_interest_plus_principal_inr_m"]),
+                    "6,647.90; split unverified",
+                ],
+                [
+                    "100% group operating EBITDA margin proxy",
+                    f"{comparisons['fy27_full_group_operating_ebitda_margin_proxy']:.2%}",
+                    "~15% adjusted margin; definitions differ, gap not plugged",
+                ],
+            ],
+        )
+
+
+def _assumption_tables(result):
+    evidence = result.get("forecast_evidence", {})
+    yield (
+        "Forecast evidence hierarchy and coverage",
+        ["Line item", "Basis", "Period", "Treatment", "Status"],
+        [
+            [
+                r["line_item"],
+                r["basis"].replace("_", " "),
+                r["period"],
+                r["method"],
+                r["status"],
+            ]
+            for r in evidence.get("drivers", [])
+        ],
+    )
+    history = result.get("historical_drivers") or {}
+    if history:
+        selected = [
+            ("receivable_days", "Receivables / sales, days", False),
+            ("inventory_revenue_fraction", "Inventory / revenue", True),
+            ("payable_revenue_fraction", "Payables / revenue", True),
+            (
+                "other_operating_current_assets_revenue_fraction",
+                "Other operating current assets / revenue",
+                True,
+            ),
+            (
+                "other_operating_current_liabilities_revenue_fraction",
+                "Other operating current liabilities / revenue",
+                True,
+            ),
+            ("cash_capex_revenue_fraction", "Cash capex / revenue", True),
+            (
+                "effective_accounting_tax_rate",
+                "Accounting tax / PBT (cash-tax proxy)",
+                True,
+            ),
+        ]
+        table = []
+        for key, label, percent in selected:
+            values = [r[key] for r in history["observations"]] + [
+                history["averages"][key]
+            ]
+            table.append(
+                [label] + [f"{x:.2%}" if percent else f"{x:.2f}" for x in values]
+            )
+        yield (
+            "Historical ratios used",
+            ["Driver"] + [f"FY{y}" for y in history["years"]] + ["Mean"],
+            table,
+        )
 
 
 def write_reports(
@@ -426,6 +535,8 @@ def write_reports(
         "The single-group method changes valuation separately from currency conversion. One group discount rate and one terminal value apply in each scenario. "
         "Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; "
         "Molycop senior claims use that same proportion. Group rates are provisional."
+        " Forecast assumptions and public consensus coverage reviewed on 20 September 2026. "
+        "The financial-statement forecasts are partial: Unresolved means missing evidence, not zero."
     )
 
     timing = (
@@ -450,7 +561,51 @@ def write_reports(
         f"<h1>{title}</h1><p class='notice'>{escape(intro)}</p>",
         _table(headers, summary_rows, True),
         f"<p>{escape(timing)}</p>",
-        "<nav><a href='#base'>Base</a><a href='#downside'>Downside</a><a href='#upside'>Upside</a><a href='#sensitivity'>Sensitivity</a><a href='#sources'>Sources</a></nav>",
+        "<nav><a href='#assumptions'>Assumptions</a><a href='#base'>Base</a><a href='#downside'>Downside</a><a href='#upside'>Upside</a><a href='#sensitivity'>Sensitivity</a><a href='#sources'>Sources</a></nav>",
+    ]
+    evidence = results["base"].get("forecast_evidence", {})
+    evidence_md = [
+        "# Revenue and financial forecast assumptions",
+        "",
+        "Reviewed 20 September 2026. User-approved revenue; then management guidance, verifiable comparable consensus, historical trend. Missing evidence remains unresolved.",
+        "",
+    ]
+    html.append(
+        "<style>#assumptions td,#assumptions th{white-space:normal;vertical-align:top}#assumptions td:nth-child(4){min-width:260px;text-align:left}#assumptions td:first-child{min-width:130px}</style><section id='assumptions'><h2>Revenue and financial forecast assumptions</h2>"
+    )
+    for label, table_headers, table_rows in _assumption_tables(results["base"]):
+        evidence_md += [f"## {label}", "", _table(table_headers, table_rows), ""]
+        html += [f"<h3>{escape(label)}</h3>", _table(table_headers, table_rows, True)]
+    for limitation in evidence.get("limitations", []):
+        evidence_md += [f"- {limitation}"]
+        html.append(f"<p>{escape(limitation)}</p>")
+    consensus = evidence.get("consensus_review", {})
+    if consensus:
+        review = consensus["use"] + " " + consensus["wacc_status"]
+        evidence_md += [
+            "",
+            "## Public consensus review",
+            "",
+            review,
+            "",
+            f"[Consensus summary checked]({consensus['url']})",
+            "",
+        ]
+        html.append(
+            f"<p>{escape(review)} <a href='{escape(consensus['url'])}'>Public consensus summary</a></p>"
+        )
+    html.append(
+        "<p><a href='forecast_assumptions.md'>Read the assumptions note</a> · <a href='forecast_evidence.json'>Values and source coverage</a></p></section>"
+    )
+    (output / "forecast_assumptions.md").write_text(
+        "\n".join(evidence_md) + "\n", encoding="utf-8"
+    )
+    (output / "forecast_evidence.json").write_text(
+        json.dumps(evidence, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    md += [
+        "[Review forecast assumptions, historical ratios and data gaps](forecast_assumptions.md)",
+        "",
     ]
     if statements is not None:
         write_historical_reports(statements, historical_checks, output)

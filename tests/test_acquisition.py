@@ -177,6 +177,7 @@ class AcquisitionTests(unittest.TestCase):
                 row["closing_asset_book_proxy"],
                 row["opening_depreciable_book_proxy"]
                 + row["opening_cwip_proxy"]
+                + row["nondepreciable_land"]
                 + row["cash_capex"]
                 + row["new_lease_assets"]
                 - row["da"],

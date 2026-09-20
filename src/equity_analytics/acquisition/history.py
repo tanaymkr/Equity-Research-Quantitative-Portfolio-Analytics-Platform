@@ -9,6 +9,8 @@ from equity_analytics.forecasting.inputs import (
     reconcile_history,
 )
 
+from .drivers import historical_drivers
+
 
 def legacy_facts_from_statements(case):
     """Derive every legacy annual input; keep no second editable copy."""
@@ -73,6 +75,15 @@ def legacy_facts_from_statements(case):
             "shares": round(t["shares_outstanding_million"] * 1e6),
             "shares_issued_november2025": d["equity_issue"]["new_shares"],
             "november2025_issue_price_inr": d["equity_issue"]["issue_price_inr"],
+            "other_operating_current_assets": a["other_current_assets"]
+            + a["contract_assets"],
+            "other_operating_current_liabilities": li["other_current_liabilities"]
+            + li["current_provisions"],
+            "nondepreciable_land": next(
+                c["net_book_value"]
+                for c in case["asset_cohorts"]
+                if c["name"] == "ppe_land"
+            ),
         }
     )
     return h, checks
@@ -111,4 +122,11 @@ def load_acquisition_facts(path, statements_path=None):
         "source": case["source"],
         "reconciliation_checks_passed": len(checks),
     }
+    if facts.get("historical_comparatives_file"):
+        previous = load_json(path.parent / facts["historical_comparatives_file"])
+        reconcile_history(previous)
+        try:
+            result["historical_drivers"] = historical_drivers(previous, case)
+        except ValueError as exc:
+            raise ModelInputError(str(exc)) from exc
     return result, case, checks

@@ -58,7 +58,7 @@ def test_same_inr_units_through_cash_flows_debt_and_equity(inputs, case):
     )
     assert result["financing_schedule"][0][
         "molycop_cash_interest_inr_m"
-    ] == pytest.approx(63 * 94.97 * 0.9)
+    ] == pytest.approx(63 * 94.97 - f["q1_fy2027"]["molycop_finance_cost_inr_m"])
     for row in result["financing_schedule"]:
         assert row["tega_share_of_distribution_inr_m"] == pytest.approx(
             row["molycop_ordinary_distribution_inr_m"] * ownership

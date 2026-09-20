@@ -9,6 +9,16 @@ the eventual Streamlit application will consume the same analytics layer.
 
 ## One group DCF per scenario
 
+The September 20 update applies the approved revenue paths and reviews other
+drivers in this order: management guidance, verifiable comparable consensus,
+then available historical trends. Each input records its basis. Detailed
+Molycop statement inputs and a public group consensus WACC remain unresolved.
+The income, balance-sheet and cash-flow forecast schedules are **partial**;
+missing statutory totals and PAT/EPS are not filled with balancing plugs.
+
+[Install the revenue and financial-driver update](docs/TEGA_REVENUE_DRIVERS_UPDATE.md)
+and [review its assumptions](examples/tega_molycop_reports/forecast_assumptions.md).
+
 Legacy Tega and Molycop retain operating schedules, but their cash flows are
 combined before discounting. Each scenario has one group discount rate, one
 terminal value and one enterprise-to-equity bridge. The cash flows and Molycop

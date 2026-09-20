@@ -1,0 +1,158 @@
+{
+  "base_commit": "ffb79b196d61d56f4f658b83652c7311ff59b8ff",
+  "date": "2026-09-20",
+  "install": "Copy all contents of equity-research-quant-platform into the existing repository; replace files. No deletions.",
+  "files": [
+    {
+      "path": "README.md",
+      "action": "modify",
+      "sha256": "b6e03e2e92d81bf79e17081aeed66915fb7c4d501547af03a155a824c07ad85e"
+    },
+    {
+      "path": "START_TEGA_MODEL.md",
+      "action": "modify",
+      "sha256": "1dc74cd30ab090c6d11cd89558afb3baeaa5cba76657fb2dd4a4ca02971b4d35"
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_MODEL.md",
+      "action": "modify",
+      "sha256": "babf96977b1ba1568bee2e81b2a256bd30a86e014a806d8765323422b5f70799"
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_VALIDATION.md",
+      "action": "modify",
+      "sha256": "cea3a6cf8df28464d9bd76b55a46731850d54abe02bd68355621953eda589c6d"
+    },
+    {
+      "path": "docs/TEGA_REVENUE_DRIVERS_UPDATE.md",
+      "action": "add",
+      "sha256": "7a1f076c188730920d2dfdabcb806f56b931fe285c58406582c2a104724d4d75"
+    },
+    {
+      "path": "docs/TEGA_SINGLE_DCF.md",
+      "action": "modify",
+      "sha256": "bfc45d190d7c4921624f2a5035208969f1407dbd462b752806d3f0b6e297956f"
+    },
+    {
+      "path": "examples/tega_molycop_assumptions.json",
+      "action": "modify",
+      "sha256": "ab4a4bd24a2ae207904fb97794c7153b70749483f1f43a0a1e34764fe2a35e8f"
+    },
+    {
+      "path": "examples/tega_molycop_facts.json",
+      "action": "modify",
+      "sha256": "b6a58528d468f880434936a9079db83a741ceb671f0b26614833073674ccb19a"
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/forecast.md",
+      "action": "modify",
+      "sha256": "660ffb6a3dc7f8fcdaea7dfbe21ca928f2deeb0454e73fb29a13752c3e94c3e7"
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/model.json",
+      "action": "modify",
+      "sha256": "257db7885328c82f62b8a3e877985d4bacbb5069c0d2b7c3cf38ad0519dabcdd"
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/forecast.md",
+      "action": "modify",
+      "sha256": "3677621595936111433acc681ad46021c35329ce2db76605fa351e345bb84d44"
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/model.json",
+      "action": "modify",
+      "sha256": "88436b7ea68ad48615db8bc5a330861ff18f05ed5371acf87d8f258cb776bd63"
+    },
+    {
+      "path": "examples/tega_molycop_reports/forecast_assumptions.md",
+      "action": "add",
+      "sha256": "95b440146a51d02fb24721730be7f147db04efcdabb01d29abedf62bbf91f645"
+    },
+    {
+      "path": "examples/tega_molycop_reports/forecast_evidence.json",
+      "action": "add",
+      "sha256": "e175812f43ee9fe6561b553686fd88ea0b34037ce21f7fd26239f5fb2121f83c"
+    },
+    {
+      "path": "examples/tega_molycop_reports/inputs_used.json",
+      "action": "modify",
+      "sha256": "0e7261c392d0e7ba332200e8056d9fd3889631ee0608fb16ddc9b32ac0134737"
+    },
+    {
+      "path": "examples/tega_molycop_reports/report.html",
+      "action": "modify",
+      "sha256": "88e9f0810afdd19bc6edf1f09b8fc35c54c6695f02855b330f47273d20b25fe5"
+    },
+    {
+      "path": "examples/tega_molycop_reports/scenarios.md",
+      "action": "modify",
+      "sha256": "a0ebb8e8cc7fc1b788c2a4ac23252faf137ed5159c3b19a15c222597da437424"
+    },
+    {
+      "path": "examples/tega_molycop_reports/sensitivity.json",
+      "action": "modify",
+      "sha256": "7fa652d01d64b4265e1b7b2ead1f7d793ab6df8e1d88b2e847cb6588c516a0db"
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/forecast.md",
+      "action": "modify",
+      "sha256": "38bea37ae4fb4084c057e4feb111cec5d6dfb1be00b88d7f77c1e33c2bd86fc8"
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/model.json",
+      "action": "modify",
+      "sha256": "b0b93d68f5ae77b4b0df4594b89e7012a76b56f325466a447464e75d6f29fe60"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/__main__.py",
+      "action": "modify",
+      "sha256": "79b56ebd5617e9a1d1f59d40f0c045e797c19a5728c5099502574eb11123026e"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/drivers.py",
+      "action": "add",
+      "sha256": "739cd1d5b9d15aeb218653b588141a793adffaa5655e6bc83c21d71e887e52dc"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/engine.py",
+      "action": "modify",
+      "sha256": "90cc11998f625ec91327062080e55162842af14b90a895b738609f531a1b1252"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/history.py",
+      "action": "modify",
+      "sha256": "a32dd5316c316b55b2efeb79096f24697c6104024e9588fe98ce9f651740ed72"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/reporting.py",
+      "action": "modify",
+      "sha256": "8a7a0a7df4390906f561103a4571b7c615730a2b8e32f7416de6cf5cd49f766e"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/statements.py",
+      "action": "add",
+      "sha256": "eef9fadc8e7b7a6de8f35a352988bd3715d92a8cf2ad4e35c22a638dc560d503"
+    },
+    {
+      "path": "tests/test_acquisition.py",
+      "action": "modify",
+      "sha256": "92f41df03328ce557380ddfe1a2e837018c1cedc9d753746a9662b3e24bd16cb"
+    },
+    {
+      "path": "tests/test_acquisition_inr.py",
+      "action": "modify",
+      "sha256": "b413cb8c435021898ee793432f8eb70a7c8c338b77ab87d87c23d85f991dc3f4"
+    },
+    {
+      "path": "tests/test_forecast_drivers.py",
+      "action": "add",
+      "sha256": "12a60c5e4cc7b3f99f8d73e6f7a2bc3aea2026594be143fa112a7f421f91e827"
+    },
+    {
+      "path": "tests/test_fy2026.py",
+      "action": "modify",
+      "sha256": "c9ab5527a975dcf91c95b89a031a18a51305b1efef0c609330c1fd5f6900e377"
+    }
+  ],
+  "manifest_note": "This manifest is itself included; its own digest is deliberately omitted."
+}

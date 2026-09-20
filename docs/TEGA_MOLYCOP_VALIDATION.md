@@ -1,10 +1,10 @@
 # Acquisition model: validation and open inputs
 
-Single-DCF update base commit: `5e8ca508c887cad04216d649d8445aed03859417`.
-Package date: 19 September 2026. Reviewed-source cutoff: 11 September 2026.
+Revenue/driver update base commit: `ffb79b196d61d56f4f658b83652c7311ff59b8ff`.
+Package and assumption review: 20 September 2026. Financial-filing cutoff: 11 September 2026.
 Valuation date: 30 June 2026. No remote repository writes were made.
 
-The local suite passes **105 tests plus 13 subtests**. Ruff lint passes. The suite
+The local suite passes **111 tests plus 13 subtests**. Ruff lint passes. The suite
 covers the reusable DCF/linked engines, financial history, acquisition schedules,
 INR conversion and the single group DCF. New group checks include exactly one
 DCF call per scenario, independent terminal/PV arithmetic, ownership boundaries
@@ -64,14 +64,20 @@ Reproduce the committed report and unverified user comparison:
 python run_tega_model.py --reference-price 1700 --output examples/tega_molycop_reports
 ```
 
-The retired standalone forecast paths remain removed. Business operating and
-financing schedules are unchanged from the INR-only update; this update changes
-the discounting, terminal assumptions and aggregate equity bridge. The earlier
-currency-only parity check (2,190 comparisons) describes the previous method,
-not an assertion that the new group valuation equals the old two-business DCF.
+The retired standalone forecast paths remain removed. Revenue, margins, working
+capital, capex and financing inputs have changed in this release; the single group
+valuation method is retained. New tests exercise revenue transmission through
+expenses, working capital, capex and depreciation; guidance/actual interest timing;
+historical-source conflicts; cash reconciliation; nondepreciating land; null
+statutory totals and source-override labeling.
 
 The audited FY26 input and all four historical report files remain byte-for-byte
-unchanged. All 92 historical checks pass. The release overlay reproduces all 14
-committed acquisition report files. Thirty sensitivity rows use common group
-valuation assumptions and INR operating/claim inputs. A negative raw equity
-residual is a valuation result, not an immediate financing cash shortfall.
+unchanged. All 92 historical checks pass. The release overlay reproduces all 16
+committed acquisition report files, including the new driver/source reports.
+Thirty sensitivity rows remain. A negative raw equity residual is a valuation
+result, not an immediate financing cash shortfall.
+
+The legacy asset roll-forward now keeps INR754.45m land outside depreciation.
+The Molycop interest schedule uses full ten-month assumed interest less actual
+June expense. Neither correction changes the audited financial statements.
+See [the driver review and remaining statement gaps](TEGA_REVENUE_DRIVERS_UPDATE.md).

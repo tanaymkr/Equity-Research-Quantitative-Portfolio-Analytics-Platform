@@ -210,7 +210,13 @@
       1200.0
     ],
     "molycop_ten_month_interest_plus_principal_inr_m_approx": 6647.9,
-    "noncore_asset_sale_proceeds": null
+    "noncore_asset_sale_proceeds": null,
+    "consumables_ebitda_margin_range": [
+      0.2,
+      0.23
+    ],
+    "consolidated_adjusted_ebitda_margin_approx": 0.15,
+    "molycop_next_two_years_capex_description": "Low to mid USD30 millions; numeric scenario selections are model interpretations, not exact guidance."
   },
   "pending_equity_issue": {
     "source_ids": [
@@ -234,5 +240,43 @@
     "method": "Constant exchange-rate conversion of USD-denominated monetary inputs at the selected rate. Already-reported INR amounts and the June 30 valuation date are unchanged. Valuation method and group discount assumptions are separately specified in the assumptions file.",
     "original_model_commit": "5e8ca508c887cad04216d649d8445aed03859417"
   },
-  "currency_note": "USD-origin values are translated at the selected rate. Reported INR accounting amounts retain historical translations, including the reported_ fields; translation does not restate audited accounts."
+  "currency_note": "USD-origin values are translated at the selected rate. Reported INR accounting amounts retain historical translations, including the reported_ fields; translation does not restate audited accounts.",
+  "historical_comparatives_file": "tega_fy2025_reported_statements.json",
+  "assumption_review_date": "2026-09-20",
+  "equipment_margin_history": {
+    "source_ids": [
+      "annual26"
+    ],
+    "location": "Note 42; PDF page 263, printed page 283",
+    "observations": [
+      {
+        "fiscal_year": 2025,
+        "revenue": 2156.61,
+        "operating_ebitda": 251.29
+      },
+      {
+        "fiscal_year": 2026,
+        "revenue": 2687.53,
+        "operating_ebitda": 340.09
+      }
+    ],
+    "method": "Arithmetic average of two annual operating EBITDA / equipment revenue ratios; three-year segment cost history has not been transcribed."
+  },
+  "consensus_review": {
+    "review_date": "2026-09-20",
+    "snapshot_date": "2026-09-19",
+    "url": "https://trendlyne.com/equity/consensus-estimates/743298/TEGA/tega-industries-ltd/",
+    "analyst_count": 4,
+    "fy27_group_revenue_growth": 8.244,
+    "fy27_group_profit_growth": 2.127,
+    "use": "Comparison only. Public summary has no detailed segment/expense/BS/CF estimates, definitions or individual report dates. Do not override approved revenue or backsolve expenses from headline profit.",
+    "group_wacc": null,
+    "wacc_status": "No publicly verifiable analyst consensus WACC found for the enlarged group. A single provider discount-rate estimate is not consensus.",
+    "other_sources_checked": [
+      "https://trendlyne.com/research-reports/stock/743298/TEGA/tega-industries-ltd/",
+      "https://www.alphaspread.com/security/nse/tega/discount-rate",
+      "https://www.marketscreener.com/quote/stock/TEGA-INDUSTRIES-LIMITED-130552425/finances/"
+    ],
+    "access_limits": "Broker list exposed old reports; Alpha Spread and MarketScreener pages were not accessible. Absence of a verified public estimate does not mean none exists in paid research."
+  }
 }

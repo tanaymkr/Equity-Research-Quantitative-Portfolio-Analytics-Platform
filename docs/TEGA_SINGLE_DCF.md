@@ -1,5 +1,10 @@
 # One Tega-Molycop DCF per scenario
 
+Current revenue/financial-driver assumptions were updated on 20 September 2026.
+See [the source review and linked statement coverage](TEGA_REVENUE_DRIVERS_UPDATE.md).
+The single group DCF method below is retained; earlier operating-input descriptions
+are superseded where the new driver review differs.
+
 The model now combines operating cash flows before valuation. Downside, base and
 upside each have **one group discount rate, one terminal value and one equity
 bridge**. There is no separate legacy Tega DCF, Molycop DCF or sum of independently

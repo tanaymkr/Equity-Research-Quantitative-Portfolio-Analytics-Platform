@@ -67,7 +67,11 @@ def test_fy26_source_is_loaded_relative_to_facts_and_no_duplicate_values(
 ):
     directory = tmp_path / "nested"
     directory.mkdir()
-    for name in ["tega_molycop_facts.json", "tega_fy2026_reported_statements.json"]:
+    for name in [
+        "tega_molycop_facts.json",
+        "tega_fy2026_reported_statements.json",
+        "tega_fy2025_reported_statements.json",
+    ]:
         (directory / name).write_bytes((ROOT / "examples" / name).read_bytes())
     monkeypatch.chdir(tmp_path)
     raw = json.loads((directory / "tega_molycop_facts.json").read_text())
