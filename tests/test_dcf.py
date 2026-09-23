@@ -109,4 +109,3 @@ def test_sensitivity_matrix_has_requested_dimensions(snapshot, assumptions) -> N
     assert len(matrix) == 2
     assert all(len(row) == 3 for row in matrix.values())
     assert all(value is not None for row in matrix.values() for value in row.values())
-

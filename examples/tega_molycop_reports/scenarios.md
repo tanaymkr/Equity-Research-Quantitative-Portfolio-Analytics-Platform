@@ -1,14 +1,14 @@
-# Tega + Molycop: single group DCF
+# Tega + Molycop: pro-forma consolidated DCF
 
-PROVISIONAL. Valuation date: 30 June 2026. Research cutoff: 11 September 2026. Reported facts and management guidance are separated from analyst assumptions. These are conditional scenario values, not validated current price targets. A zero equity floor indicates insufficient modeled enterprise value to cover claims; it is not a prediction that the quoted stock price becomes zero. All model amounts are INR million unless marked per share or per tonne. USD-origin amounts use INR94.97 per USD, the September 2, 2026 closing rate reported by Reuters (not an FBIL reference fixing). Reported INR actuals are unchanged. Currency conversion uses a fixed rate; June 30 remains the valuation date. The single-group method changes valuation separately from currency conversion. One group discount rate and one terminal value apply in each scenario. Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; Molycop senior claims use that same proportion. Group rates are provisional. Forecast assumptions and public consensus coverage reviewed on 20 September 2026. Legacy Tega statement gaps use existing schedules, historical fallbacks and explicitly assumed zeros. Its investment in Molycop is shown at cost in this legacy-only view; this is not group PAT/EPS. The estimated June opening balance discrepancy remains visible. Molycop statements remain partial: Unresolved means missing evidence.
+PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR94.9700/USD. 100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. Full net debt, preferences and ordinary minority interest are explicit bridge deductions. Molycop WACC inputs and legacy EV weight include unsourced analyst assumptions. These outputs are conditional scenario values, not validated current price targets. Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; this does not validate purchase accounting or resolve the separate legacy June gap. Main share count includes the proposed follow-on issue pro forma and matching cash once.
 
 | Scenario | Provisional INR / share | Raw equity INR m | Group WACC | Group terminal growth |
 | --- | --- | --- | --- | --- |
-| Downside | Equity shortfall under stress | -18,255.08 | 14.0% | 3.0% |
-| Base | INR 311.41 | 23,395.29 | 12.0% | 4.0% |
-| Upside | INR 969.72 | 72,852.88 | 10.5% | 4.5% |
+| Downside | INR 294.22 | 22,245.17 | 10.1% | 3.0% |
+| Base | INR 1,171.99 | 88,609.69 | 9.2% | 4.0% |
+| Upside | INR 1,734.08 | 131,107.06 | 9.0% | 4.5% |
 
-FY2027 is April 2026–March 2027. Molycop is consolidated June–March (10 months). Actual June is retained; only July–March (9 months) is discounted as future cash flow. The legacy business similarly excludes its actual April–June quarter. End-period discounting uses actual days / 365. Operating schedules support one combined DCF; they are not separately valued. The cash flows used for valuation are ownership-adjusted economic amounts, not statutory consolidated statements.
+FY27 full-year revenue includes twelve months of Tega and ten months of Molycop from 1 June. Forecast income/cash-flow columns and DCF include only July–March (nine months) after the June valuation. Future balance-sheet columns are at 31 March. Subsequent years have twelve months. Auxiliary standalone EVs support NCI/audit only; the combined EV is calculated from the consolidated stream. All monetary figures are INR million except per-share figures. Constant expected FX is an explicit assumption.
 
 [Review forecast assumptions, historical ratios and data gaps](forecast_assumptions.md)
 
@@ -48,53 +48,58 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 
 | Input changed | Value | INR/share |
 | --- | --- | --- |
-| Group WACC | 0.1050 | 691.33 |
-| Group WACC | 0.1200 | 311.41 |
-| Group WACC | 0.1400 | 0.00 |
-| Group terminal growth | 0.0300 | 268.81 |
-| Group terminal growth | 0.0400 | 311.41 |
-| Group terminal growth | 0.0450 | 336.38 |
-| Group terminal ROIC | 0.1300 | 240.62 |
-| Group terminal ROIC | 0.1600 | 311.41 |
-| Group terminal ROIC | 0.1800 | 345.49 |
-| Preference current fair value (INR m) | 25,641.90 | 311.41 |
-| Preference current fair value (INR m) | 31,340.10 | 247.56 |
-| Preference current fair value (INR m) | 37,988.00 | 173.07 |
-| Other claims reserve (INR m) | 0.00 | 364.61 |
-| Other claims reserve (INR m) | 4,748.50 | 311.41 |
-| Other claims reserve (INR m) | 9,497.00 | 258.20 |
-| Earnout cash payment (INR m) | 0.00 | 353.52 |
-| Earnout cash payment (INR m) | 5,698.20 | 311.41 |
-| Earnout cash payment (INR m) | 11,396.40 | 269.29 |
-| Legacy Q1 cash flow estimate (INR m) | 0.00 | 303.43 |
-| Legacy Q1 cash flow estimate (INR m) | 600.00 | 311.42 |
-| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 319.40 |
-| Molycop forecast NWC / revenue | 0.1800 | 350.57 |
-| Molycop forecast NWC / revenue | 0.2000 | 311.41 |
-| Molycop forecast NWC / revenue | 0.2300 | 252.66 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 218.77 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 311.41 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 404.05 |
-| Cost savings after FY2027 / base ramp | 0.0000 | 190.93 |
-| Cost savings after FY2027 / base ramp | 0.5000 | 251.17 |
-| Cost savings after FY2027 / base ramp | 1.0000 | 311.41 |
+| Equity premium stress for both businesses | -0.0050 | 1,286.36 |
+| Equity premium stress for both businesses | 0.0000 | 1,171.99 |
+| Equity premium stress for both businesses | 0.0200 | 799.93 |
+| Legacy standalone EV weight (INR m) | 60,000.00 | 1,209.60 |
+| Legacy standalone EV weight (INR m) | 80,000.00 | 1,171.99 |
+| Legacy standalone EV weight (INR m) | 100,000.00 | 1,141.43 |
+| Conversion INR per USD | 90.0000 | 1,129.36 |
+| Conversion INR per USD | 94.9700 | 1,171.99 |
+| Conversion INR per USD | 100.0000 | 1,215.44 |
+| Group terminal growth | 0.0300 | 1,006.57 |
+| Group terminal growth | 0.0400 | 1,171.99 |
+| Group terminal growth | 0.0450 | 1,279.53 |
+| Group terminal ROIC | 0.1300 | 1,042.45 |
+| Group terminal ROIC | 0.1600 | 1,171.99 |
+| Group terminal ROIC | 0.1800 | 1,234.36 |
+| Preference current fair value (INR m) | 25,641.90 | 1,171.99 |
+| Preference current fair value (INR m) | 31,340.10 | 1,108.55 |
+| Preference current fair value (INR m) | 37,988.00 | 1,034.53 |
+| Other claims reserve (INR m) | 0.00 | 1,224.86 |
+| Other claims reserve (INR m) | 4,748.50 | 1,171.99 |
+| Other claims reserve (INR m) | 9,497.00 | 1,119.12 |
+| Earnout cash payment (INR m) | 0.00 | 1,217.92 |
+| Earnout cash payment (INR m) | 5,698.20 | 1,171.99 |
+| Earnout cash payment (INR m) | 11,396.40 | 1,126.07 |
+| Legacy Q1 cash flow estimate (INR m) | 0.00 | 1,164.06 |
+| Legacy Q1 cash flow estimate (INR m) | 600.00 | 1,172.00 |
+| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 1,179.94 |
+| Molycop forecast NWC / revenue | 0.1800 | 1,212.44 |
+| Molycop forecast NWC / revenue | 0.2000 | 1,171.99 |
+| Molycop forecast NWC / revenue | 0.2300 | 1,111.32 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 1,036.94 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 1,171.99 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 1,307.04 |
+| Cost savings after FY2027 / base ramp | 0.0000 | 993.22 |
+| Cost savings after FY2027 / base ramp | 0.5000 | 1,082.60 |
+| Cost savings after FY2027 / base ramp | 1.0000 | 1,171.99 |
 
 ## Material limitations
 
-- Provisional model: June 30 valuation using information published through September 11, 2026; not a September spot-price target or point-in-time backtest.
-- Legacy June cash/CFO/capex and Molycop working capital are estimates; detailed post-close balance sheet not obtained.
-- Preference fair value and 12% PIK schedule are assumptions; contractual return and exit terms require confirmation.
-- Molycop FY2026 revenue is inferred from volume and FY2025 realization; it is not reported revenue.
-- Molycop FY2026 adjusted EBITDA is treated as operating EBITDA; full-year other income and the comparable ten-month earnings pattern are unavailable.
-- Purchase accounting, intangible lives, tax deductibility, other senior claims and subsidiary minority/JV scope remain provisional.
-- One group discount rate, terminal growth and ROIC apply to the combined stream. Initial values carry over former legacy assumptions as provisional group choices; they are not calibrated group WACCs.
-- Ownership-adjusted economic DCF: include 100% legacy and Tega's share of Molycop cash flows and senior claims. These are not statutory consolidated financial statements.
-- One pooled equity calculation does not value separate subsidiary default options or limited-liability ring-fencing. It may understate downside equity where Molycop shortfalls cannot reach the parent; contractual support remains unresolved.
-- All USD-origin inputs use INR94.97 per USD at the September 2, 2026 market close. June 30 remains the valuation date; this is a later-date constant-currency restatement. Reported INR actuals are unchanged.
-- Debt schedules estimate liquidity; they do not certify bank covenants, refinancing availability, preference exit rights or a statutory balanced forecast.
-- September 20 assumption review: management > verifiable comparable consensus > historical trend. No public group consensus WACC or detailed Molycop statement consensus was verified. Remaining proxies are explicitly unresolved.
-- Legacy statement gaps use schedules, historical values and user-authorized zero forecasts. Legacy earnings are for a legacy-only view with the Molycop investment at cost, not consolidated group PAT/EPS. Molycop statement gaps remain null.
-- Legacy estimated June opening balance discrepancy: INR-15.8750m. It is carried visibly, never plugged into equity/cash. Forecast movements reconcile; this is not a fully balanced statutory opening balance sheet.
+- Provisional economic pro-forma consolidation, not audited statutory forecasts. Detailed Molycop statements and PPA allocations remain incomplete.
+- June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).
+- Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.
+- ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.
+- UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.
+- NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.
+- Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.
+- Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.
+- Unallocated acquired assets/liabilities are frozen opening allocations to reported June consolidated totals; not sourced account detail. They do not resolve the legacy opening discrepancy.
+- Legacy estimated June opening discrepancy remains INR-15.8750m.
+- Molycop net income is an economic proxy: zero nonoperating income/deferred-tax movements, and non-tax-deductible preference return. Not reported or consensus PAT.
+- Molycop FY26 revenue remains inferred from disclosed volume and FY25 realization; newer FY26 EBITDA/volume and management guidance take precedence over the older USD1540m/172m snapshot.
+- Net debt already reflects preference-funded refinancing and the new parent acquisition loan. No second debt paydown or second loan addition.
 - Forecast needs additional funding; availability and pricing are not confirmed.
 
 ## Sources

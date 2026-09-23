@@ -39,27 +39,27 @@
     "inr_per_usd": 94.97,
     "rate_type": "Indian onshore market closing rate reported by Reuters; not the FBIL reference fixing",
     "source_url": "https://www.reuters.com/world/india/rbis-bid-lift-indian-rupee-put-test-by-oil-us-yields-2026-09-02/",
-    "method": "Constant exchange-rate conversion of USD-denominated monetary inputs at the selected rate. Already-reported INR amounts and the June 30 valuation date are unchanged. Valuation method and group discount assumptions are separately specified in the assumptions file.",
-    "original_model_commit": "5e8ca508c887cad04216d649d8445aed03859417"
+    "method": "USD-origin inputs rebased through explicit registry; reported INR actuals retained. Constant expected FX across all forecast years.",
+    "original_model_commit": "5e8ca508c887cad04216d649d8445aed03859417",
+    "reference_conversion_rate": 94.97
   },
   "monetary_unit": "INR million",
   "status": "Provisional acquisition DCF; incomplete financing and opening-balance disclosures",
-  "valuation_method": "single_attributable_group_dcf",
+  "valuation_method": "pro_forma_consolidated_blended_wacc",
   "warnings": [
-    "Provisional model: June 30 valuation using information published through September 11, 2026; not a September spot-price target or point-in-time backtest.",
-    "Legacy June cash/CFO/capex and Molycop working capital are estimates; detailed post-close balance sheet not obtained.",
-    "Preference fair value and 12% PIK schedule are assumptions; contractual return and exit terms require confirmation.",
-    "Molycop FY2026 revenue is inferred from volume and FY2025 realization; it is not reported revenue.",
-    "Molycop FY2026 adjusted EBITDA is treated as operating EBITDA; full-year other income and the comparable ten-month earnings pattern are unavailable.",
-    "Purchase accounting, intangible lives, tax deductibility, other senior claims and subsidiary minority/JV scope remain provisional.",
-    "One group discount rate, terminal growth and ROIC apply to the combined stream. Initial values carry over former legacy assumptions as provisional group choices; they are not calibrated group WACCs.",
-    "Ownership-adjusted economic DCF: include 100% legacy and Tega's share of Molycop cash flows and senior claims. These are not statutory consolidated financial statements.",
-    "One pooled equity calculation does not value separate subsidiary default options or limited-liability ring-fencing. It may understate downside equity where Molycop shortfalls cannot reach the parent; contractual support remains unresolved.",
-    "All USD-origin inputs use INR94.97 per USD at the September 2, 2026 market close. June 30 remains the valuation date; this is a later-date constant-currency restatement. Reported INR actuals are unchanged.",
-    "Debt schedules estimate liquidity; they do not certify bank covenants, refinancing availability, preference exit rights or a statutory balanced forecast.",
-    "September 20 assumption review: management > verifiable comparable consensus > historical trend. No public group consensus WACC or detailed Molycop statement consensus was verified. Remaining proxies are explicitly unresolved.",
-    "Legacy statement gaps use schedules, historical values and user-authorized zero forecasts. Legacy earnings are for a legacy-only view with the Molycop investment at cost, not consolidated group PAT/EPS. Molycop statement gaps remain null.",
-    "Legacy estimated June opening balance discrepancy: INR-15.8750m. It is carried visibly, never plugged into equity/cash. Forecast movements reconcile; this is not a fully balanced statutory opening balance sheet.",
+    "Provisional economic pro-forma consolidation, not audited statutory forecasts. Detailed Molycop statements and PPA allocations remain incomplete.",
+    "June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).",
+    "Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.",
+    "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
+    "UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.",
+    "NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.",
+    "Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.",
+    "Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.",
+    "Unallocated acquired assets/liabilities are frozen opening allocations to reported June consolidated totals; not sourced account detail. They do not resolve the legacy opening discrepancy.",
+    "Legacy estimated June opening discrepancy remains INR-15.8750m.",
+    "Molycop net income is an economic proxy: zero nonoperating income/deferred-tax movements, and non-tax-deductible preference return. Not reported or consensus PAT.",
+    "Molycop FY26 revenue remains inferred from disclosed volume and FY25 realization; newer FY26 EBITDA/volume and management guidance take precedence over the older USD1540m/172m snapshot.",
+    "Net debt already reflects preference-funded refinancing and the new parent acquisition loan. No second debt paydown or second loan addition.",
     "Forecast needs additional funding; availability and pricing are not confirmed."
   ],
   "opening_bridge_inr_m": {
@@ -618,286 +618,2272 @@
       "fiscal_year": 2027,
       "period_years": 0.75,
       "discount_years": 0.7506849315068493,
-      "revenue": 112775.46670420477,
-      "operating_ebitda": 15286.757080542246,
-      "integration_cash_cost": 239.83350437610443,
-      "ebit": 10649.912627825111,
-      "unlevered_cash_tax": 3135.3144780332714,
-      "closing_nwc": 30614.829903908925,
-      "delta_nwc": 1081.8648025336831,
-      "fcff": 5474.6323215780885,
-      "opening_depreciable_book_proxy": 57649.26194754413,
-      "opening_cwip_proxy": 1867.8600000000001,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 4162.159293083349,
-      "cash_capex": 4863.7014367592765,
-      "new_lease_assets": 491.41053726182383,
-      "da": 4636.844452717134,
-      "ppa_amortization": 1448.194643924377,
-      "closing_cwip_proxy": 2569.4021436759276,
-      "closing_asset_book_proxy": 60989.839468848106,
-      "asset_rollforward_residual": 7.94379517484771e-12,
-      "normalized_terminal_nopat": 8898.037747534669,
+      "revenue": 131030.70928650859,
+      "operating_ebitda": 17503.352841575354,
+      "integration_cash_cost": 284.91,
+      "ebit": 12160.896611262855,
+      "unlevered_cash_tax": 3604.5999643834284,
+      "closing_nwc": 34999.36775037042,
+      "delta_nwc": 913.4038468544777,
+      "cash_capex": 5242.344,
+      "new_lease_assets": 527.584425,
+      "da": 5342.4562303125,
+      "ppa_amortization": 1720.38155,
+      "closing_asset_book_proxy": 70575.31065579862,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 113527.35644493323,
+      "nopat": 8271.386646879426,
+      "fcff": 6930.510605337449,
       "legacy_fcff": -2271.497582849932,
       "molycop_fcff_before_ownership": 9202.008188187383,
-      "combined_fcff_before_ownership": 6930.510605337451,
-      "noncontrolling_fcff_excluded": 1455.8782837593628,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": 3.637978807091713e-12
+      "consolidation_fcff_residual": -1.8189894035458565e-12,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 10199.752496879428
     },
     {
       "fiscal_year": 2028,
       "period_years": 1.0,
       "discount_years": 1.7534246575342465,
-      "revenue": 163528.45847974616,
-      "operating_ebitda": 22755.378664535285,
-      "integration_cash_cost": 239.83350437610443,
-      "ebit": 15861.256058067302,
-      "unlevered_cash_tax": 4653.161578607493,
-      "closing_nwc": 33792.666926350095,
-      "delta_nwc": 3177.83702244117,
-      "fcff": 9640.850998833044,
-      "opening_depreciable_book_proxy": 57665.98732517217,
-      "opening_cwip_proxy": 2569.4021436759276,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 6435.986793634329,
-      "cash_capex": 4296.205166620445,
-      "new_lease_assets": 747.4903936570263,
-      "da": 6894.122606467981,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 429.62051666204434,
-      "closing_asset_book_proxy": 59139.412422657595,
-      "asset_rollforward_residual": 1.8189894035458565e-12,
-      "normalized_terminal_nopat": 13074.265625177432,
+      "revenue": 189835.6855585151,
+      "operating_ebitda": 26090.12579039225,
+      "integration_cash_cost": 284.91,
+      "ebit": 18207.26327722884,
+      "unlevered_cash_tax": 5372.400160149881,
+      "closing_nwc": 38527.96780052851,
+      "delta_nwc": 3528.6000501580893,
+      "cash_capex": 4777.021119941998,
+      "new_lease_assets": 799.580792,
+      "da": 7882.862513163404,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 68269.05005457721,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 163745.55976812285,
+      "nopat": 12549.95311707896,
+      "fcff": 11327.613668142276,
       "legacy_fcff": 666.2801846641432,
       "molycop_fcff_before_ownership": 10661.333483478134,
-      "combined_fcff_before_ownership": 11327.613668142278,
-      "noncontrolling_fcff_excluded": 1686.7626693092338,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": 0.0
+      "consolidation_fcff_residual": -1.8189894035458565e-12,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 15051.779483745631
     },
     {
       "fiscal_year": 2029,
       "period_years": 1.0,
       "discount_years": 2.7534246575342465,
-      "revenue": 177293.88109200838,
-      "operating_ebitda": 25428.558148888176,
-      "integration_cash_cost": 79.94450145870147,
-      "ebit": 17777.686136687946,
-      "unlevered_cash_tax": 5203.800676317636,
-      "closing_nwc": 37004.30386944515,
-      "delta_nwc": 3211.636943095061,
-      "fcff": 11498.173242368774,
-      "opening_depreciable_book_proxy": 57955.34190599555,
-      "opening_cwip_proxy": 429.62051666204434,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 4559.631675268307,
-      "cash_capex": 4588.901287340292,
-      "new_lease_assets": 846.1014983077141,
-      "da": 7650.872012200229,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 458.8901287340291,
-      "closing_asset_book_proxy": 56923.54319610537,
-      "asset_rollforward_residual": 4.305816367755996e-12,
-      "normalized_terminal_nopat": 14483.226636875632,
+      "revenue": 205442.61406629116,
+      "operating_ebitda": 29106.423712906606,
+      "integration_cash_cost": 94.97,
+      "ebit": 20410.25547191504,
+      "unlevered_cash_tax": 6008.524798410025,
+      "closing_nwc": 42071.07580481606,
+      "delta_nwc": 3543.108004287549,
+      "cash_capex": 5069.717240661845,
+      "new_lease_assets": 901.8382245346961,
+      "da": 8696.168240991567,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 65544.43727878219,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 176336.19035338456,
+      "nopat": 14306.760673505014,
+      "fcff": 13488.265445012492,
       "legacy_fcff": 909.7106659082838,
       "molycop_fcff_before_ownership": 12578.554779104208,
-      "combined_fcff_before_ownership": 13488.265445012492,
-      "noncontrolling_fcff_excluded": 1990.092202643719,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": 1.8189894035458565e-12
+      "consolidation_fcff_residual": 0.0,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 16669.930840171684
     },
     {
       "fiscal_year": 2030,
       "period_years": 1.0,
       "discount_years": 3.7534246575342465,
-      "revenue": 190365.44932365807,
-      "operating_ebitda": 27549.958294309177,
+      "revenue": 220203.10627639783,
+      "operating_ebitda": 31462.31925082671,
       "integration_cash_cost": 0.0,
-      "ebit": 19218.10083903132,
-      "unlevered_cash_tax": 5601.413694916459,
-      "closing_nwc": 40112.8677989454,
-      "delta_nwc": 3108.5639295002466,
-      "fcff": 12850.726345176392,
-      "opening_depreciable_book_proxy": 55710.20306737134,
-      "opening_cwip_proxy": 458.8901287340291,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 4998.304674214491,
-      "cash_capex": 5043.793939422734,
-      "new_lease_assets": 945.4603852933471,
-      "da": 8331.857455277857,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 504.37939394227305,
-      "closing_asset_book_proxy": 54580.94006554359,
-      "asset_rollforward_residual": -6.124805771301852e-12,
-      "normalized_terminal_nopat": 15547.613336014034,
+      "ebit": 22026.217630349092,
+      "unlevered_cash_tax": 6457.592514759483,
+      "closing_nwc": 45483.646050438554,
+      "delta_nwc": 3412.570245622501,
+      "cash_capex": 5553.45884994358,
+      "new_lease_assets": 1004.541315093948,
+      "da": 9436.101620477617,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 62666.33582334209,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 188740.7870255711,
+      "nopat": 15568.62511558961,
+      "fcff": 15034.156325407195,
       "legacy_fcff": 1233.5929262909085,
       "molycop_fcff_before_ownership": 13800.56339911629,
-      "combined_fcff_before_ownership": 15034.156325407199,
-      "noncontrolling_fcff_excluded": 2183.4299802308074,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": 1.8189894035458565e-12
+      "consolidation_fcff_residual": -3.637978807091713e-12,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 17862.46718225628
     },
     {
       "fiscal_year": 2031,
       "period_years": 1.0,
       "discount_years": 4.7534246575342465,
-      "revenue": 202363.15936109438,
-      "operating_ebitda": 29380.209098437852,
+      "revenue": 233692.69916147113,
+      "operating_ebitda": 33473.162604239966,
       "integration_cash_cost": 0.0,
-      "ebit": 20299.730977183302,
-      "unlevered_cash_tax": 5881.979908260927,
-      "closing_nwc": 43023.423682205896,
-      "delta_nwc": 2910.555883260491,
-      "fcff": 14066.539624435616,
-      "opening_depreciable_book_proxy": 53322.11067160132,
-      "opening_cwip_proxy": 504.37939394227305,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 5435.3885324778985,
-      "cash_capex": 5478.899042817361,
-      "new_lease_assets": 1042.2346396634603,
-      "da": 9080.478121254555,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 547.8899042817361,
-      "closing_asset_book_proxy": 52021.595626769864,
-      "asset_rollforward_residual": 0.0,
-      "normalized_terminal_nopat": 16348.677260821545,
+      "ebit": 23226.378333296623,
+      "unlevered_cash_tax": 6770.161980598748,
+      "closing_nwc": 48662.74084627371,
+      "delta_nwc": 3179.09479583515,
+      "cash_capex": 6014.047198864249,
+      "new_lease_assets": 1104.2696159540913,
+      "da": 10246.784270943343,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 59537.86836721709,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 200219.53655723116,
+      "nopat": 16456.216352697877,
+      "fcff": 16405.58901298773,
       "legacy_fcff": 1621.4193017312682,
       "molycop_fcff_before_ownership": 14784.169711256458,
-      "combined_fcff_before_ownership": 16405.589012987726,
-      "noncontrolling_fcff_excluded": 2339.04938855211,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": 0.0
+      "consolidation_fcff_residual": 3.637978807091713e-12,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 18750.05841936454
     },
     {
       "fiscal_year": 2032,
       "period_years": 1.0,
       "discount_years": 5.756164383561644,
-      "revenue": 213010.1187113983,
-      "operating_ebitda": 31030.427684995302,
+      "revenue": 245592.8401037901,
+      "operating_ebitda": 35275.078932196455,
       "integration_cash_cost": 0.0,
-      "ebit": 21813.02761705243,
-      "unlevered_cash_tax": 6263.818319765754,
-      "closing_nwc": 45675.914024900994,
-      "delta_nwc": 2652.4903426951064,
-      "fcff": 15092.880933823037,
-      "opening_depreciable_book_proxy": 50719.25572248812,
-      "opening_cwip_proxy": 547.8899042817361,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 5845.609851375806,
-      "cash_capex": 5886.35549677119,
-      "new_lease_assets": 1134.8825919402157,
-      "da": 9217.400067942872,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 588.6355496771187,
-      "closing_asset_book_proxy": 49825.43364753839,
-      "asset_rollforward_residual": -7.94379517484771e-12,
-      "normalized_terminal_nopat": 17480.135489185846,
+      "ebit": 24826.476102537446,
+      "unlevered_cash_tax": 7175.436697033932,
+      "closing_nwc": 51540.80387553152,
+      "delta_nwc": 2878.063029257819,
+      "cash_capex": 6442.909579059953,
+      "new_lease_assets": 1199.3989672824716,
+      "da": 10448.602829659008,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 56731.5740839005,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 210317.76117159365,
+      "nopat": 17651.039405503514,
+      "fcff": 17579.27065956228,
       "legacy_fcff": 1863.8232416658934,
       "molycop_fcff_before_ownership": 15715.447417896386,
-      "combined_fcff_before_ownership": 17579.27065956228,
-      "noncontrolling_fcff_excluded": 2486.3897257392437,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": -1.8189894035458565e-12
+      "consolidation_fcff_residual": 0.0,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 19944.881472170182
     },
     {
       "fiscal_year": 2033,
       "period_years": 1.0,
       "discount_years": 6.756164383561644,
-      "revenue": 224033.72439985618,
-      "operating_ebitda": 32729.560395488355,
+      "revenue": 257919.75464794366,
+      "operating_ebitda": 37131.97729374452,
       "integration_cash_cost": 0.0,
-      "ebit": 22991.8866298652,
-      "unlevered_cash_tax": 6564.640048713112,
-      "closing_nwc": 48416.535920790586,
-      "delta_nwc": 2740.6218958895906,
-      "fcff": 15887.566674847456,
-      "opening_depreciable_book_proxy": 48482.348097861264,
-      "opening_cwip_proxy": 588.6355496771187,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 6264.465944717791,
-      "cash_capex": 6306.478216711858,
-      "new_lease_assets": 1230.253559326337,
-      "da": 9737.673765623156,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 630.6478216711857,
-      "closing_asset_book_proxy": 47624.491657953426,
-      "asset_rollforward_residual": -6.124805771301852e-12,
-      "normalized_terminal_nopat": 18358.172773051258,
+      "ebit": 26097.84367463489,
+      "unlevered_cash_tax": 7501.235736988153,
+      "closing_nwc": 54516.02136544634,
+      "delta_nwc": 2975.217489914812,
+      "cash_capex": 6885.294462292173,
+      "new_lease_assets": 1297.3505896822833,
+      "da": 11034.133619109629,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 53880.08551676533,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 220787.77735419915,
+      "nopat": 18596.607937646735,
+      "fcff": 18472.8790148671,
       "legacy_fcff": 2132.182414563394,
       "molycop_fcff_before_ownership": 16340.696600303701,
-      "combined_fcff_before_ownership": 18472.879014867096,
-      "noncontrolling_fcff_excluded": 2585.31234001964,
-      "ownership_fcff_residual": 0.0,
-      "fcff_identity_residual": -1.8189894035458565e-12
+      "consolidation_fcff_residual": 3.637978807091713e-12,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 20890.450004313407
     },
     {
       "fiscal_year": 2034,
       "period_years": 1.0,
       "discount_years": 7.756164383561644,
-      "revenue": 234350.13342534646,
-      "operating_ebitda": 34339.419291887665,
+      "revenue": 269422.17473211704,
+      "operating_ebitda": 38885.40293260388,
       "integration_cash_cost": 0.0,
-      "ebit": 23772.1606079682,
-      "unlevered_cash_tax": 6766.510140666903,
-      "closing_nwc": 51014.49106249038,
-      "delta_nwc": 2597.955141699791,
-      "fcff": 16942.414512148393,
-      "opening_depreciable_book_proxy": 46239.39383628224,
-      "opening_cwip_proxy": 630.6478216711857,
-      "nondepreciable_land": 754.45,
-      "commissioned_assets": 6669.4766936899705,
-      "cash_capex": 6709.809857798649,
-      "new_lease_assets": 1322.7296395739197,
-      "da": 10567.258683919465,
-      "ppa_amortization": 1930.9261918991692,
-      "closing_cwip_proxy": 670.9809857798643,
-      "closing_asset_book_proxy": 45089.772471406526,
-      "asset_rollforward_residual": 0.0,
-      "normalized_terminal_nopat": 18936.576659200462,
+      "ebit": 26959.732887639693,
+      "unlevered_cash_tax": 7725.1419423654315,
+      "closing_nwc": 57327.45849770908,
+      "delta_nwc": 2811.437132262741,
+      "cash_capex": 7308.884671974274,
+      "new_lease_assets": 1392.175065992324,
+      "da": 11925.670044964188,
+      "ppa_amortization": 2293.8420666666666,
+      "closing_asset_book_proxy": 50655.47520976774,
+      "intercompany_revenue_eliminated": 0.0,
+      "operating_expense_total": 230536.77179951317,
+      "nopat": 19234.590945274264,
+      "fcff": 19647.764120009113,
       "legacy_fcff": 2548.361291387387,
       "molycop_fcff_before_ownership": 17099.402828621718,
-      "combined_fcff_before_ownership": 19647.764120009106,
-      "noncontrolling_fcff_excluded": 2705.3496078607104,
-      "ownership_fcff_residual": -1.8189894035458565e-12,
-      "fcff_identity_residual": -3.637978807091713e-12
+      "consolidation_fcff_residual": 7.275957614183426e-12,
+      "fcff_identity_residual": 0.0,
+      "normalized_terminal_nopat": 21528.433011940928
     }
   ],
   "group_dcf_inr_m": {
-    "scope": "Tega-attributable group cash flows; proportionate enterprise value",
-    "wacc": 0.105,
+    "scope": "100% consolidated operating cash flows; full enterprise value",
+    "wacc": 0.08972557667288913,
     "terminal_growth": 0.045,
     "terminal_roic": 0.18,
-    "pv_forecast_fcff": 63889.57077615151,
-    "terminal_nopat": 19788.722608864482,
-    "terminal_reinvestment": 4947.1806522161205,
-    "terminal_fcff": 14841.541956648362,
-    "terminal_value": 247359.03261080603,
-    "pv_terminal_value": 114025.71847166111,
-    "enterprise_value": 177915.28924781262,
-    "terminal_share_of_ev": 0.6408989297869632
+    "pv_forecast_fcff": 79828.65263725705,
+    "terminal_nopat": 22497.212497478267,
+    "terminal_reinvestment": 5624.303124369567,
+    "terminal_fcff": 16872.9093731087,
+    "terminal_value": 377254.1491530144,
+    "pv_terminal_value": 193729.66165552835,
+    "enterprise_value": 273558.3142927854,
+    "terminal_share_of_ev": 0.7081841477067385
   },
   "equity_bridge": {
     "molycop_ordinary_ownership": 0.8417868954269924,
+    "minority_fraction": 0.15821310457300763,
     "fx_inr_per_usd": 94.97,
-    "group_enterprise_value_inr_m": 177915.28924781262,
+    "group_enterprise_value_inr_m": 273558.3142927854,
     "legacy_net_debt_inr_m": 18695.138822309997,
+    "parent_new_term_debt_already_included_inr_m": 15000.0,
     "molycop_net_debt_full_inr_m": 63867.325,
-    "molycop_net_debt_attributable_inr_m": 53762.67723097673,
+    "molycop_preference_funded_paydown_already_included_inr_m": 25641.9,
+    "net_debt_before_pro_forma_issue_inr_m": 82562.46382230999,
+    "follow_on_issue_cash_added_inr_m": 953.99939,
+    "follow_on_issue_expenses_inr_m": 0.0,
+    "consolidated_net_debt_inr_m": 81608.46443231,
     "preference_fair_value_full_inr_m": 25641.9,
-    "preference_fair_value_attributable_inr_m": 21585.015393849397,
-    "earnout_present_value_full_inr_m": 8728.446240588744,
-    "earnout_present_value_attributable_inr_m": 7347.491662766602,
+    "earnout_present_value_full_inr_m": 9059.096825516664,
     "other_claims_full_inr_m": 4748.5,
-    "other_claims_attributable_inr_m": 3997.225072935073,
-    "total_attributable_claims_inr_m": 105387.54818283781,
+    "molycop_standalone_ev_for_nci_inr_m": 240590.12305419362,
+    "molycop_raw_common_equity_inr_m": 137273.30122867695,
+    "molycop_common_equity_inr_m": 137273.30122867695,
+    "minority_interest_inr_m": 21718.435162374644,
+    "total_bridge_deductions_inr_m": 142776.3964202013,
     "nonoperating_assets_inr_m": 325.14,
-    "raw_tega_equity_inr_m": 72852.8810649748,
-    "tega_equity_inr_m": 72852.8810649748,
+    "raw_tega_equity_inr_m": 131107.05787258415,
+    "tega_equity_inr_m": 131107.05787258415,
+    "pre_november_2025_shares": 66535492,
+    "november_2025_issue_shares": 8592206,
     "issued_shares": 75127698,
-    "value_per_share_inr": 969.7206623444633,
-    "pending_issue_pro_forma_shares": 75606133,
-    "pending_issue_pro_forma_value_per_share_inr": 976.202293734224
+    "follow_on_shares_included": 478435,
+    "other_dilutive_shares": 0,
+    "diluted_shares": 75606133,
+    "incremental_issue_cash_inr_m": 953.99939,
+    "status": "First issue already in FY26 shares/cash. Main valuation includes proposed follow-on pro forma, with matching cash once. Completion not verified; 22 August filing is subject to approvals. No other dilutive instruments identified.",
+    "value_per_share_inr": 1734.0796661639097,
+    "bridge_residual_inr_m": 2.9103830456733704e-11,
+    "debt_basis": "June post-close Molycop net debt excludes preferences and already follows preference-funded refinancing. Parent June debt already includes INR15000m acquisition loan. Neither flow is applied twice.",
+    "nci_basis": "Standalone Molycop operating EV at its own WACC, less full net bank debt, preference fair value, earnout PV and other claims; ordinary equity floored at zero before applying NCI. Subsidiary support/recourse not established."
+  },
+  "wacc_calculation": {
+    "tega": {
+      "currency": "INR",
+      "risk_free_rate": 0.069754,
+      "equity_risk_premium": 0.054745379841835994,
+      "beta": 0.6748675556411455,
+      "cost_of_equity": 0.1066998806765059,
+      "cost_of_debt": 0.07,
+      "after_tax_cost_of_debt": 0.05288096307644266,
+      "cost_of_preference": 0.0,
+      "common_equity_weight": 0.8,
+      "debt_weight": 0.2,
+      "preference_weight": 0.0,
+      "standalone_wacc": 0.09593609715649326,
+      "inputs": {
+        "risk_free_rate": 0.069754,
+        "equity_risk_premium": 0.05974537984183599,
+        "beta": 0.6748675556411455,
+        "cost_of_debt": 0.07,
+        "tax_rate": 0.2445576703365335,
+        "debt_weight": 0.2,
+        "preference_weight": 0.0,
+        "cost_of_preference": 0.0,
+        "currency": "INR",
+        "_note": "CAPM inputs carried from 2 September research calculation (included separately). Observed TEGA beta includes acquisition-period risk, so imperfect standalone proxy. Debt cost 7% and target debt weight 20% are UNSOURCED analyst assumptions; tax uses existing historical effective proxy, not statutory marginal rate.",
+        "_market_return_note": "Reference NIFTY TRI arithmetic annual return 12.94993798%; ERP input equals this minus the 6.9754% reference RF. ERP is directly adjustable; historical market-return calculation is in tega_capm_reference_20260902.json."
+      }
+    },
+    "molycop": {
+      "currency": "USD",
+      "risk_free_rate": 0.045,
+      "equity_risk_premium": 0.045000000000000005,
+      "beta": 1.1,
+      "cost_of_equity": 0.0945,
+      "cost_of_debt": 0.09,
+      "after_tax_cost_of_debt": 0.0657,
+      "cost_of_preference": 0.12,
+      "common_equity_weight": 0.37000000000000005,
+      "debt_weight": 0.45,
+      "preference_weight": 0.18,
+      "standalone_wacc": 0.08613,
+      "inputs": {
+        "risk_free_rate": 0.045,
+        "equity_risk_premium": 0.05,
+        "beta": 1.1,
+        "cost_of_debt": 0.09,
+        "tax_rate": 0.27,
+        "debt_weight": 0.45,
+        "preference_weight": 0.18,
+        "cost_of_preference": 0.12,
+        "currency": "USD",
+        "_note": "ALL UNSOURCED analyst starting assumptions: US/global RF4.5%, ERP5%, beta1.10, debt9%, tax27%, target bank-debt45%, preference18%, common37%. Preference12% is not disclosed contractual coupon; non-tax-deductible. Replace with sourced inputs. Geographic exposures extend beyond US."
+      }
+    },
+    "tega_weight_ev_inr_m": 80000.0,
+    "molycop_weight_ev_inr_m": 138181.35,
+    "tega_ev_weight": 0.36666745347391055,
+    "molycop_ev_weight": 0.6333325465260895,
+    "molycop_wacc_inr_constant_fx": 0.08613,
+    "blended_wacc": 0.08972557667288913,
+    "currency_convention": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
+    "weight_basis": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization. UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV."
+  },
+  "standalone_values_for_audit_inr_m": {
+    "tega": {
+      "scope": "100% consolidated operating cash flows; full enterprise value",
+      "wacc": 0.09593609715649326,
+      "terminal_growth": 0.045,
+      "terminal_roic": 0.18,
+      "pv_forecast_fcff": 4577.895951306048,
+      "terminal_nopat": 5377.961245038874,
+      "terminal_reinvestment": 1344.4903112597185,
+      "terminal_fcff": 4033.4709337791555,
+      "terminal_value": 79186.88629376022,
+      "pv_terminal_value": 38911.00694805899,
+      "enterprise_value": 43488.902899365035,
+      "terminal_share_of_ev": 0.8947341586910235
+    },
+    "molycop": {
+      "scope": "100% consolidated operating cash flows; full enterprise value",
+      "wacc": 0.08613,
+      "terminal_growth": 0.045,
+      "terminal_roic": 0.18,
+      "pv_forecast_fcff": 76121.85961573436,
+      "terminal_nopat": 17119.251252439393,
+      "terminal_reinvestment": 4279.812813109848,
+      "terminal_fcff": 12839.438439329544,
+      "terminal_value": 312167.2365506818,
+      "pv_terminal_value": 164468.26343845925,
+      "enterprise_value": 240590.12305419362,
+      "terminal_share_of_ev": 0.6836035550861425
+    }
+  },
+  "consolidated_statements_inr_m": {
+    "opening": {
+      "date": "2026-06-30",
+      "assets": {
+        "ppe": 3850.9397184543286,
+        "rou_assets": 1951.5436298055704,
+        "cwip": 1814.9995470351253,
+        "investment_property": 43.08,
+        "goodwill": 50695.25,
+        "intangibles": 53.67415174010021,
+        "intangibles_under_development": 52.86045296487487,
+        "joint_venture": 291.34,
+        "other_noncurrent_financial_assets": 52.75,
+        "noncurrent_tax_assets": 61.17,
+        "deferred_tax_assets": 710.54,
+        "other_noncurrent_assets": 306.72,
+        "inventories": 25952.705427636956,
+        "current_investments": 0.0,
+        "receivables": 26101.73542763696,
+        "cash": 500.0,
+        "other_bank_balances": 69.94,
+        "current_loans": 0.64,
+        "other_current_financial_assets": 931.62,
+        "contract_assets": 0.0,
+        "current_tax_assets": 27.2,
+        "other_current_assets": 949.81,
+        "molycop_fixed_assets_proxy": 62423.82096111111,
+        "unallocated_acquired_assets_opening_only": 48864.84068361498,
+        "pro_forma_follow_on_cash": 953.99939
+      },
+      "liabilities": {
+        "term_debt": 16451.767499999998,
+        "revolver": 2002.7113223099973,
+        "leases": 740.66,
+        "other_noncurrent_financial_liabilities": 0,
+        "noncurrent_provisions": 0.38,
+        "deferred_tax_liabilities": 45.58,
+        "payables": 17724.24695175797,
+        "other_current_financial_liabilities": 307.18,
+        "current_provisions": 317.2,
+        "current_tax_liabilities": 206.62,
+        "other_current_liabilities": 876.84,
+        "molycop_bank_debt_proxy": 63867.325,
+        "molycop_lease_liability_proxy": 949.7,
+        "apollo_preference_book_proxy": 25885.210679549287,
+        "molycop_earnout_book_proxy": 11396.4,
+        "other_acquisition_claims_proxy": 3798.8,
+        "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+      },
+      "owners_equity": 35236.10229930999,
+      "noncontrolling_equity": 7037.98709069,
+      "total_assets": 226661.17939,
+      "total_liabilities": 184387.09,
+      "total_equity": 42274.089389999994,
+      "legacy_unresolved_opening_gap": -15.875,
+      "allocation_note": "UNSOURCED allocation proxies: AR + inventory - AP = NWC; opening Molycop cash zero is a gross/net presentation assumption. Lease USD10m is allocated OUT OF the existing USD50m other-claims reserve, not added to DCF claims again. Missing acquired assets/liabilities are fixed opening allocations against reported June group control totals, not new forecast balancing plugs. Intercompany trading/receivable balances assumed zero; investment and dividend eliminations are mandatory. NCI book defaults to ordinary contribution, distinct from fair-value NCI in DCF.",
+      "investment_eliminated": 37446.23632231,
+      "control_total_note": "Reported June group totals anchor the acquisition opening only. Unallocated residual accounts are disclosed and frozen. This does not resolve the separate legacy June gap or validate PPA."
+    },
+    "forecast": [
+      {
+        "fiscal_year": 2027,
+        "period_years": 0.75,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 131030.70928650859,
+          "operating_expense_total": 113527.35644493323,
+          "operating_ebitda": 17503.352841575354,
+          "depreciation_amortisation": 5342.4562303125,
+          "ebit_before_integration": 12160.896611262855,
+          "integration_expense": 284.91,
+          "ebit_after_integration": 11875.986611262855,
+          "bank_and_lease_finance_cost": 5916.029999999999,
+          "preference_return_economic_charge": 2296.361720670535,
+          "other_income_after_dividend_elimination": 34.46737009121216,
+          "joint_venture_profit": 37.4375,
+          "intercompany_dividend_eliminated": 1404.1526052130607,
+          "current_tax_proxy": 2038.771465384504,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 3735.4997606835336,
+          "net_income_proxy": 1696.7282952990297,
+          "noncontrolling_profit_proxy": 54.76016377802143,
+          "owners_net_income_proxy": 1641.9681315210082,
+          "pro_forma_eps_inr": 21.717393369675555
+        },
+        "balance_sheet": {
+          "total_assets": 227345.1455172567,
+          "total_liabilities": 183788.4924717008,
+          "owners_equity": 36727.815034831,
+          "noncontrolling_equity": 6828.838010724867,
+          "total_equity": 43556.65304555587,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 34999.36775037042,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 2.9103830456733704e-11
+        },
+        "assets": {
+          "ppe": 5573.900901987841,
+          "rou_assets": 1943.4621598472818,
+          "cwip": 2312.9799703742283,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 104.1823600398764,
+          "intangibles_under_development": 54.9620296257715,
+          "joint_venture": 292.215,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 25837.018257259057,
+          "current_investments": 0.0,
+          "receivables": 26590.95757067858,
+          "cash": 500.0000000000001,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 831.8939599054763,
+          "molycop_fixed_assets_proxy": 60585.82323392361,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 16250.422451231649,
+          "revolver": 3721.606876856732,
+          "leases": 863.1216987683504,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 16888.89180200344,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 364.3720199414136,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 1007.2382155278345,
+          "molycop_bank_debt_proxy": 59975.18068576883,
+          "molycop_lease_liability_proxy": 964.6577750000001,
+          "apollo_preference_book_proxy": 28181.572400219822,
+          "molycop_earnout_book_proxy": 11396.4,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 14285.223779336373,
+          "investing_cash_flow_proxy": -5190.2703799087885,
+          "financing_cash_flow_proxy": -9094.953399427586,
+          "cash_dividend_eliminated": 1404.1526052130607,
+          "external_nci_dividend": 263.9092437431541,
+          "noncash_preference_accretion": 2296.361720670535,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": -1.8189894035458565e-12,
+          "cash_rollforward_residual": 1.8189894035458565e-12
+        },
+        "fcff": {
+          "ebit": 12160.896611262855,
+          "integration_cash_cost": 284.91,
+          "unlevered_cash_tax": 3604.5999643834284,
+          "nopat": 8271.386646879426,
+          "da": 5342.4562303125,
+          "cash_capex": 5242.344,
+          "new_lease_assets": 527.584425,
+          "delta_nwc": 913.4038468544777,
+          "fcff": 6930.510605337449
+        }
+      },
+      {
+        "fiscal_year": 2028,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 189835.6855585151,
+          "operating_expense_total": 163745.55976812285,
+          "operating_ebitda": 26090.12579039225,
+          "depreciation_amortisation": 7882.862513163404,
+          "ebit_before_integration": 18207.26327722884,
+          "integration_expense": 284.91,
+          "ebit_after_integration": 17922.35327722884,
+          "bank_and_lease_finance_cost": 6710.09087831531,
+          "preference_return_economic_charge": 3381.788688026382,
+          "other_income_after_dividend_elimination": 45.95649345494962,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 1708.4812823261443,
+          "current_tax_proxy": 3605.303231501847,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 7926.346871008767,
+          "net_income_proxy": 4321.04363950692,
+          "noncontrolling_profit_proxy": 423.23078329372174,
+          "owners_net_income_proxy": 3897.8128562131983,
+          "pro_forma_eps_inr": 51.55418881446031
+        },
+        "balance_sheet": {
+          "total_assets": 230469.89892715085,
+          "total_liabilities": 183063.5651882888,
+          "owners_equity": 40475.3724950442,
+          "noncontrolling_equity": 6930.961243817796,
+          "total_equity": 47406.33373886199,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 38527.96780052851,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 5.093170329928398e-11
+        },
+        "assets": {
+          "ppe": 8280.12828769164,
+          "rou_assets": 1940.3265504028968,
+          "cwip": 169.92977883864842,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 170.1104000648577,
+          "intangibles_under_development": 3.868333155551703,
+          "joint_venture": 293.38166666666666,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 28409.21693488424,
+          "current_investments": 0.0,
+          "receivables": 29298.86532471928,
+          "cash": 500.0,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 981.634872688462,
+          "molycop_fixed_assets_proxy": 57704.68670442361,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 16036.249117898315,
+          "revolver": 2336.580095023758,
+          "leases": 1145.7338281016837,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 18543.249253909766,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 429.95898353086807,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 1188.5410943228446,
+          "molycop_bank_debt_proxy": 55239.47340987264,
+          "molycop_lease_liability_proxy": 1008.9897710000002,
+          "apollo_preference_book_proxy": 31563.361088246205,
+          "molycop_earnout_book_proxy": 11396.4,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 18696.58750873231,
+          "investing_cash_flow_proxy": -4707.589626487049,
+          "financing_cash_flow_proxy": -13988.997882245263,
+          "cash_dividend_eliminated": 1708.4812823261443,
+          "external_nci_dividend": 321.1075502007928,
+          "noncash_preference_accretion": 3381.788688026382,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": -9.094947017729282e-13,
+          "cash_rollforward_residual": 9.094947017729282e-13
+        },
+        "fcff": {
+          "ebit": 18207.26327722884,
+          "integration_cash_cost": 284.91,
+          "unlevered_cash_tax": 5372.400160149881,
+          "nopat": 12549.95311707896,
+          "da": 7882.862513163404,
+          "cash_capex": 4777.021119941998,
+          "new_lease_assets": 799.580792,
+          "delta_nwc": 3528.6000501580893,
+          "fcff": 11327.613668142276
+        }
+      },
+      {
+        "fiscal_year": 2029,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 205442.61406629116,
+          "operating_expense_total": 176336.19035338456,
+          "operating_ebitda": 29106.423712906606,
+          "depreciation_amortisation": 8696.168240991567,
+          "ebit_before_integration": 20410.25547191504,
+          "integration_expense": 94.97,
+          "ebit_after_integration": 20315.28547191504,
+          "bank_and_lease_finance_cost": 6200.950499243672,
+          "preference_return_economic_charge": 3787.603330589548,
+          "other_income_after_dividend_elimination": 45.95649345494956,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 0.0,
+          "current_tax_proxy": 4376.785923055282,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 10422.604802203432,
+          "net_income_proxy": 6045.81887914815,
+          "noncontrolling_profit_proxy": 639.3789488565483,
+          "owners_net_income_proxy": 5406.439930291602,
+          "pro_forma_eps_inr": 71.50795465616
+        },
+        "balance_sheet": {
+          "total_assets": 233212.3089059666,
+          "total_liabilities": 179910.41168395642,
+          "owners_equity": 45731.5570293358,
+          "noncontrolling_equity": 7570.340192674344,
+          "total_equity": 53301.89722201015,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 42071.07580481606,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 3.637978807091713e-11
+        },
+        "assets": {
+          "ppe": 8738.418177847861,
+          "rou_assets": 1931.4107600386499,
+          "cwip": 198.5479188691413,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 182.41276649587365,
+          "intangibles_under_development": 4.519805197043013,
+          "joint_venture": 294.54833333333335,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 30984.572107257187,
+          "current_investments": 0.0,
+          "receivables": 32024.047574913457,
+          "cash": 500.0,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 1146.9535380654609,
+          "molycop_fixed_assets_proxy": 54489.127850333614,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 15822.07578456498,
+          "revolver": 2274.7472637061264,
+          "leases": 1507.556450249713,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 20193.423206157837,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 502.3690489246354,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 1388.7051603375703,
+          "molycop_bank_debt_proxy": 57619.173098077066,
+          "molycop_lease_liability_proxy": 1076.3687067200003,
+          "apollo_preference_book_proxy": 35350.964418835756,
+          "molycop_earnout_book_proxy": 0.0,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 21116.834785563773,
+          "investing_cash_flow_proxy": -5000.2857472068945,
+          "financing_cash_flow_proxy": -16116.54903835688,
+          "cash_dividend_eliminated": 0.0,
+          "external_nci_dividend": 0.0,
+          "noncash_preference_accretion": 3787.603330589548,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": -9.094947017729282e-13,
+          "cash_rollforward_residual": 9.094947017729282e-13
+        },
+        "fcff": {
+          "ebit": 20410.25547191504,
+          "integration_cash_cost": 94.97,
+          "unlevered_cash_tax": 6008.524798410025,
+          "nopat": 14306.760673505014,
+          "da": 8696.168240991567,
+          "cash_capex": 5069.717240661845,
+          "new_lease_assets": 901.8382245346961,
+          "delta_nwc": 3543.108004287549,
+          "fcff": 13488.265445012492
+        }
+      },
+      {
+        "fiscal_year": 2030,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 220203.10627639783,
+          "operating_expense_total": 188740.7870255711,
+          "operating_ebitda": 31462.31925082671,
+          "depreciation_amortisation": 9436.101620477617,
+          "ebit_before_integration": 22026.217630349092,
+          "integration_expense": 0.0,
+          "ebit_after_integration": 22026.217630349092,
+          "bank_and_lease_finance_cost": 6420.52871396324,
+          "preference_return_economic_charge": 4242.115730260294,
+          "other_income_after_dividend_elimination": 45.956493454949396,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 2551.498168988975,
+          "current_tax_proxy": 4766.705043399206,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 11459.446346247174,
+          "net_income_proxy": 6692.741302847968,
+          "noncontrolling_profit_proxy": 681.8513592306749,
+          "owners_net_income_proxy": 6010.889943617292,
+          "pro_forma_eps_inr": 79.50267663626299
+        },
+        "balance_sheet": {
+          "total_assets": 235609.91920404191,
+          "total_liabilities": 176245.08790572555,
+          "owners_equity": 51592.1915769531,
+          "noncontrolling_equity": 7772.639721363245,
+          "total_equity": 59364.83129831634,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 45483.646050438554,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 2.1827872842550278e-11
+        },
+        "assets": {
+          "ppe": 9227.575287802109,
+          "rou_assets": 1905.6720297533348,
+          "cwip": 228.01699674790348,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 195.41780370408043,
+          "intangibles_under_development": 5.190648246454572,
+          "joint_venture": 295.71500000000003,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 33459.58647388227,
+          "current_investments": 0.0,
+          "receivables": 34653.344009484135,
+          "cash": 500.0,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 1317.187823718434,
+          "molycop_fixed_assets_proxy": 51104.46305708821,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 14867.954049031492,
+          "revolver": 0.0,
+          "leases": 1950.9448268137942,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 21774.71913891365,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 576.9321705678138,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 1594.820947164823,
+          "molycop_bank_debt_proxy": 50546.723099171984,
+          "molycop_lease_liability_proxy": 1164.8849785832003,
+          "apollo_preference_book_proxy": 39593.08014909605,
+          "molycop_earnout_book_proxy": 0.0,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 23308.318961805002,
+          "investing_cash_flow_proxy": -5484.02735648863,
+          "financing_cash_flow_proxy": -17824.29160531637,
+          "cash_dividend_eliminated": 2551.498168988975,
+          "external_nci_dividend": 479.55183054177303,
+          "noncash_preference_accretion": 4242.115730260294,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": 0.0,
+          "cash_rollforward_residual": 0.0
+        },
+        "fcff": {
+          "ebit": 22026.217630349092,
+          "integration_cash_cost": 0.0,
+          "unlevered_cash_tax": 6457.592514759483,
+          "nopat": 15568.62511558961,
+          "da": 9436.101620477617,
+          "cash_capex": 5553.45884994358,
+          "new_lease_assets": 1004.541315093948,
+          "delta_nwc": 3412.570245622501,
+          "fcff": 15034.156325407195
+        }
+      },
+      {
+        "fiscal_year": 2031,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 233692.69916147113,
+          "operating_expense_total": 200219.53655723116,
+          "operating_ebitda": 33473.162604239966,
+          "depreciation_amortisation": 10246.784270943343,
+          "ebit_before_integration": 23226.378333296623,
+          "integration_expense": 0.0,
+          "ebit_after_integration": 23226.378333296623,
+          "bank_and_lease_finance_cost": 5608.561691717084,
+          "preference_return_economic_charge": 4751.16961789153,
+          "other_income_after_dividend_elimination": 45.956493454949396,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 2921.9528210573776,
+          "current_tax_proxy": 5294.041836985131,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 12962.520183809624,
+          "net_income_proxy": 7668.478346824492,
+          "noncontrolling_profit_proxy": 761.3549711963823,
+          "owners_net_income_proxy": 6907.12337562811,
+          "pro_forma_eps_inr": 91.35665456700596
+        },
+        "balance_sheet": {
+          "total_assets": 237405.97921068984,
+          "total_liabilities": 171072.10341722076,
+          "owners_equity": 58349.05955658121,
+          "noncontrolling_equity": 7984.816236887838,
+          "total_equity": 66333.87579346905,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 48662.74084627371,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 2.9103830456733704e-11
+        },
+        "assets": {
+          "ppe": 9710.116464028477,
+          "rou_assets": 1849.0496972576293,
+          "cwip": 257.30226098029675,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 208.27223378521742,
+          "intangibles_under_development": 5.857306906128493,
+          "joint_venture": 296.8816666666667,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 35760.020782017615,
+          "current_investments": 0.0,
+          "receivables": 37107.09804973647,
+          "cash": 500.0,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 1486.3602714370256,
+          "molycop_fixed_assets_proxy": 47507.27040425934,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 10667.2073054447,
+          "revolver": 0.0,
+          "leases": 2475.3901906448586,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 23240.056968007077,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 651.0302040487402,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 1799.6510848615933,
+          "molycop_bank_debt_proxy": 42447.41678680393,
+          "molycop_lease_liability_proxy": 1272.0725640395603,
+          "apollo_preference_book_proxy": 44344.24976698758,
+          "molycop_earnout_book_proxy": 0.0,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 25025.30097141968,
+          "investing_cash_flow_proxy": -5944.6157054093,
+          "financing_cash_flow_proxy": -19080.685266010387,
+          "cash_dividend_eliminated": 2921.9528210573776,
+          "external_nci_dividend": 549.1784556717892,
+          "noncash_preference_accretion": 4751.16961789153,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": -5.4569682106375694e-12,
+          "cash_rollforward_residual": 5.4569682106375694e-12
+        },
+        "fcff": {
+          "ebit": 23226.378333296623,
+          "integration_cash_cost": 0.0,
+          "unlevered_cash_tax": 6770.161980598748,
+          "nopat": 16456.216352697877,
+          "da": 10246.784270943343,
+          "cash_capex": 6014.047198864249,
+          "new_lease_assets": 1104.2696159540913,
+          "delta_nwc": 3179.09479583515,
+          "fcff": 16405.58901298773
+        }
+      },
+      {
+        "fiscal_year": 2032,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 245592.8401037901,
+          "operating_expense_total": 210317.76117159365,
+          "operating_ebitda": 35275.078932196455,
+          "depreciation_amortisation": 10448.602829659008,
+          "ebit_before_integration": 24826.476102537446,
+          "integration_expense": 0.0,
+          "ebit_after_integration": 24826.476102537446,
+          "bank_and_lease_finance_cost": 4648.068288349352,
+          "preference_return_economic_charge": 5321.309972038514,
+          "other_income_after_dividend_elimination": 45.956493454949396,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 3295.475393443634,
+          "current_tax_proxy": 5952.758452433556,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 14952.971002271197,
+          "net_income_proxy": 9000.21254983764,
+          "noncontrolling_profit_proxy": 818.705177420257,
+          "owners_net_income_proxy": 8181.5073724173835,
+          "pro_forma_eps_inr": 108.21221834500362
+        },
+        "balance_sheet": {
+          "total_assets": 239069.58869310233,
+          "total_liabilities": 164505.13743951535,
+          "owners_equity": 66380.31153299859,
+          "noncontrolling_equity": 8184.139720588333,
+          "total_equity": 74564.45125358691,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 51540.80387553152,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 5.820766091346741e-11
+        },
+        "assets": {
+          "ppe": 10555.398854305484,
+          "rou_assets": 2005.6324049295602,
+          "cwip": 286.0052884743434,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 227.15191785432438,
+          "intangibles_under_development": 6.510711351651615,
+          "joint_venture": 298.0483333333334,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 37836.34906544465,
+          "current_investments": 0.0,
+          "receivables": 39333.69782982518,
+          "cash": 500.0,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 1652.1693069836797,
+          "molycop_fixed_assets_proxy": 43650.87490698514,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 5596.161521994987,
+          "revolver": 0.0,
+          "leases": 3079.2810023860493,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 24557.348393808657,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 723.6550530301378,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 2000.408879883184,
+          "molycop_bank_debt_proxy": 33312.750250089346,
+          "molycop_lease_liability_proxy": 1394.9440529141748,
+          "apollo_preference_book_proxy": 49665.559739026095,
+          "molycop_earnout_book_proxy": 0.0,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 26469.53245050508,
+          "investing_cash_flow_proxy": -6373.478085605004,
+          "financing_cash_flow_proxy": -20096.05436490008,
+          "cash_dividend_eliminated": 3295.475393443634,
+          "external_nci_dividend": 619.3816937197626,
+          "noncash_preference_accretion": 5321.309972038514,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": -1.8189894035458565e-12,
+          "cash_rollforward_residual": 1.8189894035458565e-12
+        },
+        "fcff": {
+          "ebit": 24826.476102537446,
+          "integration_cash_cost": 0.0,
+          "unlevered_cash_tax": 7175.436697033932,
+          "nopat": 17651.039405503514,
+          "da": 10448.602829659008,
+          "cash_capex": 6442.909579059953,
+          "new_lease_assets": 1199.3989672824716,
+          "delta_nwc": 2878.063029257819,
+          "fcff": 17579.27065956228
+        }
+      },
+      {
+        "fiscal_year": 2033,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 257919.75464794366,
+          "operating_expense_total": 220787.77735419915,
+          "operating_ebitda": 37131.97729374452,
+          "depreciation_amortisation": 11034.133619109629,
+          "ebit_before_integration": 26097.84367463489,
+          "integration_expense": 0.0,
+          "ebit_after_integration": 26097.84367463489,
+          "bank_and_lease_finance_cost": 3544.579692350947,
+          "preference_return_economic_charge": 5959.867168683137,
+          "other_income_after_dividend_elimination": 45.956493454949396,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 3609.05145858857,
+          "current_tax_proxy": 6569.340740433441,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 16689.26997372242,
+          "net_income_proxy": 10119.92923328898,
+          "noncontrolling_profit_proxy": 880.1595228167259,
+          "owners_net_income_proxy": 9239.769710472254,
+          "pro_forma_eps_inr": 122.20926191890086
+        },
+        "balance_sheet": {
+          "total_assets": 240837.9251557516,
+          "total_liabilities": 156982.11810347784,
+          "owners_equity": 75469.82584747084,
+          "noncontrolling_equity": 8385.9812048029,
+          "total_equity": 83855.80705227374,
+          "consolidated_cash": 1453.99939,
+          "net_operating_working_capital": 54516.02136544634,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 2.9103830456733704e-11
+        },
+        "assets": {
+          "ppe": 11521.483402581409,
+          "rou_assets": 2249.1799709610154,
+          "cwip": 315.50132180289825,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 247.7012538415857,
+          "intangibles_under_development": 7.182168023118528,
+          "joint_venture": 299.2150000000001,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 39983.27165218601,
+          "current_investments": 0.0,
+          "receivables": 41635.04360676081,
+          "cash": 500.0,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 1822.5593064244692,
+          "molycop_fixed_assets_proxy": 39539.0373995553,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 0.0,
+          "revolver": 0.0,
+          "leases": 3413.7945581394893,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 25919.853620741116,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 798.2863777738722,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 2206.713201409969,
+          "molycop_bank_debt_proxy": 23308.88808997764,
+          "molycop_lease_liability_proxy": 1534.1268013437739,
+          "apollo_preference_book_proxy": 55625.42690770923,
+          "molycop_earnout_book_proxy": 0.0,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 27612.694063396266,
+          "investing_cash_flow_proxy": -6815.862968837224,
+          "financing_cash_flow_proxy": -20796.831094559042,
+          "cash_dividend_eliminated": 3609.05145858857,
+          "external_nci_dividend": 678.3180386021601,
+          "noncash_preference_accretion": 5959.867168683137,
+          "opening_cash": 1453.99939,
+          "closing_cash": 1453.99939,
+          "net_change_in_cash": 0.0,
+          "cash_rollforward_residual": 0.0
+        },
+        "fcff": {
+          "ebit": 26097.84367463489,
+          "integration_cash_cost": 0.0,
+          "unlevered_cash_tax": 7501.235736988153,
+          "nopat": 18596.607937646735,
+          "da": 11034.133619109629,
+          "cash_capex": 6885.294462292173,
+          "new_lease_assets": 1297.3505896822833,
+          "delta_nwc": 2975.217489914812,
+          "fcff": 18472.8790148671
+        }
+      },
+      {
+        "fiscal_year": 2034,
+        "period_years": 1.0,
+        "scope": "Economic pro-forma forecast; FY27 July-March future period; proxies and unallocated opening balances explicitly disclosed.",
+        "income": {
+          "revenue": 269422.17473211704,
+          "operating_expense_total": 230536.77179951317,
+          "operating_ebitda": 38885.40293260388,
+          "depreciation_amortisation": 11925.670044964188,
+          "ebit_before_integration": 26959.732887639693,
+          "integration_expense": 0.0,
+          "ebit_after_integration": 26959.732887639693,
+          "bank_and_lease_finance_cost": 2312.821486083026,
+          "preference_return_economic_charge": 6765.108344898415,
+          "other_income_after_dividend_elimination": 45.956493454949396,
+          "joint_venture_profit": 49.916666666666664,
+          "intercompany_dividend_eliminated": 3364.386244032827,
+          "current_tax_proxy": 7117.389803462202,
+          "deferred_tax_expense_assumed": 0.0,
+          "profit_before_tax_proxy": 17977.67621677987,
+          "net_income_proxy": 10860.286413317668,
+          "noncontrolling_profit_proxy": 916.3250931937155,
+          "owners_net_income_proxy": 9943.961320123952,
+          "pro_forma_eps_inr": 131.5232101623813
+        },
+        "balance_sheet": {
+          "total_assets": 245207.27019683403,
+          "total_liabilities": 151273.76555455397,
+          "owners_equity": 85263.53177159479,
+          "noncontrolling_equity": 8669.972870685238,
+          "total_equity": 93933.50464228002,
+          "consolidated_cash": 4676.967136435103,
+          "net_operating_working_capital": 57327.45849770908,
+          "investment_in_molycop_after_elimination": 0.0,
+          "balance_sheet_residual": 2.9103830456733704e-11
+        },
+        "assets": {
+          "ppe": 12368.345908932672,
+          "rou_assets": 2490.8356063474444,
+          "cwip": 344.3979232745876,
+          "investment_property": 43.08,
+          "goodwill": 50695.25,
+          "intangibles": 265.53658301496387,
+          "intangibles_under_development": 7.839979045528189,
+          "joint_venture": 300.3816666666668,
+          "other_noncurrent_financial_assets": 52.75,
+          "noncurrent_tax_assets": 61.17,
+          "deferred_tax_assets": 710.54,
+          "other_noncurrent_assets": 306.72,
+          "inventories": 42009.07602583055,
+          "current_investments": 0.0,
+          "receivables": 43812.132912020556,
+          "cash": 3722.967746435103,
+          "other_bank_balances": 69.94,
+          "current_loans": 0.64,
+          "other_current_financial_assets": 931.62,
+          "contract_assets": 0.0,
+          "current_tax_assets": 27.2,
+          "other_current_assets": 1989.486562498428,
+          "molycop_fixed_assets_proxy": 35178.51920915254,
+          "unallocated_acquired_assets_opening_only": 48864.84068361498,
+          "pro_forma_follow_on_cash": 953.99939
+        },
+        "liabilities": {
+          "term_debt": 0.0,
+          "revolver": 0.0,
+          "leases": 953.2390713676918,
+          "other_noncurrent_financial_liabilities": 0,
+          "noncurrent_provisions": 0.38,
+          "deferred_tax_liabilities": 45.58,
+          "payables": 27203.01107966173,
+          "other_current_financial_liabilities": 307.18,
+          "current_provisions": 871.4010106603246,
+          "current_tax_liabilities": 206.62,
+          "other_current_liabilities": 2408.8249123184078,
+          "molycop_bank_debt_proxy": 13983.208856841165,
+          "molycop_lease_liability_proxy": 1688.152795968409,
+          "apollo_preference_book_proxy": 59990.8992813535,
+          "molycop_earnout_book_proxy": 0.0,
+          "other_acquisition_claims_proxy": 3798.8,
+          "unallocated_acquired_liabilities_opening_only": 39816.46854638273
+        },
+        "cash_flow": {
+          "operating_cash_flow_proxy": 28981.850996878937,
+          "investing_cash_flow_proxy": -7239.453178519325,
+          "financing_cash_flow_proxy": -18519.43007192451,
+          "cash_dividend_eliminated": 3364.386244032827,
+          "external_nci_dividend": 632.3334273113774,
+          "noncash_preference_accretion": 4365.472373644272,
+          "opening_cash": 1453.99939,
+          "closing_cash": 4676.967136435103,
+          "net_change_in_cash": 3222.9677464351007,
+          "cash_rollforward_residual": 2.7284841053187847e-12
+        },
+        "fcff": {
+          "ebit": 26959.732887639693,
+          "integration_cash_cost": 0.0,
+          "unlevered_cash_tax": 7725.1419423654315,
+          "nopat": 19234.590945274264,
+          "da": 11925.670044964188,
+          "cash_capex": 7308.884671974274,
+          "new_lease_assets": 1392.175065992324,
+          "delta_nwc": 2811.437132262741,
+          "fcff": 19647.764120009113
+        }
+      }
+    ],
+    "assumption_note": "Molycop nonoperating income and deferred tax zero; preference treated as economic finance charge without tax shield. Net income is a modeled proxy, not sourced Molycop PAT. Detailed statutory classification/PPA remains unresolved.",
+    "full_fiscal_year_income": {
+      "rows": [
+        {
+          "fiscal_year": 2027,
+          "tega_months": 12,
+          "molycop_months": 10,
+          "income": {
+            "revenue": 148265.1292865086,
+            "operating_expense_total": 128296.49644493323,
+            "operating_ebitda": 19968.632841575352,
+            "depreciation_amortisation": 6078.6962303125,
+            "ebit_before_integration": 13889.936611262854,
+            "integration_expense": 2194.46,
+            "ebit_after_integration": 11695.476611262855,
+            "bank_and_lease_finance_cost": 7083.109999999999,
+            "preference_return_economic_charge": 2296.361720670535,
+            "other_income_after_dividend_elimination": 208.59737009121216,
+            "joint_venture_profit": 46.7175,
+            "intercompany_dividend_eliminated": 1404.1526052130607,
+            "current_tax_proxy": 1957.1114653845038,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 2571.319760683534,
+            "net_income_proxy": 614.2082952990297,
+            "noncontrolling_profit_proxy": -165.86983622197857,
+            "owners_net_income_proxy": 780.0781315210082,
+            "pro_forma_eps_inr": 10.317656790104689
+          }
+        },
+        {
+          "fiscal_year": 2028,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 189835.6855585151,
+            "operating_expense_total": 163745.55976812285,
+            "operating_ebitda": 26090.12579039225,
+            "depreciation_amortisation": 7882.862513163404,
+            "ebit_before_integration": 18207.26327722884,
+            "integration_expense": 284.91,
+            "ebit_after_integration": 17922.35327722884,
+            "bank_and_lease_finance_cost": 6710.09087831531,
+            "preference_return_economic_charge": 3381.788688026382,
+            "other_income_after_dividend_elimination": 45.95649345494962,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 1708.4812823261443,
+            "current_tax_proxy": 3605.303231501847,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 7926.346871008767,
+            "net_income_proxy": 4321.04363950692,
+            "noncontrolling_profit_proxy": 423.23078329372174,
+            "owners_net_income_proxy": 3897.8128562131983,
+            "pro_forma_eps_inr": 51.55418881446031
+          }
+        },
+        {
+          "fiscal_year": 2029,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 205442.61406629116,
+            "operating_expense_total": 176336.19035338456,
+            "operating_ebitda": 29106.423712906606,
+            "depreciation_amortisation": 8696.168240991567,
+            "ebit_before_integration": 20410.25547191504,
+            "integration_expense": 94.97,
+            "ebit_after_integration": 20315.28547191504,
+            "bank_and_lease_finance_cost": 6200.950499243672,
+            "preference_return_economic_charge": 3787.603330589548,
+            "other_income_after_dividend_elimination": 45.95649345494956,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 0.0,
+            "current_tax_proxy": 4376.785923055282,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 10422.604802203432,
+            "net_income_proxy": 6045.81887914815,
+            "noncontrolling_profit_proxy": 639.3789488565483,
+            "owners_net_income_proxy": 5406.439930291602,
+            "pro_forma_eps_inr": 71.50795465616
+          }
+        },
+        {
+          "fiscal_year": 2030,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 220203.10627639783,
+            "operating_expense_total": 188740.7870255711,
+            "operating_ebitda": 31462.31925082671,
+            "depreciation_amortisation": 9436.101620477617,
+            "ebit_before_integration": 22026.217630349092,
+            "integration_expense": 0.0,
+            "ebit_after_integration": 22026.217630349092,
+            "bank_and_lease_finance_cost": 6420.52871396324,
+            "preference_return_economic_charge": 4242.115730260294,
+            "other_income_after_dividend_elimination": 45.956493454949396,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 2551.498168988975,
+            "current_tax_proxy": 4766.705043399206,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 11459.446346247174,
+            "net_income_proxy": 6692.741302847968,
+            "noncontrolling_profit_proxy": 681.8513592306749,
+            "owners_net_income_proxy": 6010.889943617292,
+            "pro_forma_eps_inr": 79.50267663626299
+          }
+        },
+        {
+          "fiscal_year": 2031,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 233692.69916147113,
+            "operating_expense_total": 200219.53655723116,
+            "operating_ebitda": 33473.162604239966,
+            "depreciation_amortisation": 10246.784270943343,
+            "ebit_before_integration": 23226.378333296623,
+            "integration_expense": 0.0,
+            "ebit_after_integration": 23226.378333296623,
+            "bank_and_lease_finance_cost": 5608.561691717084,
+            "preference_return_economic_charge": 4751.16961789153,
+            "other_income_after_dividend_elimination": 45.956493454949396,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 2921.9528210573776,
+            "current_tax_proxy": 5294.041836985131,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 12962.520183809624,
+            "net_income_proxy": 7668.478346824492,
+            "noncontrolling_profit_proxy": 761.3549711963823,
+            "owners_net_income_proxy": 6907.12337562811,
+            "pro_forma_eps_inr": 91.35665456700596
+          }
+        },
+        {
+          "fiscal_year": 2032,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 245592.8401037901,
+            "operating_expense_total": 210317.76117159365,
+            "operating_ebitda": 35275.078932196455,
+            "depreciation_amortisation": 10448.602829659008,
+            "ebit_before_integration": 24826.476102537446,
+            "integration_expense": 0.0,
+            "ebit_after_integration": 24826.476102537446,
+            "bank_and_lease_finance_cost": 4648.068288349352,
+            "preference_return_economic_charge": 5321.309972038514,
+            "other_income_after_dividend_elimination": 45.956493454949396,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 3295.475393443634,
+            "current_tax_proxy": 5952.758452433556,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 14952.971002271197,
+            "net_income_proxy": 9000.21254983764,
+            "noncontrolling_profit_proxy": 818.705177420257,
+            "owners_net_income_proxy": 8181.5073724173835,
+            "pro_forma_eps_inr": 108.21221834500362
+          }
+        },
+        {
+          "fiscal_year": 2033,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 257919.75464794366,
+            "operating_expense_total": 220787.77735419915,
+            "operating_ebitda": 37131.97729374452,
+            "depreciation_amortisation": 11034.133619109629,
+            "ebit_before_integration": 26097.84367463489,
+            "integration_expense": 0.0,
+            "ebit_after_integration": 26097.84367463489,
+            "bank_and_lease_finance_cost": 3544.579692350947,
+            "preference_return_economic_charge": 5959.867168683137,
+            "other_income_after_dividend_elimination": 45.956493454949396,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 3609.05145858857,
+            "current_tax_proxy": 6569.340740433441,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 16689.26997372242,
+            "net_income_proxy": 10119.92923328898,
+            "noncontrolling_profit_proxy": 880.1595228167259,
+            "owners_net_income_proxy": 9239.769710472254,
+            "pro_forma_eps_inr": 122.20926191890086
+          }
+        },
+        {
+          "fiscal_year": 2034,
+          "tega_months": 12,
+          "molycop_months": 12,
+          "income": {
+            "revenue": 269422.17473211704,
+            "operating_expense_total": 230536.77179951317,
+            "operating_ebitda": 38885.40293260388,
+            "depreciation_amortisation": 11925.670044964188,
+            "ebit_before_integration": 26959.732887639693,
+            "integration_expense": 0.0,
+            "ebit_after_integration": 26959.732887639693,
+            "bank_and_lease_finance_cost": 2312.821486083026,
+            "preference_return_economic_charge": 6765.108344898415,
+            "other_income_after_dividend_elimination": 45.956493454949396,
+            "joint_venture_profit": 49.916666666666664,
+            "intercompany_dividend_eliminated": 3364.386244032827,
+            "current_tax_proxy": 7117.389803462202,
+            "deferred_tax_expense_assumed": 0.0,
+            "profit_before_tax_proxy": 17977.67621677987,
+            "net_income_proxy": 10860.286413317668,
+            "noncontrolling_profit_proxy": 916.3250931937155,
+            "owners_net_income_proxy": 9943.961320123952,
+            "pro_forma_eps_inr": 131.5232101623813
+          }
+        }
+      ],
+      "note": "FY27 combines reported Q1 (Tega three months; Molycop June only) with nine future months. Actual Q1 total tax is shown in current-tax proxy without a deferred split; preference charge stays in reported finance cost. Full-year CF unavailable without Q1 CF. All annual EPS shown is pro-forma, not statutory weighted-average EPS."
+    }
+  },
+  "currency_conversion_audit": [
+    {
+      "path": "facts.deal.tega_ordinary_contribution_inr_m",
+      "reference_inr": 37446.23632231,
+      "model_inr": 37446.23632231
+    },
+    {
+      "path": "facts.deal.apollo_ordinary_contribution_inr_m",
+      "reference_inr": 7037.98709069,
+      "model_inr": 7037.98709069
+    },
+    {
+      "path": "facts.deal.apollo_preference_issue_inr_m",
+      "reference_inr": 25641.9,
+      "model_inr": 25641.9
+    },
+    {
+      "path": "facts.deal.headline_enterprise_value_inr_m_approx",
+      "reference_inr": 142455.0,
+      "model_inr": 142455.0
+    },
+    {
+      "path": "facts.deal.cash_purchase_at_close_inr_m_approx",
+      "reference_inr": 37323.21,
+      "model_inr": 37323.21
+    },
+    {
+      "path": "facts.deal.escrow_included_in_cash_purchase_inr_m",
+      "reference_inr": 1709.46,
+      "model_inr": 1709.46
+    },
+    {
+      "path": "facts.deal.earnout_max_inr_m",
+      "reference_inr": 11396.4,
+      "model_inr": 11396.4
+    },
+    {
+      "path": "facts.deal.accounting_purchase_consideration_inr_m",
+      "reference_inr": 42043.219,
+      "model_inr": 42043.219
+    },
+    {
+      "path": "facts.deal.provisional_intangibles_inr_m",
+      "reference_inr": 34407.631,
+      "model_inr": 34407.631
+    },
+    {
+      "path": "facts.deal.provisional_goodwill_inr_m",
+      "reference_inr": 50119.4678,
+      "model_inr": 50119.4678
+    },
+    {
+      "path": "facts.deal.term_loan_at_close_inr_m",
+      "reference_inr": 66479.0,
+      "model_inr": 66479.0
+    },
+    {
+      "path": "facts.deal.abl_limit_inr_m",
+      "reference_inr": 20893.4,
+      "model_inr": 20893.4
+    },
+    {
+      "path": "facts.deal.abl_drawn_at_close_inr_m",
+      "reference_inr": 13105.86,
+      "model_inr": 13105.86
+    },
+    {
+      "path": "facts.q1_fy2027.molycop_adjusted_ebitda_inr_m_rounded",
+      "reference_inr": 1633.484,
+      "model_inr": 1633.484
+    },
+    {
+      "path": "facts.q1_fy2027.molycop_net_debt_inr_m",
+      "reference_inr": 63867.325,
+      "model_inr": 63867.325
+    },
+    {
+      "path": "facts.molycop_history.fy2023_revenue_inr_m",
+      "reference_inr": 171990.67,
+      "model_inr": 171990.67
+    },
+    {
+      "path": "facts.molycop_history.fy2024_revenue_inr_m",
+      "reference_inr": 154326.25,
+      "model_inr": 154326.25
+    },
+    {
+      "path": "facts.molycop_history.fy2025_revenue_inr_m",
+      "reference_inr": 146158.83,
+      "model_inr": 146158.83
+    },
+    {
+      "path": "facts.molycop_history.fy2025_ebitda_inr_m",
+      "reference_inr": 16334.84,
+      "model_inr": 16334.84
+    },
+    {
+      "path": "facts.molycop_history.fy2026_revenue_inr_m",
+      "reference_inr": null,
+      "model_inr": null
+    },
+    {
+      "path": "facts.molycop_history.fy2026_ebitda_inr_m",
+      "reference_inr": 18139.27,
+      "model_inr": 18139.27
+    },
+    {
+      "path": "facts.management_guidance.cost_synergies_inr_m",
+      "reference_inr": 1899.4,
+      "model_inr": 1899.4
+    },
+    {
+      "path": "facts.management_guidance.molycop_fy2027_ten_month_capex_inr_m",
+      "reference_inr": 2659.16,
+      "model_inr": 2659.16
+    },
+    {
+      "path": "facts.management_guidance.molycop_normalized_annual_capex_inr_m_approx",
+      "reference_inr": 3039.04,
+      "model_inr": 3039.04
+    },
+    {
+      "path": "facts.management_guidance.tega_fy2027_capex_inr_m_approx",
+      "reference_inr": 3798.8,
+      "model_inr": 3798.8
+    },
+    {
+      "path": "facts.management_guidance.molycop_ten_month_interest_plus_principal_inr_m_approx",
+      "reference_inr": 6647.9,
+      "model_inr": 6647.9
+    },
+    {
+      "path": "assumptions.shared.molycop_annual_new_lease_assets_inr_m",
+      "reference_inr": 284.91,
+      "model_inr": 284.91
+    },
+    {
+      "path": "assumptions.shared.molycop_annual_lease_principal_inr_m",
+      "reference_inr": 284.91,
+      "model_inr": 284.91
+    },
+    {
+      "path": "assumptions.shared.molycop_fy2026_ebitda_operating_adjustment_inr_m",
+      "reference_inr": 0.0,
+      "model_inr": 0.0
+    },
+    {
+      "path": "assumptions.shared.molycop_other_claims_inr_m",
+      "reference_inr": 4748.5,
+      "model_inr": 4748.5
+    },
+    {
+      "path": "assumptions.shared.preference_fair_value_inr_m",
+      "reference_inr": 25641.9,
+      "model_inr": 25641.9
+    },
+    {
+      "path": "assumptions.shared.molycop_fy27_ten_month_cash_interest_inr_m",
+      "reference_inr": 5983.11,
+      "model_inr": 5983.11
+    },
+    {
+      "path": "assumptions.shared.molycop_fy27_ten_month_scheduled_principal_inr_m",
+      "reference_inr": 664.79,
+      "model_inr": 664.79
+    },
+    {
+      "path": "assumptions.shared.unquantified_asset_sale_proceeds_inr_m",
+      "reference_inr": 0.0,
+      "model_inr": 0.0
+    },
+    {
+      "path": "assumptions.scenarios.downside.molycop_cost_synergies_inr_m",
+      "reference_inr": [
+        189.94,
+        949.7,
+        1709.46,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4
+      ],
+      "model_inr": [
+        189.94,
+        949.7,
+        1709.46,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.downside.molycop_integration_cash_cost_inr_m",
+      "reference_inr": [
+        474.85,
+        379.88,
+        189.94,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model_inr": [
+        474.85,
+        379.88,
+        189.94,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.downside.legacy_capex_fy27_inr_m",
+      "reference_inr": 3798.8,
+      "model_inr": 3798.8
+    },
+    {
+      "path": "assumptions.scenarios.downside.molycop_capex_fy27_ten_month_inr_m",
+      "reference_inr": 2659.16,
+      "model_inr": 2659.16
+    },
+    {
+      "path": "assumptions.scenarios.downside.molycop_later_annual_capex_inr_m",
+      "reference_inr": [
+        0,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95
+      ],
+      "model_inr": [
+        0,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95,
+        3323.95
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.downside.earnout_inr_m",
+      "reference_inr": 0.0,
+      "model_inr": 0.0
+    },
+    {
+      "path": "assumptions.scenarios.base.molycop_cost_synergies_inr_m",
+      "reference_inr": [
+        189.94,
+        949.7,
+        1709.46,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4
+      ],
+      "model_inr": [
+        189.94,
+        949.7,
+        1709.46,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.base.molycop_integration_cash_cost_inr_m",
+      "reference_inr": [
+        189.94,
+        189.94,
+        94.97,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model_inr": [
+        189.94,
+        189.94,
+        94.97,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.base.legacy_capex_fy27_inr_m",
+      "reference_inr": 3798.8,
+      "model_inr": 3798.8
+    },
+    {
+      "path": "assumptions.scenarios.base.molycop_capex_fy27_ten_month_inr_m",
+      "reference_inr": 2659.16,
+      "model_inr": 2659.16
+    },
+    {
+      "path": "assumptions.scenarios.base.molycop_later_annual_capex_inr_m",
+      "reference_inr": [
+        0,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01
+      ],
+      "model_inr": [
+        0,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01,
+        3134.01
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.base.earnout_inr_m",
+      "reference_inr": 5698.2,
+      "model_inr": 5698.2
+    },
+    {
+      "path": "assumptions.scenarios.upside.molycop_cost_synergies_inr_m",
+      "reference_inr": [
+        189.94,
+        949.7,
+        1709.46,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4
+      ],
+      "model_inr": [
+        189.94,
+        949.7,
+        1709.46,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4,
+        1899.4
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.upside.molycop_integration_cash_cost_inr_m",
+      "reference_inr": [
+        284.91,
+        284.91,
+        94.97,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model_inr": [
+        284.91,
+        284.91,
+        94.97,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.upside.legacy_capex_fy27_inr_m",
+      "reference_inr": 3798.8,
+      "model_inr": 3798.8
+    },
+    {
+      "path": "assumptions.scenarios.upside.molycop_capex_fy27_ten_month_inr_m",
+      "reference_inr": 2659.16,
+      "model_inr": 2659.16
+    },
+    {
+      "path": "assumptions.scenarios.upside.molycop_later_annual_capex_inr_m",
+      "reference_inr": [
+        0,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04
+      ],
+      "model_inr": [
+        0,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04,
+        3039.04
+      ]
+    },
+    {
+      "path": "assumptions.scenarios.upside.earnout_inr_m",
+      "reference_inr": 11396.4,
+      "model_inr": 11396.4
+    },
+    {
+      "path": "assumptions.shared.molycop_later_annual_scheduled_principal_inr_m",
+      "reference_inr": 664.79,
+      "model_inr": 664.79
+    }
+  ],
+  "pro_forma_assumptions": {
+    "fx_inr_per_usd": 94.97,
+    "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
+    "molycop_ev_weight_usd_m": 1455.0,
+    "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
+    "tega_ev_weight_inr_m": 80000.0,
+    "_tega_ev_note": "UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.",
+    "molycop_nci_fraction_override": null,
+    "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
+    "shares": {
+      "pre_november_2025": 66535492,
+      "november_2025_issue": 8592206,
+      "follow_on_issue": 478435,
+      "issue_price_inr": 1994.0,
+      "include_follow_on": true,
+      "follow_on_cash_already_in_opening": false,
+      "other_dilutive_shares": 0,
+      "_note": "First issue already in FY26 shares/cash. Main valuation includes proposed follow-on pro forma, with matching cash once. Completion not verified; 22 August filing is subject to approvals. No other dilutive instruments identified."
+    },
+    "consolidation": {
+      "molycop_receivables_to_nwc": 0.75,
+      "molycop_inventory_to_nwc": 0.75,
+      "molycop_payables_to_nwc": 0.5,
+      "molycop_opening_cash_inr_m": 0.0,
+      "molycop_opening_lease_liability_usd_m": 10.0,
+      "molycop_opening_nci_book_inr_m": null,
+      "intercompany_revenue_inr_m": 0.0,
+      "intercompany_operating_cost_inr_m": 0.0,
+      "intercompany_receivable_payable_inr_m": 0.0,
+      "_note": "UNSOURCED allocation proxies: AR + inventory - AP = NWC; opening Molycop cash zero is a gross/net presentation assumption. Lease USD10m is allocated OUT OF the existing USD50m other-claims reserve, not added to DCF claims again. Missing acquired assets/liabilities are fixed opening allocations against reported June group control totals, not new forecast balancing plugs. Intercompany trading/receivable balances assumed zero; investment and dividend eliminations are mandatory. NCI book defaults to ordinary contribution, distinct from fair-value NCI in DCF."
+    },
+    "wacc": {
+      "tega": {
+        "risk_free_rate": 0.069754,
+        "equity_risk_premium": 0.05974537984183599,
+        "beta": 0.6748675556411455,
+        "cost_of_debt": 0.07,
+        "tax_rate": 0.2445576703365335,
+        "debt_weight": 0.2,
+        "preference_weight": 0.0,
+        "cost_of_preference": 0.0,
+        "currency": "INR",
+        "_note": "CAPM inputs carried from 2 September research calculation (included separately). Observed TEGA beta includes acquisition-period risk, so imperfect standalone proxy. Debt cost 7% and target debt weight 20% are UNSOURCED analyst assumptions; tax uses existing historical effective proxy, not statutory marginal rate.",
+        "_market_return_note": "Reference NIFTY TRI arithmetic annual return 12.94993798%; ERP input equals this minus the 6.9754% reference RF. ERP is directly adjustable; historical market-return calculation is in tega_capm_reference_20260902.json."
+      },
+      "molycop": {
+        "risk_free_rate": 0.045,
+        "equity_risk_premium": 0.05,
+        "beta": 1.1,
+        "cost_of_debt": 0.09,
+        "tax_rate": 0.27,
+        "debt_weight": 0.45,
+        "preference_weight": 0.18,
+        "cost_of_preference": 0.12,
+        "currency": "USD",
+        "_note": "ALL UNSOURCED analyst starting assumptions: US/global RF4.5%, ERP5%, beta1.10, debt9%, tax27%, target bank-debt45%, preference18%, common37%. Preference12% is not disclosed contractual coupon; non-tax-deductible. Replace with sourced inputs. Geographic exposures extend beyond US."
+      },
+      "scenario_risk_premium": {
+        "downside": 0.02,
+        "base": 0.0,
+        "upside": -0.005
+      },
+      "_scenario_note": "ASSUMPTION: additive equity risk premium stress to BOTH entity CAPMs; no direct group WACC constant. Capital weights are adjustable target market-value proxies and must not be book-equity weights."
+    },
+    "fx_translation_paths": [
+      [
+        "facts",
+        "deal",
+        "tega_ordinary_contribution_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "apollo_ordinary_contribution_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "apollo_preference_issue_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "headline_enterprise_value_inr_m_approx"
+      ],
+      [
+        "facts",
+        "deal",
+        "cash_purchase_at_close_inr_m_approx"
+      ],
+      [
+        "facts",
+        "deal",
+        "escrow_included_in_cash_purchase_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "earnout_max_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "accounting_purchase_consideration_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "provisional_intangibles_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "provisional_goodwill_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "term_loan_at_close_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "abl_limit_inr_m"
+      ],
+      [
+        "facts",
+        "deal",
+        "abl_drawn_at_close_inr_m"
+      ],
+      [
+        "facts",
+        "q1_fy2027",
+        "molycop_adjusted_ebitda_inr_m_rounded"
+      ],
+      [
+        "facts",
+        "q1_fy2027",
+        "molycop_net_debt_inr_m"
+      ],
+      [
+        "facts",
+        "molycop_history",
+        "fy2023_revenue_inr_m"
+      ],
+      [
+        "facts",
+        "molycop_history",
+        "fy2024_revenue_inr_m"
+      ],
+      [
+        "facts",
+        "molycop_history",
+        "fy2025_revenue_inr_m"
+      ],
+      [
+        "facts",
+        "molycop_history",
+        "fy2025_ebitda_inr_m"
+      ],
+      [
+        "facts",
+        "molycop_history",
+        "fy2026_revenue_inr_m"
+      ],
+      [
+        "facts",
+        "molycop_history",
+        "fy2026_ebitda_inr_m"
+      ],
+      [
+        "facts",
+        "management_guidance",
+        "cost_synergies_inr_m"
+      ],
+      [
+        "facts",
+        "management_guidance",
+        "molycop_fy2027_ten_month_capex_inr_m"
+      ],
+      [
+        "facts",
+        "management_guidance",
+        "molycop_normalized_annual_capex_inr_m_approx"
+      ],
+      [
+        "facts",
+        "management_guidance",
+        "tega_fy2027_capex_inr_m_approx"
+      ],
+      [
+        "facts",
+        "management_guidance",
+        "molycop_ten_month_interest_plus_principal_inr_m_approx"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_annual_new_lease_assets_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_annual_lease_principal_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_fy2026_ebitda_operating_adjustment_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_other_claims_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "preference_fair_value_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_fy27_ten_month_cash_interest_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_fy27_ten_month_scheduled_principal_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "unquantified_asset_sale_proceeds_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "downside",
+        "molycop_cost_synergies_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "downside",
+        "molycop_integration_cash_cost_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "downside",
+        "legacy_capex_fy27_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "downside",
+        "molycop_capex_fy27_ten_month_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "downside",
+        "molycop_later_annual_capex_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "downside",
+        "earnout_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "base",
+        "molycop_cost_synergies_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "base",
+        "molycop_integration_cash_cost_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "base",
+        "legacy_capex_fy27_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "base",
+        "molycop_capex_fy27_ten_month_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "base",
+        "molycop_later_annual_capex_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "base",
+        "earnout_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "upside",
+        "molycop_cost_synergies_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "upside",
+        "molycop_integration_cash_cost_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "upside",
+        "legacy_capex_fy27_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "upside",
+        "molycop_capex_fy27_ten_month_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "upside",
+        "molycop_later_annual_capex_inr_m"
+      ],
+      [
+        "assumptions",
+        "scenarios",
+        "upside",
+        "earnout_inr_m"
+      ],
+      [
+        "assumptions",
+        "shared",
+        "molycop_later_annual_scheduled_principal_inr_m"
+      ]
+    ],
+    "_translation_note": "Explicit USD-origin registry derived from source-currency predecessor inputs. Rebase registered inputs from their reference INR equivalent to chosen FX. Reported INR statements stay unchanged. Do not edit currency_basis metadata; edit pro_forma.fx_inr_per_usd. Mixed reference-date actuals remain labeled."
+  },
+  "fy27_stub_bridge": {
+    "tega_full_year_months": 12,
+    "molycop_consolidation_start": "2026-06-01",
+    "molycop_full_year_owned_months": 10,
+    "molycop_actual_months_already_elapsed": 1,
+    "future_months_discounted": 9.0,
+    "tega_full_year_revenue": 19964.8448,
+    "molycop_ten_month_revenue": 128300.28448650858,
+    "consolidated_full_year_revenue": 148265.12928650857,
+    "actual_ytd_revenue": 17234.42,
+    "future_consolidated_revenue": 131030.70928650859,
+    "full_year_operating_ebitda": 19968.632841575356,
+    "note": "Full fiscal-year income bridge includes actual YTD. Discount only future July-March FCFF; do not discount June a second time."
   },
   "financing_schedule": [
     {
@@ -4713,27 +6699,21 @@
         "basis": "unresolved",
         "period": "FY2027-FY2034",
         "source_ids": [],
-        "method": "No verified public consensus group WACC; retain 14/12/10.5% scenario sensitivity inputs. Terminal growth and ROIC also remain provisional.",
-        "status": "Provisional; no consensus claim",
+        "method": "WACC superseded by pro_forma.wacc CAPM and EV-weight blend. Terminal assumptions remain provisional.",
+        "status": "WACC refactored; inputs individually labeled",
         "reviewed_values": {
-          "scenarios.downside.group_wacc_inr": 0.14,
           "scenarios.downside.group_terminal_growth_inr": 0.03,
           "scenarios.downside.group_terminal_roic": 0.13,
-          "scenarios.base.group_wacc_inr": 0.12,
           "scenarios.base.group_terminal_growth_inr": 0.04,
           "scenarios.base.group_terminal_roic": 0.16,
-          "scenarios.upside.group_wacc_inr": 0.105,
           "scenarios.upside.group_terminal_growth_inr": 0.045,
           "scenarios.upside.group_terminal_roic": 0.18
         },
         "current_values": {
-          "scenarios.downside.group_wacc_inr": 0.14,
           "scenarios.downside.group_terminal_growth_inr": 0.03,
           "scenarios.downside.group_terminal_roic": 0.13,
-          "scenarios.base.group_wacc_inr": 0.12,
           "scenarios.base.group_terminal_growth_inr": 0.04,
           "scenarios.base.group_terminal_roic": 0.16,
-          "scenarios.upside.group_wacc_inr": 0.105,
           "scenarios.upside.group_terminal_growth_inr": 0.045,
           "scenarios.upside.group_terminal_roic": 0.18
         },
@@ -4961,6 +6941,725 @@
           }
         },
         "changed_since_review": false
+      },
+      {
+        "line_item": "Pro-forma consolidation and blended WACC",
+        "basis": "user_specification_and_explicit_proxies",
+        "period": "June opening; FY27 July-March onward",
+        "source_ids": [
+          "closing",
+          "q1_results",
+          "pending_issue"
+        ],
+        "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. See adjacent input notes.",
+        "status": "Provisional; not statutory accounts",
+        "reviewed_values": {
+          "pro_forma": {
+            "fx_inr_per_usd": 94.97,
+            "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
+            "molycop_ev_weight_usd_m": 1455.0,
+            "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
+            "tega_ev_weight_inr_m": 80000.0,
+            "_tega_ev_note": "UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.",
+            "molycop_nci_fraction_override": null,
+            "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
+            "shares": {
+              "pre_november_2025": 66535492,
+              "november_2025_issue": 8592206,
+              "follow_on_issue": 478435,
+              "issue_price_inr": 1994.0,
+              "include_follow_on": true,
+              "follow_on_cash_already_in_opening": false,
+              "other_dilutive_shares": 0,
+              "_note": "First issue already in FY26 shares/cash. Main valuation includes proposed follow-on pro forma, with matching cash once. Completion not verified; 22 August filing is subject to approvals. No other dilutive instruments identified."
+            },
+            "consolidation": {
+              "molycop_receivables_to_nwc": 0.75,
+              "molycop_inventory_to_nwc": 0.75,
+              "molycop_payables_to_nwc": 0.5,
+              "molycop_opening_cash_inr_m": 0.0,
+              "molycop_opening_lease_liability_usd_m": 10.0,
+              "molycop_opening_nci_book_inr_m": null,
+              "intercompany_revenue_inr_m": 0.0,
+              "intercompany_operating_cost_inr_m": 0.0,
+              "intercompany_receivable_payable_inr_m": 0.0,
+              "_note": "UNSOURCED allocation proxies: AR + inventory - AP = NWC; opening Molycop cash zero is a gross/net presentation assumption. Lease USD10m is allocated OUT OF the existing USD50m other-claims reserve, not added to DCF claims again. Missing acquired assets/liabilities are fixed opening allocations against reported June group control totals, not new forecast balancing plugs. Intercompany trading/receivable balances assumed zero; investment and dividend eliminations are mandatory. NCI book defaults to ordinary contribution, distinct from fair-value NCI in DCF."
+            },
+            "wacc": {
+              "tega": {
+                "risk_free_rate": 0.069754,
+                "equity_risk_premium": 0.05974537984183599,
+                "beta": 0.6748675556411455,
+                "cost_of_debt": 0.07,
+                "tax_rate": 0.2445576703365335,
+                "debt_weight": 0.2,
+                "preference_weight": 0.0,
+                "cost_of_preference": 0.0,
+                "currency": "INR",
+                "_note": "CAPM inputs carried from 2 September research calculation (included separately). Observed TEGA beta includes acquisition-period risk, so imperfect standalone proxy. Debt cost 7% and target debt weight 20% are UNSOURCED analyst assumptions; tax uses existing historical effective proxy, not statutory marginal rate.",
+                "_market_return_note": "Reference NIFTY TRI arithmetic annual return 12.94993798%; ERP input equals this minus the 6.9754% reference RF. ERP is directly adjustable; historical market-return calculation is in tega_capm_reference_20260902.json."
+              },
+              "molycop": {
+                "risk_free_rate": 0.045,
+                "equity_risk_premium": 0.05,
+                "beta": 1.1,
+                "cost_of_debt": 0.09,
+                "tax_rate": 0.27,
+                "debt_weight": 0.45,
+                "preference_weight": 0.18,
+                "cost_of_preference": 0.12,
+                "currency": "USD",
+                "_note": "ALL UNSOURCED analyst starting assumptions: US/global RF4.5%, ERP5%, beta1.10, debt9%, tax27%, target bank-debt45%, preference18%, common37%. Preference12% is not disclosed contractual coupon; non-tax-deductible. Replace with sourced inputs. Geographic exposures extend beyond US."
+              },
+              "scenario_risk_premium": {
+                "downside": 0.02,
+                "base": 0.0,
+                "upside": -0.005
+              },
+              "_scenario_note": "ASSUMPTION: additive equity risk premium stress to BOTH entity CAPMs; no direct group WACC constant. Capital weights are adjustable target market-value proxies and must not be book-equity weights."
+            },
+            "fx_translation_paths": [
+              [
+                "facts",
+                "deal",
+                "tega_ordinary_contribution_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "apollo_ordinary_contribution_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "apollo_preference_issue_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "headline_enterprise_value_inr_m_approx"
+              ],
+              [
+                "facts",
+                "deal",
+                "cash_purchase_at_close_inr_m_approx"
+              ],
+              [
+                "facts",
+                "deal",
+                "escrow_included_in_cash_purchase_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "earnout_max_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "accounting_purchase_consideration_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "provisional_intangibles_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "provisional_goodwill_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "term_loan_at_close_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "abl_limit_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "abl_drawn_at_close_inr_m"
+              ],
+              [
+                "facts",
+                "q1_fy2027",
+                "molycop_adjusted_ebitda_inr_m_rounded"
+              ],
+              [
+                "facts",
+                "q1_fy2027",
+                "molycop_net_debt_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2023_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2024_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2025_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2025_ebitda_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2026_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2026_ebitda_inr_m"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "cost_synergies_inr_m"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "molycop_fy2027_ten_month_capex_inr_m"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "molycop_normalized_annual_capex_inr_m_approx"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "tega_fy2027_capex_inr_m_approx"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "molycop_ten_month_interest_plus_principal_inr_m_approx"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_annual_new_lease_assets_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_annual_lease_principal_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_fy2026_ebitda_operating_adjustment_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_other_claims_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "preference_fair_value_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_fy27_ten_month_cash_interest_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_fy27_ten_month_scheduled_principal_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "unquantified_asset_sale_proceeds_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_cost_synergies_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_integration_cash_cost_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "legacy_capex_fy27_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_capex_fy27_ten_month_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_later_annual_capex_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "earnout_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_cost_synergies_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_integration_cash_cost_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "legacy_capex_fy27_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_capex_fy27_ten_month_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_later_annual_capex_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "earnout_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_cost_synergies_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_integration_cash_cost_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "legacy_capex_fy27_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_capex_fy27_ten_month_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_later_annual_capex_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "earnout_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_later_annual_scheduled_principal_inr_m"
+              ]
+            ],
+            "_translation_note": "Explicit USD-origin registry derived from source-currency predecessor inputs. Rebase registered inputs from their reference INR equivalent to chosen FX. Reported INR statements stay unchanged. Do not edit currency_basis metadata; edit pro_forma.fx_inr_per_usd. Mixed reference-date actuals remain labeled."
+          }
+        },
+        "current_values": {
+          "pro_forma": {
+            "fx_inr_per_usd": 94.97,
+            "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
+            "molycop_ev_weight_usd_m": 1455.0,
+            "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
+            "tega_ev_weight_inr_m": 80000.0,
+            "_tega_ev_note": "UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.",
+            "molycop_nci_fraction_override": null,
+            "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
+            "shares": {
+              "pre_november_2025": 66535492,
+              "november_2025_issue": 8592206,
+              "follow_on_issue": 478435,
+              "issue_price_inr": 1994.0,
+              "include_follow_on": true,
+              "follow_on_cash_already_in_opening": false,
+              "other_dilutive_shares": 0,
+              "_note": "First issue already in FY26 shares/cash. Main valuation includes proposed follow-on pro forma, with matching cash once. Completion not verified; 22 August filing is subject to approvals. No other dilutive instruments identified."
+            },
+            "consolidation": {
+              "molycop_receivables_to_nwc": 0.75,
+              "molycop_inventory_to_nwc": 0.75,
+              "molycop_payables_to_nwc": 0.5,
+              "molycop_opening_cash_inr_m": 0.0,
+              "molycop_opening_lease_liability_usd_m": 10.0,
+              "molycop_opening_nci_book_inr_m": null,
+              "intercompany_revenue_inr_m": 0.0,
+              "intercompany_operating_cost_inr_m": 0.0,
+              "intercompany_receivable_payable_inr_m": 0.0,
+              "_note": "UNSOURCED allocation proxies: AR + inventory - AP = NWC; opening Molycop cash zero is a gross/net presentation assumption. Lease USD10m is allocated OUT OF the existing USD50m other-claims reserve, not added to DCF claims again. Missing acquired assets/liabilities are fixed opening allocations against reported June group control totals, not new forecast balancing plugs. Intercompany trading/receivable balances assumed zero; investment and dividend eliminations are mandatory. NCI book defaults to ordinary contribution, distinct from fair-value NCI in DCF."
+            },
+            "wacc": {
+              "tega": {
+                "risk_free_rate": 0.069754,
+                "equity_risk_premium": 0.05974537984183599,
+                "beta": 0.6748675556411455,
+                "cost_of_debt": 0.07,
+                "tax_rate": 0.2445576703365335,
+                "debt_weight": 0.2,
+                "preference_weight": 0.0,
+                "cost_of_preference": 0.0,
+                "currency": "INR",
+                "_note": "CAPM inputs carried from 2 September research calculation (included separately). Observed TEGA beta includes acquisition-period risk, so imperfect standalone proxy. Debt cost 7% and target debt weight 20% are UNSOURCED analyst assumptions; tax uses existing historical effective proxy, not statutory marginal rate.",
+                "_market_return_note": "Reference NIFTY TRI arithmetic annual return 12.94993798%; ERP input equals this minus the 6.9754% reference RF. ERP is directly adjustable; historical market-return calculation is in tega_capm_reference_20260902.json."
+              },
+              "molycop": {
+                "risk_free_rate": 0.045,
+                "equity_risk_premium": 0.05,
+                "beta": 1.1,
+                "cost_of_debt": 0.09,
+                "tax_rate": 0.27,
+                "debt_weight": 0.45,
+                "preference_weight": 0.18,
+                "cost_of_preference": 0.12,
+                "currency": "USD",
+                "_note": "ALL UNSOURCED analyst starting assumptions: US/global RF4.5%, ERP5%, beta1.10, debt9%, tax27%, target bank-debt45%, preference18%, common37%. Preference12% is not disclosed contractual coupon; non-tax-deductible. Replace with sourced inputs. Geographic exposures extend beyond US."
+              },
+              "scenario_risk_premium": {
+                "downside": 0.02,
+                "base": 0.0,
+                "upside": -0.005
+              },
+              "_scenario_note": "ASSUMPTION: additive equity risk premium stress to BOTH entity CAPMs; no direct group WACC constant. Capital weights are adjustable target market-value proxies and must not be book-equity weights."
+            },
+            "fx_translation_paths": [
+              [
+                "facts",
+                "deal",
+                "tega_ordinary_contribution_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "apollo_ordinary_contribution_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "apollo_preference_issue_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "headline_enterprise_value_inr_m_approx"
+              ],
+              [
+                "facts",
+                "deal",
+                "cash_purchase_at_close_inr_m_approx"
+              ],
+              [
+                "facts",
+                "deal",
+                "escrow_included_in_cash_purchase_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "earnout_max_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "accounting_purchase_consideration_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "provisional_intangibles_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "provisional_goodwill_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "term_loan_at_close_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "abl_limit_inr_m"
+              ],
+              [
+                "facts",
+                "deal",
+                "abl_drawn_at_close_inr_m"
+              ],
+              [
+                "facts",
+                "q1_fy2027",
+                "molycop_adjusted_ebitda_inr_m_rounded"
+              ],
+              [
+                "facts",
+                "q1_fy2027",
+                "molycop_net_debt_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2023_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2024_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2025_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2025_ebitda_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2026_revenue_inr_m"
+              ],
+              [
+                "facts",
+                "molycop_history",
+                "fy2026_ebitda_inr_m"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "cost_synergies_inr_m"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "molycop_fy2027_ten_month_capex_inr_m"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "molycop_normalized_annual_capex_inr_m_approx"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "tega_fy2027_capex_inr_m_approx"
+              ],
+              [
+                "facts",
+                "management_guidance",
+                "molycop_ten_month_interest_plus_principal_inr_m_approx"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_annual_new_lease_assets_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_annual_lease_principal_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_fy2026_ebitda_operating_adjustment_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_other_claims_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "preference_fair_value_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_fy27_ten_month_cash_interest_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_fy27_ten_month_scheduled_principal_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "unquantified_asset_sale_proceeds_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_cost_synergies_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_integration_cash_cost_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "legacy_capex_fy27_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_capex_fy27_ten_month_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "molycop_later_annual_capex_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "downside",
+                "earnout_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_cost_synergies_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_integration_cash_cost_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "legacy_capex_fy27_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_capex_fy27_ten_month_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "molycop_later_annual_capex_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "base",
+                "earnout_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_cost_synergies_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_integration_cash_cost_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "legacy_capex_fy27_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_capex_fy27_ten_month_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "molycop_later_annual_capex_inr_m"
+              ],
+              [
+                "assumptions",
+                "scenarios",
+                "upside",
+                "earnout_inr_m"
+              ],
+              [
+                "assumptions",
+                "shared",
+                "molycop_later_annual_scheduled_principal_inr_m"
+              ]
+            ],
+            "_translation_note": "Explicit USD-origin registry derived from source-currency predecessor inputs. Rebase registered inputs from their reference INR equivalent to chosen FX. Reported INR statements stay unchanged. Do not edit currency_basis metadata; edit pro_forma.fx_inr_per_usd. Mixed reference-date actuals remain labeled."
+          }
+        },
+        "changed_since_review": false
       }
     ]
   },
@@ -5077,9 +7776,11 @@
     "first_year_molycop_revenue_tie": 0.0,
     "first_year_molycop_ebitda_tie": 0.0,
     "max_asset_rollforward_residual": 7.275957614183426e-12,
-    "max_group_ownership_fcff_residual": 1.8189894035458565e-12,
-    "max_group_fcff_identity_residual": 3.637978807091713e-12,
-    "equity_bridge_residual": 0.0,
+    "max_group_consolidation_fcff_residual": 7.275957614183426e-12,
+    "max_group_fcff_identity_residual": 0.0,
+    "equity_bridge_residual": 2.9103830456733704e-11,
+    "max_consolidated_cash_residual": 5.4569682106375694e-12,
+    "max_consolidated_bs_residual": 5.820766091346741e-11,
     "max_parent_cash_rollforward_residual": 0.0,
     "max_linked_operating_cashflow_residual": 3.637978807091713e-12,
     "max_legacy_statement_movement_residual": 1.4551915228366852e-11
@@ -5211,10 +7912,9 @@
     "molycop_forecast_nwc_revenue_fraction": 0.18,
     "earnout_inr_m": 11396.4,
     "earnout_payment_date": "2029-03-01",
-    "group_wacc_inr": 0.105,
     "group_terminal_growth_inr": 0.045,
     "group_terminal_roic": 0.18,
-    "group_valuation_rationale": "Discount legacy FCFF plus Tega's ownership share of Molycop FCFF together once. Use proportionate Molycop senior claims and 100% of parent debt. One terminal value and one aggregate equity floor; no separate subsidiary default-option valuation. Group discount/terminal assumptions are provisional.",
+    "group_valuation_rationale": "100% pro-forma operating consolidation; blended standalone WACC; full senior claims and explicit ordinary NCI deduction.",
     "legacy_other_operating_current_assets_revenue_fraction": 0.04166794023389936,
     "legacy_other_operating_current_liabilities_revenue_fraction": 0.06870127212154678,
     "legacy_fy27_finance_cost_inr_m": 1100,
@@ -5286,9 +7986,9 @@
     "tax_rationale": "Legacy 24.4558% = FY24-FY26 mean total accounting tax / PBT; used as an explicit cash-tax proxy, not a forecast of current/deferred taxes or a marginal rate. Molycop 27% is still an unresolved model input: no verified guidance/consensus/standalone tax history. No cross-border loss offsets.",
     "unquantified_asset_sale_proceeds_inr_m": 0.0,
     "pending_issue_expenses_inr_m": 0.0,
-    "pending_issue_rationale": "Only a separate pro-forma sensitivity adds the proposed 478435 shares and INR953.99939m cash together. Gross proceeds assumed available; issuance expenses default zero and can be edited. Main issued-share count is unchanged.",
+    "pending_issue_rationale": "Main pro-forma valuation includes follow-on shares and matching unreceived cash once; legal issuance completion remains unverified.",
     "molycop_later_annual_scheduled_principal_inr_m": 664.79,
-    "discount_rate_rationale": "No verified public group consensus WACC found in the September 20 review. Down/base/up 14%/12%/10.5% remain provisional sensitivity inputs carried forward; they are neither consensus nor calibrated acquisition-adjusted WACCs.",
+    "discount_rate_rationale": "Entity CAPM/financing inputs and EV weights are in pro_forma.wacc; see their source/proxy notes.",
     "legacy_fy27_remaining_scheduled_principal_inr_m": 377.8275,
     "legacy_operating_cost_mix": {
       "materials": 0.5540177660481826,

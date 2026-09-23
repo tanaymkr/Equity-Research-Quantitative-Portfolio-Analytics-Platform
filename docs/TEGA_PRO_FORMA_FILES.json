@@ -1,0 +1,197 @@
+{
+  "base_commit": "df264ada0aaf7b56d60678ee0e0b4e226ff2a63d",
+  "install": "Copy contents into existing repository and replace; no deletions. Includes the previous test-only fix.",
+  "validation": "139 tests, 13 subtests on Python 3.11 and 3.12; Ruff; three-scenario run; HTML table structure.",
+  "files": [
+    {
+      "path": "README.md",
+      "action": "modify",
+      "sha256": "c1e88910e42682448062dbd4372189cfbccf943c8eecc112d5233dc409c96776"
+    },
+    {
+      "path": "START_TEGA_MODEL.md",
+      "action": "modify",
+      "sha256": "0fd53e53efec3959f32a4ffe36b5e9971fbe52c6ff844c4778cf481475cfc736"
+    },
+    {
+      "path": "docs/TEGA_INR_CONVERSION.md",
+      "action": "modify",
+      "sha256": "1d09a0e68b05ea69e344d2b8ed8eca9708be15ae8fc4f72755e139bdd5cbdb5d"
+    },
+    {
+      "path": "docs/TEGA_LEGACY_STATEMENTS_UPDATE.md",
+      "action": "modify",
+      "sha256": "7b541f93cac13b752098a82212f0c63863b607d1852711b4bd383cda5826e2af"
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_MODEL.md",
+      "action": "modify",
+      "sha256": "e380a19fb6008d34bf1ec00439e1ff22353477c63b5b8205b910749f153465e9"
+    },
+    {
+      "path": "docs/TEGA_MOLYCOP_VALIDATION.md",
+      "action": "modify",
+      "sha256": "8e411845f7dc64e39f2034e2f586d93798fa8725b1e30b00ac9418eb388cb23a"
+    },
+    {
+      "path": "docs/TEGA_PRO_FORMA_CONSOLIDATION.md",
+      "action": "add",
+      "sha256": "3e95f8f22ed4e48847ee74cbe19ce7d3086a24299ad0bcf4bd8695cf12c6ccce"
+    },
+    {
+      "path": "docs/TEGA_SINGLE_DCF.md",
+      "action": "modify",
+      "sha256": "ef48d1c37b0026e87a83a2ee784bd401941bcceb4cc65195d2397664f73d774f"
+    },
+    {
+      "path": "examples/tega_capm_reference_20260902.json",
+      "action": "add",
+      "sha256": "a70e54be6c52e0eb7c7d55a7c4c87f7183090fbab1a920287e757ceed558bf66"
+    },
+    {
+      "path": "examples/tega_molycop_assumptions.json",
+      "action": "modify",
+      "sha256": "ed7161a83d53819cde882eccc87d90647442afbb4605cd9f23abaa2d8d67ee61"
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/forecast.md",
+      "action": "modify",
+      "sha256": "488015d4fb4346245b44860084ecacc9d1988cce56db420c7873f59524986728"
+    },
+    {
+      "path": "examples/tega_molycop_reports/base/model.json",
+      "action": "modify",
+      "sha256": "d6dd5e964b5e7a95a81a985138202dddd328e174bf91e08930fd74d2ba6dbce5"
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/forecast.md",
+      "action": "modify",
+      "sha256": "e7125ddd652a15ff2f944344991cb95a189d3ad37b1660eeea597c9313141ac2"
+    },
+    {
+      "path": "examples/tega_molycop_reports/downside/model.json",
+      "action": "modify",
+      "sha256": "2d3ba6a8b83807df9b4c06c60b30d695923fa692b2b2a1e323ef5a8850a52bda"
+    },
+    {
+      "path": "examples/tega_molycop_reports/forecast_assumptions.md",
+      "action": "modify",
+      "sha256": "1ea7ebe3e9524bae33b167dad6936ffdbadd07fb17189878706c14e9a6ccc2e4"
+    },
+    {
+      "path": "examples/tega_molycop_reports/forecast_evidence.json",
+      "action": "modify",
+      "sha256": "6c87acf6c8e092629ec3bed225e1fdd2864faf3c7f34dd19ff481ba5611d7a71"
+    },
+    {
+      "path": "examples/tega_molycop_reports/inputs_used.json",
+      "action": "modify",
+      "sha256": "56fcaaeb79a63d2ca5ef2b86de03e06ba5b8c057bb00bc78398509e8ad010c4e"
+    },
+    {
+      "path": "examples/tega_molycop_reports/report.html",
+      "action": "modify",
+      "sha256": "4e6c14228a19138be2889a66a6a6d10c3388388bcea0e198f9c8057938a91d38"
+    },
+    {
+      "path": "examples/tega_molycop_reports/scenarios.md",
+      "action": "modify",
+      "sha256": "3ab608f4145fdfd944b28dc834e54d0cb3d48c41f96502a0b0283da82fc747c7"
+    },
+    {
+      "path": "examples/tega_molycop_reports/sensitivity.json",
+      "action": "modify",
+      "sha256": "ee7a42461bf74bb28639e8aaddaa388321659821d7c448e309388cf77fe2f278"
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/forecast.md",
+      "action": "modify",
+      "sha256": "fda4b620e0f35ce586bef0b722e7961742130721a02928e622d4be90e4f3a46b"
+    },
+    {
+      "path": "examples/tega_molycop_reports/upside/model.json",
+      "action": "modify",
+      "sha256": "09ce007fffdd43782c69cb9e6dc83192b1c390cfbf42d2ca6a33a782a8eb8ebd"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/__main__.py",
+      "action": "modify",
+      "sha256": "73b7ba0d588c1e31981a4a60faad2361175693576e579c2bc55592a27f36c566"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/consolidation.py",
+      "action": "add",
+      "sha256": "ec68663be75d8ad2024b7071e5f40f3016514c98ca2054ca02ec04c18371a0df"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/currency.py",
+      "action": "add",
+      "sha256": "25569b06b9b1f3438bf8e9174dc5617ca5b31d87fbe000b40d797e26126d6861"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/engine.py",
+      "action": "modify",
+      "sha256": "6571df8400f7b880de49bd302e6572597d38686d0e50e1407d3f4c4c3abdde13"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/equity_bridge.py",
+      "action": "add",
+      "sha256": "9318b258bebd184cf9bac58a3c89cdd8fdac23cea46427ac8c2e49253d4634ee"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/reporting.py",
+      "action": "modify",
+      "sha256": "6198376a969c1547a329c2d021bf44a677f3bee037ef2c0281edea980387937f"
+    },
+    {
+      "path": "src/equity_analytics/acquisition/wacc.py",
+      "action": "add",
+      "sha256": "7bb17f452d1af79dc55cb8e204c276a00c7c4c74766a69959979e8da22d6d3ad"
+    },
+    {
+      "path": "tests/fixtures/legacy_update_baseline.json",
+      "action": "modify",
+      "sha256": "ee9c22ee406c3069227a4ead6100b97b7c2ad699e7783b35916ad42299511ffc"
+    },
+    {
+      "path": "tests/test_acquisition.py",
+      "action": "modify",
+      "sha256": "77cf0956f8768d8133ff90c825ff2e8902936f8cd222871004318e21b12e3704"
+    },
+    {
+      "path": "tests/test_acquisition_group.py",
+      "action": "modify",
+      "sha256": "216d034362ddec6cee7110c3d2e55df99b2bd60f507c9426e9d1d1f81de4b475"
+    },
+    {
+      "path": "tests/test_acquisition_inr.py",
+      "action": "modify",
+      "sha256": "b7d48fd9e4cfbca8b1cce409f406c0585bb03bc9e769aec1a29ec1f3760ce1f7"
+    },
+    {
+      "path": "tests/test_dcf.py",
+      "action": "modify",
+      "sha256": "fd1b9c7d653c48cc352f27a5b4b015ae289f8fe41e611a5fc5cb58c80294d786"
+    },
+    {
+      "path": "tests/test_forecast_drivers.py",
+      "action": "modify",
+      "sha256": "e655b4916ed3fca8fce98083443436e7c187acec995c69fe4c4abddd056ab517"
+    },
+    {
+      "path": "tests/test_fy2026.py",
+      "action": "modify",
+      "sha256": "ff289e480c4ed5459f1749f0be8a575003fe82e79f4c7d6eadc54340d0955d58"
+    },
+    {
+      "path": "tests/test_legacy_statements.py",
+      "action": "modify",
+      "sha256": "c793529035adf780acd5d1d0bbf82749d57e40f64d6d1eeccc64a1d0ce8c0399"
+    },
+    {
+      "path": "tests/test_pro_forma.py",
+      "action": "add",
+      "sha256": "1a0e31deed774a046d49b5073cc581d113f6655c964b463b59d179610c2b7cde"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Downside acquisition scenario
 
-PROVISIONAL. Valuation date: 30 June 2026. Research cutoff: 11 September 2026. Reported facts and management guidance are separated from analyst assumptions. These are conditional scenario values, not validated current price targets. A zero equity floor indicates insufficient modeled enterprise value to cover claims; it is not a prediction that the quoted stock price becomes zero. All model amounts are INR million unless marked per share or per tonne. USD-origin amounts use INR94.97 per USD, the September 2, 2026 closing rate reported by Reuters (not an FBIL reference fixing). Reported INR actuals are unchanged. Currency conversion uses a fixed rate; June 30 remains the valuation date. The single-group method changes valuation separately from currency conversion. One group discount rate and one terminal value apply in each scenario. Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; Molycop senior claims use that same proportion. Group rates are provisional. Forecast assumptions and public consensus coverage reviewed on 20 September 2026. Legacy Tega statement gaps use existing schedules, historical fallbacks and explicitly assumed zeros. Its investment in Molycop is shown at cost in this legacy-only view; this is not group PAT/EPS. The estimated June opening balance discrepancy remains visible. Molycop statements remain partial: Unresolved means missing evidence.
+PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR94.9700/USD. 100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. Full net debt, preferences and ordinary minority interest are explicit bridge deductions. Molycop WACC inputs and legacy EV weight include unsourced analyst assumptions. These outputs are conditional scenario values, not validated current price targets. Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; this does not validate purchase accounting or resolve the separate legacy June gap. Main share count includes the proposed follow-on issue pro forma and matching cash once.
 
 Approved downside revenue path. Consumables margin uses the management range; equipment margin and legacy working capital/capex use audited historical ratios. Molycop FY27 EBITDA follows 4% guidance in every case; later core profit per tonne stays flat, with an explicit savings ramp. Later capex scales with revenue after the two-year guidance window. Unverified acquisition/financing inputs remain provisional.
 
@@ -12,49 +12,196 @@ Approved downside revenue path. Consumables margin uses the management range; eq
 | Equipment | 8.0% | 8.0% | 7.0% | 6.0% | 6.0% | 5.0% | 4.0% | 4.0% |
 | Molycop | -3.0% | 1.0% | 2.0% | 2.0% | 2.0% | 2.0% | 2.0% | 2.0% |
 
-## One group DCF: cash flows attributable to Tega (INR million)
+## Standalone WACCs and operating-EV blend
 
-| FY end | Legacy FCFF | Molycop FCFF (100%) | Less: minority FCFF | FCFF discounted | Discount years | PV of FCFF |
-| --- | --- | --- | --- | --- | --- | --- |
-| 2027 | -2,249.35 | 4,695.77 | 742.93 | 1,703.49 | 0.7507 | 1,543.91 |
-| 2028 | 805.47 | 11,302.25 | 1,788.16 | 10,319.55 | 1.7534 | 8,201.30 |
-| 2029 | 946.70 | 12,038.51 | 1,904.65 | 11,080.56 | 2.7534 | 7,724.64 |
-| 2030 | 1,118.79 | 12,614.49 | 1,995.78 | 11,737.50 | 3.7534 | 7,177.74 |
-| 2031 | 1,289.49 | 12,919.04 | 2,043.96 | 12,164.57 | 4.7534 | 6,525.35 |
-| 2032 | 1,315.42 | 13,229.69 | 2,093.11 | 12,452.00 | 5.7562 | 5,857.14 |
-| 2033 | 1,363.73 | 13,543.05 | 2,142.69 | 12,764.08 | 6.7562 | 5,266.61 |
-| 2034 | 1,474.02 | 13,854.13 | 2,191.90 | 13,136.25 | 7.7562 | 4,754.53 |
+| Business | RF | ERP | Beta | Ke | Debt cost | Debt weight | Pref weight | WACC | Weight EV INR m | EV weight |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Tega INR | 6.975% | 7.975% | 0.6749 | 12.357% | 7.00% | 20.00% | 0.00% | 10.943% | 80,000.00 | 36.67% |
+| Molycop USD / constant INR | 4.500% | 7.000% | 1.1000 | 12.200% | 9.00% | 45.00% | 18.00% | 9.630% | 138,181.35 | 63.33% |
 
-## Single group terminal value and enterprise value (INR million)
+## Blended WACC and valuation diagnostics
 
-| Group WACC | Terminal growth | Terminal ROIC | Terminal NOPAT | Terminal reinvestment | Terminal FCFF | PV forecast FCFF | PV terminal value | Attributable enterprise value |
+| Item | Value |
+| --- | --- |
+| Blended WACC | 10.1119% |
+| Tega standalone calculated EV (audit only) | 12,227.74 |
+| Molycop standalone calculated EV (NCI only) | 134,421.71 |
+| EV weighting basis | USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization. UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV. |
+| FX convention | ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast. |
+
+## FY27 consolidation and valuation stub
+
+| Item | Value |
+| --- | --- |
+| tega full year months | 12.00 |
+| molycop consolidation start | 2026-06-01 |
+| molycop full year owned months | 10.00 |
+| molycop actual months already elapsed | 1.00 |
+| future months discounted | 9.00 |
+| tega full year revenue | 18,272.91 |
+| molycop ten month revenue | 116,309.60 |
+| consolidated full year revenue | 134,582.51 |
+| actual ytd revenue | 17,234.42 |
+| future consolidated revenue | 117,348.09 |
+| full year operating ebitda | 19,147.53 |
+| note | Full fiscal-year income bridge includes actual YTD. Discount only future July-March FCFF; do not discount June a second time. |
+
+## Consolidated income statement — economic proxies
+
+| INR million; FY27 July–March | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 14.00% | 3.00% | 13.00% | 12,804.42 | 2,954.87 | 9,849.55 | 47,051.22 | 32,408.62 | 79,459.83 |
+| revenue | 117,348.09 | 160,701.98 | 165,068.76 | 169,400.70 | 173,698.25 | 177,895.30 | 182,172.86 | 186,571.18 |
+| operating expense total | 100,665.85 | 137,228.03 | 140,166.31 | 143,648.87 | 147,298.62 | 150,869.92 | 154,507.24 | 158,245.72 |
+| operating ebitda | 16,682.25 | 23,473.95 | 24,902.45 | 25,751.83 | 26,399.63 | 27,025.38 | 27,665.62 | 28,325.46 |
+| depreciation amortisation | 5,339.54 | 7,861.49 | 8,631.77 | 9,289.90 | 9,973.16 | 10,003.19 | 10,375.95 | 11,024.20 |
+| ebit before integration | 11,342.71 | 15,612.46 | 16,270.68 | 16,461.93 | 16,426.47 | 17,022.19 | 17,289.67 | 17,301.25 |
+| integration expense | 474.85 | 379.88 | 189.94 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| ebit after integration | 10,867.86 | 15,232.58 | 16,080.74 | 16,461.93 | 16,426.47 | 17,022.19 | 17,289.67 | 17,301.25 |
+| bank and lease finance cost | 6,016.03 | 7,223.75 | 6,676.94 | 6,028.80 | 5,284.33 | 4,460.07 | 3,561.13 | 2,581.48 |
+| preference return economic charge | 2,296.36 | 3,381.79 | 3,787.60 | 4,242.12 | 4,751.17 | 5,321.31 | 5,959.87 | 6,765.11 |
+| other income after dividend elimination | 34.47 | 45.96 | 45.96 | 45.96 | 45.96 | 45.96 | 45.96 | 45.96 |
+| joint venture profit | 37.44 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 |
+| intercompany dividend eliminated | 260.77 | 1,805.10 | 2,075.45 | 2,317.80 | 2,502.77 | 2,697.82 | 2,902.55 | 2,510.16 |
+| current tax proxy | 1,762.97 | 2,778.89 | 3,155.70 | 3,430.29 | 3,618.42 | 3,981.60 | 4,284.33 | 4,546.34 |
+| deferred tax expense assumed | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| profit before tax proxy | 2,627.37 | 4,722.92 | 5,712.07 | 6,286.89 | 6,486.84 | 7,336.69 | 7,864.55 | 8,050.53 |
+| net income proxy | 864.40 | 1,944.03 | 2,556.37 | 2,856.60 | 2,868.43 | 3,355.09 | 3,580.21 | 3,504.20 |
+| noncontrolling profit proxy | 32.98 | 228.06 | 325.75 | 357.59 | 343.95 | 325.98 | 304.30 | 265.84 |
+| owners net income proxy | 831.42 | 1,715.97 | 2,230.62 | 2,499.01 | 2,524.47 | 3,029.11 | 3,275.91 | 3,238.36 |
+| pro forma eps inr | 11.00 | 22.70 | 29.50 | 33.05 | 33.39 | 40.06 | 43.33 | 42.83 |
 
-## Single group equity bridge
+## Consolidated balance sheet — provisional opening allocations
 
-| Item | Amount | Unit |
-| --- | --- | --- |
-| Group enterprise value, attributable basis | 79,459.83 | INR m |
-| Less: legacy/parent net debt (100%) | 18,695.14 | INR m |
-| Less: attributable Molycop net debt | 53,762.68 | INR m |
-| Less: attributable preference claim | 21,585.02 | INR m |
-| Less: attributable earnout present value | 0.00 | INR m |
-| Less: attributable other claims | 3,997.23 | INR m |
-| Add: legacy JV/property proxies | 325.14 | INR m |
-| Tega equity before aggregate zero floor | -18,255.08 | INR m |
-| Issued shares | 75,127,698 | shares |
-| Provisional scenario value | 0.00 | INR / share |
-| If proposed Apollo cash issue completes | 0.00 | INR / share |
+| INR million; FY27 July–March | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| total assets | 232,893.52 | 231,823.67 | 230,675.45 | 229,043.81 | 226,896.45 | 224,834.15 | 222,623.34 | 220,018.91 |
+| total liabilities | 189,954.29 | 187,429.93 | 184,265.68 | 180,363.32 | 175,968.18 | 171,208.10 | 166,112.86 | 160,626.28 |
+| owners equity | 35,917.27 | 37,482.99 | 39,563.36 | 41,912.11 | 44,286.33 | 47,165.19 | 50,290.84 | 53,378.94 |
+| noncontrolling equity | 7,021.95 | 6,910.74 | 6,846.41 | 6,768.38 | 6,641.94 | 6,460.87 | 6,219.64 | 6,013.70 |
+| total equity | 42,939.22 | 44,393.73 | 46,409.77 | 48,680.49 | 50,928.27 | 53,626.05 | 56,510.48 | 59,392.64 |
+| consolidated cash | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 |
+| net operating working capital | 38,770.46 | 39,624.99 | 40,838.20 | 42,031.09 | 43,203.66 | 44,331.63 | 45,480.92 | 46,666.04 |
+| investment in molycop after elimination | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| balance sheet residual | 0.00 | -0.00 | -0.00 | -0.00 | -0.00 | -0.00 | 0.00 | 0.00 |
 
-## Molycop claim allocation: 84.1787% attributable to Tega
+## Consolidated cash flow statement — economic proxies
 
-| Claim | Full claim INR m | Deducted on attributable basis INR m |
-| --- | --- | --- |
-| Net debt | 63,867.32 | 53,762.68 |
-| Preference claim | 25,641.90 | 21,585.02 |
-| Earnout PV | 0.00 | 0.00 |
-| Other claims | 4,748.50 | 3,997.23 |
+| INR million; FY27 July–March | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| operating cash flow proxy | 9,778.89 | 19,485.93 | 20,368.87 | 21,153.94 | 21,633.92 | 21,941.08 | 22,257.28 | 22,619.28 |
+| investing cash flow proxy | -5,190.27 | -4,710.41 | -4,824.57 | -4,998.48 | -5,166.93 | -5,325.00 | -5,485.98 | -5,652.78 |
+| financing cash flow proxy | -4,588.62 | -14,775.52 | -15,544.31 | -16,155.46 | -16,466.98 | -16,616.08 | -16,771.29 | -16,966.50 |
+| cash dividend eliminated | 260.77 | 1,805.10 | 2,075.45 | 2,317.80 | 2,502.77 | 2,697.82 | 2,902.55 | 2,510.16 |
+| external nci dividend | 49.01 | 339.27 | 390.08 | 435.63 | 470.39 | 507.05 | 545.53 | 471.78 |
+| noncash preference accretion | 2,296.36 | 3,381.79 | 3,787.60 | 4,242.12 | 4,751.17 | 5,321.31 | 5,959.87 | 4,365.47 |
+| opening cash | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 |
+| closing cash | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 | 1,454.00 |
+| net change in cash | 0.00 | -0.00 | 0.00 | -0.00 | -0.00 | -0.00 | 0.00 | 0.00 |
+| cash rollforward residual | -0.00 | 0.00 | -0.00 | 0.00 | 0.00 | 0.00 | 0.00 | -0.00 |
+
+## Consolidated FCFF build — 100% businesses
+
+| INR million; FY27 July–March | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ebit | 11,342.71 | 15,612.46 | 16,270.68 | 16,461.93 | 16,426.47 | 17,022.19 | 17,289.67 | 17,301.25 |
+| integration cash cost | 474.85 | 379.88 | 189.94 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| unlevered cash tax | 3,353.26 | 4,678.86 | 4,910.49 | 5,013.39 | 5,004.75 | 5,150.46 | 5,216.23 | 5,220.24 |
+| nopat | 7,514.60 | 10,553.72 | 11,170.25 | 11,448.54 | 11,421.73 | 11,871.73 | 12,073.44 | 12,081.02 |
+| da | 5,339.54 | 7,861.49 | 8,631.77 | 9,289.90 | 9,973.16 | 10,003.19 | 10,375.95 | 11,024.20 |
+| cash capex | 5,242.34 | 4,779.84 | 4,894.00 | 5,067.91 | 5,236.36 | 5,394.43 | 5,555.42 | 5,722.21 |
+| new lease assets | 480.88 | 673.12 | 709.60 | 744.37 | 777.41 | 807.40 | 837.91 | 869.74 |
+| delta nwc | 4,684.49 | 854.53 | 1,213.21 | 1,192.89 | 1,172.57 | 1,127.97 | 1,149.29 | 1,185.12 |
+| fcff | 2,446.42 | 12,107.72 | 12,985.21 | 13,733.28 | 14,208.53 | 14,545.11 | 14,906.77 | 15,328.15 |
+
+## Full fiscal-year income — FY27 includes ten Molycop months
+
+| INR million; reported elapsed period plus future forecast | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| revenue | 134,582.51 | 160,701.98 | 165,068.76 | 169,400.70 | 173,698.25 | 177,895.30 | 182,172.86 | 186,571.18 |
+| operating expense total | 115,434.99 | 137,228.03 | 140,166.31 | 143,648.87 | 147,298.62 | 150,869.92 | 154,507.24 | 158,245.72 |
+| operating ebitda | 19,147.53 | 23,473.95 | 24,902.45 | 25,751.83 | 26,399.63 | 27,025.38 | 27,665.62 | 28,325.46 |
+| depreciation amortisation | 6,075.78 | 7,861.49 | 8,631.77 | 9,289.90 | 9,973.16 | 10,003.19 | 10,375.95 | 11,024.20 |
+| ebit before integration | 13,071.75 | 15,612.46 | 16,270.68 | 16,461.93 | 16,426.47 | 17,022.19 | 17,289.67 | 17,301.25 |
+| integration expense | 2,384.40 | 379.88 | 189.94 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| ebit after integration | 10,687.35 | 15,232.58 | 16,080.74 | 16,461.93 | 16,426.47 | 17,022.19 | 17,289.67 | 17,301.25 |
+| bank and lease finance cost | 7,183.11 | 7,223.75 | 6,676.94 | 6,028.80 | 5,284.33 | 4,460.07 | 3,561.13 | 2,581.48 |
+| preference return economic charge | 2,296.36 | 3,381.79 | 3,787.60 | 4,242.12 | 4,751.17 | 5,321.31 | 5,959.87 | 6,765.11 |
+| other income after dividend elimination | 208.60 | 45.96 | 45.96 | 45.96 | 45.96 | 45.96 | 45.96 | 45.96 |
+| joint venture profit | 46.72 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 |
+| intercompany dividend eliminated | 260.77 | 1,805.10 | 2,075.45 | 2,317.80 | 2,502.77 | 2,697.82 | 2,902.55 | 2,510.16 |
+| current tax proxy | 1,681.31 | 2,778.89 | 3,155.70 | 3,430.29 | 3,618.42 | 3,981.60 | 4,284.33 | 4,546.34 |
+| deferred tax expense assumed | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| profit before tax proxy | 1,463.19 | 4,722.92 | 5,712.07 | 6,286.89 | 6,486.84 | 7,336.69 | 7,864.55 | 8,050.53 |
+| net income proxy | -218.12 | 1,944.03 | 2,556.37 | 2,856.60 | 2,868.43 | 3,355.09 | 3,580.21 | 3,504.20 |
+| noncontrolling profit proxy | -187.65 | 228.06 | 325.75 | 357.59 | 343.95 | 325.98 | 304.30 | 265.84 |
+| owners net income proxy | -30.47 | 1,715.97 | 2,230.62 | 2,499.01 | 2,524.47 | 3,029.11 | 3,275.91 | 3,238.36 |
+| pro forma eps inr | -0.40 | 22.70 | 29.50 | 33.05 | 33.39 | 40.06 | 43.33 | 42.83 |
+
+## Opening allocation register — frozen, not forecast plugs
+
+| Item | INR m |
+| --- | --- |
+| owners equity | 35,236.10 |
+| noncontrolling equity | 7,037.99 |
+| total assets | 226,661.18 |
+| total liabilities | 184,387.09 |
+| total equity | 42,274.09 |
+| legacy unresolved opening gap | -15.88 |
+| investment eliminated | 37,446.24 |
+| Unallocated acquired assets | 48,864.84 |
+| Unallocated acquired liabilities | 51,212.87 |
+
+## 100% consolidated DCF
+
+| FY end | FCFF | Discount years | PV FCFF |
+| --- | --- | --- | --- |
+| 2027 | 2,446.42 | 0.7507 | 2,275.76 |
+| 2028 | 12,107.72 | 1.7534 | 10,226.08 |
+| 2029 | 12,985.21 | 2.7534 | 9,960.05 |
+| 2030 | 13,733.28 | 3.7534 | 9,566.49 |
+| 2031 | 14,208.53 | 4.7534 | 8,988.63 |
+| 2032 | 14,545.11 | 5.7562 | 8,354.35 |
+| 2033 | 14,906.77 | 6.7562 | 7,775.80 |
+| 2034 | 15,328.15 | 7.7562 | 7,261.35 |
+
+## Consolidated terminal value and enterprise value
+
+| Item | Value |
+| --- | --- |
+| wacc | 0.10 |
+| terminal growth | 0.03 |
+| terminal roic | 0.13 |
+| pv forecast fcff | 64,408.52 |
+| terminal nopat | 14,806.11 |
+| terminal reinvestment | 3,416.79 |
+| terminal fcff | 11,389.31 |
+| terminal value | 160,144.95 |
+| pv terminal value | 75,864.84 |
+| enterprise value | 140,273.36 |
+| terminal share of ev | 0.54 |
+
+## Explicit equity value bridge
+
+| Item | Amount |
+| --- | --- |
+| Combined enterprise value | 140,273.36 |
+| Legacy net debt (new term loan already included) | 18,695.14 |
+| Molycop post-refinancing net debt | 63,867.32 |
+| Less net debt: consolidated, after pro-forma issue cash | 81,608.46 |
+| Less: Apollo preference fair-value claim, 100% | 25,641.90 |
+| Less: earnout PV, 100% | 0.00 |
+| Less: other senior claims, 100% | 4,748.50 |
+| Molycop standalone common equity, after claims | 40,163.98 |
+| Less: Apollo common minority interest | 6,354.47 |
+| Add: nonoperating assets | 325.14 |
+| Equity attributable to Tega before zero floor | 22,245.17 |
+| Equity attributable to Tega after zero floor | 22,245.17 |
+| Pre-November shares | 66,535,492.00 |
+| November 2025 shares added (already in FY26) | 8,592,206.00 |
+| Follow-on shares assumed issued | 478,435.00 |
+| Diluted pro-forma shares | 75,606,133.00 |
+| Follow-on cash included once (INR m) | 954.00 |
+| Value per diluted share (INR) | 294.22 |
 
 ## Legacy operating schedule (INR m)
 
@@ -369,21 +516,19 @@ Approved downside revenue path. Consumables margin uses the management range; eq
 
 ## Information gaps and checks
 
-- Provisional model: June 30 valuation using information published through September 11, 2026; not a September spot-price target or point-in-time backtest.
-- Legacy June cash/CFO/capex and Molycop working capital are estimates; detailed post-close balance sheet not obtained.
-- Preference fair value and 12% PIK schedule are assumptions; contractual return and exit terms require confirmation.
-- Molycop FY2026 revenue is inferred from volume and FY2025 realization; it is not reported revenue.
-- Molycop FY2026 adjusted EBITDA is treated as operating EBITDA; full-year other income and the comparable ten-month earnings pattern are unavailable.
-- Purchase accounting, intangible lives, tax deductibility, other senior claims and subsidiary minority/JV scope remain provisional.
-- One group discount rate, terminal growth and ROIC apply to the combined stream. Initial values carry over former legacy assumptions as provisional group choices; they are not calibrated group WACCs.
-- Ownership-adjusted economic DCF: include 100% legacy and Tega's share of Molycop cash flows and senior claims. These are not statutory consolidated financial statements.
-- One pooled equity calculation does not value separate subsidiary default options or limited-liability ring-fencing. It may understate downside equity where Molycop shortfalls cannot reach the parent; contractual support remains unresolved.
-- All USD-origin inputs use INR94.97 per USD at the September 2, 2026 market close. June 30 remains the valuation date; this is a later-date constant-currency restatement. Reported INR actuals are unchanged.
-- Debt schedules estimate liquidity; they do not certify bank covenants, refinancing availability, preference exit rights or a statutory balanced forecast.
-- September 20 assumption review: management > verifiable comparable consensus > historical trend. No public group consensus WACC or detailed Molycop statement consensus was verified. Remaining proxies are explicitly unresolved.
-- Legacy statement gaps use schedules, historical values and user-authorized zero forecasts. Legacy earnings are for a legacy-only view with the Molycop investment at cost, not consolidated group PAT/EPS. Molycop statement gaps remain null.
-- Legacy estimated June opening balance discrepancy: INR-15.8750m. It is carried visibly, never plugged into equity/cash. Forecast movements reconcile; this is not a fully balanced statutory opening balance sheet.
-- Combined modeled equity is below zero and is floored once at zero; this is not a conclusion about legal debt recourse or an immediate cash shortfall.
+- Provisional economic pro-forma consolidation, not audited statutory forecasts. Detailed Molycop statements and PPA allocations remain incomplete.
+- June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).
+- Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.
+- ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.
+- UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.
+- NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.
+- Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.
+- Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.
+- Unallocated acquired assets/liabilities are frozen opening allocations to reported June consolidated totals; not sourced account detail. They do not resolve the legacy opening discrepancy.
+- Legacy estimated June opening discrepancy remains INR-15.8750m.
+- Molycop net income is an economic proxy: zero nonoperating income/deferred-tax movements, and non-tax-deductible preference return. Not reported or consensus PAT.
+- Molycop FY26 revenue remains inferred from disclosed volume and FY25 realization; newer FY26 EBITDA/volume and management guidance take precedence over the older USD1540m/172m snapshot.
+- Net debt already reflects preference-funded refinancing and the new parent acquisition loan. No second debt paydown or second loan addition.
 - Forecast needs additional funding; availability and pricing are not confirmed.
 
 ```json
@@ -395,9 +540,11 @@ Approved downside revenue path. Consumables margin uses the management range; eq
   "first_year_molycop_revenue_tie": 0.0,
   "first_year_molycop_ebitda_tie": 0.0,
   "max_asset_rollforward_residual": 7.275957614183426e-12,
-  "max_group_ownership_fcff_residual": 0.0,
-  "max_group_fcff_identity_residual": 3.637978807091713e-12,
-  "equity_bridge_residual": 0.0,
+  "max_group_consolidation_fcff_residual": 5.4569682106375694e-12,
+  "max_group_fcff_identity_residual": 0.0,
+  "equity_bridge_residual": 1.0913936421275139e-11,
+  "max_consolidated_cash_residual": 3.637978807091713e-12,
+  "max_consolidated_bs_residual": 2.9103830456733704e-11,
   "max_parent_cash_rollforward_residual": 0.0,
   "max_linked_operating_cashflow_residual": 3.637978807091713e-12,
   "max_legacy_statement_movement_residual": 1.4551915228366852e-11

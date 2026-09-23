@@ -1,3 +1,5 @@
+> **Historical update note.** Valuation method, FX controls and consolidated statement coverage below are superseded by [the pro-forma consolidated model](TEGA_PRO_FORMA_CONSOLIDATION.md). Retained for the audit trail.
+
 # Tega + Molycop: single group DCF in INR
 
 **23 September 2026:** Legacy Tega statement gaps now use linked schedules, historical

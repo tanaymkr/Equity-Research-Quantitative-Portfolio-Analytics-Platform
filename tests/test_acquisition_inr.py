@@ -45,9 +45,7 @@ def test_same_inr_units_through_cash_flows_debt_and_equity(inputs, case):
     bridge = result["equity_bridge"]
     ownership = 394.295423 / (394.295423 + 74.107477)
     assert bridge["molycop_ordinary_ownership"] == pytest.approx(ownership)
-    assert bridge["molycop_net_debt_attributable_inr_m"] == pytest.approx(
-        bridge["molycop_net_debt_full_inr_m"] * ownership
-    )
+    assert bridge["molycop_net_debt_full_inr_m"] == pytest.approx(672.5 * 94.97)
     assert result["opening_bridge_inr_m"][
         "tega_equity_contribution_cash_outflow"
     ] == pytest.approx(394.295423 * 94.97)
@@ -95,5 +93,5 @@ def test_money_sensitivities_use_inr_ranges(inputs):
     assert [r["input"] for r in preference] == pytest.approx(
         [270 * 94.97, 330 * 94.97, 400 * 94.97]
     )
-    assert len(rows) == 30
-    assert all("USD" not in r["parameter"] for r in rows)
+    assert len(rows) == 36
+    assert any(r["parameter"] == "Conversion INR per USD" for r in rows)

@@ -92,7 +92,7 @@ def test_cash_restriction_change_flows_from_notes_to_acquisition_equity(history)
     facts["tega_fy2026"], _ = legacy_facts_from_statements(changed)
     recalculated = build_acquisition_model(facts, assumptions)
     assert recalculated["equity_bridge"]["value_per_share_inr"] == pytest.approx(
-        original["equity_bridge"]["value_per_share_inr"] - 100 / 75.127698
+        original["equity_bridge"]["value_per_share_inr"] - 100 / 75.606133
     )
 
 

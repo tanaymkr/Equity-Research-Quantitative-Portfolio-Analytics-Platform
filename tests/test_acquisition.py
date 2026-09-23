@@ -50,33 +50,26 @@ class AcquisitionTests(unittest.TestCase):
         )
         self.assertAlmostEqual(q["molycop_operating_ebitda_inr_m"], 1628.12 - (-82.39))
 
-    def test_group_equity_uses_matching_ownership_for_senior_claims(self):
+    def test_group_equity_deducts_full_claims_and_explicit_nci(self):
         b = self.base["equity_bridge"]
-        attributable_claims = b["legacy_net_debt_inr_m"] + b[
-            "molycop_ordinary_ownership"
-        ] * (
-            672.5 * 94.97
+        claims = (
+            b["consolidated_net_debt_inr_m"]
             + 270 * 94.97
             + 50 * 94.97
             + b["earnout_present_value_full_inr_m"]
+            + b["minority_interest_inr_m"]
         )
-        self.assertAlmostEqual(
-            b["total_attributable_claims_inr_m"], attributable_claims
-        )
+        self.assertAlmostEqual(b["total_bridge_deductions_inr_m"], claims)
         self.assertAlmostEqual(
             b["raw_tega_equity_inr_m"],
-            b["group_enterprise_value_inr_m"]
-            - attributable_claims
-            + b["nonoperating_assets_inr_m"],
+            b["group_enterprise_value_inr_m"] - claims + b["nonoperating_assets_inr_m"],
         )
         f = deepcopy(self.facts)
         f["q1_fy2027"]["molycop_net_debt_inr_m"] += 10 * 94.97
         reduced = self.model(facts=f)["equity_bridge"]["value_per_share_inr"]
+        # Full debt deduction is partly offset by lower NCI common equity.
         expected_loss = (
-            10
-            * b["fx_inr_per_usd"]
-            * b["molycop_ordinary_ownership"]
-            / (b["issued_shares"] / 1e6)
+            10 * 94.97 * b["molycop_ordinary_ownership"] / (b["diluted_shares"] / 1e6)
         )
         self.assertAlmostEqual(b["value_per_share_inr"] - reduced, expected_loss)
 
@@ -113,7 +106,7 @@ class AcquisitionTests(unittest.TestCase):
         d["tega_ordinary_contribution_inr_m"] += 94.97
         d["apollo_ordinary_contribution_inr_m"] += 94.97 * ratio
         result = self.model(facts=f)
-        expected = 94.97 / (75127698 / 1e6)
+        expected = 94.97 / (75606133 / 1e6)
         self.assertAlmostEqual(
             self.base["equity_bridge"]["value_per_share_inr"]
             - result["equity_bridge"]["value_per_share_inr"],
@@ -123,18 +116,21 @@ class AcquisitionTests(unittest.TestCase):
     def test_share_count_and_pending_issue_include_cash_together(self):
         b = self.base["equity_bridge"]
         self.assertEqual(b["issued_shares"], 75127698)
-        expected = (b["raw_tega_equity_inr_m"] + 953.99939) / (
-            (75127698 + 478435) / 1e6
+        self.assertEqual(b["diluted_shares"], 75606133)
+        a = deepcopy(self.assumptions)
+        a["pro_forma"]["shares"]["include_follow_on"] = False
+        without = self.model(a)["equity_bridge"]
+        self.assertAlmostEqual(
+            b["raw_tega_equity_inr_m"] - without["raw_tega_equity_inr_m"], 953.99939
         )
         self.assertAlmostEqual(
-            b["pending_issue_pro_forma_value_per_share_inr"], expected
+            b["value_per_share_inr"],
+            (without["raw_tega_equity_inr_m"] + 953.99939) / 75.606133,
         )
         f = deepcopy(self.facts)
         f["tega_fy2026"]["shares"] *= 2
-        self.assertAlmostEqual(
-            self.model(facts=f)["equity_bridge"]["value_per_share_inr"],
-            b["value_per_share_inr"] / 2,
-        )
+        with self.assertRaises(ValueError):
+            self.model(facts=f)
 
     def test_preference_pik_is_non_cash_and_not_deducted_twice(self):
         a = deepcopy(self.assumptions)
@@ -213,10 +209,14 @@ class AcquisitionTests(unittest.TestCase):
         for scope, key, delta in (
             ("shared", "preference_fair_value_inr_m", 50),
             ("shared", "molycop_other_claims_inr_m", 20),
-            ("scenario", "group_wacc_inr", 0.01),
+            ("wacc", "base", 0.01),
         ):
             a = deepcopy(self.assumptions)
-            target = a["shared"] if scope == "shared" else a["scenarios"]["base"]
+            target = (
+                a["shared"]
+                if scope == "shared"
+                else a["pro_forma"]["wacc"]["scenario_risk_premium"]
+            )
             target[key] += delta
             with self.subTest(key=key):
                 self.assertLess(
@@ -239,7 +239,7 @@ class AcquisitionTests(unittest.TestCase):
         with self.assertRaises(AcquisitionInputError):
             self.model(a)
 
-    def test_all_cases_reconcile_and_report_downside_shortfall(self):
+    def test_all_cases_reconcile_and_rank_scenarios(self):
         values = []
         for case in ("downside", "base", "upside"):
             result = build_acquisition_model(self.facts, self.assumptions, case)
@@ -247,12 +247,6 @@ class AcquisitionTests(unittest.TestCase):
             values.append(result["equity_bridge"]["value_per_share_inr"])
         self.assertLess(values[0], values[1])
         self.assertLess(values[1], values[2])
-        self.assertLess(
-            build_acquisition_model(self.facts, self.assumptions, "downside")[
-                "equity_bridge"
-            ]["raw_tega_equity_inr_m"],
-            0,
-        )
 
 
 if __name__ == "__main__":

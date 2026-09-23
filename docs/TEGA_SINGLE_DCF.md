@@ -1,3 +1,5 @@
+> **Historical update note.** Valuation method, FX controls and consolidated statement coverage below are superseded by [the pro-forma consolidated model](TEGA_PRO_FORMA_CONSOLIDATION.md). Retained for the audit trail.
+
 # One Tega-Molycop DCF per scenario
 
 Current revenue/financial-driver assumptions were updated on 20 September 2026.

@@ -15,7 +15,7 @@ from .reporting import write_reports
 def main(default_root=None):
     root = Path(default_root or Path.cwd())
     parser = argparse.ArgumentParser(
-        description="Tega + Molycop single attributable group DCF"
+        description="Tega + Molycop pro-forma consolidated DCF"
     )
     parser.add_argument(
         "--facts", type=Path, default=root / "examples/tega_molycop_facts.json"
@@ -68,11 +68,13 @@ def main(default_root=None):
     ) as exc:
         parser.exit(1, f"Model could not run: {exc}\n")
     print(
-        "PROVISIONAL single group DCF; value date 2026-06-30; research through 2026-09-11."
+        "PROVISIONAL pro-forma consolidated DCF; value date 2026-06-30; research through 2026-09-11."
     )
-    print("Amounts: INR million. USD conversion: 94.97, market close on 2026-09-02.")
     print(
-        "Legacy statement gaps filled using schedules/history/assumed zeros; Molycop remains partial."
+        f"Amounts: INR million. Adjustable constant USD conversion: {assumptions['pro_forma']['fx_inr_per_usd']:.4f}."
+    )
+    print(
+        "Consolidated statements use explicit opening allocation proxies; not audited statutory accounts."
     )
     gap = results["base"]["legacy_statement_opening_inr_m"][
         "balance_sheet_residual_inr_m"
@@ -89,6 +91,29 @@ def main(default_root=None):
             else f"INR {b['value_per_share_inr']:,.2f}/share"
         )
         print(f"{name.title()}: {text}")
+        w = result["wacc_calculation"]
+        print(
+            f"  Tega standalone calculated EV (audit only): {result['standalone_values_for_audit_inr_m']['tega']['enterprise_value']:,.2f}"
+        )
+        print(
+            f"  WACC: Tega {w['tega']['standalone_wacc']:.3%}; Molycop {w['molycop']['standalone_wacc']:.3%}; blend {w['blended_wacc']:.3%}"
+        )
+        print(
+            f"  Weight EVs: Tega {w['tega_weight_ev_inr_m']:,.2f}; Molycop {w['molycop_weight_ev_inr_m']:,.2f}"
+        )
+        for key in (
+            "group_enterprise_value_inr_m",
+            "molycop_standalone_ev_for_nci_inr_m",
+            "consolidated_net_debt_inr_m",
+            "preference_fair_value_full_inr_m",
+            "earnout_present_value_full_inr_m",
+            "other_claims_full_inr_m",
+            "minority_interest_inr_m",
+            "nonoperating_assets_inr_m",
+            "raw_tega_equity_inr_m",
+            "diluted_shares",
+        ):
+            print(f"  {key}: {b[key]:,.2f}")
     print("Opening cash, working capital and preference terms remain provisional.")
     print(f"Open the report: {(args.output / 'report.html').resolve()}")
 

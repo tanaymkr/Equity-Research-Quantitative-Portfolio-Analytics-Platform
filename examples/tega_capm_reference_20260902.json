@@ -1,0 +1,749 @@
+{
+  "reference_date": "2026-09-02",
+  "risk_free_rate": 0.069754,
+  "market_return_arithmetic_mean": 0.129499379841836,
+  "market_return_cagr_comparison": 0.11848230878342547,
+  "nifty_tri_anchors": [
+    {
+      "date": "2016-09-02",
+      "level": 11857.76
+    },
+    {
+      "date": "2017-09-01",
+      "level": 13598.09
+    },
+    {
+      "date": "2018-08-31",
+      "level": 16143.51
+    },
+    {
+      "date": "2019-08-30",
+      "level": 15440.47
+    },
+    {
+      "date": "2020-09-02",
+      "level": 16322.17
+    },
+    {
+      "date": "2021-09-02",
+      "level": 24674.11
+    },
+    {
+      "date": "2022-09-02",
+      "level": 25467.41
+    },
+    {
+      "date": "2023-09-01",
+      "level": 28509.94
+    },
+    {
+      "date": "2024-09-02",
+      "level": 37525.28
+    },
+    {
+      "date": "2025-09-02",
+      "level": 36938.57
+    },
+    {
+      "date": "2026-09-02",
+      "level": 36332.38
+    }
+  ],
+  "annual_returns": [
+    {
+      "from": "2016-09-02",
+      "to": "2017-09-01",
+      "return": 0.1467671803106152
+    },
+    {
+      "from": "2017-09-01",
+      "to": "2018-08-31",
+      "return": 0.187189524411149
+    },
+    {
+      "from": "2018-08-31",
+      "to": "2019-08-30",
+      "return": -0.043549389197268806
+    },
+    {
+      "from": "2019-08-30",
+      "to": "2020-09-02",
+      "return": 0.05710318403520098
+    },
+    {
+      "from": "2020-09-02",
+      "to": "2021-09-02",
+      "return": 0.5116929918019479
+    },
+    {
+      "from": "2021-09-02",
+      "to": "2022-09-02",
+      "return": 0.03215110899643392
+    },
+    {
+      "from": "2022-09-02",
+      "to": "2023-09-01",
+      "return": 0.11946758622097797
+    },
+    {
+      "from": "2023-09-01",
+      "to": "2024-09-02",
+      "return": 0.3162174315344053
+    },
+    {
+      "from": "2024-09-02",
+      "to": "2025-09-02",
+      "return": -0.015635059884962832
+    },
+    {
+      "from": "2025-09-02",
+      "to": "2026-09-02",
+      "return": -0.016410759810138842
+    }
+  ],
+  "beta": 0.6748675556411455,
+  "beta_observations": 104,
+  "beta_from": "2024-09-04",
+  "beta_to": "2026-09-02",
+  "market_premium": 0.05974537984183599,
+  "cost_of_equity": 0.11007421845471163,
+  "cost_of_equity_using_cagr_comparison": 0.10263915463919732,
+  "beta_r_squared": 0.049539016954710025,
+  "sources": {
+    "tega": "https://finance.yahoo.com/quote/TEGA.NS/history/",
+    "market": "https://www.niftyindices.com/reports/historical-data",
+    "risk_free": "https://www.brecorder.com/news/40437600/indian-bonds-join-global-debt-selloff-bruised-by-oil-and-us-treasury-yields"
+  },
+  "weekly_observations": [
+    {
+      "week_end": "2024-09-04",
+      "observation_date": "2024-09-04",
+      "tega_adjusted_close": 1695.631591796875,
+      "nifty_50_tri": 37406.55
+    },
+    {
+      "week_end": "2024-09-11",
+      "observation_date": "2024-09-11",
+      "tega_adjusted_close": 1812.6817626953125,
+      "nifty_50_tri": 36990.52
+    },
+    {
+      "week_end": "2024-09-18",
+      "observation_date": "2024-09-18",
+      "tega_adjusted_close": 1847.5074462890625,
+      "nifty_50_tri": 37672.03
+    },
+    {
+      "week_end": "2024-09-25",
+      "observation_date": "2024-09-25",
+      "tega_adjusted_close": 1816.72314453125,
+      "nifty_50_tri": 38602.21
+    },
+    {
+      "week_end": "2024-10-02",
+      "observation_date": "2024-10-01",
+      "tega_adjusted_close": 1970.2454833984375,
+      "nifty_50_tri": 38294.54
+    },
+    {
+      "week_end": "2024-10-09",
+      "observation_date": "2024-10-09",
+      "tega_adjusted_close": 1950.0885009765625,
+      "nifty_50_tri": 37084.75
+    },
+    {
+      "week_end": "2024-10-16",
+      "observation_date": "2024-10-16",
+      "tega_adjusted_close": 1887.5718994140625,
+      "nifty_50_tri": 37068.99
+    },
+    {
+      "week_end": "2024-10-23",
+      "observation_date": "2024-10-23",
+      "tega_adjusted_close": 1861.777099609375,
+      "nifty_50_tri": 36281.1
+    },
+    {
+      "week_end": "2024-10-30",
+      "observation_date": "2024-10-30",
+      "tega_adjusted_close": 1890.365966796875,
+      "nifty_50_tri": 36165.43
+    },
+    {
+      "week_end": "2024-11-06",
+      "observation_date": "2024-11-06",
+      "tega_adjusted_close": 2145.521484375,
+      "nifty_50_tri": 36393.85
+    },
+    {
+      "week_end": "2024-11-13",
+      "observation_date": "2024-11-13",
+      "tega_adjusted_close": 2049.177001953125,
+      "nifty_50_tri": 35020.93
+    },
+    {
+      "week_end": "2024-11-20",
+      "observation_date": "2024-11-19",
+      "tega_adjusted_close": 1807.542724609375,
+      "nifty_50_tri": 34968.0
+    },
+    {
+      "week_end": "2024-11-27",
+      "observation_date": "2024-11-27",
+      "tega_adjusted_close": 1784.242431640625,
+      "nifty_50_tri": 36092.65
+    },
+    {
+      "week_end": "2024-12-04",
+      "observation_date": "2024-12-04",
+      "tega_adjusted_close": 1668.8387451171875,
+      "nifty_50_tri": 36378.91
+    },
+    {
+      "week_end": "2024-12-11",
+      "observation_date": "2024-12-11",
+      "tega_adjusted_close": 1632.41650390625,
+      "nifty_50_tri": 36638.14
+    },
+    {
+      "week_end": "2024-12-18",
+      "observation_date": "2024-12-18",
+      "tega_adjusted_close": 1669.6868896484375,
+      "nifty_50_tri": 35979.58
+    },
+    {
+      "week_end": "2024-12-25",
+      "observation_date": "2024-12-24",
+      "tega_adjusted_close": 1590.505859375,
+      "nifty_50_tri": 35278.97
+    },
+    {
+      "week_end": "2025-01-01",
+      "observation_date": "2025-01-01",
+      "tega_adjusted_close": 1552.2376708984375,
+      "nifty_50_tri": 35301.63
+    },
+    {
+      "week_end": "2025-01-08",
+      "observation_date": "2025-01-08",
+      "tega_adjusted_close": 1587.362548828125,
+      "nifty_50_tri": 35221.43
+    },
+    {
+      "week_end": "2025-01-15",
+      "observation_date": "2025-01-15",
+      "tega_adjusted_close": 1633.1649169921875,
+      "nifty_50_tri": 34514.06
+    },
+    {
+      "week_end": "2025-01-22",
+      "observation_date": "2025-01-22",
+      "tega_adjusted_close": 1604.076904296875,
+      "nifty_50_tri": 34460.03
+    },
+    {
+      "week_end": "2025-01-29",
+      "observation_date": "2025-01-29",
+      "tega_adjusted_close": 1477.546875,
+      "nifty_50_tri": 34474.8
+    },
+    {
+      "week_end": "2025-02-05",
+      "observation_date": "2025-02-05",
+      "tega_adjusted_close": 1640.44921875,
+      "nifty_50_tri": 35277.7
+    },
+    {
+      "week_end": "2025-02-12",
+      "observation_date": "2025-02-12",
+      "tega_adjusted_close": 1446.662841796875,
+      "nifty_50_tri": 34344.93
+    },
+    {
+      "week_end": "2025-02-19",
+      "observation_date": "2025-02-19",
+      "tega_adjusted_close": 1331.7579345703125,
+      "nifty_50_tri": 34177.82
+    },
+    {
+      "week_end": "2025-02-26",
+      "observation_date": "2025-02-25",
+      "tega_adjusted_close": 1315.842041015625,
+      "nifty_50_tri": 33603.55
+    },
+    {
+      "week_end": "2025-03-05",
+      "observation_date": "2025-03-05",
+      "tega_adjusted_close": 1314.4449462890625,
+      "nifty_50_tri": 33290.2
+    },
+    {
+      "week_end": "2025-03-12",
+      "observation_date": "2025-03-12",
+      "tega_adjusted_close": 1299.7763671875,
+      "nifty_50_tri": 33490.87
+    },
+    {
+      "week_end": "2025-03-19",
+      "observation_date": "2025-03-19",
+      "tega_adjusted_close": 1359.3990478515625,
+      "nifty_50_tri": 34142.35
+    },
+    {
+      "week_end": "2025-03-26",
+      "observation_date": "2025-03-26",
+      "tega_adjusted_close": 1457.888916015625,
+      "nifty_50_tri": 35005.67
+    },
+    {
+      "week_end": "2025-04-02",
+      "observation_date": "2025-04-02",
+      "tega_adjusted_close": 1452.8995361328125,
+      "nifty_50_tri": 34775.4
+    },
+    {
+      "week_end": "2025-04-09",
+      "observation_date": "2025-04-09",
+      "tega_adjusted_close": 1398.415771484375,
+      "nifty_50_tri": 33384.56
+    },
+    {
+      "week_end": "2025-04-16",
+      "observation_date": "2025-04-16",
+      "tega_adjusted_close": 1451.602294921875,
+      "nifty_50_tri": 34931.66
+    },
+    {
+      "week_end": "2025-04-23",
+      "observation_date": "2025-04-23",
+      "tega_adjusted_close": 1387.439208984375,
+      "nifty_50_tri": 36260.74
+    },
+    {
+      "week_end": "2025-04-30",
+      "observation_date": "2025-04-30",
+      "tega_adjusted_close": 1348.7218017578125,
+      "nifty_50_tri": 36274.87
+    },
+    {
+      "week_end": "2025-05-07",
+      "observation_date": "2025-05-07",
+      "tega_adjusted_close": 1302.5205078125,
+      "nifty_50_tri": 36394.46
+    },
+    {
+      "week_end": "2025-05-14",
+      "observation_date": "2025-05-14",
+      "tega_adjusted_close": 1472.05859375,
+      "nifty_50_tri": 36771.94
+    },
+    {
+      "week_end": "2025-05-21",
+      "observation_date": "2025-05-21",
+      "tega_adjusted_close": 1458.88671875,
+      "nifty_50_tri": 37010.35
+    },
+    {
+      "week_end": "2025-05-28",
+      "observation_date": "2025-05-28",
+      "tega_adjusted_close": 1613.8560791015625,
+      "nifty_50_tri": 36943.42
+    },
+    {
+      "week_end": "2025-06-04",
+      "observation_date": "2025-06-04",
+      "tega_adjusted_close": 1586.514404296875,
+      "nifty_50_tri": 36805.09
+    },
+    {
+      "week_end": "2025-06-11",
+      "observation_date": "2025-06-11",
+      "tega_adjusted_close": 1570.8477783203125,
+      "nifty_50_tri": 37587.31
+    },
+    {
+      "week_end": "2025-06-18",
+      "observation_date": "2025-06-18",
+      "tega_adjusted_close": 1470.9609375,
+      "nifty_50_tri": 37097.13
+    },
+    {
+      "week_end": "2025-06-25",
+      "observation_date": "2025-06-25",
+      "tega_adjusted_close": 1471.360107421875,
+      "nifty_50_tri": 37751.94
+    },
+    {
+      "week_end": "2025-07-02",
+      "observation_date": "2025-07-02",
+      "tega_adjusted_close": 1599.0875244140625,
+      "nifty_50_tri": 38121.99
+    },
+    {
+      "week_end": "2025-07-09",
+      "observation_date": "2025-07-09",
+      "tega_adjusted_close": 1740.1865234375,
+      "nifty_50_tri": 38169.85
+    },
+    {
+      "week_end": "2025-07-16",
+      "observation_date": "2025-07-16",
+      "tega_adjusted_close": 1898.9476318359375,
+      "nifty_50_tri": 37780.94
+    },
+    {
+      "week_end": "2025-07-23",
+      "observation_date": "2025-07-23",
+      "tega_adjusted_close": 1948.6417236328125,
+      "nifty_50_tri": 37812.76
+    },
+    {
+      "week_end": "2025-07-30",
+      "observation_date": "2025-07-30",
+      "tega_adjusted_close": 1897.450927734375,
+      "nifty_50_tri": 37288.94
+    },
+    {
+      "week_end": "2025-08-06",
+      "observation_date": "2025-08-06",
+      "tega_adjusted_close": 1821.6126708984375,
+      "nifty_50_tri": 36880.81
+    },
+    {
+      "week_end": "2025-08-13",
+      "observation_date": "2025-08-13",
+      "tega_adjusted_close": 1835.483154296875,
+      "nifty_50_tri": 36978.89
+    },
+    {
+      "week_end": "2025-08-20",
+      "observation_date": "2025-08-20",
+      "tega_adjusted_close": 1789.181884765625,
+      "nifty_50_tri": 37642.41
+    },
+    {
+      "week_end": "2025-08-27",
+      "observation_date": "2025-08-26",
+      "tega_adjusted_close": 1839.075439453125,
+      "nifty_50_tri": 37137.57
+    },
+    {
+      "week_end": "2025-09-03",
+      "observation_date": "2025-09-03",
+      "tega_adjusted_close": 1983.16796875,
+      "nifty_50_tri": 37142.11
+    },
+    {
+      "week_end": "2025-09-10",
+      "observation_date": "2025-09-10",
+      "tega_adjusted_close": 2079.28173828125,
+      "nifty_50_tri": 37536.88
+    },
+    {
+      "week_end": "2025-09-17",
+      "observation_date": "2025-09-17",
+      "tega_adjusted_close": 2106.449951171875,
+      "nifty_50_tri": 38073.65
+    },
+    {
+      "week_end": "2025-09-24",
+      "observation_date": "2025-09-24",
+      "tega_adjusted_close": 1907.181884765625,
+      "nifty_50_tri": 37662.84
+    },
+    {
+      "week_end": "2025-10-01",
+      "observation_date": "2025-10-01",
+      "tega_adjusted_close": 1918.2689208984375,
+      "nifty_50_tri": 37331.2
+    },
+    {
+      "week_end": "2025-10-08",
+      "observation_date": "2025-10-08",
+      "tega_adjusted_close": 1938.3455810546875,
+      "nifty_50_tri": 37646.65
+    },
+    {
+      "week_end": "2025-10-15",
+      "observation_date": "2025-10-15",
+      "tega_adjusted_close": 1920.366455078125,
+      "nifty_50_tri": 38067.31
+    },
+    {
+      "week_end": "2025-10-22",
+      "observation_date": "2025-10-21",
+      "tega_adjusted_close": 1925.4605712890625,
+      "nifty_50_tri": 38893.95
+    },
+    {
+      "week_end": "2025-10-29",
+      "observation_date": "2025-10-29",
+      "tega_adjusted_close": 1913.574462890625,
+      "nifty_50_tri": 39199.8
+    },
+    {
+      "week_end": "2025-11-05",
+      "observation_date": "2025-11-04",
+      "tega_adjusted_close": 1942.4407958984375,
+      "nifty_50_tri": 38513.37
+    },
+    {
+      "week_end": "2025-11-12",
+      "observation_date": "2025-11-12",
+      "tega_adjusted_close": 1954.92626953125,
+      "nifty_50_tri": 38950.78
+    },
+    {
+      "week_end": "2025-11-19",
+      "observation_date": "2025-11-19",
+      "tega_adjusted_close": 1910.5780029296875,
+      "nifty_50_tri": 39217.69
+    },
+    {
+      "week_end": "2025-11-26",
+      "observation_date": "2025-11-26",
+      "tega_adjusted_close": 1925.860107421875,
+      "nifty_50_tri": 39447.49
+    },
+    {
+      "week_end": "2025-12-03",
+      "observation_date": "2025-12-03",
+      "tega_adjusted_close": 1930.75439453125,
+      "nifty_50_tri": 39117.33
+    },
+    {
+      "week_end": "2025-12-10",
+      "observation_date": "2025-12-10",
+      "tega_adjusted_close": 1874.0203857421875,
+      "nifty_50_tri": 38774.13
+    },
+    {
+      "week_end": "2025-12-17",
+      "observation_date": "2025-12-17",
+      "tega_adjusted_close": 1908.4803466796875,
+      "nifty_50_tri": 38865.29
+    },
+    {
+      "week_end": "2025-12-24",
+      "observation_date": "2025-12-24",
+      "tega_adjusted_close": 1968.310791015625,
+      "nifty_50_tri": 39352.35
+    },
+    {
+      "week_end": "2025-12-31",
+      "observation_date": "2025-12-31",
+      "tega_adjusted_close": 1948.433837890625,
+      "nifty_50_tri": 39333.55
+    },
+    {
+      "week_end": "2026-01-07",
+      "observation_date": "2026-01-07",
+      "tega_adjusted_close": 1918.1690673828125,
+      "nifty_50_tri": 39350.28
+    },
+    {
+      "week_end": "2026-01-14",
+      "observation_date": "2026-01-14",
+      "tega_adjusted_close": 1873.021484375,
+      "nifty_50_tri": 38635.05
+    },
+    {
+      "week_end": "2026-01-21",
+      "observation_date": "2026-01-21",
+      "tega_adjusted_close": 1770.341064453125,
+      "nifty_50_tri": 37893.11
+    },
+    {
+      "week_end": "2026-01-28",
+      "observation_date": "2026-01-28",
+      "tega_adjusted_close": 1706.215576171875,
+      "nifty_50_tri": 38172.11
+    },
+    {
+      "week_end": "2026-02-04",
+      "observation_date": "2026-02-04",
+      "tega_adjusted_close": 1820.9820556640625,
+      "nifty_50_tri": 38824.69
+    },
+    {
+      "week_end": "2026-02-11",
+      "observation_date": "2026-02-11",
+      "tega_adjusted_close": 1793.0146484375,
+      "nifty_50_tri": 39107.4
+    },
+    {
+      "week_end": "2026-02-18",
+      "observation_date": "2026-02-18",
+      "tega_adjusted_close": 1627.6070556640625,
+      "nifty_50_tri": 38909.22
+    },
+    {
+      "week_end": "2026-02-25",
+      "observation_date": "2026-02-25",
+      "tega_adjusted_close": 1821.681396484375,
+      "nifty_50_tri": 38401.58
+    },
+    {
+      "week_end": "2026-03-04",
+      "observation_date": "2026-03-04",
+      "tega_adjusted_close": 1670.5570068359375,
+      "nifty_50_tri": 36891.56
+    },
+    {
+      "week_end": "2026-03-11",
+      "observation_date": "2026-03-11",
+      "tega_adjusted_close": 1753.9600830078125,
+      "nifty_50_tri": 35969.45
+    },
+    {
+      "week_end": "2026-03-18",
+      "observation_date": "2026-03-18",
+      "tega_adjusted_close": 1692.731201171875,
+      "nifty_50_tri": 35835.24
+    },
+    {
+      "week_end": "2026-03-25",
+      "observation_date": "2026-03-25",
+      "tega_adjusted_close": 1664.2642822265625,
+      "nifty_50_tri": 35124.87
+    },
+    {
+      "week_end": "2026-04-01",
+      "observation_date": "2026-04-01",
+      "tega_adjusted_close": 1691.033203125,
+      "nifty_50_tri": 34179.9
+    },
+    {
+      "week_end": "2026-04-08",
+      "observation_date": "2026-04-08",
+      "tega_adjusted_close": 1726.8916015625,
+      "nifty_50_tri": 36166.14
+    },
+    {
+      "week_end": "2026-04-15",
+      "observation_date": "2026-04-15",
+      "tega_adjusted_close": 1724.0947265625,
+      "nifty_50_tri": 36518.69
+    },
+    {
+      "week_end": "2026-04-22",
+      "observation_date": "2026-04-22",
+      "tega_adjusted_close": 1722.4967041015625,
+      "nifty_50_tri": 36739.93
+    },
+    {
+      "week_end": "2026-04-29",
+      "observation_date": "2026-04-29",
+      "tega_adjusted_close": 1647.9833984375,
+      "nifty_50_tri": 36446.26
+    },
+    {
+      "week_end": "2026-05-06",
+      "observation_date": "2026-05-06",
+      "tega_adjusted_close": 1656.0738525390625,
+      "nifty_50_tri": 36677.36
+    },
+    {
+      "week_end": "2026-05-13",
+      "observation_date": "2026-05-13",
+      "tega_adjusted_close": 1580.66162109375,
+      "nifty_50_tri": 35293.05
+    },
+    {
+      "week_end": "2026-05-20",
+      "observation_date": "2026-05-20",
+      "tega_adjusted_close": 1576.76611328125,
+      "nifty_50_tri": 35688.12
+    },
+    {
+      "week_end": "2026-05-27",
+      "observation_date": "2026-05-27",
+      "tega_adjusted_close": 1597.841552734375,
+      "nifty_50_tri": 36089.71
+    },
+    {
+      "week_end": "2026-06-03",
+      "observation_date": "2026-06-03",
+      "tega_adjusted_close": 1818.984375,
+      "nifty_50_tri": 35338.07
+    },
+    {
+      "week_end": "2026-06-10",
+      "observation_date": "2026-06-10",
+      "tega_adjusted_close": 1736.8800048828125,
+      "nifty_50_tri": 35065.85
+    },
+    {
+      "week_end": "2026-06-17",
+      "observation_date": "2026-06-17",
+      "tega_adjusted_close": 1831.3699951171875,
+      "nifty_50_tri": 36394.66
+    },
+    {
+      "week_end": "2026-06-24",
+      "observation_date": "2026-06-24",
+      "tega_adjusted_close": 1736.9798583984375,
+      "nifty_50_tri": 36376.39
+    },
+    {
+      "week_end": "2026-07-01",
+      "observation_date": "2026-07-01",
+      "tega_adjusted_close": 1658.47119140625,
+      "nifty_50_tri": 36358.08
+    },
+    {
+      "week_end": "2026-07-08",
+      "observation_date": "2026-07-08",
+      "tega_adjusted_close": 1639.593017578125,
+      "nifty_50_tri": 36187.26
+    },
+    {
+      "week_end": "2026-07-15",
+      "observation_date": "2026-07-15",
+      "tega_adjusted_close": 1625.3096923828125,
+      "nifty_50_tri": 36497.59
+    },
+    {
+      "week_end": "2026-07-22",
+      "observation_date": "2026-07-22",
+      "tega_adjusted_close": 1565.5792236328125,
+      "nifty_50_tri": 36378.67
+    },
+    {
+      "week_end": "2026-07-29",
+      "observation_date": "2026-07-29",
+      "tega_adjusted_close": 1502.65234375,
+      "nifty_50_tri": 36790.18
+    },
+    {
+      "week_end": "2026-08-05",
+      "observation_date": "2026-08-05",
+      "tega_adjusted_close": 1578.7637939453125,
+      "nifty_50_tri": 37394.79
+    },
+    {
+      "week_end": "2026-08-12",
+      "observation_date": "2026-08-12",
+      "tega_adjusted_close": 1626.2086181640625,
+      "nifty_50_tri": 37116.2
+    },
+    {
+      "week_end": "2026-08-19",
+      "observation_date": "2026-08-19",
+      "tega_adjusted_close": 1724.59423828125,
+      "nifty_50_tri": 36575.78
+    },
+    {
+      "week_end": "2026-08-26",
+      "observation_date": "2026-08-26",
+      "tega_adjusted_close": 1650.1807861328125,
+      "nifty_50_tri": 36772.39
+    },
+    {
+      "week_end": "2026-09-02",
+      "observation_date": "2026-09-02",
+      "tega_adjusted_close": 1537.9112548828125,
+      "nifty_50_tri": 36332.38
+    }
+  ]
+}

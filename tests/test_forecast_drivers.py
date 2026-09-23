@@ -138,12 +138,12 @@ def test_guidance_removes_actual_interest_and_no_consensus_wacc_is_invented(inpu
     assert first["parent_cash_interest_inr_m"] + 193.23 == pytest.approx(1150)
     assert first["molycop_cash_interest_inr_m"] + 973.85 == pytest.approx(63 * 94.97)
     assert result["forecast_evidence"]["consensus_review"]["group_wacc"] is None
-    assumptions["scenarios"]["base"]["group_wacc_inr"] = 0.13
+    assumptions["pro_forma"]["wacc"]["tega"]["beta"] = 0.9
     result = build_acquisition_model(facts, assumptions)
     entry = next(
         r
         for r in result["forecast_evidence"]["drivers"]
-        if r["line_item"] == "Group WACC and terminal parameters"
+        if r["line_item"] == "Pro-forma consolidation and blended WACC"
     )
     assert entry["changed_since_review"]
     assert "override" in entry["status"]

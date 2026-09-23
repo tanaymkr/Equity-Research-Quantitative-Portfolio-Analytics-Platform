@@ -176,7 +176,19 @@ def _legacy_statement_tables(result):
 def sensitivities(facts, assumptions):
     """Change one parameter at a time, preserving the full valuation waterfall."""
     definitions = [
-        ("Group WACC", "scenario", "group_wacc_inr", [0.105, 0.12, 0.14]),
+        (
+            "Equity premium stress for both businesses",
+            "wacc_stress",
+            "base",
+            [-0.005, 0.0, 0.02],
+        ),
+        (
+            "Legacy standalone EV weight (INR m)",
+            "pro_forma",
+            "tega_ev_weight_inr_m",
+            [60000, 80000, 100000],
+        ),
+        ("Conversion INR per USD", "pro_forma", "fx_inr_per_usd", [90, 94.97, 100]),
         (
             "Group terminal growth",
             "scenario",
@@ -225,10 +237,26 @@ def sensitivities(facts, assumptions):
     for label, scope, key, values in definitions:
         for value in values:
             changed = deepcopy(assumptions)
-            target = (
-                changed["shared"] if scope == "shared" else changed["scenarios"]["base"]
-            )
+            if scope == "wacc_stress":
+                target = changed["pro_forma"]["wacc"]["scenario_risk_premium"]
+            elif scope == "pro_forma":
+                target = changed["pro_forma"]
+            else:
+                target = (
+                    changed["shared"]
+                    if scope == "shared"
+                    else changed["scenarios"]["base"]
+                )
             target[key] = value
+            if key == "molycop_other_claims_inr_m":
+                changed["pro_forma"]["consolidation"][
+                    "molycop_opening_lease_liability_usd_m"
+                ] = min(
+                    changed["pro_forma"]["consolidation"][
+                        "molycop_opening_lease_liability_usd_m"
+                    ],
+                    value / changed["currency_basis"]["inr_per_usd"],
+                )
             result = build_acquisition_model(facts, changed)
             rows.append(
                 {
@@ -280,23 +308,137 @@ def _case_tables(result):
             ],
         ],
     )
+    w = result["wacc_calculation"]
     yield (
-        "One group DCF: cash flows attributable to Tega (INR million)",
+        "Standalone WACCs and operating-EV blend",
         [
-            "FY end",
-            "Legacy FCFF",
-            "Molycop FCFF (100%)",
-            "Less: minority FCFF",
-            "FCFF discounted",
-            "Discount years",
-            "PV of FCFF",
+            "Business",
+            "RF",
+            "ERP",
+            "Beta",
+            "Ke",
+            "Debt cost",
+            "Debt weight",
+            "Pref weight",
+            "WACC",
+            "Weight EV INR m",
+            "EV weight",
         ],
         [
             [
+                label,
+                f"{w[key]['risk_free_rate']:.3%}",
+                f"{w[key]['equity_risk_premium']:.3%}",
+                f"{w[key]['beta']:.4f}",
+                f"{w[key]['cost_of_equity']:.3%}",
+                f"{w[key]['cost_of_debt']:.2%}",
+                f"{w[key]['debt_weight']:.2%}",
+                f"{w[key]['preference_weight']:.2%}",
+                f"{w[key]['standalone_wacc']:.3%}",
+                _n(w[key + "_weight_ev_inr_m"]),
+                f"{w[key + '_ev_weight']:.2%}",
+            ]
+            for label, key in [
+                ("Tega INR", "tega"),
+                ("Molycop USD / constant INR", "molycop"),
+            ]
+        ],
+    )
+    yield (
+        "Blended WACC and valuation diagnostics",
+        ["Item", "Value"],
+        [
+            ["Blended WACC", f"{w['blended_wacc']:.4%}"],
+            [
+                "Tega standalone calculated EV (audit only)",
+                _n(
+                    result["standalone_values_for_audit_inr_m"]["tega"][
+                        "enterprise_value"
+                    ]
+                ),
+            ],
+            [
+                "Molycop standalone calculated EV (NCI only)",
+                _n(
+                    result["standalone_values_for_audit_inr_m"]["molycop"][
+                        "enterprise_value"
+                    ]
+                ),
+            ],
+            ["EV weighting basis", w["weight_basis"]],
+            ["FX convention", w["currency_convention"]],
+        ],
+    )
+    yield (
+        "FY27 consolidation and valuation stub",
+        ["Item", "Value"],
+        [
+            [
+                k.replace("_", " "),
+                _n(value) if isinstance(value, (int, float)) else value,
+            ]
+            for k, value in result["fy27_stub_bridge"].items()
+        ],
+    )
+    consolidated = result["consolidated_statements_inr_m"]
+    for section, title in [
+        ("income", "Consolidated income statement — economic proxies"),
+        (
+            "balance_sheet",
+            "Consolidated balance sheet — provisional opening allocations",
+        ),
+        ("cash_flow", "Consolidated cash flow statement — economic proxies"),
+        ("fcff", "Consolidated FCFF build — 100% businesses"),
+    ]:
+        rows = consolidated["forecast"]
+        yield (
+            title,
+            ["INR million; FY27 July–March"] + [f"FY{r['fiscal_year']}" for r in rows],
+            [
+                [key.replace("_", " ")] + [_n(r[section][key]) for r in rows]
+                for key in rows[0][section]
+            ],
+        )
+    annual = consolidated["full_fiscal_year_income"]["rows"]
+    yield (
+        "Full fiscal-year income — FY27 includes ten Molycop months",
+        ["INR million; reported elapsed period plus future forecast"]
+        + [f"FY{r['fiscal_year']}" for r in annual],
+        [
+            [k.replace("_", " ")] + [_n(r["income"][k]) for r in annual]
+            for k in annual[0]["income"]
+        ],
+    )
+    opening = consolidated["opening"]
+    yield (
+        "Opening allocation register — frozen, not forecast plugs",
+        ["Item", "INR m"],
+        [
+            [key.replace("_", " "), _n(value)]
+            for key, value in opening.items()
+            if isinstance(value, (int, float))
+        ]
+        + [
+            [
+                "Unallocated acquired assets",
+                _n(opening["assets"]["unallocated_acquired_assets_opening_only"]),
+            ],
+            [
+                "Unallocated acquired liabilities",
+                _n(
+                    opening["liabilities"][
+                        "unallocated_acquired_liabilities_opening_only"
+                    ]
+                ),
+            ],
+        ],
+    )
+    yield (
+        "100% consolidated DCF",
+        ["FY end", "FCFF", "Discount years", "PV FCFF"],
+        [
+            [
                 r["fiscal_year"],
-                _n(r["legacy_fcff"]),
-                _n(r["molycop_fcff_before_ownership"]),
-                _n(r["noncontrolling_fcff_excluded"]),
                 _n(r["fcff"]),
                 f"{r['discount_years']:.4f}",
                 _n(r["fcff"] / (1 + v["wacc"]) ** r["discount_years"]),
@@ -305,115 +447,47 @@ def _case_tables(result):
         ],
     )
     yield (
-        "Single group terminal value and enterprise value (INR million)",
+        "Consolidated terminal value and enterprise value",
+        ["Item", "Value"],
         [
-            "Group WACC",
-            "Terminal growth",
-            "Terminal ROIC",
-            "Terminal NOPAT",
-            "Terminal reinvestment",
-            "Terminal FCFF",
-            "PV forecast FCFF",
-            "PV terminal value",
-            "Attributable enterprise value",
-        ],
-        [
-            [
-                f"{v['wacc']:.2%}",
-                f"{v['terminal_growth']:.2%}",
-                f"{v['terminal_roic']:.2%}",
-                *[
-                    _n(v[k])
-                    for k in (
-                        "terminal_nopat",
-                        "terminal_reinvestment",
-                        "terminal_fcff",
-                        "pv_forecast_fcff",
-                        "pv_terminal_value",
-                        "enterprise_value",
-                    )
-                ],
-            ]
+            [k.replace("_", " "), _n(value)]
+            for k, value in v.items()
+            if isinstance(value, (int, float))
         ],
     )
-    rows = [
-        [
-            "Group enterprise value, attributable basis",
-            _n(b["group_enterprise_value_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Less: legacy/parent net debt (100%)",
-            _n(b["legacy_net_debt_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Less: attributable Molycop net debt",
-            _n(b["molycop_net_debt_attributable_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Less: attributable preference claim",
-            _n(b["preference_fair_value_attributable_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Less: attributable earnout present value",
-            _n(b["earnout_present_value_attributable_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Less: attributable other claims",
-            _n(b["other_claims_attributable_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Add: legacy JV/property proxies",
-            _n(b["nonoperating_assets_inr_m"]),
-            "INR m",
-        ],
-        [
-            "Tega equity before aggregate zero floor",
-            _n(b["raw_tega_equity_inr_m"]),
-            "INR m",
-        ],
-        ["Issued shares", f"{b['issued_shares']:,}", "shares"],
-        ["Provisional scenario value", _n(b["value_per_share_inr"]), "INR / share"],
-        [
-            "If proposed Apollo cash issue completes",
-            _n(b["pending_issue_pro_forma_value_per_share_inr"]),
-            "INR / share",
-        ],
+    keys = [
+        ("Combined enterprise value", "group_enterprise_value_inr_m"),
+        ("Legacy net debt (new term loan already included)", "legacy_net_debt_inr_m"),
+        ("Molycop post-refinancing net debt", "molycop_net_debt_full_inr_m"),
+        (
+            "Less net debt: consolidated, after pro-forma issue cash",
+            "consolidated_net_debt_inr_m",
+        ),
+        (
+            "Less: Apollo preference fair-value claim, 100%",
+            "preference_fair_value_full_inr_m",
+        ),
+        ("Less: earnout PV, 100%", "earnout_present_value_full_inr_m"),
+        ("Less: other senior claims, 100%", "other_claims_full_inr_m"),
+        (
+            "Molycop standalone common equity, after claims",
+            "molycop_common_equity_inr_m",
+        ),
+        ("Less: Apollo common minority interest", "minority_interest_inr_m"),
+        ("Add: nonoperating assets", "nonoperating_assets_inr_m"),
+        ("Equity attributable to Tega before zero floor", "raw_tega_equity_inr_m"),
+        ("Equity attributable to Tega after zero floor", "tega_equity_inr_m"),
+        ("Pre-November shares", "pre_november_2025_shares"),
+        ("November 2025 shares added (already in FY26)", "november_2025_issue_shares"),
+        ("Follow-on shares assumed issued", "follow_on_shares_included"),
+        ("Diluted pro-forma shares", "diluted_shares"),
+        ("Follow-on cash included once (INR m)", "follow_on_issue_cash_added_inr_m"),
+        ("Value per diluted share (INR)", "value_per_share_inr"),
     ]
-    yield ("Single group equity bridge", ["Item", "Amount", "Unit"], rows)
     yield (
-        f"Molycop claim allocation: {b['molycop_ordinary_ownership']:.4%} attributable to Tega",
-        ["Claim", "Full claim INR m", "Deducted on attributable basis INR m"],
-        [
-            [label, _n(b[full]), _n(b[part])]
-            for label, full, part in (
-                (
-                    "Net debt",
-                    "molycop_net_debt_full_inr_m",
-                    "molycop_net_debt_attributable_inr_m",
-                ),
-                (
-                    "Preference claim",
-                    "preference_fair_value_full_inr_m",
-                    "preference_fair_value_attributable_inr_m",
-                ),
-                (
-                    "Earnout PV",
-                    "earnout_present_value_full_inr_m",
-                    "earnout_present_value_attributable_inr_m",
-                ),
-                (
-                    "Other claims",
-                    "other_claims_full_inr_m",
-                    "other_claims_attributable_inr_m",
-                ),
-            )
-        ],
+        "Explicit equity value bridge",
+        ["Item", "Amount"],
+        [[label, _n(b[key])] for label, key in keys],
     )
     for label, key, unit in (
         ("Legacy operating schedule", "legacy_forecast_inr_m", "INR m"),
@@ -729,35 +803,24 @@ def write_reports(
                 f"{result['group_dcf_inr_m']['terminal_growth']:.1%}",
             ]
         )
-    title = "Tega + Molycop: single group DCF"
+    title = "Tega + Molycop: pro-forma consolidated DCF"
+    fx = results["base"]["currency_basis"]["inr_per_usd"]
     intro = (
-        "PROVISIONAL. Valuation date: 30 June 2026. Research cutoff: 11 September 2026. "
-        "Reported facts and management guidance are separated from analyst assumptions. "
-        "These are conditional scenario values, not validated current price targets. "
-        "A zero equity floor indicates insufficient modeled enterprise value to cover claims; "
-        "it is not a prediction that the quoted stock price becomes zero."
+        f"PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR{fx:.4f}/USD. "
+        "100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. "
+        "Full net debt, preferences and ordinary minority interest are explicit bridge deductions. "
+        "Molycop WACC inputs and legacy EV weight include unsourced analyst assumptions. "
+        "These outputs are conditional scenario values, not validated current price targets. "
+        "Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; "
+        "this does not validate purchase accounting or resolve the separate legacy June gap. "
+        "Main share count includes the proposed follow-on issue pro forma and matching cash once."
     )
-    intro += (
-        " All model amounts are INR million unless marked per share or per tonne. "
-        "USD-origin amounts use INR94.97 per USD, the September 2, 2026 closing rate "
-        "reported by Reuters (not an FBIL reference fixing). Reported INR actuals are unchanged. "
-        "Currency conversion uses a fixed rate; June 30 remains the valuation date. "
-        "The single-group method changes valuation separately from currency conversion. One group discount rate and one terminal value apply in each scenario. "
-        "Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; "
-        "Molycop senior claims use that same proportion. Group rates are provisional."
-        " Forecast assumptions and public consensus coverage reviewed on 20 September 2026. "
-        "Legacy Tega statement gaps use existing schedules, historical fallbacks and explicitly assumed zeros. "
-        "Its investment in Molycop is shown at cost in this legacy-only view; this is not group PAT/EPS. "
-        "The estimated June opening balance discrepancy remains visible. Molycop statements remain partial: Unresolved means missing evidence."
-    )
-
     timing = (
-        "FY2027 is April 2026–March 2027. Molycop is consolidated June–March (10 months). "
-        "Actual June is retained; only July–March (9 months) is discounted as future cash flow. "
-        "The legacy business similarly excludes its actual April–June quarter. "
-        "End-period discounting uses actual days / 365. Operating schedules support one combined "
-        "DCF; they are not separately valued. The cash flows used for valuation are "
-        "ownership-adjusted economic amounts, not statutory consolidated statements."
+        "FY27 full-year revenue includes twelve months of Tega and ten months of Molycop from 1 June. "
+        "Forecast income/cash-flow columns and DCF include only July–March (nine months) after the June valuation. "
+        "Future balance-sheet columns are at 31 March. Subsequent years have twelve months. "
+        "Auxiliary standalone EVs support NCI/audit only; the combined EV is calculated from the consolidated stream. "
+        "All monetary figures are INR million except per-share figures. Constant expected FX is an explicit assumption."
     )
     headers = [
         "Scenario",
@@ -851,15 +914,15 @@ def write_reports(
         ]
     if reference_price is not None:
         base = results["base"]["equity_bridge"]
-        target_equity = reference_price * base["issued_shares"] / 1_000_000
+        target_equity = reference_price * base["diluted_shares"] / 1_000_000
         required_group_ev = (
             target_equity
-            + base["total_attributable_claims_inr_m"]
+            + base["total_bridge_deductions_inr_m"]
             - base["nonoperating_assets_inr_m"]
         )
         reference_text = (
             f"User-supplied comparison price: INR {reference_price:,.2f} (unverified; not a live quote). "
-            f"Holding claims and nonoperating assets fixed requires attributable group enterprise value of INR {required_group_ev:,.2f}m, "
+            f"Holding claims and nonoperating assets fixed requires consolidated group enterprise value of INR {required_group_ev:,.2f}m, "
             f"versus the model's INR {base['group_enterprise_value_inr_m']:,.2f}m. "
             "This algebraic comparison never changes the forecasts."
         )
@@ -953,6 +1016,9 @@ def write_reports(
         "<section><h2>Material limitations</h2><ul>"
         + "".join(f"<li>{escape(w)}</li>" for w in warnings)
         + "</ul></section>",
+        "<details><summary>Pro-forma consolidation, WACC and FX inputs</summary><pre>"
+        + escape(json.dumps(assumptions["pro_forma"], indent=2))
+        + "</pre></details>",
         "<details><summary>Shared assumptions and rationale</summary><pre>"
         + escape(json.dumps(assumptions["shared"], indent=2))
         + "</pre></details>",

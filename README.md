@@ -7,37 +7,22 @@ The project is being built as production-style analytical software: financial
 logic lives in reusable Python modules, inputs are explicit and testable, and
 the eventual Streamlit application will consume the same analytics layer.
 
-## One group DCF per scenario
+## Pro-forma consolidated Tega case study
 
-The September 20 update applies the approved revenue paths and reviews other
-drivers in this order: management guidance, verifiable comparable consensus,
-then available historical trends. Each input records its basis. Detailed
-Molycop statement inputs and a public group consensus WACC remain unresolved.
-Legacy Tega statement gaps now use linked schedules, historical fallbacks and
-explicit zero assumptions. Its estimated June opening-balance discrepancy is
-shown rather than plugged. Molycop statements remain partial. Legacy-only
-PAT/EPS includes investment income and is not consolidated Tega group PAT/EPS.
+The current Tega case consolidates 100% of legacy Tega and Molycop line by line,
+then discounts consolidated FCFF at an EV-weighted blend of their standalone
+WACCs. The bridge deducts full net debt, preferences, earnout/other claims and
+explicit ordinary minority interest. The main diluted count includes both
+preferential issues pro forma with matching follow-on cash once.
 
-[Install the legacy statement update](docs/TEGA_LEGACY_STATEMENTS_UPDATE.md).
+[Install and audit the consolidated update](docs/TEGA_PRO_FORMA_CONSOLIDATION.md).
 
-[Install the revenue and financial-driver update](docs/TEGA_REVENUE_DRIVERS_UPDATE.md)
-and [review its assumptions](examples/tega_molycop_reports/forecast_assumptions.md).
-
-Legacy Tega and Molycop retain operating schedules, but their cash flows are
-combined before discounting. Each scenario has one group discount rate, one
-terminal value and one enterprise-to-equity bridge. The cash flows and Molycop
-claims use Tega's 84.1787% ordinary ownership consistently. This proportionate
-economic valuation is not a statutory consolidated forecast.
-
-[Install the single-DCF update and read its assumptions](docs/TEGA_SINGLE_DCF.md).
-Group discount rates remain provisional; the change is more than a currency restatement.
-
-## INR model update
-
-The combined Tega-Molycop model now uses INR million throughout. USD-origin
-amounts use INR94.97 per dollar, the market closing rate on 2 September 2026.
-Reported INR statements retain their historical values. Read the
-[currency basis](docs/TEGA_INR_CONVERSION.md).
+Supporting business operating forecasts retain the approved revenue paths.
+All output amounts are INR million; FX is adjustable under `pro_forma` in the
+assumptions JSON, defaulting to INR94.97/USD. Provisional WACC inputs and fixed
+unallocated opening acquisition balances remain explicitly labeled. Consolidated
+arithmetic is not a substitute for missing Molycop disclosures or verified PPA.
+The separate legacy June opening gap remains unresolved.
 
 ## FY26 statements are now connected
 

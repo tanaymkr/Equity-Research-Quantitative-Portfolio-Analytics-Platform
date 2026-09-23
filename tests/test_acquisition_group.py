@@ -24,10 +24,10 @@ def inputs():
 
 
 @pytest.mark.parametrize("case", ["downside", "base", "upside"])
-def test_exactly_one_discount_calculation_and_terminal_value(inputs, case):
+def test_one_consolidated_value_and_separate_audit_valuations(inputs, case):
     with patch.object(engine, "_dcf", wraps=engine._dcf) as spy:
         model = engine.build_acquisition_model(*inputs, case)
-    assert spy.call_count == 1
+    assert spy.call_count == 3  # group valuation plus two audit/NCI intermediate EVs
     assert [k for k in model if "dcf" in k] == ["group_dcf_inr_m"]
     assert "molycop_enterprise_value_inr_m" not in model["equity_bridge"]
     assert "legacy_enterprise_value_inr_m" not in model["equity_bridge"]
@@ -67,28 +67,19 @@ def test_attribution_includes_negative_cash_flows_and_matching_claims(
         m["group_forecast_inr_m"],
         strict=True,
     ):
-        assert g["fcff"] == pytest.approx(l["fcff"] + ownership * mc["fcff"])
+        assert g["fcff"] == pytest.approx(l["fcff"] + mc["fcff"])
         assert g["unlevered_cash_tax"] == pytest.approx(
-            l["unlevered_cash_tax"] + ownership * mc["unlevered_cash_tax"]
+            l["unlevered_cash_tax"] + mc["unlevered_cash_tax"]
         )
     b = m["equity_bridge"]
     assert b["molycop_ordinary_ownership"] == pytest.approx(ownership)
-    pairs = [
-        ("molycop_net_debt_full_inr_m", "molycop_net_debt_attributable_inr_m"),
-        (
-            "preference_fair_value_full_inr_m",
-            "preference_fair_value_attributable_inr_m",
-        ),
-        (
-            "earnout_present_value_full_inr_m",
-            "earnout_present_value_attributable_inr_m",
-        ),
-        ("other_claims_full_inr_m", "other_claims_attributable_inr_m"),
-    ]
-    for full, attributable in pairs:
-        assert b[attributable] == pytest.approx(ownership * b[full])
-    assert b["total_attributable_claims_inr_m"] == pytest.approx(
-        b["legacy_net_debt_inr_m"] + sum(b[attributable] for _, attributable in pairs)
+    assert b["minority_interest_inr_m"] == pytest.approx(
+        (1 - ownership) * b["molycop_common_equity_inr_m"]
+    )
+    assert b["consolidated_net_debt_inr_m"] == pytest.approx(
+        b["legacy_net_debt_inr_m"]
+        + b["molycop_net_debt_full_inr_m"]
+        - b["follow_on_issue_cash_added_inr_m"]
     )
     assert b["tega_equity_inr_m"] == max(b["raw_tega_equity_inr_m"], 0)
 
@@ -99,10 +90,10 @@ def test_losses_do_not_offset_another_tax_jurisdictions_terminal_profit(inputs):
     molycop = deepcopy(m["molycop_forecast_inr_m"][:1])
     legacy[0].update(ebit=-100, ppa_amortization=0)
     molycop[0].update(ebit=200, ppa_amortization=0)
-    combined = engine._group_cashflows(legacy, molycop, 0.8, 0.25, 0.27)
-    assert combined[0]["normalized_terminal_nopat"] == pytest.approx(
-        -100 + 0.8 * (200 - 54)
+    combined = engine.consolidate_operating(
+        legacy, molycop, 0.25, 0.27, inputs[1]["pro_forma"]
     )
+    assert combined[0]["normalized_terminal_nopat"] == pytest.approx(-100 + (200 - 54))
 
 
 def test_earnout_uses_common_group_discount_rate(inputs):
@@ -113,7 +104,7 @@ def test_earnout_uses_common_group_discount_rate(inputs):
         date.fromisoformat(case["earnout_payment_date"]) - date(2026, 6, 30)
     ).days / 365
     assert m["equity_bridge"]["earnout_present_value_full_inr_m"] == pytest.approx(
-        case["earnout_inr_m"] / (1 + case["group_wacc_inr"]) ** years
+        case["earnout_inr_m"] / (1 + m["wacc_calculation"]["blended_wacc"]) ** years
     )
 
 
