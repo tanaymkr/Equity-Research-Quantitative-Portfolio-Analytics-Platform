@@ -171,7 +171,11 @@
     "group_preferences_inr_m_rounded": 26000.0,
     "molycop_june_volume_m_tonnes": 0.109,
     "detailed_post_close_balance_sheet": null,
-    "reported_molycop_net_debt_inr_m_rounded": 63660.0
+    "reported_molycop_net_debt_inr_m_rounded": 63660.0,
+    "tega_joint_venture_profit": 9.28,
+    "tega_profit_before_tax": 519.56,
+    "tega_tax_expense": 118.38,
+    "tega_net_income": 401.18
   },
   "molycop_history": {
     "source_ids": [
@@ -278,5 +282,27 @@
       "https://www.marketscreener.com/quote/stock/TEGA-INDUSTRIES-LIMITED-130552425/finances/"
     ],
     "access_limits": "Broker list exposed old reports; Alpha Spread and MarketScreener pages were not accessible. Absence of a verified public estimate does not mean none exists in paid research."
+  },
+  "legacy_statement_disclosures": {
+    "source_ids": [
+      "annual26",
+      "q1_deck"
+    ],
+    "annual_note_31": {
+      "fy2025_interest_on_financial_instruments": 42.99,
+      "fy2026_interest_on_financial_instruments": 116.19,
+      "fy2025_miscellaneous_receipts": 24.48,
+      "fy2026_miscellaneous_receipts": 26.07
+    },
+    "annual_note_41": {
+      "fy2026_proposed_dividend_per_share_inr": 2.0,
+      "approval_status": "Recommended, subject to shareholder approval; payment is a forecast assumption."
+    },
+    "locations": {
+      "other_income": "FY26 consolidated annual report, Note 31, printed page 267",
+      "dividend": "FY26 consolidated annual report, Note 41(b)",
+      "q1_income": "Q1 FY27 investor presentation, Consolidated Profit & Loss Statement, Tega column"
+    },
+    "scope": "Reported legacy Tega information only; Molycop input values are unchanged."
   }
 }

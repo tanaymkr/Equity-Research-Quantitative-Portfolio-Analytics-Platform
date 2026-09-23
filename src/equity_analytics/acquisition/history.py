@@ -122,6 +122,7 @@ def load_acquisition_facts(path, statements_path=None):
         "source": case["source"],
         "reconciliation_checks_passed": len(checks),
     }
+    result["legacy_statement_history"] = deepcopy(case)
     if facts.get("historical_comparatives_file"):
         previous = load_json(path.parent / facts["historical_comparatives_file"])
         reconcile_history(previous)
@@ -129,4 +130,9 @@ def load_acquisition_facts(path, statements_path=None):
             result["historical_drivers"] = historical_drivers(previous, case)
         except ValueError as exc:
             raise ModelInputError(str(exc)) from exc
+        annuals = {r["fiscal_year"]: r for r in previous["annuals"]}
+        annuals.update({r["fiscal_year"]: r for r in case["annuals"]})
+        result["legacy_statement_history"]["annuals"] = [
+            deepcopy(annuals[y]) for y in sorted(annuals)
+        ]
     return result, case, checks

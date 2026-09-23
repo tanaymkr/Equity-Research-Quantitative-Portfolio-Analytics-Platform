@@ -1,6 +1,7 @@
-"""Link supported income, balance-sheet and cash-flow lines without inventing totals.
+"""Build core income, balance-sheet and cash-flow links.
 
-Missing post-close accounts are None, never zero or an equity balancing plug.
+The engine completes legacy gaps using the explicit historical/zero policy.
+Molycop missing accounts remain None. Neither business uses an equity plug.
 FY2027 rows cover July-March future cash flows, not the entire financial year.
 """
 

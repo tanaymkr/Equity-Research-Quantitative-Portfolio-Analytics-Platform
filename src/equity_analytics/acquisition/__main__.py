@@ -62,6 +62,7 @@ def main(default_root=None):
         json.JSONDecodeError,
         AcquisitionInputError,
         ModelInputError,
+        ValueError,
         KeyError,
         TypeError,
     ) as exc:
@@ -71,7 +72,13 @@ def main(default_root=None):
     )
     print("Amounts: INR million. USD conversion: 94.97, market close on 2026-09-02.")
     print(
-        "Assumption review: 2026-09-20. Statement forecasts are partial; group WACC has no verified consensus source."
+        "Legacy statement gaps filled using schedules/history/assumed zeros; Molycop remains partial."
+    )
+    gap = results["base"]["legacy_statement_opening_inr_m"][
+        "balance_sheet_residual_inr_m"
+    ]
+    print(
+        f"Estimated legacy June opening balance discrepancy: INR{gap:,.3f}m; no plug."
     )
     print(f"FY26 statement reconciliation checks passed: {len(historical_checks)}")
     for name, result in results.items():

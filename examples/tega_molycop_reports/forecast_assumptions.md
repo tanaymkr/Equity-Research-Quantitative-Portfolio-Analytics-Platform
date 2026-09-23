@@ -1,6 +1,6 @@
 # Revenue and financial forecast assumptions
 
-Reviewed 20 September 2026. User-approved revenue; then management guidance, verifiable comparable consensus, historical trend. Missing evidence remains unresolved.
+Reviewed 20 September 2026. User-approved revenue; then management guidance, verifiable comparable consensus, historical trend. Legacy Tega statement gaps now use user-authorized schedule/historical/zero fallbacks; Molycop gaps remain unresolved.
 
 ## Forecast evidence hierarchy and coverage
 
@@ -22,6 +22,7 @@ Reviewed 20 September 2026. User-approved revenue; then management guidance, ver
 | Legacy new lease assets | latest history | FY2027-FY2034 | FY26 reported ROU additions, scaled to forecast revenue. New liabilities equal model lease asset additions; actual contracts can differ. | Applied |
 | Group WACC and terminal parameters | unresolved | FY2027-FY2034 | No verified public consensus group WACC; retain 14/12/10.5% scenario sensitivity inputs. Terminal growth and ROIC also remain provisional. | Provisional; no consensus claim |
 | Unresolved acquisition and schedule inputs | unresolved | FY2027-FY2034 | Carry forward explicit research inputs only to keep sensitivity schedules runnable: Molycop NWC/tax, asset lives/commissioning, integration costs, preference return/FV, other claims, earnout likelihood, interest/principal split, distributions and cash floors. No verified management/consensus/history replacement was obtained. | Provisional; detailed source data required |
+| Legacy unresolved financial-statement lines | historical and zero fallback | FY2027 July-March; FY2028-FY2034 full years | User-authorized schedules first, historical balances/ratios where logical, otherwise explicit zero forecasts. Preserve resolved operating assumptions. See the legacy statement policy and generated assumption register. | Applied; June opening reconciliation remains a disclosed estimate |
 
 ## Historical ratios used
 
@@ -35,9 +36,23 @@ Reviewed 20 September 2026. User-approved revenue; then management guidance, ver
 | Cash capex / revenue | 3.71% | 10.39% | 8.03% | 7.38% |
 | Accounting tax / PBT (cash-tax proxy) | 21.51% | 22.79% | 29.07% | 24.46% |
 
+## Legacy Tega: values used to fill statement gaps
+
+| Line item | Value | Method |
+| --- | --- | --- |
+| Cash interest yield | 4.1363% | FY25 interest / average FY24-FY25 cash and bank balances; applied to opening forecast cash |
+| Miscellaneous income, annual INR m | 25.27 | FY25-FY26 nominal mean; prorated for July-March |
+| JV profit, annual INR m | 49.92 | FY24-FY26 mean; equity-accounted profit, excluded from operating FCFF |
+| JV cash dividend, annual INR m | 48.75 | FY24-FY26 mean; reduces JV carrying value |
+| Dividend per share, INR | 2.00 | FY26 proposed INR2 dividend paid once in FY27; historical fallback thereafter |
+| Tax rate | 24.4558% | Existing FY24-FY26 mean effective rate on positive taxable earnings; deferred tax movements zero |
+| Other non-operating balances | FY26 balances carried | Zero movements do not erase existing assets, provisions, taxes or reserves |
+| Unpredictable new gains / FX / impairment / equity issuance | 0 assumed | No extrapolation of exceptional historical movements |
+| June opening balance discrepancy, INR m | -15.88 | Disclosed diagnostic, carried unchanged; not set to zero or inserted into equity/cash |
+
 - Only FY24-FY26 legacy statements and FY25-FY26 equipment margins are available in the reconciled source files; no invented four-year average.
 - Molycop full opening accounts, separate cash/gross bank debt, cost components, tax balances, provisions, and preference contractual return remain missing.
-- Forecast statement schedules are partial estimates. Totals, statutory PAT/EPS, retained earnings and the balance-sheet residual remain null where necessary; no balance-sheet plug.
+- Legacy Tega statement lines are populated using schedules, historical fallbacks and explicitly assumed zeros. The estimated June opening-balance discrepancy stays visible and is not plugged. Molycop statements remain partial.
 - Management consolidated ~15% EBITDA margin is a comparison check. The exact definition and different segment guidance/revenue assumptions do not support plugging earnings to force a match.
 - No quantified incremental cross-selling revenue is stacked on the approved growth paths.
 

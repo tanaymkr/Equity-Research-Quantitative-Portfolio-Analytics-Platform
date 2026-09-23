@@ -107,21 +107,24 @@ def test_income_to_cash_and_cash_to_debt_reconcile_without_claiming_balance(inpu
             assert cf["operating_cash_before_interest_proxy"] == pytest.approx(
                 expected_cfo
             )
-            assert bs["total_assets"] is None and bs["total_equity"] is None
-            assert bs["balance_sheet_residual"] is None and inc["net_income"] is None
             assert abs(cf["fcff_reconciliation_residual"]) < 1e-8
             if business == "legacy":
-                expected_cash = (
-                    cf["opening_cash_proxy"]
-                    + cf["operating_cash_before_interest_proxy"]
-                    + cf["cash_capex"]
-                    + cf["cash_interest_proxy"]
-                    + cf["subsidiary_distribution_received"]
-                    + cf["debt_and_lease_principal_paid"]
-                    + cf["required_new_borrowing"]
+                assert all(v is not None for v in bs.values())
+                assert inc["net_income"] is not None
+                expected_cash = cf["opening_cash_proxy"] + sum(
+                    cf[k]
+                    for k in (
+                        "operating_cash_flow_total",
+                        "investing_cash_flow_total",
+                        "financing_cash_flow_total",
+                    )
                 )
                 assert cf["closing_cash_proxy"] == pytest.approx(expected_cash)
             else:
+                assert bs["total_assets"] is None and bs["total_equity"] is None
+                assert (
+                    bs["balance_sheet_residual"] is None and inc["net_income"] is None
+                )
                 assert (
                     bs["cash"] is None
                     and bs["gross_debt_including_leases_proxy"] is None

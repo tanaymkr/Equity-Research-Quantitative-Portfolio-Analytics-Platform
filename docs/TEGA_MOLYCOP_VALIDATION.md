@@ -1,5 +1,11 @@
 # Acquisition model: validation and open inputs
 
+**23 September 2026:** Legacy Tega statement gaps now use linked schedules, historical
+fallbacks and explicit zero movements. Molycop remains partial. The estimated June
+opening balance discrepancy remains visible; no balancing plug is used.
+See [the legacy statement update and validation](TEGA_LEGACY_STATEMENTS_UPDATE.md).
+
+
 Revenue/driver update base commit: `ffb79b196d61d56f4f658b83652c7311ff59b8ff`.
 Package and assumption review: 20 September 2026. Financial-filing cutoff: 11 September 2026.
 Valuation date: 30 June 2026. No remote repository writes were made.

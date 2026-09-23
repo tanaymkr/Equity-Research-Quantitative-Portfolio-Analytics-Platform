@@ -33,6 +33,146 @@ def _table(headers, rows, html=False):
     )
 
 
+def _legacy_statement_tables(result):
+    """Display accounting lines once; retain all diagnostic aliases in model.json."""
+    rows = result["linked_statements_inr_m"]["legacy"]
+    flow_headers = ["Line item"] + [
+        f"FY{r['fiscal_year']}" + (" Jul-Mar" if r["period_years"] < 1 else "")
+        for r in rows
+    ]
+    income_keys = (
+        "revenue",
+        "materials",
+        "inventory_change_expense",
+        "employee_expense",
+        "other_expense",
+        "operating_expense_total",
+        "operating_ebitda",
+        "depreciation_amortisation",
+        "integration_expense_cash_proxy",
+        "operating_profit_after_integration",
+        "finance_cost_cash_proxy",
+        "interest_income",
+        "miscellaneous_income",
+        "subsidiary_dividend_income",
+        "other_nonoperating_gains",
+        "other_income",
+        "joint_venture_profit",
+        "profit_before_tax",
+        "current_tax_expense",
+        "deferred_tax_expense",
+        "net_income",
+        "owners_net_income",
+        "eps_inr",
+        "other_comprehensive_income",
+    )
+    yield (
+        "Legacy income statement: modeled INR million; EPS INR/share",
+        flow_headers,
+        [
+            [k.replace("_", " ")] + [_n(r["income"][k]) for r in rows]
+            for k in income_keys
+        ],
+    )
+    bs_rows = []
+    for key in rows[0]["assets"]:
+        bs_rows.append(
+            ["Asset: " + key.replace("_", " ")] + [_n(r["assets"][key]) for r in rows]
+        )
+    bs_rows.append(
+        ["TOTAL ASSETS"] + [_n(r["balance_sheet"]["total_assets"]) for r in rows]
+    )
+    for key in (
+        "current_borrowings",
+        "noncurrent_borrowings",
+        "current_lease_liabilities",
+        "noncurrent_lease_liabilities",
+    ):
+        bs_rows.append(
+            ["Liability: " + key.replace("_", " ")]
+            + [_n(r["balance_sheet"][key]) for r in rows]
+        )
+    for key in rows[0]["liabilities"]:
+        if key not in ("term_debt", "revolver", "leases"):
+            bs_rows.append(
+                ["Liability: " + key.replace("_", " ")]
+                + [_n(r["liabilities"][key]) for r in rows]
+            )
+    bs_rows.append(
+        ["TOTAL LIABILITIES"]
+        + [_n(r["balance_sheet"]["total_liabilities"]) for r in rows]
+    )
+    for key in rows[0]["equity"]:
+        bs_rows.append(
+            ["Equity: " + key.replace("_", " ")] + [_n(r["equity"][key]) for r in rows]
+        )
+    bs_rows.append(
+        ["TOTAL EQUITY"] + [_n(r["balance_sheet"]["total_equity"]) for r in rows]
+    )
+    bs_rows.append(
+        ["OPENING RECONCILIATION GAP CARRIED — not a plug"]
+        + [_n(r["balance_sheet"]["balance_sheet_residual"]) for r in rows]
+    )
+    yield (
+        "Legacy balance sheet: estimated INR million; Molycop investment at cost",
+        ["Line item"] + [f"31 Mar {r['fiscal_year']}" for r in rows],
+        bs_rows,
+    )
+    cash_keys = (
+        "profit_before_tax",
+        "da_addback",
+        "interest_addback",
+        "joint_venture_profit_reversal",
+        "investing_income_reversal",
+        "other_noncash_adjustments",
+        "change_in_operating_working_capital",
+        "income_tax_paid",
+        "operating_cash_flow_total",
+        "cash_capex",
+        "interest_received",
+        "joint_venture_dividend_received",
+        "subsidiary_distribution_received",
+        "other_investing_cashflows",
+        "investing_cash_flow_total",
+        "required_new_borrowing",
+        "debt_and_lease_principal_paid",
+        "cash_interest_proxy",
+        "dividends_to_tega_shareholders",
+        "equity_issuance",
+        "financing_cash_flow_total",
+        "net_change_in_cash",
+        "fx_effect_on_cash",
+        "opening_cash_proxy",
+        "closing_cash_proxy",
+        "new_lease_assets_noncash",
+    )
+    yield (
+        "Legacy cash flow statement: modeled INR million",
+        flow_headers,
+        [
+            [k.replace("_", " ")] + [_n(r["cash_flow"][k]) for r in rows]
+            for k in cash_keys
+        ],
+    )
+    yield (
+        "Legacy D&A allocation from the existing asset schedule (INR million)",
+        flow_headers,
+        [
+            [key.replace("_", " ")]
+            + [_n(r["depreciation_by_account"][key]) for r in rows]
+            for key in rows[0]["depreciation_by_account"]
+        ],
+    )
+    yield (
+        "Legacy statement movement checks (INR million); the opening gap is disclosed separately",
+        flow_headers,
+        [
+            [key.replace("_", " ")] + [_n(r["checks"][key]) for r in rows]
+            for key in rows[0]["checks"]
+        ],
+    )
+
+
 def sensitivities(facts, assumptions):
     """Change one parameter at a time, preserving the full valuation waterfall."""
     definitions = [
@@ -405,10 +545,26 @@ def _case_tables(result):
         ],
     )
     for business, rows in result.get("linked_statements_inr_m", {}).items():
+        if business == "legacy":
+            yield from _legacy_statement_tables(result)
+            continue
         for section in ("income", "balance_sheet", "cash_flow"):
+            status = (
+                "historical/zero fallbacks"
+                if business == "legacy"
+                else "partial forecast"
+            )
+            units = (
+                "INR million; EPS INR/share" if section == "income" else "INR million"
+            )
             yield (
-                f"{business.title()} {section.replace('_', ' ')}: partial forecast, INR million (FY27 July-March)",
-                ["Line item"] + [f"FY{r['fiscal_year']}" for r in rows],
+                f"{business.title()} {section.replace('_', ' ')}: {status}, {units}",
+                ["Line item"]
+                + [
+                    f"FY{r['fiscal_year']}"
+                    + (" Jul-Mar" if r["period_years"] < 1 else "")
+                    for r in rows
+                ],
                 [
                     [key.replace("_", " ")] + [_n(r[section][key]) for r in rows]
                     for key in rows[0][section]
@@ -491,6 +647,60 @@ def _assumption_tables(result):
             ["Driver"] + [f"FY{y}" for y in history["years"]] + ["Mean"],
             table,
         )
+    legacy = result.get("legacy_statement_assumptions")
+    if legacy:
+        p = legacy["parameters"]
+        yield (
+            "Legacy Tega: values used to fill statement gaps",
+            ["Line item", "Value", "Method"],
+            [
+                [
+                    "Cash interest yield",
+                    f"{p['cash_interest_yield']:.4%}",
+                    "FY25 interest / average FY24-FY25 cash and bank balances; applied to opening forecast cash",
+                ],
+                [
+                    "Miscellaneous income, annual INR m",
+                    _n(p["annual_miscellaneous_income_inr_m"]),
+                    "FY25-FY26 nominal mean; prorated for July-March",
+                ],
+                [
+                    "JV profit, annual INR m",
+                    _n(p["annual_joint_venture_profit_inr_m"]),
+                    "FY24-FY26 mean; equity-accounted profit, excluded from operating FCFF",
+                ],
+                [
+                    "JV cash dividend, annual INR m",
+                    _n(p["annual_joint_venture_dividend_inr_m"]),
+                    "FY24-FY26 mean; reduces JV carrying value",
+                ],
+                [
+                    "Dividend per share, INR",
+                    _n(p["dividend_per_share_inr"]),
+                    "FY26 proposed INR2 dividend paid once in FY27; historical fallback thereafter",
+                ],
+                [
+                    "Tax rate",
+                    f"{p['effective_tax_rate']:.4%}",
+                    "Existing FY24-FY26 mean effective rate on positive taxable earnings; deferred tax movements zero",
+                ],
+                [
+                    "Other non-operating balances",
+                    "FY26 balances carried",
+                    "Zero movements do not erase existing assets, provisions, taxes or reserves",
+                ],
+                [
+                    "Unpredictable new gains / FX / impairment / equity issuance",
+                    "0 assumed",
+                    "No extrapolation of exceptional historical movements",
+                ],
+                [
+                    "June opening balance discrepancy, INR m",
+                    _n(legacy["opening_balance_sheet_residual_inr_m"]),
+                    "Disclosed diagnostic, carried unchanged; not set to zero or inserted into equity/cash",
+                ],
+            ],
+        )
 
 
 def write_reports(
@@ -536,7 +746,9 @@ def write_reports(
         "Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; "
         "Molycop senior claims use that same proportion. Group rates are provisional."
         " Forecast assumptions and public consensus coverage reviewed on 20 September 2026. "
-        "The financial-statement forecasts are partial: Unresolved means missing evidence, not zero."
+        "Legacy Tega statement gaps use existing schedules, historical fallbacks and explicitly assumed zeros. "
+        "Its investment in Molycop is shown at cost in this legacy-only view; this is not group PAT/EPS. "
+        "The estimated June opening balance discrepancy remains visible. Molycop statements remain partial: Unresolved means missing evidence."
     )
 
     timing = (
@@ -567,7 +779,7 @@ def write_reports(
     evidence_md = [
         "# Revenue and financial forecast assumptions",
         "",
-        "Reviewed 20 September 2026. User-approved revenue; then management guidance, verifiable comparable consensus, historical trend. Missing evidence remains unresolved.",
+        "Reviewed 20 September 2026. User-approved revenue; then management guidance, verifiable comparable consensus, historical trend. Legacy Tega statement gaps now use user-authorized schedule/historical/zero fallbacks; Molycop gaps remain unresolved.",
         "",
     ]
     html.append(
@@ -602,6 +814,22 @@ def write_reports(
     )
     (output / "forecast_evidence.json").write_text(
         json.dumps(evidence, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    legacy_register = results["base"]["legacy_statement_assumptions"]
+    (output / "legacy_statement_assumptions.json").write_text(
+        json.dumps(legacy_register, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    html.append(
+        "<section><h2>Legacy Tega statement scope</h2>"
+        "<p>All legacy statement rows have numeric forecast values. Existing schedules take priority; "
+        "remaining rows use historical balances/ratios or explicit zero assumptions. "
+        "The FY27 income and cash-flow columns cover July-March; balance sheets are at 31 March. "
+        "Molycop remains outside this statement view except for the parent's investment and existing modeled distributions.</p>"
+        f"<p><strong>Opening reconciliation: INR{legacy_register['opening_balance_sheet_residual_inr_m']:,.3f} million.</strong> "
+        "The retained June cash/debt estimates do not fully reconcile to the rolled reported balances. "
+        "This gap remains visible in each balance sheet; future-period movements reconcile. "
+        "No cash, equity or other-asset plug has been inserted.</p>"
+        "<p><a href='legacy_statement_assumptions.json'>Legacy statement policy and calculated inputs</a></p></section>"
     )
     md += [
         "[Review forecast assumptions, historical ratios and data gaps](forecast_assumptions.md)",

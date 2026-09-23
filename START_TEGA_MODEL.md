@@ -8,9 +8,10 @@ All monetary model inputs and reports use INR million, with INR per share for
 valuations. USD-origin amounts use the 2 September 2026 closing rate of INR94.97.
 Each scenario now has one group DCF, with cash flows combined before discounting.
 Business operating schedules are retained; separate business DCFs are removed.
-To install the latest update, follow [the revenue and financial-driver guide](docs/TEGA_REVENUE_DRIVERS_UPDATE.md).
-The report now includes a source register and partial linked statement schedules.
-Missing post-close accounts stay unresolved; no public consensus group WACC has been verified.
+To install the latest update, follow [the legacy statement guide](docs/TEGA_LEGACY_STATEMENTS_UPDATE.md).
+Legacy Tega statement gaps now use existing schedules, historical fallbacks and
+explicit zero assumptions. The June opening reconciliation remains visible.
+Molycop statements stay partial; no public consensus group WACC has been verified.
 
 The earlier forecasts and separate legacy-only case have been removed. To apply
 this cleanup to an existing checkout, follow

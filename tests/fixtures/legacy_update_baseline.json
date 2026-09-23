@@ -1,0 +1,36 @@
+{
+  "base_commit": "b1705968f0e0e69de44bcb0b1c56a30d3cb53d07",
+  "purpose": "Protect user-approved forecasts and valuation from changes while filling legacy statement gaps. Hashes are canonical JSON SHA256 of verified pre-update reports.",
+  "cases": {
+    "downside": {
+      "legacy_forecast_inr_m": "f9f9133c121c8f07c63dfa4d0def835c4d7b060c8e71f203b75ed514bcc01ffe",
+      "molycop_forecast_inr_m": "80ad5c9eb788cc721e3db61cf002c0b3498679ead2e34cb50d5ca3ae5b04884d",
+      "group_forecast_inr_m": "45880c38b39d30b95ead02fcde4ffe7f4c28e7a78a4a9735ef0c7bdc5c6e510b",
+      "group_dcf_inr_m": "11d1f38d7c4341ef54c6a84b99922e756ab8667ae246c24747ba4d0abefd77c2",
+      "equity_bridge": "95ea0a8b91a2362c583f426cbe274e46fd6ed6620498092e8e3b144af4740186",
+      "scenario_assumptions": "2d007df01e03f4b753cfcea749f89cc346d60023f48fb06c369fd6adc23d157f",
+      "shared_assumptions": "645a30d7158c0aeb7246dcd6d08b75b58f4b58cff6c88882ded25ccd41136692",
+      "molycop_statements": "5a37d53844499307dfadba020f03f00affae9d757688d71721fe752b065f94cc"
+    },
+    "base": {
+      "legacy_forecast_inr_m": "ba435afc0059914a9522473b5ff79db802c8986d08b7fb3a562063cbbe86df65",
+      "molycop_forecast_inr_m": "3837000d9eb78936f34d201e362b28464d0774f71722db91d6a2fa9885e0f226",
+      "group_forecast_inr_m": "507661fe188e5765a600a0989548ca37d1b5792eac559b70807a1818ea2e48d5",
+      "group_dcf_inr_m": "ae9a6e90357a3457deefe8e151352d88374a69362f1ecafd81faa916ad0af773",
+      "equity_bridge": "48c937d1fb626d0cc298564ca9fd690d09b5b31062c96eeb4cdf94a57eab8c3d",
+      "scenario_assumptions": "61e203b6c4686b913ae8e719abb43681221201a790009ccaa48d2670e2f878e0",
+      "shared_assumptions": "645a30d7158c0aeb7246dcd6d08b75b58f4b58cff6c88882ded25ccd41136692",
+      "molycop_statements": "1f0864e6e871d328fd90f76f298ad21816cbe62fbd877e9cdf5b176d6db3727b"
+    },
+    "upside": {
+      "legacy_forecast_inr_m": "ddfd32efb3a8cf1546ed56d6f36259b4977b2bd7a6cad915d842585acc3ea767",
+      "molycop_forecast_inr_m": "3330b6502970aa4b1894a5be954e32505fa3ec1d7f47019dea480a108b28f913",
+      "group_forecast_inr_m": "764824474c41f4b9e6f62715590c3e65b7ef9f5dfa094d83be2b288d8aac3736",
+      "group_dcf_inr_m": "9b66b5846a1b6661afd36994e88b0a589963e2a477590ae64a0ce1c019b0a3b1",
+      "equity_bridge": "6c8cf42791760ff8665ba01a0ab904038721a5a96ac191ce0233f89c5dc73867",
+      "scenario_assumptions": "158a208c154416dc4b336db1cccc52f141a52ef0a47f3293ed3650c2c0fceb7b",
+      "shared_assumptions": "645a30d7158c0aeb7246dcd6d08b75b58f4b58cff6c88882ded25ccd41136692",
+      "molycop_statements": "d96899ec95d3686a04d0e2dc2a9cbb02173bd95ebdef5a7a675cf55ef0be377e"
+    }
+  }
+}

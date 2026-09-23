@@ -12,6 +12,11 @@ from datetime import date
 from math import isfinite
 
 from .drivers import evidence_register
+from .legacy_statements import (
+    complete_legacy_statements,
+    nonoperating_cashflows,
+    statement_parameters,
+)
 from .statements import linked_statements
 
 REFERENCE_FX_DATE = "2026-09-02"
@@ -88,6 +93,11 @@ def _validate(facts, assumptions, case):
     if years != list(range(2027, 2027 + len(years))) or len(years) < 2:
         raise AcquisitionInputError("Use consecutive fiscal years beginning FY2027")
     a, s = assumptions["scenarios"][case], assumptions["shared"]
+    policy = assumptions.get("legacy_statement_policy", {})
+    if policy.get("version") != 1 or policy.get("dividend_per_share_inr", -1) < 0:
+        raise AcquisitionInputError(
+            "Use legacy statement policy v1 and a nonnegative dividend"
+        )
     history_snapshot = assumptions.get("forecast_policy", {}).get(
         "historical_driver_calculations"
     )
@@ -452,10 +462,15 @@ def _cashflow(
     }
 
 
-def _financing(legacy, molycop, bridge, facts, s, a, ownership):
+def _financing(legacy, molycop, bridge, facts, s, a, ownership, statement_policy):
     """Illustrative liquidity checks; financing cash flows never reduce FCFF twice."""
     parent_debt = bridge["opening_gross_debt_including_leases_estimate"]
     parent_cash = bridge["opening_cash_estimate"]
+    parameters = statement_parameters(facts, s, statement_policy)
+    jv_book = (
+        facts["tega_fy2026"]["jv_investment"]
+        + facts["q1_fy2027"]["tega_joint_venture_profit"]
+    )
     legacy_fy27_cost = a.get("legacy_fy27_finance_cost_inr_m")
     legacy_remaining_interest = (
         legacy_fy27_cost - facts["q1_fy2027"]["tega_finance_cost"]
@@ -541,6 +556,9 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
             lrow["unlevered_cash_tax"],
             parent_interest * s["earned_income_tax_rate_legacy"],
         )
+        additional = nonoperating_cashflows(
+            lrow, parent_cash, parent_interest, parent_tax_shield, jv_book, parameters
+        )
         parent_before_debt_service = (
             parent_cash
             + lrow["fcff"]
@@ -548,6 +566,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
             - parent_interest
             + parent_tax_shield
             + parent_receipt
+            + additional["parent_nonoperating_cash_adjustment_inr_m"]
         )
         parent_mandatory = min(
             parent_debt,
@@ -613,6 +632,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
                 "parent_required_new_funding_inr_m": parent_draw,
                 "parent_closing_gross_debt_inr_m": closing_parent_debt,
                 "parent_closing_cash_inr_m": closing_parent_cash,
+                **additional,
                 "parent_cash_rollforward_residual": closing_parent_cash
                 - (
                     parent_cash
@@ -621,6 +641,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
                     - parent_interest
                     + parent_tax_shield
                     + parent_receipt
+                    + additional["parent_nonoperating_cash_adjustment_inr_m"]
                     + parent_draw
                     - parent_mandatory
                     - sweep
@@ -651,6 +672,7 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership):
             pref + pik,
         )
         elapsed += fraction
+        jv_book = additional["parent_joint_venture_closing_book_inr_m"]
         previous_date = end
     return result
 
@@ -895,8 +917,20 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         raw_equity + issue["gross_proceeds_inr_m"] - s["pending_issue_expenses_inr_m"],
         0.0,
     )
-    financing = _financing(legacy, molycop, bridge, facts, s, a, ownership)
+    financing = _financing(
+        legacy,
+        molycop,
+        bridge,
+        facts,
+        s,
+        a,
+        ownership,
+        assumptions["legacy_statement_policy"],
+    )
     statements = linked_statements(legacy, molycop, financing, s)
+    statements["legacy"], legacy_opening, legacy_register = complete_legacy_statements(
+        statements["legacy"], legacy, financing, facts, assumptions, bridge
+    )
     warnings = [
         "Provisional model: June 30 valuation using information published through September 11, 2026; not a September spot-price target or point-in-time backtest.",
         "Legacy June cash/CFO/capex and Molycop working capital are estimates; detailed post-close balance sheet not obtained.",
@@ -910,7 +944,8 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "All USD-origin inputs use INR94.97 per USD at the September 2, 2026 market close. June 30 remains the valuation date; this is a later-date constant-currency restatement. Reported INR actuals are unchanged.",
         "Debt schedules estimate liquidity; they do not certify bank covenants, refinancing availability, preference exit rights or a statutory balanced forecast.",
         "September 20 assumption review: management > verifiable comparable consensus > historical trend. No public group consensus WACC or detailed Molycop statement consensus was verified. Remaining proxies are explicitly unresolved.",
-        "Linked statement schedules are partial. Missing post-close balances and accounting items stay null; there is no balancing equity plug or verified statutory PAT/EPS forecast.",
+        "Legacy statement gaps use schedules, historical values and user-authorized zero forecasts. Legacy earnings are for a legacy-only view with the Molycop investment at cost, not consolidated group PAT/EPS. Molycop statement gaps remain null.",
+        f"Legacy estimated June opening balance discrepancy: INR{legacy_opening['balance_sheet_residual_inr_m']:.4f}m. It is carried visibly, never plugged into equity/cash. Forecast movements reconcile; this is not a fully balanced statutory opening balance sheet.",
     ]
     if raw_equity < 0:
         warnings.append(
@@ -959,6 +994,9 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
             abs(r["cash_flow"]["fcff_reconciliation_residual"])
             for rows in statements.values()
             for r in rows
+        ),
+        "max_legacy_statement_movement_residual": max(
+            abs(value) for r in statements["legacy"] for value in r["checks"].values()
         ),
     }
     if any(abs(value) > 0.02 for value in checks.values()):
@@ -1011,6 +1049,8 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         },
         "financing_schedule": financing,
         "linked_statements_inr_m": statements,
+        "legacy_statement_opening_inr_m": legacy_opening,
+        "legacy_statement_assumptions": legacy_register,
         "forecast_evidence": evidence_register(assumptions),
         "historical_drivers": deepcopy(facts.get("historical_drivers")),
         "guidance_comparisons": {

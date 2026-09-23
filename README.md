@@ -13,8 +13,12 @@ The September 20 update applies the approved revenue paths and reviews other
 drivers in this order: management guidance, verifiable comparable consensus,
 then available historical trends. Each input records its basis. Detailed
 Molycop statement inputs and a public group consensus WACC remain unresolved.
-The income, balance-sheet and cash-flow forecast schedules are **partial**;
-missing statutory totals and PAT/EPS are not filled with balancing plugs.
+Legacy Tega statement gaps now use linked schedules, historical fallbacks and
+explicit zero assumptions. Its estimated June opening-balance discrepancy is
+shown rather than plugged. Molycop statements remain partial. Legacy-only
+PAT/EPS includes investment income and is not consolidated Tega group PAT/EPS.
+
+[Install the legacy statement update](docs/TEGA_LEGACY_STATEMENTS_UPDATE.md).
 
 [Install the revenue and financial-driver update](docs/TEGA_REVENUE_DRIVERS_UPDATE.md)
 and [review its assumptions](examples/tega_molycop_reports/forecast_assumptions.md).

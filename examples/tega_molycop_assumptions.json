@@ -620,7 +620,7 @@
     "limitations": [
       "Only FY24-FY26 legacy statements and FY25-FY26 equipment margins are available in the reconciled source files; no invented four-year average.",
       "Molycop full opening accounts, separate cash/gross bank debt, cost components, tax balances, provisions, and preference contractual return remain missing.",
-      "Forecast statement schedules are partial estimates. Totals, statutory PAT/EPS, retained earnings and the balance-sheet residual remain null where necessary; no balance-sheet plug.",
+      "Legacy Tega statement lines are populated using schedules, historical fallbacks and explicitly assumed zeros. The estimated June opening-balance discrepancy stays visible and is not plugged. Molycop statements remain partial.",
       "Management consolidated ~15% EBITDA margin is a comparison check. The exact definition and different segment guidance/revenue assumptions do not support plugging earnings to force a match.",
       "No quantified incremental cross-selling revenue is stacked on the approved growth paths."
     ],
@@ -1234,7 +1234,82 @@
           "scenarios.upside.molycop_forecast_nwc_revenue_fraction": 0.18,
           "scenarios.upside.earnout_inr_m": 11396.4
         }
+      },
+      {
+        "line_item": "Legacy unresolved financial-statement lines",
+        "basis": "historical_and_zero_fallback",
+        "period": "FY2027 July-March; FY2028-FY2034 full years",
+        "source_ids": [
+          "annual26",
+          "q1_deck"
+        ],
+        "method": "User-authorized schedules first, historical balances/ratios where logical, otherwise explicit zero forecasts. Preserve resolved operating assumptions. See the legacy statement policy and generated assumption register.",
+        "status": "Applied; June opening reconciliation remains a disclosed estimate",
+        "reviewed_values": {
+          "legacy_statement_policy": {
+            "version": 1,
+            "scope": "Only previously unresolved legacy Tega statement lines. Existing operating, tax, debt and asset assumptions have priority. Molycop forecasts are unchanged.",
+            "historical_other_income": "FY25 effective interest yield on average FY24/FY25 cash and bank balances, applied to opening forecast cash. FY25 avoids the FY26 acquisition funding cash build-up. Miscellaneous receipts use the FY25/FY26 nominal average.",
+            "historical_jv": "FY24-FY26 average annual equity-accounted profit and cash dividend, prorated to the forecast period. Dividends cannot exceed the available JV carrying value.",
+            "tax": "Existing historical effective rate on positive taxable income; JV share of profit is already after JV tax. Deferred tax movements and incremental tax on subsidiary/JV distributions are zero modeling assumptions, not verified tax exemptions.",
+            "balance_sheet": "Keep non-operating historical balances at FY26 nominal values unless a schedule determines them. Roll equity from reported FY26 equity plus reported Q1 legacy PAT, then forecast PAT less dividends. No equity or cash balancing plug.",
+            "asset_detail": "Allocate the existing pooled asset cohorts into PPE, ROU and intangibles using reported opening balances and FY26 additions mix. Preserve aggregate depreciation and capex exactly; split pooled CWIP into tangible and intangible construction.",
+            "debt_detail": "Allocate scheduled principal using historical lease/principal proportions, sweep bank debt before leases, and classify the next annual scheduled payments as current. Additional required funding is a current facility proxy; term borrowing becomes current within the existing parent-loan maturity window. This is a classification proxy, not contractual repayment guidance.",
+            "dividend_per_share_inr": 2.0,
+            "dividend_timing": "One annual payment in July-March FY27; unchanged INR2/share annually thereafter. FY27 follows the proposed FY26 dividend; later years are a historical fallback.",
+            "zero_forecast_items": [
+              "fair_value_gains",
+              "investment_disposal_gains",
+              "asset_disposal_gains",
+              "liability_writebacks",
+              "unrealised_fx",
+              "income_tax_refund_interest",
+              "impairments",
+              "incremental_provision_noncash_adjustments",
+              "deferred_tax_movements",
+              "other_comprehensive_income",
+              "new_equity_issuance",
+              "fx_effect_on_cash",
+              "unquantified_other_investing_cashflows",
+              "incremental_tax_on_subsidiary_or_jv_distributions"
+            ],
+            "opening_reconciliation": "Keep the previously approved estimated June cash/debt bridge. Show any difference from the independently rolled FY26 opening balance sheet as a diagnostic; never fill it with a plug or call it zero.",
+            "molycop_investment": "Show the existing parent cash contribution at cost solely in this legacy-only statement view. Existing subsidiary cash distributions are dividend income here; do not add the investment or dividend to group FCFF/DCF again.",
+            "applied_on": "2026-09-23"
+          }
+        }
       }
     ]
+  },
+  "legacy_statement_policy": {
+    "version": 1,
+    "scope": "Only previously unresolved legacy Tega statement lines. Existing operating, tax, debt and asset assumptions have priority. Molycop forecasts are unchanged.",
+    "historical_other_income": "FY25 effective interest yield on average FY24/FY25 cash and bank balances, applied to opening forecast cash. FY25 avoids the FY26 acquisition funding cash build-up. Miscellaneous receipts use the FY25/FY26 nominal average.",
+    "historical_jv": "FY24-FY26 average annual equity-accounted profit and cash dividend, prorated to the forecast period. Dividends cannot exceed the available JV carrying value.",
+    "tax": "Existing historical effective rate on positive taxable income; JV share of profit is already after JV tax. Deferred tax movements and incremental tax on subsidiary/JV distributions are zero modeling assumptions, not verified tax exemptions.",
+    "balance_sheet": "Keep non-operating historical balances at FY26 nominal values unless a schedule determines them. Roll equity from reported FY26 equity plus reported Q1 legacy PAT, then forecast PAT less dividends. No equity or cash balancing plug.",
+    "asset_detail": "Allocate the existing pooled asset cohorts into PPE, ROU and intangibles using reported opening balances and FY26 additions mix. Preserve aggregate depreciation and capex exactly; split pooled CWIP into tangible and intangible construction.",
+    "debt_detail": "Allocate scheduled principal using historical lease/principal proportions, sweep bank debt before leases, and classify the next annual scheduled payments as current. Additional required funding is a current facility proxy; term borrowing becomes current within the existing parent-loan maturity window. This is a classification proxy, not contractual repayment guidance.",
+    "dividend_per_share_inr": 2.0,
+    "dividend_timing": "One annual payment in July-March FY27; unchanged INR2/share annually thereafter. FY27 follows the proposed FY26 dividend; later years are a historical fallback.",
+    "zero_forecast_items": [
+      "fair_value_gains",
+      "investment_disposal_gains",
+      "asset_disposal_gains",
+      "liability_writebacks",
+      "unrealised_fx",
+      "income_tax_refund_interest",
+      "impairments",
+      "incremental_provision_noncash_adjustments",
+      "deferred_tax_movements",
+      "other_comprehensive_income",
+      "new_equity_issuance",
+      "fx_effect_on_cash",
+      "unquantified_other_investing_cashflows",
+      "incremental_tax_on_subsidiary_or_jv_distributions"
+    ],
+    "opening_reconciliation": "Keep the previously approved estimated June cash/debt bridge. Show any difference from the independently rolled FY26 opening balance sheet as a diagnostic; never fill it with a plug or call it zero.",
+    "molycop_investment": "Show the existing parent cash contribution at cost solely in this legacy-only statement view. Existing subsidiary cash distributions are dividend income here; do not add the investment or dividend to group FCFF/DCF again.",
+    "applied_on": "2026-09-23"
   }
 }

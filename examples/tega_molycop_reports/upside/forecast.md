@@ -1,6 +1,6 @@
 # Upside acquisition scenario
 
-PROVISIONAL. Valuation date: 30 June 2026. Research cutoff: 11 September 2026. Reported facts and management guidance are separated from analyst assumptions. These are conditional scenario values, not validated current price targets. A zero equity floor indicates insufficient modeled enterprise value to cover claims; it is not a prediction that the quoted stock price becomes zero. All model amounts are INR million unless marked per share or per tonne. USD-origin amounts use INR94.97 per USD, the September 2, 2026 closing rate reported by Reuters (not an FBIL reference fixing). Reported INR actuals are unchanged. Currency conversion uses a fixed rate; June 30 remains the valuation date. The single-group method changes valuation separately from currency conversion. One group discount rate and one terminal value apply in each scenario. Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; Molycop senior claims use that same proportion. Group rates are provisional. Forecast assumptions and public consensus coverage reviewed on 20 September 2026. The financial-statement forecasts are partial: Unresolved means missing evidence, not zero.
+PROVISIONAL. Valuation date: 30 June 2026. Research cutoff: 11 September 2026. Reported facts and management guidance are separated from analyst assumptions. These are conditional scenario values, not validated current price targets. A zero equity floor indicates insufficient modeled enterprise value to cover claims; it is not a prediction that the quoted stock price becomes zero. All model amounts are INR million unless marked per share or per tonne. USD-origin amounts use INR94.97 per USD, the September 2, 2026 closing rate reported by Reuters (not an FBIL reference fixing). Reported INR actuals are unchanged. Currency conversion uses a fixed rate; June 30 remains the valuation date. The single-group method changes valuation separately from currency conversion. One group discount rate and one terminal value apply in each scenario. Cash flows include 100% of legacy Tega plus its 84.1787% share of Molycop; Molycop senior claims use that same proportion. Group rates are provisional. Forecast assumptions and public consensus coverage reviewed on 20 September 2026. Legacy Tega statement gaps use existing schedules, historical fallbacks and explicitly assumed zeros. Its investment in Molycop is shown at cost in this legacy-only view; this is not group PAT/EPS. The estimated June opening balance discrepancy remains visible. Molycop statements remain partial: Unresolved means missing evidence.
 
 Approved upside revenue path. Consumables margin uses the management range; equipment margin and legacy working capital/capex use audited historical ratios. Molycop FY27 EBITDA follows 4% guidance in every case; later core profit per tonne stays flat, with an explicit savings ramp. Later capex scales with revenue after the two-year guidance window. Unverified acquisition/financing inputs remain provisional.
 
@@ -125,109 +125,148 @@ Approved upside revenue path. Consumables margin uses the management range; equi
 
 | FY end | MC net bank debt INR m | MC interest INR m | Earnout INR m | Pref. PIK INR m | Pref. balance INR m | Parent debt INR m | Parent funding needed INR m | MC funding needed INR m |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2027 | 59,975.18 | 5,009.26 | 0.00 | 2,296.36 | 28,181.57 | 20,747.50 | 1,631.24 | 0.00 |
-| 2028 | 55,239.47 | 5,397.77 | 0.00 | 3,381.79 | 31,563.36 | 19,359.95 | 0.00 | 0.00 |
-| 2029 | 57,619.17 | 4,971.55 | 11,396.40 | 3,787.60 | 35,350.96 | 19,371.43 | 0.00 | 3,044.49 |
-| 2030 | 50,546.72 | 5,185.73 | 0.00 | 4,242.12 | 39,593.08 | 16,508.08 | 0.00 | 0.00 |
-| 2031 | 42,447.42 | 4,549.21 | 0.00 | 4,751.17 | 44,344.25 | 12,750.20 | 0.00 | 0.00 |
-| 2032 | 33,312.75 | 3,820.27 | 0.00 | 5,321.31 | 49,665.56 | 8,197.59 | 0.00 | 0.00 |
-| 2033 | 23,308.89 | 2,998.15 | 0.00 | 5,959.87 | 55,625.43 | 2,846.41 | 0.00 | 0.00 |
+| 2027 | 59,975.18 | 5,009.26 | 0.00 | 2,296.36 | 28,181.57 | 20,835.15 | 1,718.90 | 0.00 |
+| 2028 | 55,239.47 | 5,397.77 | 0.00 | 3,381.79 | 31,563.36 | 19,518.56 | 0.00 | 0.00 |
+| 2029 | 57,619.17 | 4,971.55 | 11,396.40 | 3,787.60 | 35,350.96 | 19,604.38 | 0.00 | 3,044.49 |
+| 2030 | 50,546.72 | 5,185.73 | 0.00 | 4,242.12 | 39,593.08 | 16,818.90 | 0.00 | 0.00 |
+| 2031 | 42,447.42 | 4,549.21 | 0.00 | 4,751.17 | 44,344.25 | 13,142.60 | 0.00 | 0.00 |
+| 2032 | 33,312.75 | 3,820.27 | 0.00 | 5,321.31 | 49,665.56 | 8,675.44 | 0.00 | 0.00 |
+| 2033 | 23,308.89 | 2,998.15 | 0.00 | 5,959.87 | 55,625.43 | 3,413.79 | 0.00 | 0.00 |
 | 2034 | 13,983.21 | 2,097.80 | 0.00 | 4,365.47 | 59,990.90 | 953.24 | 0.00 | 0.00 |
 
-## Legacy income: partial forecast, INR million (FY27 July-March)
+## Legacy income statement: modeled INR million; EPS INR/share
 
-| Line item | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | revenue | 15,646.82 | 23,558.52 | 27,526.04 | 31,611.54 | 35,671.56 | 39,650.85 | 43,740.09 | 47,746.22 |
 | materials | 6,733.35 | 10,274.79 | 12,003.29 | 13,782.66 | 15,550.32 | 17,287.83 | 19,077.03 | 20,827.80 |
 | inventory change expense | -326.03 | -497.51 | -581.21 | -667.37 | -752.96 | -837.09 | -923.73 | -1,008.50 |
 | employee expense | 2,354.11 | 3,592.27 | 4,196.59 | 4,818.69 | 5,436.70 | 6,044.17 | 6,669.71 | 7,281.82 |
 | other expense | 3,392.24 | 5,176.41 | 6,047.23 | 6,943.67 | 7,834.21 | 8,709.56 | 9,610.96 | 10,492.99 |
-| unallocated operating expense | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | operating expense total | 12,153.66 | 18,545.96 | 21,665.90 | 24,877.65 | 28,068.27 | 31,204.47 | 34,433.98 | 37,594.11 |
 | operating ebitda | 3,493.16 | 5,012.56 | 5,860.15 | 6,733.89 | 7,603.29 | 8,446.38 | 9,306.11 | 10,152.11 |
 | depreciation amortisation | 882.57 | 1,633.44 | 2,089.28 | 2,456.63 | 2,875.04 | 2,666.68 | 2,839.74 | 3,339.71 |
 | integration expense cash proxy | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | operating profit after integration | 2,610.59 | 3,379.12 | 3,770.87 | 4,277.27 | 4,728.24 | 5,779.71 | 6,466.37 | 6,812.40 |
-| finance cost cash proxy | 906.77 | 1,306.80 | 1,219.41 | 1,220.13 | 1,039.78 | 803.09 | 516.33 | 179.28 |
-| operating earnings before tax proxy | 1,703.82 | 2,072.31 | 2,551.46 | 3,057.14 | 3,688.46 | 4,976.62 | 5,950.03 | 6,633.11 |
-| cash tax proxy | 416.68 | 506.80 | 623.98 | 747.65 | 902.04 | 1,217.07 | 1,455.13 | 1,622.18 |
-| operating earnings after financing and cash tax | 1,287.14 | 1,565.51 | 1,927.48 | 2,309.49 | 2,786.42 | 3,759.55 | 4,494.91 | 5,010.94 |
-| other income | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| joint venture profit | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| profit before tax | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| current tax expense | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| deferred tax expense | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| net income | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| owners net income | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| eps inr | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
+| finance cost cash proxy | 906.77 | 1,312.32 | 1,229.40 | 1,234.80 | 1,059.36 | 827.80 | 546.43 | 215.02 |
+| interest income | 15.51 | 20.68 | 20.68 | 20.68 | 20.68 | 20.68 | 20.68 | 20.68 |
+| miscellaneous income | 18.96 | 25.27 | 25.27 | 25.27 | 25.27 | 25.27 | 25.27 | 25.27 |
+| subsidiary dividend income | 1,404.15 | 1,708.48 | 0.00 | 2,551.50 | 2,921.95 | 3,295.48 | 3,609.05 | 3,364.39 |
+| other nonoperating gains | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| other income | 1,438.62 | 1,754.44 | 45.96 | 2,597.45 | 2,967.91 | 3,341.43 | 3,655.01 | 3,410.34 |
+| joint venture profit | 37.44 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 | 49.92 |
+| profit before tax | 3,179.88 | 3,871.15 | 2,637.34 | 5,689.83 | 6,686.71 | 8,343.25 | 9,624.86 | 10,057.64 |
+| current tax expense | 425.11 | 516.69 | 632.77 | 755.30 | 908.49 | 1,222.27 | 1,459.00 | 1,624.68 |
+| deferred tax expense | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| net income | 2,754.76 | 3,354.46 | 2,004.57 | 4,934.54 | 5,778.22 | 7,120.99 | 8,165.85 | 8,432.96 |
+| owners net income | 2,754.76 | 3,354.46 | 2,004.57 | 4,934.54 | 5,778.22 | 7,120.99 | 8,165.85 | 8,432.96 |
+| eps inr | 36.67 | 44.65 | 26.68 | 65.68 | 76.91 | 94.79 | 108.69 | 112.25 |
+| other comprehensive income | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 
-## Legacy balance sheet: partial forecast, INR million (FY27 July-March)
+## Legacy balance sheet: estimated INR million; Molycop investment at cost
 
-| Line item | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| Line item | 31 Mar 2027 | 31 Mar 2028 | 31 Mar 2029 | 31 Mar 2030 | 31 Mar 2031 | 31 Mar 2032 | 31 Mar 2033 | 31 Mar 2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| trade receivables | 5,806.31 | 6,851.45 | 8,005.31 | 9,193.48 | 10,374.24 | 11,531.53 | 12,720.79 | 13,885.88 |
-| inventories | 5,052.37 | 5,961.80 | 6,965.84 | 7,999.73 | 9,027.17 | 10,034.18 | 11,069.02 | 12,082.82 |
-| trade payables | 3,032.46 | 3,578.30 | 4,180.93 | 4,801.48 | 5,418.15 | 6,022.57 | 6,643.68 | 7,252.17 |
-| other operating current assets | 831.89 | 981.63 | 1,146.95 | 1,317.19 | 1,486.36 | 1,652.17 | 1,822.56 | 1,989.49 |
-| other operating current liabilities and current provisions | 1,371.61 | 1,618.50 | 1,891.07 | 2,171.75 | 2,450.68 | 2,724.06 | 3,005.00 | 3,280.23 |
-| net operating working capital | 7,286.51 | 8,598.08 | 10,046.09 | 11,537.16 | 13,018.94 | 14,471.25 | 15,963.68 | 17,425.79 |
-| fixed asset book including cwip proxy | 9,989.49 | 10,564.36 | 11,055.31 | 11,561.87 | 12,030.60 | 13,080.70 | 14,341.05 | 15,476.96 |
-| cwip proxy | 2,367.94 | 173.80 | 203.07 | 233.21 | 263.16 | 292.52 | 322.68 | 352.24 |
-| nondepreciable land | 754.45 | 754.45 | 754.45 | 754.45 | 754.45 | 754.45 | 754.45 | 754.45 |
-| ppe | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| rou assets | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| intangibles | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| goodwill | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| investments and other financial assets | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| tax assets and liabilities | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| noncurrent provisions and other liabilities | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| debt current noncurrent split | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| cash | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 4,384.14 |
-| gross debt including leases proxy | 20,747.50 | 19,359.95 | 19,371.43 | 16,508.08 | 12,750.20 | 8,197.59 | 2,846.41 | 953.24 |
-| net bank debt proxy | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| preference balance assumed | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| share capital | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| retained earnings | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| other reserves | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| noncontrolling interest | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| total assets | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| total liabilities | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| total equity | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| balance sheet residual | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
+| Asset: ppe | 5,573.90 | 8,280.13 | 8,738.42 | 9,227.58 | 9,710.12 | 10,555.40 | 11,521.48 | 12,368.35 |
+| Asset: rou assets | 1,943.46 | 1,940.33 | 1,931.41 | 1,905.67 | 1,849.05 | 2,005.63 | 2,249.18 | 2,490.84 |
+| Asset: cwip | 2,312.98 | 169.93 | 198.55 | 228.02 | 257.30 | 286.01 | 315.50 | 344.40 |
+| Asset: investment property | 43.08 | 43.08 | 43.08 | 43.08 | 43.08 | 43.08 | 43.08 | 43.08 |
+| Asset: goodwill | 738.38 | 738.38 | 738.38 | 738.38 | 738.38 | 738.38 | 738.38 | 738.38 |
+| Asset: intangibles | 104.18 | 170.11 | 182.41 | 195.42 | 208.27 | 227.15 | 247.70 | 265.54 |
+| Asset: intangibles under development | 54.96 | 3.87 | 4.52 | 5.19 | 5.86 | 6.51 | 7.18 | 7.84 |
+| Asset: joint venture | 292.21 | 293.38 | 294.55 | 295.72 | 296.88 | 298.05 | 299.22 | 300.38 |
+| Asset: other noncurrent financial assets | 52.75 | 52.75 | 52.75 | 52.75 | 52.75 | 52.75 | 52.75 | 52.75 |
+| Asset: noncurrent tax assets | 61.17 | 61.17 | 61.17 | 61.17 | 61.17 | 61.17 | 61.17 | 61.17 |
+| Asset: deferred tax assets | 710.54 | 710.54 | 710.54 | 710.54 | 710.54 | 710.54 | 710.54 | 710.54 |
+| Asset: other noncurrent assets | 306.72 | 306.72 | 306.72 | 306.72 | 306.72 | 306.72 | 306.72 | 306.72 |
+| Asset: inventories | 5,052.37 | 5,961.80 | 6,965.84 | 7,999.73 | 9,027.17 | 10,034.18 | 11,069.02 | 12,082.82 |
+| Asset: current investments | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| Asset: receivables | 5,806.31 | 6,851.45 | 8,005.31 | 9,193.48 | 10,374.24 | 11,531.53 | 12,720.79 | 13,885.88 |
+| Asset: cash | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 3,722.97 |
+| Asset: other bank balances | 69.94 | 69.94 | 69.94 | 69.94 | 69.94 | 69.94 | 69.94 | 69.94 |
+| Asset: current loans | 0.64 | 0.64 | 0.64 | 0.64 | 0.64 | 0.64 | 0.64 | 0.64 |
+| Asset: other current financial assets | 931.62 | 931.62 | 931.62 | 931.62 | 931.62 | 931.62 | 931.62 | 931.62 |
+| Asset: contract assets | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| Asset: current tax assets | 27.20 | 27.20 | 27.20 | 27.20 | 27.20 | 27.20 | 27.20 | 27.20 |
+| Asset: other current assets | 831.89 | 981.63 | 1,146.95 | 1,317.19 | 1,486.36 | 1,652.17 | 1,822.56 | 1,989.49 |
+| Asset: investment in molycop at cost | 37,446.24 | 37,446.24 | 37,446.24 | 37,446.24 | 37,446.24 | 37,446.24 | 37,446.24 | 37,446.24 |
+| TOTAL ASSETS | 62,860.56 | 65,540.90 | 68,356.23 | 71,256.26 | 74,103.53 | 77,484.90 | 81,140.90 | 87,846.77 |
+| Liability: current borrowings | 3,935.78 | 2,550.75 | 2,488.92 | 214.17 | 214.17 | 214.17 | 0.00 | 0.00 |
+| Liability: noncurrent borrowings | 16,036.25 | 15,822.08 | 15,607.90 | 14,653.78 | 10,453.03 | 5,381.99 | 0.00 | 0.00 |
+| Liability: current lease liabilities | 187.73 | 187.73 | 187.73 | 187.73 | 187.73 | 187.73 | 187.73 | 187.73 |
+| Liability: noncurrent lease liabilities | 675.40 | 958.01 | 1,319.83 | 1,763.22 | 2,287.66 | 2,891.55 | 3,226.07 | 765.51 |
+| Liability: other noncurrent financial liabilities | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| Liability: noncurrent provisions | 0.38 | 0.38 | 0.38 | 0.38 | 0.38 | 0.38 | 0.38 | 0.38 |
+| Liability: deferred tax liabilities | 45.58 | 45.58 | 45.58 | 45.58 | 45.58 | 45.58 | 45.58 | 45.58 |
+| Liability: payables | 3,032.46 | 3,578.30 | 4,180.93 | 4,801.48 | 5,418.15 | 6,022.57 | 6,643.68 | 7,252.17 |
+| Liability: other current financial liabilities | 307.18 | 307.18 | 307.18 | 307.18 | 307.18 | 307.18 | 307.18 | 307.18 |
+| Liability: current provisions | 364.37 | 429.96 | 502.37 | 576.93 | 651.03 | 723.66 | 798.29 | 871.40 |
+| Liability: current tax liabilities | 206.62 | 206.62 | 206.62 | 206.62 | 206.62 | 206.62 | 206.62 | 206.62 |
+| Liability: other current liabilities | 1,007.24 | 1,188.54 | 1,388.71 | 1,594.82 | 1,799.65 | 2,000.41 | 2,206.71 | 2,408.82 |
+| TOTAL LIABILITIES | 25,798.98 | 25,275.13 | 26,236.15 | 24,351.89 | 21,571.19 | 17,981.84 | 13,622.24 | 12,045.40 |
+| Equity: share capital | 751.28 | 751.28 | 751.28 | 751.28 | 751.28 | 751.28 | 751.28 | 751.28 |
+| Equity: retained earnings | 15,193.68 | 18,397.88 | 20,252.19 | 25,036.47 | 30,664.44 | 37,635.17 | 45,650.77 | 53,933.47 |
+| Equity: other reserves | 21,132.49 | 21,132.49 | 21,132.49 | 21,132.49 | 21,132.49 | 21,132.49 | 21,132.49 | 21,132.49 |
+| Equity: noncontrolling interest | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| TOTAL EQUITY | 37,077.45 | 40,281.65 | 42,135.96 | 46,920.24 | 52,548.21 | 59,518.94 | 67,534.54 | 75,817.24 |
+| OPENING RECONCILIATION GAP CARRIED — not a plug | -15.88 | -15.88 | -15.88 | -15.88 | -15.88 | -15.87 | -15.88 | -15.88 |
 
-## Legacy cash flow: partial forecast, INR million (FY27 July-March)
+## Legacy cash flow statement: modeled INR million
 
-| Line item | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| operating earnings before tax proxy | 1,703.82 | 2,072.31 | 2,551.46 | 3,057.14 | 3,688.46 | 4,976.62 | 5,950.03 | 6,633.11 |
+| profit before tax | 3,179.88 | 3,871.15 | 2,637.34 | 5,689.83 | 6,686.71 | 8,343.25 | 9,624.86 | 10,057.64 |
 | da addback | 882.57 | 1,633.44 | 2,089.28 | 2,456.63 | 2,875.04 | 2,666.68 | 2,839.74 | 3,339.71 |
-| interest addback | 906.77 | 1,306.80 | 1,219.41 | 1,220.13 | 1,039.78 | 803.09 | 516.33 | 179.28 |
-| other noncash adjustments | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
+| interest addback | 906.77 | 1,312.32 | 1,229.40 | 1,234.80 | 1,059.36 | 827.80 | 546.43 | 215.02 |
+| joint venture profit reversal | -37.44 | -49.92 | -49.92 | -49.92 | -49.92 | -49.92 | -49.92 | -49.92 |
+| investing income reversal | -1,419.66 | -1,729.16 | -20.68 | -2,572.18 | -2,942.63 | -3,316.16 | -3,629.73 | -3,385.07 |
+| other noncash adjustments | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | change in operating working capital | -1,978.18 | -1,311.57 | -1,448.02 | -1,491.07 | -1,481.77 | -1,452.31 | -1,492.44 | -1,462.11 |
-| cash tax proxy | -416.68 | -506.80 | -623.98 | -747.65 | -902.04 | -1,217.07 | -1,455.13 | -1,622.18 |
-| operating cash before interest proxy | 1,098.30 | 3,194.19 | 3,788.15 | 4,495.18 | 5,219.47 | 5,777.00 | 6,358.55 | 7,067.82 |
+| income tax paid | -425.11 | -516.69 | -632.77 | -755.30 | -908.49 | -1,222.27 | -1,459.00 | -1,624.68 |
+| operating cash flow total | 1,108.83 | 3,209.58 | 3,804.63 | 4,512.80 | 5,238.30 | 5,797.08 | 6,379.95 | 7,090.60 |
 | cash capex | -2,849.10 | -1,737.98 | -2,030.68 | -2,332.08 | -2,631.60 | -2,925.16 | -3,226.83 | -3,522.38 |
-| cash interest proxy | -906.77 | -1,306.80 | -1,219.41 | -1,220.13 | -1,039.78 | -803.09 | -516.33 | -179.28 |
-| new lease assets noncash | 298.94 | 470.34 | 549.55 | 631.12 | 712.17 | 791.62 | 873.26 | 953.24 |
-| other investing cashflows | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| dividends to tega shareholders | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| equity issuance | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| fx effect on cash | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| statutory operating cash flow total | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| statutory investing cash flow total | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| statutory financing cash flow total | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
-| fcff reconciliation residual | 0.00 | -0.00 | 0.00 | -0.00 | 0.00 | 0.00 | -0.00 | -0.00 |
-| opening cash proxy | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 |
+| interest received | 15.51 | 20.68 | 20.68 | 20.68 | 20.68 | 20.68 | 20.68 | 20.68 |
+| joint venture dividend received | 36.56 | 48.75 | 48.75 | 48.75 | 48.75 | 48.75 | 48.75 | 48.75 |
 | subsidiary distribution received | 1,404.15 | 1,708.48 | 0.00 | 2,551.50 | 2,921.95 | 3,295.48 | 3,609.05 | 3,364.39 |
-| debt and lease principal paid | -377.83 | -1,857.89 | -538.07 | -3,494.47 | -4,470.05 | -5,344.23 | -6,224.43 | -2,846.41 |
-| required new borrowing | 1,631.24 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
-| closing cash proxy | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 4,384.14 |
-| modeled cash rollforward residual | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| other investing cashflows | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| investing cash flow total | -1,392.87 | 39.93 | -1,961.25 | 288.85 | 359.79 | 439.75 | 451.65 | -88.56 |
+| required new borrowing | 1,718.90 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| debt and lease principal paid | -377.83 | -1,786.93 | -463.73 | -3,416.60 | -4,388.47 | -5,258.77 | -6,134.91 | -3,413.79 |
+| cash interest proxy | -906.77 | -1,312.32 | -1,229.40 | -1,234.80 | -1,059.36 | -827.80 | -546.43 | -215.02 |
+| dividends to tega shareholders | -150.26 | -150.26 | -150.26 | -150.26 | -150.26 | -150.26 | -150.26 | -150.26 |
+| equity issuance | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| financing cash flow total | 284.04 | -3,249.51 | -1,843.39 | -4,801.65 | -5,598.09 | -6,236.83 | -6,831.59 | -3,779.07 |
+| net change in cash | 0.00 | 0.00 | -0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 3,222.97 |
+| fx effect on cash | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| opening cash proxy | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 |
+| closing cash proxy | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 500.00 | 3,722.97 |
+| new lease assets noncash | 298.94 | 470.34 | 549.55 | 631.12 | 712.17 | 791.62 | 873.26 | 953.24 |
 
-## Molycop income: partial forecast, INR million (FY27 July-March)
+## Legacy D&A allocation from the existing asset schedule (INR million)
 
-| Line item | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ppe | 564.74 | 1,136.12 | 1,498.57 | 1,761.54 | 2,061.20 | 1,986.07 | 2,159.43 | 2,568.22 |
+| rou assets | 307.03 | 473.47 | 558.47 | 656.85 | 768.79 | 635.03 | 629.71 | 711.58 |
+| intangibles | 10.80 | 23.85 | 32.24 | 38.23 | 45.05 | 45.57 | 50.60 | 59.91 |
+
+## Legacy statement movement checks (INR million); the opening gap is disclosed separately
+
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| da allocation residual | 0.00 | 0.00 | 0.00 | -0.00 | 0.00 | -0.00 | -0.00 | 0.00 |
+| asset allocation residual | -0.00 | -0.00 | -0.00 | -0.00 | -0.00 | 0.00 | -0.00 | -0.00 |
+| cwip allocation residual | 0.00 | 0.00 | -0.00 | 0.00 | 0.00 | -0.00 | -0.00 | 0.00 |
+| commissioning allocation residual | 0.00 | -0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | -0.00 |
+| debt allocation residual | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| cash flow statement residual | -0.00 | 0.00 | 0.00 | 0.00 | -0.00 | -0.00 | -0.00 | -0.00 |
+| retained earnings rollforward residual | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| balance sheet movement residual | -0.00 | -0.00 | -0.00 | 0.00 | 0.00 | 0.00 | 0.00 | -0.00 |
+| interest and dividend exclusion residual | 0.00 | -0.00 | 0.00 | -0.00 | -0.00 | -0.00 | -0.00 | -0.00 |
+
+## Molycop income: partial forecast, INR million; EPS INR/share
+
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | revenue | 115,383.88 | 166,277.17 | 177,916.57 | 188,591.56 | 198,021.14 | 205,941.99 | 214,179.67 | 221,675.96 |
 | materials | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
@@ -253,9 +292,9 @@ Approved upside revenue path. Consumables margin uses the management range; equi
 | owners net income | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
 | eps inr | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
 
-## Molycop balance sheet: partial forecast, INR million (FY27 July-March)
+## Molycop balance sheet: partial forecast, INR million
 
-| Line item | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | trade receivables | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
 | inventories | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
@@ -287,9 +326,9 @@ Approved upside revenue path. Consumables margin uses the management range; equi
 | total equity | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
 | balance sheet residual | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved | Unresolved |
 
-## Molycop cash flow: partial forecast, INR million (FY27 July-March)
+## Molycop cash flow: partial forecast, INR million
 
-| Line item | FY2027 | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
+| Line item | FY2027 Jul-Mar | FY2028 | FY2029 | FY2030 | FY2031 | FY2032 | FY2033 | FY2034 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | operating earnings before tax proxy | 4,256.14 | 9,145.47 | 11,572.87 | 12,563.23 | 13,948.93 | 15,226.50 | 16,633.33 | 18,049.53 |
 | da addback | 4,459.88 | 6,249.42 | 6,606.89 | 6,979.47 | 7,371.74 | 7,781.93 | 8,194.39 | 8,585.96 |
@@ -342,7 +381,8 @@ Approved upside revenue path. Consumables margin uses the management range; equi
 - All USD-origin inputs use INR94.97 per USD at the September 2, 2026 market close. June 30 remains the valuation date; this is a later-date constant-currency restatement. Reported INR actuals are unchanged.
 - Debt schedules estimate liquidity; they do not certify bank covenants, refinancing availability, preference exit rights or a statutory balanced forecast.
 - September 20 assumption review: management > verifiable comparable consensus > historical trend. No public group consensus WACC or detailed Molycop statement consensus was verified. Remaining proxies are explicitly unresolved.
-- Linked statement schedules are partial. Missing post-close balances and accounting items stay null; there is no balancing equity plug or verified statutory PAT/EPS forecast.
+- Legacy statement gaps use schedules, historical values and user-authorized zero forecasts. Legacy earnings are for a legacy-only view with the Molycop investment at cost, not consolidated group PAT/EPS. Molycop statement gaps remain null.
+- Legacy estimated June opening balance discrepancy: INR-15.8750m. It is carried visibly, never plugged into equity/cash. Forecast movements reconcile; this is not a fully balanced statutory opening balance sheet.
 - Forecast needs additional funding; availability and pricing are not confirmed.
 
 ```json
@@ -358,6 +398,7 @@ Approved upside revenue path. Consumables margin uses the management range; equi
   "max_group_fcff_identity_residual": 3.637978807091713e-12,
   "equity_bridge_residual": 0.0,
   "max_parent_cash_rollforward_residual": 0.0,
-  "max_linked_operating_cashflow_residual": 3.637978807091713e-12
+  "max_linked_operating_cashflow_residual": 3.637978807091713e-12,
+  "max_legacy_statement_movement_residual": 1.4551915228366852e-11
 }
 ```
