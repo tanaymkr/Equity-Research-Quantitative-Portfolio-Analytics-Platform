@@ -57,8 +57,12 @@ modules merely to match the roadmap.
 
 ## Immediate next build
 
-Implement `src/equity_analytics/data/`: SQLite migration(s), company/source/
-annual statement storage, an idempotent loader and publication-date queries.
-Reuse `financials.models` at the boundary. Establish a revision policy before
-storing restatements. Test that future publications and later restatements
-cannot leak into earlier as-of results.
+The initial annual-financial SQL layer is implemented in
+`src/equity_analytics/data/`. It stores company/source records, immutable filing
+versions and raw ingestion evidence, reuses `financials.models`, and provides
+publication-date queries. Revision and repeat-load behavior have automated tests.
+
+Next: add dated prices and corporate-action conventions, richer company
+metadata and another sourced real company. Expand financial metrics and DCF
+validation against those stored inputs. Historical membership, assumption
+version storage and provider automation remain outstanding.

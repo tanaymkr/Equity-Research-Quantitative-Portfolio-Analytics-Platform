@@ -11,7 +11,7 @@ a detailed Tega/Molycop acquisition case study.
 
 | Component | Implemented | Remaining work |
 | --- | --- | --- |
-| SQL/Data | Validated JSON, source references and publication dates | SQL, company master, prices, revisions and as-of queries |
+| SQL/Data | SQLite company/source records, annual statement versions, raw-input audit trail, repeatable imports and publication-date queries | Price ingestion, richer company metadata, assumption storage and provider adapters |
 | Fundamental analysis | Growth, margins, ROE/ROA/ROCE, leverage, liquidity and cash metrics | ROIC, working-capital days, market multiples and universe comparison |
 | Generic DCF | FCFF forecasts, supplied WACC, terminal growth, cash/debt bridge and sensitivity | Calculated WACC, scenarios, richer claims, reported opening NWC and stronger validation |
 | Tega case study | Reported history, acquisition forecasts, consolidation, WACC, claims and scenarios | Resolve documented data limitations |
@@ -37,6 +37,9 @@ python -m venv .venv
 # macOS/Linux: source .venv/bin/activate
 python -m pip install -e ".[dev]"
 
+# Store included financial histories in SQLite and generate analysis from SQL
+python run_data_pipeline.py
+
 # Synthetic generic DCF and sensitivity
 python -m equity_analytics.cli examples/demo_dcf.json --json-output outputs/demo_dcf.json
 
@@ -57,10 +60,18 @@ The installed `equity-dcf` command also runs the generic valuation. Tega's
 report is written to `outputs/tega_molycop/report.html`. Generated outputs
 are ignored by Git.
 
+For the data milestone, double-click `Run_Data_Pipeline.bat` on Windows or use
+the Python command above. Open `outputs/data/tega/analysis.html`. The database
+is `outputs/data/research.sqlite`. It contains one real company (TEGA) and one
+explicitly synthetic example (DEMO), not a verified multi-stock universe.
+Rerunning records a new ingestion audit entry without duplicating statements.
+See [Data pipeline instructions](START_DATA_PIPELINE.md).
+
 ## Code map
 
 | Location | Responsibility |
 | --- | --- |
+| `src/equity_analytics/data/` | Versioned SQLite schema, ingestion evidence, annual statement storage and dated queries |
 | `src/equity_analytics/financials/` | Annual data contracts, validation, ratios and reports |
 | `src/equity_analytics/valuation/` | Generic FCFF valuation and sensitivity |
 | `src/equity_analytics/forecasting/` | Linked statements using the existing detailed INR schema; broad company coverage needs validation |
@@ -90,6 +101,7 @@ The legacy opening gap is INR15.875 million (INR1.5875 crore), without a plug.
 ## Read next
 
 - [Repository audit](docs/REPOSITORY_AUDIT.md)
+- [SQL schema and information-date policy](docs/DATA_LAYER.md)
 - [Architecture and migration](docs/PLATFORM_ARCHITECTURE.md)
 - [Delivery plan](docs/PROJECT_PLAN.md)
 - [Tega case-study guide](case_studies/tega/README.md)

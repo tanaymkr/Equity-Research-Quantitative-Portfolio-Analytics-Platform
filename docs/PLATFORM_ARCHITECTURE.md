@@ -42,7 +42,8 @@ screening. Dated signals feed strategy and index construction. Portfolio and
 risk functions consume holdings, prices, cash flows and trades. Streamlit
 calls these functions and owns no financial calculations.
 
-SQL is not implemented in this change. Publication dates and statement
-versions must be stored separately from financial period ends. Prices must
+The first SQL implementation now stores publication dates and statement
+versions separately from financial period ends. See [Data layer](DATA_LAYER.md).
+Price storage and ingestion are the next part of this layer. Prices must
 declare adjustment basis, and historical universes require documented
 membership before describing a backtest as free of survivorship bias.

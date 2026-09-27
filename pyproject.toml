@@ -19,6 +19,7 @@ dev = [
 
 [project.scripts]
 equity-dcf = "equity_analytics.cli:main"
+equity-data = "equity_analytics.data.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -30,4 +31,3 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 88
 target-version = "py311"
-
