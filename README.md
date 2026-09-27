@@ -1,131 +1,96 @@
-# Equity Research & Quantitative Portfolio Analytics Platform
+# Investment Research Platform
 
-An end-to-end research platform for company valuation, portfolio analytics,
-factor research, backtesting, and risk management.
+Python research software for company financial analysis and valuation, with a
+planned SQL data layer, screening, factor research, backtesting, portfolio,
+risk, index analytics and Streamlit interface. Built by Tanay Malekar.
 
-The project is being built as production-style analytical software: financial
-logic lives in reusable Python modules, inputs are explicit and testable, and
-the eventual Streamlit application will consume the same analytics layer.
+The working examples are a generic FCFF DCF, annual financial analysis, and
+a detailed Tega/Molycop acquisition case study.
 
-## Pro-forma consolidated Tega case study
+## What works today
 
-The current Tega case consolidates 100% of legacy Tega and Molycop line by line,
-then discounts consolidated FCFF at an EV-weighted blend of their standalone
-WACCs. The bridge deducts full net debt, preferences, earnout/other claims and
-explicit ordinary minority interest. The main diluted count includes both
-preferential issues pro forma with matching follow-on cash once.
+| Component | Implemented | Remaining work |
+| --- | --- | --- |
+| SQL/Data | Validated JSON, source references and publication dates | SQL, company master, prices, revisions and as-of queries |
+| Fundamental analysis | Growth, margins, ROE/ROA/ROCE, leverage, liquidity and cash metrics | ROIC, working-capital days, market multiples and universe comparison |
+| Generic DCF | FCFF forecasts, supplied WACC, terminal growth, cash/debt bridge and sensitivity | Calculated WACC, scenarios, richer claims, reported opening NWC and stronger validation |
+| Tega case study | Reported history, acquisition forecasts, consolidation, WACC, claims and scenarios | Resolve documented data limitations |
+| Screening | Planned | Universe filters and comparable output |
+| Factors | Planned | Value, quality, momentum and growth |
+| Backtesting | Planned | Dated data, rebalancing, costs and benchmark |
+| Portfolio analytics | Planned | Performance, risk and attribution |
+| Risk analytics | Planned | VaR, Expected Shortfall and stress tests |
+| Index analytics | Planned | Selection, weights, caps and rebalancing |
+| Streamlit | Planned | Views consuming the analytical functions |
 
-[Install and audit the consolidated update](docs/TEGA_PRO_FORMA_CONSOLIDATION.md).
+There is no automated 20–30-company pipeline yet. Generic examples are
+explicitly synthetic. Tega reported figures have source references and
+forecasts contain separately labeled assumptions.
 
-Supporting business operating forecasts retain the approved revenue paths.
-All output amounts are INR million; FX is adjustable under `pro_forma` in the
-assumptions JSON, defaulting to INR94.97/USD. Provisional WACC inputs and fixed
-unallocated opening acquisition balances remain explicitly labeled. Consolidated
-arithmetic is not a substitute for missing Molycop disclosures or verified PPA.
-The separate legacy June opening gap remains unresolved.
+## Run the working examples
 
-## FY26 statements are now connected
-
-The complete audited FY25/FY26 consolidated statements and supporting notes now
-feed the acquisition DCF and financial-ratio module from one source file. The
-historical validator runs 92 reconciliations. The combined Tega-Molycop DCF is
-the single Tega valuation model; its forecasts start in FY27. The superseded
-forecasts and separate legacy-only case have been removed.
-
-- [Read the complete FY26 statements](examples/tega_molycop_reports/historical_statements.md)
-- [Source details and model connections](docs/TEGA_FY2026_STATEMENTS.md)
-- [Install and run the update](START_TEGA_MODEL.md)
-
-## Tega + Molycop acquisition update
-
-The Tega launcher now runs an acquisition DCF using final June 2026 deal terms,
-FY2026 accounts and the first post-acquisition results. It includes separate
-business forecasts, ownership, preference shares, earnout, parent funding,
-dilution, asset schedules and three scenarios.
-
-**This is a provisional research model.** Value date: **30 June 2026**.
-Reviewed-source cutoff: **11 September 2026**. Missing cash-flow, working-capital
-and preference-return disclosures remain explicit assumptions. Outputs are not
-validated current price targets or a point-in-time backtest.
-
-- [Start here: install, run and edit](START_TEGA_MODEL.md)
-- [Facts, assumptions and code walkthrough](docs/TEGA_MOLYCOP_MODEL.md)
-- [Precomputed scenarios](examples/tega_molycop_reports/scenarios.md)
-- [Validation and open inputs](docs/TEGA_MOLYCOP_VALIDATION.md)
-
-With Python 3.11+, double-click `Run_Tega_Model.bat`, or run:
-
-```text
-python run_tega_model.py
-```
-
-Open `outputs/tega_molycop/report.html`. No extra runtime packages are needed.
-`run_tega_scenarios.py` is an alias for the same combined model.
-For cleanup instructions, see [Remove old Tega forecasts](docs/TEGA_FORECAST_CLEANUP.md).
-
-## Current milestone
-
-Milestone 1 establishes a working discounted cash flow (DCF) engine with:
-
-- five-year revenue and operating forecasts;
-- FCFF calculated from NOPAT, depreciation, capital expenditure, and change in
-  net working capital;
-- enterprise-to-equity value bridge;
-- implied value per share;
-- WACC versus terminal-growth sensitivity analysis;
-- input validation, a command-line interface, and automated tests.
-
-The generic `demo_dcf.json` is synthetic. Tega's reported-history files contain
-sourced company figures; forecast assumptions are separately identified.
-
-## Quick start
-
-Requires Python 3.11 or newer.
+Requires Python 3.11+. Current calculations use the standard library.
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
 python -m pip install -e ".[dev]"
-equity-dcf examples/demo_dcf.json
-```
 
-To save the full calculation as JSON:
+# Synthetic generic DCF and sensitivity
+python -m equity_analytics.cli examples/demo_dcf.json --json-output outputs/demo_dcf.json
 
-```bash
-equity-dcf examples/demo_dcf.json --json-output outputs/demo_dcf_result.json
-```
+# Synthetic annual financial analysis
+python -m equity_analytics.financials examples/demo_financial_history.json --output-dir outputs/demo_financials
 
-Run the test suite:
+# Sourced Tega statements and annual ratios
+python -m equity_analytics.financials examples/tega_fy2026_reported_statements.json --output-dir outputs/tega_financials
 
-```bash
+# Tega/Molycop scenarios and HTML report
+python run_tega_model.py
+
 python -m pytest
+python -m ruff check .
 ```
 
-## Project structure
+The installed `equity-dcf` command also runs the generic valuation. Tega's
+report is written to `outputs/tega_molycop/report.html`. Generated outputs
+are ignored by Git.
 
-```text
-equity-research-quant-platform/
-├── docs/                  # Project roadmap and methodology notes
-├── examples/              # Reproducible model inputs
-├── src/equity_analytics/  # Reusable analytics package
-│   └── valuation/         # DCF and valuation sensitivity logic
-└── tests/                 # Automated financial-logic tests
-```
+## Code map
 
-## Roadmap
+| Location | Responsibility |
+| --- | --- |
+| `src/equity_analytics/financials/` | Annual data contracts, validation, ratios and reports |
+| `src/equity_analytics/valuation/` | Generic FCFF valuation and sensitivity |
+| `src/equity_analytics/forecasting/` | Linked statements using the existing detailed INR schema; broad company coverage needs validation |
+| `src/equity_analytics/case_studies/tega/` | Acquisition, financing, consolidation, WACC, equity bridge and Tega statement adapter |
+| `src/equity_analytics/acquisition/` | Compatibility imports and launcher for the old Tega package path |
+| `examples/` | Inputs and checked-in reference reports |
+| `tests/` | Accounting, valuation, scenario and migration checks |
+| `docs/` | Methodology, audit and delivery plan |
 
-1. Equity research and DCF valuation
-2. Portfolio performance analytics
-3. Factor research and backtesting
-4. VaR, Expected Shortfall, and stress testing
-5. SQL data layer and automated pipelines
-6. Streamlit dashboard
-7. Testing, documentation, and deployment polish
+Tega inputs retain their `examples/` paths so source references and launchers
+continue to resolve. New code uses the `case_studies.tega` namespace.
 
-The detailed delivery plan is in [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md).
+## Conventions and limitations
 
-## Important modelling convention
+Generic DCF money and shares must use matching scales: INR crore divided by
+crore shares yields INR per share. The engine discounts at year end, accepts
+WACC as an input and grows final forecast FCFF into perpetuity. Opening NWC
+is inferred from revenue and the forecast NWC percentage. These limitations
+need addressing before broader research use.
 
-The engine is unit-agnostic, but all monetary inputs must use the same unit.
-For example, if revenue, cash, and debt are in INR crore and shares outstanding
-are in crore shares, the resulting value per share is in INR.
+The Tega case uses INR million and actual diluted shares. Its valuation date
+is 30 June 2026; its research cutoff is 11 September 2026. It uses later
+disclosures and is not a point-in-time backtest input. Molycop opening
+allocations, preference terms and several financing inputs remain provisional.
+The legacy opening gap is INR15.875 million (INR1.5875 crore), without a plug.
+
+## Read next
+
+- [Repository audit](docs/REPOSITORY_AUDIT.md)
+- [Architecture and migration](docs/PLATFORM_ARCHITECTURE.md)
+- [Delivery plan](docs/PROJECT_PLAN.md)
+- [Tega case-study guide](case_studies/tega/README.md)
+- [Financial-analysis methods](docs/FINANCIAL_ANALYSIS_METHODS.md)

@@ -98,7 +98,9 @@ def load_history(path: str | Path) -> FinancialHistory:
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise FinancialDataError(f"cannot read financial input: {exc}") from exc
     if isinstance(payload, dict) and "base_year" in payload:
-        from equity_analytics.forecasting.history import financial_history_payload
+        from equity_analytics.case_studies.tega.financial_history import (
+            financial_history_payload,
+        )
         from equity_analytics.forecasting.inputs import ModelInputError
 
         try:

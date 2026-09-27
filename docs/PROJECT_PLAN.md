@@ -1,72 +1,64 @@
-# Delivery plan
+# Investment Research Platform delivery plan
 
-Target pace: 2–3 focused hours per day for approximately five weeks, with a
-sixth week available as buffer.
+Agreed scope, 27 September 2026: SQL/Data, Fundamental analysis, Generic DCF,
+Screening, Factors, Backtesting, Portfolio analytics, Risk analytics,
+Index analytics and Streamlit.
 
-## Phase 1 — Equity research and valuation (days 1–7)
+The overall budget is 120–160 focused hours, subject to data access, quality
+and research depth. At 2–3 hours per working day this is about 40–80 working
+days; calendar duration depends on days worked per week. This is a planning
+estimate, not an implementation status. Use completion gates below rather
+than treating earlier week estimates as promises.
 
-- Establish the package architecture and financial data contracts.
-- Build and test the FCFF DCF engine.
-- Add scenario and sensitivity analysis.
-- Add historical-statement ingestion and ratio analysis.
-- Produce the first company research workflow.
+## Foundation: audit and boundaries
 
-**Acceptance criteria:** A user can load a documented company input, reproduce
-the DCF, inspect every forecast line, and export an audit-friendly result.
+- Establish a passing baseline at a known Git revision.
+- Isolate company-specific models and adapters.
+- Preserve runnable examples and existing launchers.
+- Distinguish implemented capabilities from planned ones in the README.
 
-## Phase 2 — Portfolio analytics (days 8–11)
+## Milestone 1: usable company research
 
-- Holdings and transaction models.
-- Return, volatility, drawdown, Sharpe, Sortino, and benchmark attribution.
-- Correlation and diversification diagnostics.
+1. SQL/Data: SQLite company, source, annual statement, price and assumption
+   storage. Preserve units, currency, basis, publication dates and revisions.
+   Validate duplicates and reconciliations; record each ingestion run.
+2. Fundamentals: reuse current ratios; add documented ROIC, working-capital
+   and market metrics when sufficient inputs exist.
+3. DCF: strengthen finite-value validation, add reported opening NWC, capital
+   claims, WACC calculation and scenario configurations. Document terminal policy.
+4. Screening: compare growth, quality, leverage and valuation. Keep missing data
+   explicit. Start with a small verified universe, expanding toward 20–30 stocks.
 
-**Acceptance criteria:** A portfolio can be compared with a benchmark over a
-chosen date range with transparent calculations.
+Gate: a fresh checkout loads documented data into SQL, produces analysis and
+valuation, and compares multiple real companies through a reproducible command.
+Inputs, calculations and failures are inspectable.
 
-## Phase 3 — Factor research and backtesting (days 12–18)
+## Milestone 2: systematic research
 
-- Value, quality, momentum, size, and low-volatility signals.
-- Cross-sectional ranking and portfolio construction.
-- Rebalancing, costs, turnover, and look-ahead-bias controls.
+- Factors: value, quality, momentum and growth with explicit normalization.
+- Backtesting: publication dates, historical membership, corporate actions,
+  rebalancing, transaction costs and benchmark. Document unavailable data.
+- Portfolio: returns, volatility, Sharpe, Sortino, beta, tracking error,
+  turnover and a specified attribution method.
+- Risk: historical, parametric and Monte Carlo VaR, Expected Shortfall and
+  stress tests with declared horizon and confidence level.
+- Index: selection, weighting, caps, rebalancing, turnover and tracking.
 
-**Acceptance criteria:** A factor strategy can be reproduced from raw inputs to
-performance report without using future information.
+Gate: reproduce a defined strategy and index, compare with a benchmark, test
+return/cost accounting and risk estimates, and discuss limitations without
+selecting only favorable periods or results.
 
-## Phase 4 — Risk analytics (days 19–23)
+## Milestone 3: presentation
 
-- Historical, parametric, and Monte Carlo VaR.
-- Expected Shortfall.
-- Scenario and stress testing.
-- Risk contribution and concentration diagnostics.
+Streamlit views, data dictionary, methods, screenshots and an interview
+walkthrough. Tests and documentation accompany every earlier feature; this
+milestone adds the final interface and presentation. Avoid empty placeholder
+modules merely to match the roadmap.
 
-**Acceptance criteria:** Risk outputs are tested against known examples and
-clearly state horizon, confidence level, and assumptions.
+## Immediate next build
 
-## Phase 5 — Data platform (days 24–27)
-
-- SQL schema for companies, statements, prices, factors, and portfolios.
-- Repeatable ingestion and validation pipeline.
-- Caching, data-quality checks, and provenance metadata.
-
-**Acceptance criteria:** The analytics layer reads consistent, validated data
-through a documented repository interface.
-
-## Phase 6 — Streamlit application (days 28–32)
-
-- Research, valuation, portfolio, factor, and risk pages.
-- Interactive controls, tables, charts, and exports.
-- Graceful error and empty-state handling.
-
-**Acceptance criteria:** A new user can complete the core research and portfolio
-workflows without using the command line.
-
-## Phase 7 — Quality and presentation (days 33–36)
-
-- Expand automated tests and continuous integration.
-- Add architecture, methodology, and data-dictionary documentation.
-- Create screenshots, example outputs, and a concise GitHub walkthrough.
-- Review reproducibility, performance, and investment disclaimers.
-
-**Acceptance criteria:** The repository installs cleanly, tests pass, examples
-run, and the documentation explains both the finance and the engineering.
-
+Implement `src/equity_analytics/data/`: SQLite migration(s), company/source/
+annual statement storage, an idempotent loader and publication-date queries.
+Reuse `financials.models` at the boundary. Establish a revision policy before
+storing restatements. Test that future publications and later restatements
+cannot leak into earlier as-of results.
