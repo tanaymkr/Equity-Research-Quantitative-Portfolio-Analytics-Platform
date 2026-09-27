@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "company": {
+    "name": "VA Tech Wabag Limited",
+    "ticker": "WABAG.NS",
+    "currency": "INR",
+    "financial_unit": "million",
+    "statement_basis": "consolidated",
+    "data_kind": "reported"
+  },
+  "as_of": "2026-09-11",
+  "notes": "Operating EBIT excludes separately disclosed FX gains, other income, equity-accounted profit and exceptional items. Debt includes current/non-current borrowings and leases. Cash excludes other bank balances. Capex is gross cash purchases of PPE and intangibles; CFO less capex is not FCFF.",
+  "sources": [
+    {
+      "source_id": "wabag_ar2026",
+      "title": "VA Tech Wabag Annual Report 2025-26",
+      "published_on": "2026-07-20",
+      "locator": "Printed pp.244-247 (PDF pp.246-249). Dispatch on July 20 confirmed by July 21 post-dispatch newspaper notice: https://www.wabag.com/wp-content/uploads/2026/07/Post-Dispatch_Newspaper-Publication.pdf",
+      "url": "https://www.wabag.com/wp-content/uploads/2026/07/Annual-Report-2026.pdf"
+    }
+  ],
+  "annuals": [
+    {
+      "fiscal_year": 2025,
+      "period_end": "2025-03-31",
+      "source_id": "wabag_ar2026",
+      "months": 12,
+      "notes": "Operating EBIT excludes separately disclosed FX gains, other income, equity-accounted profit and exceptional items. Debt includes current/non-current borrowings and leases. Cash excludes other bank balances. Capex is gross cash purchases of PPE and intangibles; CFO less capex is not FCFF.",
+      "revenue": 32940,
+      "ebit": 4164,
+      "depreciation_amortisation": 59,
+      "net_income": 2948,
+      "net_income_to_owners": 2953,
+      "finance_costs": 788,
+      "total_assets": 52673,
+      "total_liabilities": 31223,
+      "total_equity": 21450,
+      "equity_to_owners": 21399,
+      "current_assets": 42809,
+      "current_liabilities": 25209,
+      "cash_and_equivalents": 7177,
+      "total_debt": 3617,
+      "operating_cash_flow": 3552,
+      "capex": 45
+    },
+    {
+      "fiscal_year": 2026,
+      "period_end": "2026-03-31",
+      "source_id": "wabag_ar2026",
+      "months": 12,
+      "notes": "Operating EBIT excludes separately disclosed FX gains, other income, equity-accounted profit and exceptional items. Debt includes current/non-current borrowings and leases. Cash excludes other bank balances. Capex is gross cash purchases of PPE and intangibles; CFO less capex is not FCFF.",
+      "revenue": 39442,
+      "ebit": 4712,
+      "depreciation_amortisation": 62,
+      "net_income": 3698,
+      "net_income_to_owners": 3705,
+      "finance_costs": 729,
+      "total_assets": 61224,
+      "total_liabilities": 35487,
+      "total_equity": 25737,
+      "equity_to_owners": 25685,
+      "current_assets": 50886,
+      "current_liabilities": 29819,
+      "cash_and_equivalents": 7851,
+      "total_debt": 2284,
+      "operating_cash_flow": 2067,
+      "capex": 52
+    }
+  ]
+}
