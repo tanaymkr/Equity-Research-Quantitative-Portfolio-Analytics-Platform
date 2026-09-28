@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "company_id": "WABAG",
+  "currency": "INR",
+  "financial_unit": "million",
+  "base_year": 2026,
+  "anchor_date": "2026-03-31",
+  "information_as_of": "2026-09-28",
+  "assumptions_available_on": "2026-09-28",
+  "bridge": {
+    "shares_million": 63.150829,
+    "opening_nwc": 16094,
+    "nonoperating_assets": 721,
+    "minority_interest": 52,
+    "other_claims": 0
+  },
+  "sources": [
+    {
+      "title": "Wabag annual report FY2026",
+      "url": "https://www.wabag.com/wp-content/uploads/2026/07/Annual-Report-2026.pdf",
+      "locator": "Printed pp.244-247: balance sheet and cash flow; note 15: ending shares; note 28 p.288: interest vs bank charges; note 32: incremental diluted options.",
+      "available_on": "2026-07-20"
+    },
+    {
+      "title": "Q1 FY2027 management call, August 13, 2026",
+      "url": "https://www.wabag.com/wp-content/uploads/2026/08/Q1-FY27_VA-TECH-WABAG_Transcript-clean.pdf",
+      "locator": "Call August 13, 2026; accessed September 28, 2026 (conservative availability, not asserted original filing date). Printed pp.14-16,19,23: revenue guidance, margin definition, working capital and asset-light operations.",
+      "available_on": "2026-09-28"
+    }
+  ],
+  "rationale": {
+    "revenue_growth": "FY2027 base 17.5% and upside 20% within management 15-20% guidance; downside 12% is analyst stress. All later growth paths are analyst fade assumptions, not guidance or consensus.",
+    "ebit_margin": "Management FY2027 EBITDA guidance 13-14% includes operational FX. FY2027 assumed management EBITDA: downside 12%, base 13.5%, upside 14%. Subtract FY2026 bank charges/revenue (499/39442) and historical D&A/revenue to obtain FCFF EBIT. Bank charges treated as operating; borrowing interest excluded. Subsequent margin paths are analyst estimates. Historical SQL EBIT excludes FX and adds back all finance costs; do not directly equate the two definitions.",
+    "depreciation_pct_revenue": "Historical pooled FY2024-26 D&A / revenue = 205/100946. History is sourced in the SQL export.",
+    "capex_pct_revenue": "Historical pooled cash PPE/intangible purchases / revenue = 216/100946; downside 1.5x, base 1x, upside 1x. Asset-light guidance supports low physical capex, not zero capex. No verified consensus capex series used.",
+    "nwc_pct_revenue": "Opening trade/contract proxy 16094 = inventory358 + current receivables25236 + noncurrent receivables6481 + other current assets13949 - current trade payables714-11908 - noncurrent trade payables1892 - other current liabilities13342 - other noncurrent liabilities2074. Excludes cash, financial investments, loans, provisions and tax liabilities. Proxy is broader than management working-capital-days KPI; avoid substituting management days without reconciliation. Base/upside retain FY2026 ratio; downside increases by 3 percentage points.",
+    "tax_rate": "25% normalized analyst assumption, informed by FY2024-26 effective tax near 24%; not a marginal statutory-rate claim.",
+    "wacc_inputs": "Illustrative CAPM calibration, not verified current market inputs or consensus WACC: risk-free6.5%, beta1, ERP6%, target debt weight5%. Pre-tax debt cost230/average debt(3617,2284), excluding bank charges. Downside beta1.2; upside0.9. Refresh risk-free/beta/ERP/market-value weights before an investment decision.",
+    "bridge": "Cash and lease-inclusive debt come from SQL. 721 nonoperating assets = 669 equity-accounted investments +52 other investments, book-value proxies. Minority value52 uses book equity proxy, not fair value. Other claims0 is explicit analyst assumption, not a verified absence of all contingent claims. All reported cash assumed available; operational/restricted cash review remains needed. Shares63.150829m = FY2026 ending62.309595m + incremental diluted EPS options0.841234m; this is a dilution proxy, not an exact current-date treasury-stock calculation.",
+    "dates": "Discount periods begin at FY2026 year-end with full FY2027 first forecast. Uses later report/guidance and analyst assumptions. Not a contemporaneous March2026 valuation, September2026 target, quarterly roll-forward or backtest.",
+    "consensus": "No verified multi-broker consensus dataset available in this build. Management guidance is used where verified; remaining operational drivers use historical ratios with explicit analyst scenarios. Discount/terminal assumptions remain analyst inputs.",
+    "terminal": "Explicit-year FCFF uses operating reinvestment. Terminal FCFF = next-year NOPAT * (1-g/ROIC), with stable margin and a separately stated terminal ROIC. This avoids perpetuating final high-growth working-capital investment. Transition is simplified and should be reviewed."
+  },
+  "scenarios": {
+    "downside": {
+      "wacc_inputs": {
+        "risk_free_rate": 0.065,
+        "beta": 1.2,
+        "equity_risk_premium": 0.06,
+        "pretax_cost_of_debt": 0.0779528893407897,
+        "debt_weight": 0.05
+      },
+      "forecast": {
+        "revenue_growth": [
+          0.12,
+          0.1,
+          0.08,
+          0.06,
+          0.05
+        ],
+        "ebit_margin": [
+          0.10531772300022216,
+          0.10531772300022216,
+          0.10531772300022216,
+          0.10531772300022216,
+          0.10531772300022216
+        ],
+        "tax_rate": 0.25,
+        "depreciation_pct_revenue": 0.0020307887385334735,
+        "capex_pct_revenue": 0.0032096368355358307,
+        "nwc_pct_revenue": 0.43804218852999344,
+        "terminal_growth": 0.04,
+        "terminal_roic": 0.12
+      }
+    },
+    "base": {
+      "wacc_inputs": {
+        "risk_free_rate": 0.065,
+        "beta": 1.0,
+        "equity_risk_premium": 0.06,
+        "pretax_cost_of_debt": 0.0779528893407897,
+        "debt_weight": 0.05
+      },
+      "forecast": {
+        "revenue_growth": [
+          0.175,
+          0.15,
+          0.12,
+          0.1,
+          0.07
+        ],
+        "ebit_margin": [
+          0.12031772300022217,
+          0.1253177230002222,
+          0.1253177230002222,
+          0.1253177230002222,
+          0.1253177230002222
+        ],
+        "tax_rate": 0.25,
+        "depreciation_pct_revenue": 0.0020307887385334735,
+        "capex_pct_revenue": 0.0021397578903572206,
+        "nwc_pct_revenue": 0.4080421885299934,
+        "terminal_growth": 0.04,
+        "terminal_roic": 0.15
+      }
+    },
+    "upside": {
+      "wacc_inputs": {
+        "risk_free_rate": 0.065,
+        "beta": 0.9,
+        "equity_risk_premium": 0.06,
+        "pretax_cost_of_debt": 0.0779528893407897,
+        "debt_weight": 0.05
+      },
+      "forecast": {
+        "revenue_growth": [
+          0.2,
+          0.18,
+          0.15,
+          0.12,
+          0.08
+        ],
+        "ebit_margin": [
+          0.1253177230002222,
+          0.13031772300022218,
+          0.13531772300022218,
+          0.13531772300022218,
+          0.13531772300022218
+        ],
+        "tax_rate": 0.25,
+        "depreciation_pct_revenue": 0.0020307887385334735,
+        "capex_pct_revenue": 0.0021397578903572206,
+        "nwc_pct_revenue": 0.4080421885299934,
+        "terminal_growth": 0.04,
+        "terminal_roic": 0.18
+      }
+    }
+  },
+  "sensitivity": {
+    "wacc_values": [
+      0.1,
+      0.11,
+      0.12,
+      0.13,
+      0.14
+    ],
+    "terminal_growth_values": [
+      0.03,
+      0.04,
+      0.05
+    ]
+  },
+  "ticker": "WABAG.NS"
+}

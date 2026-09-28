@@ -113,3 +113,14 @@ Run `python run_wabag_analysis.py` or `Run_Wabag_Analysis.bat` for Wabag
 FY2024–FY2026 financials, Tega analysis and a common-period comparison.
 See [START_WABAG.md](START_WABAG.md) for source evidence, mappings and limitations.
 Wabag DCF forecasts are not included yet.
+
+### SQL-backed generic DCF
+
+Run `Run_Wabag_Analysis.bat`, then `Run_Wabag_DCF.bat` (or `python run_sql_dcf.py`).
+The report at `outputs/valuation/wabag/valuation.html` contains three scenarios,
+FCFF forecasts, a CAPM WACC build, an equity bridge and terminal sensitivity.
+Edit `examples/wabag_dcf_assumptions.json` for company-specific assumptions.
+See [START_SQL_DCF.md](START_SQL_DCF.md) for the source mappings and validation.
+This annual research model uses illustrative market inputs and book-value
+adjustments; its output is not a current-date target price. The detailed
+Tega-Molycop case study remains separate.

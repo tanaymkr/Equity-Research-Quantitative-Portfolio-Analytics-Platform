@@ -4,10 +4,21 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import asdict, dataclass
+from math import isfinite
 from typing import Any
 
 
+def _finite(name: str, value: float) -> None:
+    if (
+        isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not isfinite(value)
+    ):
+        raise ValueError(f"{name} must be a finite number")
+
+
 def _validate_rate(name: str, value: float, *, upper: float = 1.0) -> None:
+    _finite(name, value)
     if not 0.0 <= value < upper:
         raise ValueError(f"{name} must be between 0 and {upper}, got {value}")
 
@@ -30,7 +41,31 @@ class HistoricalSnapshot:
     currency: str = "INR"
     financial_unit: str = "crore"
 
+    opening_nwc: float | None = None
+    nonoperating_assets: float = 0.0
+    minority_interest: float = 0.0
+    other_claims: float = 0.0
+
     def __post_init__(self) -> None:
+        for name in (
+            "revenue",
+            "cash",
+            "debt",
+            "shares_outstanding",
+            "nonoperating_assets",
+            "minority_interest",
+            "other_claims",
+        ):
+            _finite(name, getattr(self, name))
+        if any(
+            getattr(self, n) < 0
+            for n in ("nonoperating_assets", "minority_interest", "other_claims")
+        ):
+            raise ValueError("Equity bridge adjustments must be nonnegative")
+        if self.opening_nwc is not None:
+            _finite("opening_nwc", self.opening_nwc)
+        if not isinstance(self.base_year, int) or isinstance(self.base_year, bool):
+            raise TypeError("base_year must be an integer")
         if not self.company_name.strip():
             raise ValueError("company_name cannot be empty")
         if self.revenue <= 0:
@@ -53,6 +88,7 @@ class DCFAssumptions:
     nwc_pct_revenue: float
     wacc: float
     terminal_growth: float
+    terminal_roic: float | None = None
 
     @classmethod
     def from_sequences(
@@ -66,6 +102,7 @@ class DCFAssumptions:
         nwc_pct_revenue: float,
         wacc: float,
         terminal_growth: float,
+        terminal_roic: float | None = None,
     ) -> DCFAssumptions:
         return cls(
             revenue_growth=tuple(revenue_growth),
@@ -76,6 +113,7 @@ class DCFAssumptions:
             nwc_pct_revenue=nwc_pct_revenue,
             wacc=wacc,
             terminal_growth=terminal_growth,
+            terminal_roic=terminal_roic,
         )
 
     def __post_init__(self) -> None:
@@ -83,7 +121,9 @@ class DCFAssumptions:
             raise ValueError("at least one forecast year is required")
         if len(self.revenue_growth) != len(self.ebit_margin):
             raise ValueError("revenue_growth and ebit_margin must have equal lengths")
+        _finite("terminal_growth", self.terminal_growth)
         for growth in self.revenue_growth:
+            _finite("revenue_growth", growth)
             if growth <= -1.0:
                 raise ValueError("revenue growth cannot be less than or equal to -100%")
         for margin in self.ebit_margin:
@@ -95,6 +135,13 @@ class DCFAssumptions:
         _validate_rate("wacc", self.wacc)
         if self.terminal_growth <= -1.0:
             raise ValueError("terminal_growth cannot be less than or equal to -100%")
+        if self.terminal_roic is not None:
+            _finite("terminal_roic", self.terminal_roic)
+            if (
+                self.terminal_roic <= 0
+                or not 0 <= self.terminal_growth < self.terminal_roic
+            ):
+                raise ValueError("ROIC terminal requires 0 <= growth < positive ROIC")
         if self.terminal_growth >= self.wacc:
             raise ValueError("terminal_growth must be lower than wacc")
 
@@ -133,6 +180,12 @@ class DCFResult:
     wacc: float
     terminal_growth: float
 
+    nonoperating_assets: float = 0.0
+    minority_interest: float = 0.0
+    other_claims: float = 0.0
+    terminal_fcff: float = 0.0
+    terminal_method: str = "legacy_fcff_growth"
+
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
@@ -145,7 +198,11 @@ def calculate_dcf(
 
     forecast: list[ForecastYear] = []
     prior_revenue = snapshot.revenue
-    prior_nwc = snapshot.revenue * assumptions.nwc_pct_revenue
+    prior_nwc = (
+        snapshot.opening_nwc
+        if snapshot.opening_nwc is not None
+        else snapshot.revenue * assumptions.nwc_pct_revenue
+    )
 
     for period, (growth, margin) in enumerate(
         zip(assumptions.revenue_growth, assumptions.ebit_margin, strict=True),
@@ -182,18 +239,34 @@ def calculate_dcf(
         prior_nwc = net_working_capital
 
     final_fcff = forecast[-1].fcff
-    terminal_value = (
-        final_fcff
-        * (1.0 + assumptions.terminal_growth)
-        / (assumptions.wacc - assumptions.terminal_growth)
-    )
+    terminal_fcff = final_fcff * (1.0 + assumptions.terminal_growth)
+    if assumptions.terminal_roic is not None:
+        terminal_fcff = (
+            forecast[-1].nopat
+            * (1 + assumptions.terminal_growth)
+            * (1 - assumptions.terminal_growth / assumptions.terminal_roic)
+        )
+    terminal_value = terminal_fcff / (assumptions.wacc - assumptions.terminal_growth)
     present_value_terminal = terminal_value * forecast[-1].discount_factor
     enterprise_value = (
         sum(year.present_value_fcff for year in forecast) + present_value_terminal
     )
-    equity_value = enterprise_value + snapshot.cash - snapshot.debt
+    equity_value = (
+        enterprise_value
+        + snapshot.cash
+        + snapshot.nonoperating_assets
+        - snapshot.debt
+        - snapshot.minority_interest
+        - snapshot.other_claims
+    )
     implied_value_per_share = equity_value / snapshot.shares_outstanding
 
+    for name, value in (
+        ("enterprise_value", enterprise_value),
+        ("equity_value", equity_value),
+        ("implied_value_per_share", implied_value_per_share),
+    ):
+        _finite(name, value)
     return DCFResult(
         company_name=snapshot.company_name,
         currency=snapshot.currency,
@@ -209,4 +282,11 @@ def calculate_dcf(
         implied_value_per_share=implied_value_per_share,
         wacc=assumptions.wacc,
         terminal_growth=assumptions.terminal_growth,
+        nonoperating_assets=snapshot.nonoperating_assets,
+        minority_interest=snapshot.minority_interest,
+        other_claims=snapshot.other_claims,
+        terminal_fcff=terminal_fcff,
+        terminal_method="roic_reinvestment"
+        if assumptions.terminal_roic is not None
+        else "legacy_fcff_growth",
     )
