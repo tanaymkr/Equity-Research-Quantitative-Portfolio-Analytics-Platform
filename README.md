@@ -1,35 +1,53 @@
 # Investment Research Platform
 
-Python research software for company financial analysis and valuation, with a
-planned SQL data layer, screening, factor research, backtesting, portfolio,
-risk, index analytics and Streamlit interface. Built by Tanay Malekar.
-
-The working examples are a generic FCFF DCF, annual financial analysis, and
-a detailed Tega/Molycop acquisition case study.
+Python and SQLite research software for company financial analysis, valuation
+and screening. Built by Tanay Malekar. The reported examples are **Tega
+Industries** and **VA Tech Wabag**, each covering FY2024-FY2026. A separate
+synthetic dataset supports learning and tests.
 
 ## What works today
 
 | Component | Implemented | Remaining work |
 | --- | --- | --- |
-| SQL/Data | SQLite company/source records, annual statement versions, raw-input audit trail, repeatable imports and publication-date queries | Price ingestion, richer company metadata, assumption storage and provider adapters |
-| Fundamental analysis | Growth, margins, ROE/ROA/ROCE, leverage, liquidity and cash metrics | ROIC, working-capital days, market multiples and universe comparison |
-| Generic DCF | FCFF forecasts, supplied WACC, terminal growth, cash/debt bridge and sensitivity | Calculated WACC, scenarios, richer claims, reported opening NWC and stronger validation |
-| Tega case study | Reported history, acquisition forecasts, consolidation, WACC, claims and scenarios | Resolve documented data limitations |
-| Screening | Planned | Universe filters and comparable output |
-| Factors | Planned | Value, quality, momentum and growth |
-| Backtesting | Planned | Dated data, rebalancing, costs and benchmark |
-| Portfolio analytics | Planned | Performance, risk and attribution |
-| Risk analytics | Planned | VaR, Expected Shortfall and stress tests |
-| Index analytics | Planned | Selection, weights, caps and rebalancing |
-| Streamlit | Planned | Views consuming the analytical functions |
+| SQL/data | Annual statements, company/source records, filing versions, raw-input audit trail and publication-date queries | Prices, corporate actions, provider adapters and historical membership |
+| Fundamental analysis | Growth, margins, ROE/ROA/ROCE, leverage, liquidity, cash metrics and company comparison | ROIC, working-capital days and market multiples |
+| Generic DCF | SQL inputs, company assumptions, FCFF scenarios, CAPM WACC, opening NWC, capital claims, terminal reinvestment and sensitivity | Market-input/claims refinement, valuation-date roll-forward and assumption versioning |
+| Screening | Configurable bounds, sorting, dated statements, unit normalization, flagged zero substitution, HTML/CSV/JSON | Valuation filters and a broader sourced universe |
+| Tega-Molycop case study | Reported history, acquisition forecasts, consolidation, group WACC, claims and scenarios | Resolve documented provisional deal/model inputs |
+| Factors, backtesting, portfolio, risk and index analytics | Planned | Dated prices, methodology and implementation |
+| Streamlit | Planned | Interface over tested analytical modules |
 
-There is no automated 20–30-company pipeline yet. Generic examples are
-explicitly synthetic. Tega reported figures have source references and
-forecasts contain separately labeled assumptions.
+Two reported companies demonstrate the pipeline; an automated 20-30-company
+universe is not implemented. The synthetic DEMO is excluded from screening.
 
-## Run the working examples
+## Run on Windows
 
-Requires Python 3.11+. Current calculations use the standard library.
+Python 3.11+ is required. Runtime calculations use the standard library.
+Run launchers from the repository folder:
+
+| Task | Double-click | Open the resulting report |
+| --- | --- | --- |
+| Load SQL, analyse Tega and Wabag | `Run_Wabag_Analysis.bat` | `outputs/data/company_comparison.html` |
+| Screen companies | `Run_Screener.bat` | `outputs/screener/screener.html` |
+| Wabag DCF | `Run_Wabag_DCF.bat` | `outputs/valuation/wabag/valuation.html` |
+| Detailed Tega-Molycop model | `Run_Tega_Model.bat` | `outputs/tega_molycop/report.html` |
+
+Run the SQL loader first. Repeated imports record an audit entry but do not
+duplicate financial facts. The database is `outputs/data/research.sqlite`.
+`Run_Data_Pipeline.bat` remains available for loading data and exporting Tega's
+individual analysis.
+
+Edit screening rules in `examples/screener_config.json`. Missing/unavailable
+numeric metrics count as **zero for filtering, sorting and CSV exports**, with
+substitution flags and reasons. Source SQL nulls are preserved. Percentage
+thresholds use decimals: `0.10` means 10%.
+
+Edit Wabag valuation assumptions in `examples/wabag_dcf_assumptions.json`.
+The DCF outputs remain preliminary: market inputs and some equity adjustments
+are estimates. Tanay controls those assumptions. Tests establish calculation
+and software behaviour; they do not validate an investment thesis.
+
+## Python commands and development
 
 ```bash
 python -m venv .venv
@@ -37,90 +55,67 @@ python -m venv .venv
 # macOS/Linux: source .venv/bin/activate
 python -m pip install -e ".[dev]"
 
-# Store included financial histories in SQLite and generate analysis from SQL
-python run_data_pipeline.py
-
-# Synthetic generic DCF and sensitivity
-python -m equity_analytics.cli examples/demo_dcf.json --json-output outputs/demo_dcf.json
-
-# Synthetic annual financial analysis
-python -m equity_analytics.financials examples/demo_financial_history.json --output-dir outputs/demo_financials
-
-# Sourced Tega statements and annual ratios
-python -m equity_analytics.financials examples/tega_fy2026_reported_statements.json --output-dir outputs/tega_financials
-
-# Tega/Molycop scenarios and HTML report
+python run_wabag_analysis.py
+python run_screener.py
+python run_sql_dcf.py
 python run_tega_model.py
+
+# Synthetic standalone examples
+python -m equity_analytics.cli examples/demo_dcf.json --json-output outputs/demo_dcf.json
+python -m equity_analytics.financials examples/demo_financial_history.json --output-dir outputs/demo_financials
 
 python -m pytest
 python -m ruff check .
 ```
 
-The installed `equity-dcf` command also runs the generic valuation. Tega's
-report is written to `outputs/tega_molycop/report.html`. Generated outputs
-are ignored by Git.
-
-For the data milestone, double-click `Run_Data_Pipeline.bat` on Windows or use
-the Python command above. Open `outputs/data/tega/analysis.html`. The database
-is `outputs/data/research.sqlite`. It contains one real company (TEGA) and one
-explicitly synthetic example (DEMO), not a verified multi-stock universe.
-Rerunning records a new ingestion audit entry without duplicating statements.
-See [Data pipeline instructions](START_DATA_PIPELINE.md).
+Generated outputs, local databases and Python caches are ignored by Git.
+The committed reports under `examples/` are reference snapshots, not live
+results; regenerate `outputs/` after changing assumptions or data.
 
 ## Code map
 
 | Location | Responsibility |
 | --- | --- |
-| `src/equity_analytics/data/` | Versioned SQLite schema, ingestion evidence, annual statement storage and dated queries |
-| `src/equity_analytics/financials/` | Annual data contracts, validation, ratios and reports |
-| `src/equity_analytics/valuation/` | Generic FCFF valuation and sensitivity |
-| `src/equity_analytics/forecasting/` | Linked statements using the existing detailed INR schema; broad company coverage needs validation |
-| `src/equity_analytics/case_studies/tega/` | Acquisition, financing, consolidation, WACC, equity bridge and Tega statement adapter |
-| `src/equity_analytics/acquisition/` | Compatibility imports and launcher for the old Tega package path |
-| `examples/` | Inputs and checked-in reference reports |
-| `tests/` | Accounting, valuation, scenario and migration checks |
-| `docs/` | Methodology, audit and delivery plan |
+| `src/equity_analytics/data/` | SQLite schema, ingestion, publication-date queries and comparisons |
+| `src/equity_analytics/financials/` | Annual contracts, validation, ratios and reports |
+| `src/equity_analytics/screening/` | Filters, deterministic sorting, zero substitution and exports |
+| `src/equity_analytics/valuation/` | Shared DCF, SQL adapter, CAPM WACC and sensitivity |
+| `src/equity_analytics/forecasting/` | Detailed linked statements; broader company coverage requires validation |
+| `src/equity_analytics/case_studies/tega/` | Tega-Molycop acquisition and consolidated model |
+| `src/equity_analytics/acquisition/` | Compatibility imports for earlier Tega package paths |
+| `examples/` | Sourced inputs, explicit assumptions, synthetic examples and reference reports |
+| `tests/` | Accounting identities, valuation, ingestion, screening and compatibility checks |
+| `docs/` | Methodology, dated validation records and roadmap |
 
-Tega inputs retain their `examples/` paths so source references and launchers
-continue to resolve. New code uses the `case_studies.tega` namespace.
+## Model conventions and limits
 
-## Conventions and limitations
+Annual SQL queries use public source dates, not the date the database first
+learned a fact. Annual reports can lag earlier results releases. This is not
+complete point-in-time market data or a survivorship-free backtest universe.
 
-Generic DCF money and shares must use matching scales: INR crore divided by
-crore shares yields INR per share. The engine discounts at year end, accepts
-WACC as an input and grows final forecast FCFF into perpetuity. Opening NWC
-is inferred from revenue and the forecast NWC percentage. These limitations
-need addressing before broader research use.
+The SQL DCF uses money and shares in millions. It supports explicit opening
+NWC and a terminal ROIC reinvestment method. The older standalone demo retains
+its original terminal-FCFF-growth method. Wabag's annual model is anchored at
+31 March 2026 using later information; it is not a current-date price target.
+See its guide for dilution, book-value claims and WACC limitations.
 
-The Tega case uses INR million and actual diluted shares. Its valuation date
-is 30 June 2026; its research cutoff is 11 September 2026. It uses later
-disclosures and is not a point-in-time backtest input. Molycop opening
-allocations, preference terms and several financing inputs remain provisional.
-The legacy opening gap is INR15.875 million (INR1.5875 crore), without a plug.
+The detailed Tega model uses INR million, a 30 June 2026 valuation date and an
+11 September 2026 research cutoff. Acquisition allocations and financing inputs
+remain provisional. Its documented opening gap is INR15.875 million, without
+a balancing plug. Reported Tega screening metrics predate the acquisition and
+are not the pro-forma group forecasts.
 
-## Read next
+## Guides
 
-- [Repository audit](docs/REPOSITORY_AUDIT.md)
-- [SQL schema and information-date policy](docs/DATA_LAYER.md)
-- [Architecture and migration](docs/PLATFORM_ARCHITECTURE.md)
-- [Delivery plan](docs/PROJECT_PLAN.md)
-- [Tega case-study guide](case_studies/tega/README.md)
+- [SQL pipeline](START_DATA_PIPELINE.md)
+- [Wabag history and comparison](START_WABAG.md)
+- [Screener](START_SCREENER.md)
+- [SQL DCF](START_SQL_DCF.md)
+- [Tega model](START_TEGA_MODEL.md)
 - [Financial-analysis methods](docs/FINANCIAL_ANALYSIS_METHODS.md)
+- [Architecture](docs/PLATFORM_ARCHITECTURE.md)
+- [Delivery plan](docs/PROJECT_PLAN.md)
 
-### Second reported company: VA Tech Wabag
-
-Run `python run_wabag_analysis.py` or `Run_Wabag_Analysis.bat` for Wabag
-FY2024–FY2026 financials, Tega analysis and a common-period comparison.
-See [START_WABAG.md](START_WABAG.md) for source evidence, mappings and limitations.
-Wabag DCF forecasts are not included yet.
-
-### SQL-backed generic DCF
-
-Run `Run_Wabag_Analysis.bat`, then `Run_Wabag_DCF.bat` (or `python run_sql_dcf.py`).
-The report at `outputs/valuation/wabag/valuation.html` contains three scenarios,
-FCFF forecasts, a CAPM WACC build, an equity bridge and terminal sensitivity.
-Edit `examples/wabag_dcf_assumptions.json` for company-specific assumptions.
-See [START_SQL_DCF.md](START_SQL_DCF.md) for the source mappings and validation.
-This annual research model uses illustrative market inputs and book-value
-adjustments; its output is not a current-date target price. The detailed
-Tega-Molycop case study remains separate.
+One-time ZIP manifests and the completed old-forecast cleanup utility have been
+retired. Their prior versions remain in Git history. Model inputs, tested
+compatibility imports and reference reports are retained.

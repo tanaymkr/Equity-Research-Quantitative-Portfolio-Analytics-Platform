@@ -53,8 +53,8 @@ valuation peers. Review company-specific accounting notes before interpreting
 relative margins or returns. First-year average-balance returns are unavailable
 without opening balances.
 
-This update adds historical data and fundamental analytics. Wabag forecasts,
-DCF assumptions and valuation scenarios are the next step.
+Historical data and fundamental analytics are available alongside the SQL DCF
+and screener. See `START_SQL_DCF.md` and `START_SCREENER.md`.
 
 
 ## FY2023-24 annual report added

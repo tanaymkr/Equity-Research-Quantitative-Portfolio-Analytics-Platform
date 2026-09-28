@@ -109,4 +109,4 @@ Old separate-business valuation keys are rejected.
 Reports include the annual cash-flow ownership bridge, common discounting,
 terminal calculation and full-versus-attributable claims. Thirty sensitivities
 cover group valuation, operating inputs and claims. Historic update manifests
-are audit records; `TEGA_SINGLE_DCF_UPDATE_FILES.json` describes this release.
+are audit records. The Git history records the files changed in this release.

@@ -26,8 +26,9 @@ than treating earlier week estimates as promises.
    and market metrics when sufficient inputs exist.
 3. DCF: strengthen finite-value validation, add reported opening NWC, capital
    claims, WACC calculation and scenario configurations. Document terminal policy.
-4. Screening: compare growth, quality, leverage and valuation. Keep missing data
-   explicit. Start with a small verified universe, expanding toward 20–30 stocks.
+4. Screening: compare growth, quality and leverage. Substitute unavailable
+   numeric metrics with flagged zeros at the screening boundary (user-selected
+   policy); preserve source SQL nulls. Valuation screening remains future work. Start with a small verified universe, expanding toward 20–30 stocks.
 
 Gate: a fresh checkout loads documented data into SQL, produces analysis and
 valuation, and compares multiple real companies through a reproducible command.
@@ -55,14 +56,17 @@ walkthrough. Tests and documentation accompany every earlier feature; this
 milestone adds the final interface and presentation. Avoid empty placeholder
 modules merely to match the roadmap.
 
-## Immediate next build
+## Current checkpoint and next build
 
-The initial annual-financial SQL layer is implemented in
-`src/equity_analytics/data/`. It stores company/source records, immutable filing
-versions and raw ingestion evidence, reuses `financials.models`, and provides
-publication-date queries. Revision and repeat-load behavior have automated tests.
+As of 28 September 2026, annual SQL ingestion, fundamental analytics, the
+SQL-backed Wabag DCF and the fundamental screener are implemented. Tega and
+Wabag each have FY2024-FY2026 histories. DEMO is synthetic and excluded from
+screening. The DCF engine works; Tanay owns the valuation assumptions and their
+refinement. Its illustrative inputs do not establish investment-ready values.
 
-Next: add dated prices and corporate-action conventions, richer company
-metadata and another sourced real company. Expand financial metrics and DCF
-validation against those stored inputs. Historical membership, assumption
-version storage and provider automation remain outstanding.
+Next implementation: a dated price-data layer with explicit adjustment,
+corporate-action and benchmark conventions, followed by factor research.
+Price provider choice and historical universe coverage must be documented.
+Historical membership, assumption-version storage and provider automation
+remain outstanding. No additional manually modelled company is required to
+start that implementation.

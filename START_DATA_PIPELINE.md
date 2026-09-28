@@ -3,12 +3,7 @@
 Requires Python 3.11+. SQLite is included in Python. No database server or
 additional runtime packages are required.
 
-## Copy-and-paste installation
-
-Extract `Investment_Platform_SQL_Update.zip` and copy its contents directly
-into your existing repository folder, alongside `run_tega_model.py`. Merge
-folders and replace the supplied files. If you have edited these same files,
-keep a backup before replacing them.
+## Run from the repository
 
 Double-click **Run_Data_Pipeline.bat**, or from the repository folder run:
 
@@ -19,15 +14,15 @@ python run_data_pipeline.py
 Open **outputs/data/tega/analysis.html** in your browser.
 
 The command imports the FY25 and FY26 Tega statements plus the explicitly
-synthetic DEMO history into **outputs/data/research.sqlite**. It then queries
+synthetic DEMO history and the FY24/FY26 Wabag reports into **outputs/data/research.sqlite**. It then queries
 that database using a publication cutoff of **11 September 2026** and exports
 Tega FY24–FY26 financial analysis.
 
 First run: 2 Tega versions from the FY25 report, 2 from the FY26 report, and
-5 synthetic DEMO annuals. Tega FY25 has two preserved filing versions, so
+5 synthetic DEMO annuals, and 3 Wabag annuals (FY24-FY26). Tega FY25 has two preserved filing versions, so
 4 stored Tega statements produce 3 selected financial years.
 
-Second run: all three imports say `unchanged`, with zero new statement
+Second run: all five imports say `unchanged`, with zero new statement
 versions. Audit runs still record when each import was attempted.
 
 `run_tega_model.py` continues to produce the valuation report. Use the new

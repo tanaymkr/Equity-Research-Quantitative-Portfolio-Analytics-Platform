@@ -3,7 +3,10 @@
 ## Current components
 
 `financials` owns normalized annual contracts, validation, ratios and reports.
-`valuation` owns the generic FCFF DCF and sensitivity. `forecasting` owns the
+`data` owns versioned SQLite annuals, source dates and ingestion evidence.
+`screening` filters dated fundamentals and applies flagged zero substitution
+without changing source data. `valuation` owns generic FCFF, CAPM WACC,
+SQL-backed scenarios, the equity bridge and sensitivity. `forecasting` owns the
 linked statement engine. Its detailed schema requires consolidated INR
 million reports and includes Tega-derived account mappings; broad company
 coverage is not established.
