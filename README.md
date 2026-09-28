@@ -119,3 +119,7 @@ are not the pro-forma group forecasts.
 One-time ZIP manifests and the completed old-forecast cleanup utility have been
 retired. Their prior versions remain in Git history. Model inputs, tested
 compatibility imports and reference reports are retained.
+
+## Historical price data
+
+The price-data milestone adds SQLite history for Tega, Wabag and the NIFTY 50 price benchmark, source snapshots, corporate actions, coverage checks and aligned returns. Start with [START_PRICE_DATA.md](START_PRICE_DATA.md) and `Run_Price_Pipeline.bat`. The next research milestone is factor construction; a full backtest is not yet implemented.

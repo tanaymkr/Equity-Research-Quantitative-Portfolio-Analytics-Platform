@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "start": "2024-04-01",
+  "end_exclusive": "2026-09-29",
+  "benchmark_id": "NIFTY50",
+  "return_basis": "price",
+  "instruments": [
+    {
+      "instrument_id": "TEGA",
+      "ticker": "TEGA.NS",
+      "name": "Tega Industries Limited",
+      "currency": "INR",
+      "kind": "equity"
+    },
+    {
+      "instrument_id": "WABAG",
+      "ticker": "WABAG.NS",
+      "name": "VA Tech Wabag Limited",
+      "currency": "INR",
+      "kind": "equity"
+    },
+    {
+      "instrument_id": "NIFTY50",
+      "ticker": "^NSEI",
+      "name": "NIFTY 50",
+      "currency": "INR",
+      "kind": "price_index"
+    }
+  ]
+}
