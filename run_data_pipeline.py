@@ -26,6 +26,7 @@ def main(argv=None):
             ("TEGA", "tega_fy2025_reported_statements.json"),
             ("TEGA", "tega_fy2026_reported_statements.json"),
             ("DEMO", "demo_financial_history.json"),
+            ("WABAG", "wabag_fy2024_reported_statements.json"),
             ("WABAG", "wabag_fy2026_reported_statements.json"),
         ):
             result = store.ingest_file(

@@ -16,7 +16,7 @@ Commit source files to GitHub; generated outputs and SQLite remain ignored.
 
 ## Coverage and conventions
 
-Wabag FY2025 and FY2026 are transcribed from the FY2026 consolidated annual
+Wabag now covers FY2024, FY2025 and FY2026. FY2025 and FY2026 are transcribed from the FY2026 consolidated annual
 report, printed pp.244-247 (PDF pp.246-249), in INR million:
 https://www.wabag.com/wp-content/uploads/2026/07/Annual-Report-2026.pdf
 
@@ -25,9 +25,8 @@ Business Standard, July 21, p.13:
 https://www.wabag.com/wp-content/uploads/2026/07/Post-Dispatch_Newspaper-Publication.pdf
 
 Both years carry the July 20 publication date: FY2025 is a comparative in this
-filing, not a reconstruction of information available during FY2025. Queries
-before that date correctly return no Wabag observations. Earlier filings can be
-added later as separate source versions. The default cutoff is September 11, 2026.
+filing, not a reconstruction of information available during FY2025. Before that date, only FY2024 is available from the older filing (from July 23,
+2024 onward). FY2025 historical availability still requires its own earlier filing. The default cutoff is September 11, 2026.
 
 | Mapping (INR million) | FY2025 | FY2026 |
 |---|---:|---:|
@@ -56,3 +55,31 @@ without opening balances.
 
 This update adds historical data and fundamental analytics. Wabag forecasts,
 DCF assumptions and valuation scenarios are the next step.
+
+
+## FY2023-24 annual report added
+
+`examples/wabag_fy2024_reported_statements.json` adds FY2024 from the original
+FY2023-24 annual report, printed pp.298-301 (PDF pp.300-303):
+https://www.wabag.com/wp-content/uploads/2025/07/Annual-Report-FY-2023-24-Compressed.pdf
+
+Publication date is July 23, 2024 (dispatch), confirmed in Business Standard,
+July 24, 2024, p.15, in the company's post-dispatch notice:
+https://www.wabag.com/wp-content/uploads/2024/09/Post-Dispatch-Notice-2024-Advertisements.pdf
+The website upload-directory date is not the publication date.
+
+FY2024 in INR million: revenue 28,564; operating EBIT 3,673; D&A 84;
+total profit 2,504; owners' profit 2,456; total debt including leases 2,889;
+CFO 1,335; gross capex 119. EBIT = 28,564 - 21,672 - (-5) - 2,354 - 84 - 786.
+FX losses embedded in other expenses are retained; this classification differs
+from the separately excluded FX gains in the newer report. Do not interpret
+operating EBITDA as management's adjusted EBITDA.
+
+The source reports assets 45,745, equity 18,239 and liabilities 27,505: a 1 million
+rounding residual is retained within the existing validation tolerance.
+FY2025 growth and average-balance return metrics now have FY2024 opening data.
+FY2023 comparative figures in the older report are outside this update's scope.
+
+This package includes the previous Wabag update as well. Copy its contents into
+the repository, replace matching files, and run `Run_Wabag_Analysis.bat` again.
+No database deletion is needed; existing FY2025/FY2026 source versions are unchanged.

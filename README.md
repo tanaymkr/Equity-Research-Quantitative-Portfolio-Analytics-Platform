@@ -110,6 +110,6 @@ The legacy opening gap is INR15.875 million (INR1.5875 crore), without a plug.
 ### Second reported company: VA Tech Wabag
 
 Run `python run_wabag_analysis.py` or `Run_Wabag_Analysis.bat` for Wabag
-FY2025–FY2026 financials, Tega analysis and a common-period comparison.
+FY2024–FY2026 financials, Tega analysis and a common-period comparison.
 See [START_WABAG.md](START_WABAG.md) for source evidence, mappings and limitations.
 Wabag DCF forecasts are not included yet.

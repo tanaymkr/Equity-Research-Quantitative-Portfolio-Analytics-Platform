@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "company": {
+    "name": "VA Tech Wabag Limited",
+    "ticker": "WABAG.NS",
+    "currency": "INR",
+    "financial_unit": "million",
+    "statement_basis": "consolidated",
+    "data_kind": "reported"
+  },
+  "as_of": "2024-07-23",
+  "notes": "FY2024 consolidated annual-report figures, INR million. Operating EBIT = revenue less cost of sales/services, inventory change, employee costs, D&A and other expenses; excludes other income and associate profit/loss. FX losses within other expenses are retained. Debt includes borrowings and leases. Cash excludes other bank balances. Capex is gross cash purchases of PPE/intangibles. Published assets less liabilities less equity = INR 1 million, retained as source rounding; no balancing plug.",
+  "sources": [
+    {
+      "source_id": "wabag_ar2024",
+      "title": "VA Tech Wabag Annual Report 2023-24",
+      "published_on": "2024-07-23",
+      "locator": "Printed pp.298-301 (PDF pp.300-303). Dispatch July 23, 2024 confirmed in Business Standard July 24 p.15: https://www.wabag.com/wp-content/uploads/2024/09/Post-Dispatch-Notice-2024-Advertisements.pdf",
+      "url": "https://www.wabag.com/wp-content/uploads/2025/07/Annual-Report-FY-2023-24-Compressed.pdf"
+    }
+  ],
+  "annuals": [
+    {
+      "fiscal_year": 2024,
+      "period_end": "2024-03-31",
+      "source_id": "wabag_ar2024",
+      "months": 12,
+      "notes": "FY2024 consolidated annual-report figures, INR million. Operating EBIT = revenue less cost of sales/services, inventory change, employee costs, D&A and other expenses; excludes other income and associate profit/loss. FX losses within other expenses are retained. Debt includes borrowings and leases. Cash excludes other bank balances. Capex is gross cash purchases of PPE/intangibles. Published assets less liabilities less equity = INR 1 million, retained as source rounding; no balancing plug.",
+      "revenue": 28564,
+      "ebit": 3673,
+      "depreciation_amortisation": 84,
+      "net_income": 2504,
+      "net_income_to_owners": 2456,
+      "finance_costs": 711,
+      "total_assets": 45745,
+      "total_liabilities": 27505,
+      "total_equity": 18239,
+      "equity_to_owners": 18186,
+      "current_assets": 36253,
+      "current_liabilities": 21549,
+      "cash_and_equivalents": 4399,
+      "total_debt": 2889,
+      "operating_cash_flow": 1335,
+      "capex": 119
+    }
+  ]
+}
