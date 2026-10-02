@@ -1,10 +1,12 @@
-# SQL-backed generic DCF: Wabag example
+# Legacy SQL-backed generic DCF: Wabag example
+
+The default Wabag launcher now runs the [linked financial-statement model](START_WABAG_FORECAST.md). This guide describes the retained earlier generic example and its separate illustrative assumptions.
 
 Copy this update into the repository, merge folders and replace matching files.
 No deletion or new runtime dependencies are needed. Python 3.11+ is required.
 
 1. Run `Run_Wabag_Analysis.bat` to create/update the three-year SQL history.
-2. Run `Run_Wabag_DCF.bat`.
+2. Run `python run_sql_dcf.py`.
 3. Open `outputs/valuation/wabag/valuation.html`.
 
 The complete machine-readable audit output is `valuation.json` in the same folder.

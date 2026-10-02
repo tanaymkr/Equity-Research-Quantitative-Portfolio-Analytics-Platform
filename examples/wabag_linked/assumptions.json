@@ -1,0 +1,1139 @@
+{
+  "schema_version": 1,
+  "information_as_of": "2026-09-29",
+  "anchor_date": "2026-03-31",
+  "horizon": 5,
+  "convention": "FY2026 year-end anchor with later information; illustrative annual valuation, not a September target price or point-in-time backtest.",
+  "policy": {
+    "terminal_growth": {
+      "value": 0.04,
+      "source": "analyst",
+      "reason": "Editable long-run INR growth assumption, not company guidance."
+    },
+    "terminal_roic": {
+      "value": 0.15,
+      "source": "analyst",
+      "reason": "Editable sustainable return on incremental capital; not the company ROE aspiration."
+    },
+    "cash_exclusion": {
+      "value": 1217,
+      "source": "analyst/ar2026",
+      "reason": "Conservative: subtract 202 restricted + 1015 encumbered from cash equivalents, assuming no overlap and all in cash equivalents. Actual allocation across cash/other bank balances not disclosed. Other bank balances separately treated as operating collateral. Review to avoid excessive exclusion."
+    },
+    "term_repayment": {
+      "value": 294,
+      "source": "ar2026/analyst",
+      "reason": "FY27 uses disclosed current term maturities. Repeat this amount thereafter as a timing proxy; not a contractual annual maturity table."
+    },
+    "term_rate": {
+      "value": 0.085977444589309,
+      "source": "ar2026/analyst",
+      "reason": "Weighted rate proxy using disclosed non-current NCD 379 at 6.61% and other term debt 1155 at 9.25%. Applies this blend to current maturities; overseas loan mix not separately allocated."
+    },
+    "working_rate": {
+      "value": 0.09224215613991972,
+      "source": "historical",
+      "reason": "Pooled FY25-26 borrowing interest / average debt. These two intervals use all three year-end debt balances. Proxy for revolving facility pricing, not a lender quote."
+    },
+    "lease_rate": {
+      "value": 0.019230769230769232,
+      "source": "historical",
+      "reason": "Three-year lease interest (2+1+0) / sum year-end lease liabilities (83+44+29). Rounded statements give only a proxy, not a contractual lease rate."
+    },
+    "land_capex_share": {
+      "value": 0,
+      "source": "zero_unavailable",
+      "reason": "No new land purchase forecast found; existing land retained."
+    },
+    "software_capex_share": {
+      "value": 0.019230769230769232,
+      "source": "ar2026",
+      "reason": "Latest disclosed capital expenditure split: software 1 out of total 52."
+    },
+    "dividend_payout_tail": {
+      "value": 0.06144183506280721,
+      "source": "historical",
+      "reason": "Sum FY24-26 declared DPS / sum basic EPS; future DPS floored at prior declared DPS per progressive dividend aspiration."
+    }
+  },
+  "wacc_overrides": {},
+  "operating_balance_ratios": {
+    "ar_nc": {
+      "value": 0.17569789788599846,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ofa_nc": {
+      "value": 0.055881362312523525,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "inventories": {
+      "value": 0.010649258019138946,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ar_current": {
+      "value": 0.6466427594951757,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ofa_current": {
+      "value": 0.012363045588730609,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "other_current_assets": {
+      "value": 0.36528440948625995,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ap_nc": {
+      "value": 0.05397935529887266,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ofl_nc": {
+      "value": 0.0005646583321775999,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "provisions_nc": {
+      "value": 0.003625700869771957,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "other_liabilities_nc": {
+      "value": 0.0642818932894815,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ap_msme": {
+      "value": 0.008658094426723198,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ap_other": {
+      "value": 0.3218453430547025,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "ofl_current": {
+      "value": 0.009619004220078062,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "other_liabilities_current": {
+      "value": 0.32653101658312367,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "provisions_current": {
+      "value": 0.04922433776474551,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "tax_assets": {
+      "value": 0.00991619281596101,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "tax_liabilities": {
+      "value": 0.00791512293701583,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    },
+    "other_bank": {
+      "value": 0.056545083509995445,
+      "source": "historical",
+      "reason": "Sum of three year-end balances / sum FY24-26 revenue. Apply to forecast revenue; not management working-capital days."
+    }
+  },
+  "years": [
+    {
+      "year": 2027,
+      "drivers": {
+        "revenue": {
+          "value": 46566,
+          "source": "consensus",
+          "reason": "Public annual estimate.",
+          "method": "absolute"
+        },
+        "ebitda_margin": {
+          "value": 0.135,
+          "source": "call2027q1",
+          "reason": "FY27 midpoint of management 13-14% range; before bank charges, FX gains default zero.",
+          "method": "absolute"
+        },
+        "employees": {
+          "value": 3305,
+          "source": "motilal",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "absolute"
+        },
+        "other_expenses": {
+          "value": 2118,
+          "source": "motilal",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "absolute"
+        },
+        "capex": {
+          "value": 90.33,
+          "source": "consensus",
+          "reason": "Gross cash capex; no asset disposal proceeds netted.",
+          "method": "absolute"
+        },
+        "da_target": {
+          "value": 61,
+          "source": "motilal",
+          "reason": "Allocate owned PPE/ROU/software in FY26 charge proportions 43:15:4, capped at available net assets. Consensus EBITDA minus EBIT gives conflicting DA so not used.",
+          "method": "absolute"
+        },
+        "bank_debt_target": {
+          "value": 2055,
+          "source": "motilal",
+          "reason": "Gross bank borrowings excluding leases. Tail uses FY24-26 debt CAGR after the FY28 broker anchor.",
+          "method": "absolute"
+        },
+        "tax_rate": {
+          "value": 0.238,
+          "source": "motilal",
+          "reason": "Tax rate on positive PBT excluding equity-accounted profit. Tail uses pooled FY24-26 tax / PBT before associates.",
+          "method": "absolute"
+        },
+        "deferred_tax_rate": {
+          "value": -0.0005786558650905183,
+          "source": "historical",
+          "reason": "Pooled three-year deferred tax / PBT; net deferred tax asset cannot turn negative in this adapter.",
+          "method": "absolute"
+        },
+        "bank_charges": {
+          "value": 0.013957957719969093,
+          "source": "historical",
+          "reason": "Pooled bank charges / revenue. Classified in finance costs for statements; retained as operating costs for FCFF.",
+          "method": "revenue_ratio"
+        },
+        "interest_yield": {
+          "value": 0.034692659637955044,
+          "source": "historical",
+          "reason": "Pooled interest income / year-end cash plus other bank balances, applied to opening balances to avoid circularity.",
+          "method": "absolute"
+        },
+        "dividend_income": {
+          "value": 52.666666666666664,
+          "source": "historical",
+          "reason": "Three-year average reported dividend income; includes unusually high FY24 receipt. Review this volatile default.",
+          "method": "absolute"
+        },
+        "associate_profit": {
+          "value": 79,
+          "source": "motilal",
+          "reason": "Annual equity-accounted profit estimate. Excluded from consolidated tax base to avoid taxing investee profit again.",
+          "method": "absolute"
+        },
+        "esop": {
+          "value": 0.002644978503358231,
+          "source": "historical",
+          "reason": "Included within employee budget. Credited to reserves and added back in CFO, but retained as an economic cost in FCFF.",
+          "method": "revenue_ratio"
+        },
+        "ecl_charge": {
+          "value": 0.005735739900540883,
+          "source": "historical",
+          "reason": "Net three-year credit loss charge / revenue; included within other-expense budget. Allowance increases with no write-offs assumed.",
+          "method": "revenue_ratio"
+        },
+        "provision_contracts": {
+          "value": 0.0,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_employee": {
+          "value": 0.0017633190022388208,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_damages": {
+          "value": 0.00408139005012581,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_warranty": {
+          "value": 0.01808887920274206,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "loans_advanced": {
+          "value": 110,
+          "source": "historical",
+          "reason": "Average FY24-26 increase in related-party loan balances: (220 - 0) / 2; treated as investing cash flow.",
+          "method": "absolute"
+        },
+        "declared_dps": {
+          "value": 6.075,
+          "source": "consensus",
+          "reason": "Forecast declaration; cash payment assumed in following financial year.",
+          "method": "absolute"
+        },
+        "fx_gain": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No reliable annual transactional FX forecast; no automatic extrapolation of gains.",
+          "method": "absolute"
+        },
+        "exceptional": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No announced exceptional item projection.",
+          "method": "absolute"
+        },
+        "oci": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast FX translation / actuarial OCI available.",
+          "method": "absolute"
+        },
+        "asset_disposals": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast disposals available.",
+          "method": "absolute"
+        },
+        "new_leases": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No signed forward lease additions schedule verified.",
+          "method": "absolute"
+        },
+        "new_equity": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future issuance amount verified; outstanding shares and current option dilution held fixed.",
+          "method": "absolute"
+        },
+        "associate_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No verified equity-method dividend forecast; do not confuse with reported dividend income.",
+          "method": "absolute"
+        },
+        "new_investments": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No separate, consistently mapped investment commitment forecast loaded.",
+          "method": "absolute"
+        },
+        "nci_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future minority distributions verified.",
+          "method": "absolute"
+        },
+        "writeoffs": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast write-offs against the ECL allowance available.",
+          "method": "absolute"
+        },
+        "nci_profit": {
+          "value": -6,
+          "source": "motilal",
+          "reason": "Broker minority profit estimate; tail uses three-year mean (48 - 5 - 7) / 3.",
+          "method": "absolute"
+        }
+      }
+    },
+    {
+      "year": 2028,
+      "drivers": {
+        "revenue": {
+          "value": 54613,
+          "source": "consensus",
+          "reason": "Public annual estimate.",
+          "method": "absolute"
+        },
+        "ebitda_margin": {
+          "value": 0.13615805760533206,
+          "source": "consensus",
+          "reason": "EBITDA excluding non-operating income and before finance costs; tail uses pooled historical margin excluding FX gains.",
+          "method": "absolute"
+        },
+        "employees": {
+          "value": 3831,
+          "source": "motilal",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "absolute"
+        },
+        "other_expenses": {
+          "value": 2415,
+          "source": "motilal",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "absolute"
+        },
+        "capex": {
+          "value": 84.57,
+          "source": "consensus",
+          "reason": "Gross cash capex; no asset disposal proceeds netted.",
+          "method": "absolute"
+        },
+        "da_target": {
+          "value": 67,
+          "source": "motilal",
+          "reason": "Allocate owned PPE/ROU/software in FY26 charge proportions 43:15:4, capped at available net assets. Consensus EBITDA minus EBIT gives conflicting DA so not used.",
+          "method": "absolute"
+        },
+        "bank_debt_target": {
+          "value": 1855,
+          "source": "motilal",
+          "reason": "Gross bank borrowings excluding leases. Tail uses FY24-26 debt CAGR after the FY28 broker anchor.",
+          "method": "absolute"
+        },
+        "tax_rate": {
+          "value": 0.239,
+          "source": "motilal",
+          "reason": "Tax rate on positive PBT excluding equity-accounted profit. Tail uses pooled FY24-26 tax / PBT before associates.",
+          "method": "absolute"
+        },
+        "deferred_tax_rate": {
+          "value": -0.0005786558650905183,
+          "source": "historical",
+          "reason": "Pooled three-year deferred tax / PBT; net deferred tax asset cannot turn negative in this adapter.",
+          "method": "absolute"
+        },
+        "bank_charges": {
+          "value": 0.013957957719969093,
+          "source": "historical",
+          "reason": "Pooled bank charges / revenue. Classified in finance costs for statements; retained as operating costs for FCFF.",
+          "method": "revenue_ratio"
+        },
+        "interest_yield": {
+          "value": 0.034692659637955044,
+          "source": "historical",
+          "reason": "Pooled interest income / year-end cash plus other bank balances, applied to opening balances to avoid circularity.",
+          "method": "absolute"
+        },
+        "dividend_income": {
+          "value": 52.666666666666664,
+          "source": "historical",
+          "reason": "Three-year average reported dividend income; includes unusually high FY24 receipt. Review this volatile default.",
+          "method": "absolute"
+        },
+        "associate_profit": {
+          "value": 91,
+          "source": "motilal",
+          "reason": "Annual equity-accounted profit estimate. Excluded from consolidated tax base to avoid taxing investee profit again.",
+          "method": "absolute"
+        },
+        "esop": {
+          "value": 0.002644978503358231,
+          "source": "historical",
+          "reason": "Included within employee budget. Credited to reserves and added back in CFO, but retained as an economic cost in FCFF.",
+          "method": "revenue_ratio"
+        },
+        "ecl_charge": {
+          "value": 0.005735739900540883,
+          "source": "historical",
+          "reason": "Net three-year credit loss charge / revenue; included within other-expense budget. Allowance increases with no write-offs assumed.",
+          "method": "revenue_ratio"
+        },
+        "provision_contracts": {
+          "value": 0.0,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_employee": {
+          "value": 0.0017633190022388208,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_damages": {
+          "value": 0.00408139005012581,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_warranty": {
+          "value": 0.01808887920274206,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "loans_advanced": {
+          "value": 110,
+          "source": "historical",
+          "reason": "Average FY24-26 increase in related-party loan balances: (220 - 0) / 2; treated as investing cash flow.",
+          "method": "absolute"
+        },
+        "declared_dps": {
+          "value": 6.12,
+          "source": "consensus",
+          "reason": "Forecast declaration; cash payment assumed in following financial year.",
+          "method": "absolute"
+        },
+        "fx_gain": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No reliable annual transactional FX forecast; no automatic extrapolation of gains.",
+          "method": "absolute"
+        },
+        "exceptional": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No announced exceptional item projection.",
+          "method": "absolute"
+        },
+        "oci": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast FX translation / actuarial OCI available.",
+          "method": "absolute"
+        },
+        "asset_disposals": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast disposals available.",
+          "method": "absolute"
+        },
+        "new_leases": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No signed forward lease additions schedule verified.",
+          "method": "absolute"
+        },
+        "new_equity": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future issuance amount verified; outstanding shares and current option dilution held fixed.",
+          "method": "absolute"
+        },
+        "associate_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No verified equity-method dividend forecast; do not confuse with reported dividend income.",
+          "method": "absolute"
+        },
+        "new_investments": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No separate, consistently mapped investment commitment forecast loaded.",
+          "method": "absolute"
+        },
+        "nci_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future minority distributions verified.",
+          "method": "absolute"
+        },
+        "writeoffs": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast write-offs against the ECL allowance available.",
+          "method": "absolute"
+        },
+        "nci_profit": {
+          "value": -7,
+          "source": "motilal",
+          "reason": "Broker minority profit estimate; tail uses three-year mean (48 - 5 - 7) / 3.",
+          "method": "absolute"
+        }
+      }
+    },
+    {
+      "year": 2029,
+      "drivers": {
+        "revenue": {
+          "value": 61132,
+          "source": "consensus",
+          "reason": "Public annual estimate.",
+          "method": "absolute"
+        },
+        "ebitda_margin": {
+          "value": 0.13092979127134724,
+          "source": "consensus",
+          "reason": "EBITDA excluding non-operating income and before finance costs; tail uses pooled historical margin excluding FX gains.",
+          "method": "absolute"
+        },
+        "employees": {
+          "value": 0.07928001109504092,
+          "source": "historical",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "revenue_ratio"
+        },
+        "other_expenses": {
+          "value": 0.02852019891823351,
+          "source": "historical",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "revenue_ratio"
+        },
+        "capex": {
+          "value": 100,
+          "source": "consensus",
+          "reason": "Gross cash capex; no asset disposal proceeds netted.",
+          "method": "absolute"
+        },
+        "da_target": {
+          "value": 0.0020307887385334735,
+          "source": "historical",
+          "reason": "Allocate owned PPE/ROU/software in FY26 charge proportions 43:15:4, capped at available net assets. Consensus EBITDA minus EBIT gives conflicting DA so not used.",
+          "method": "revenue_ratio"
+        },
+        "bank_debt_target": {
+          "value": -0.10354304748524279,
+          "source": "historical",
+          "reason": "Gross bank borrowings excluding leases. Tail uses FY24-26 debt CAGR after the FY28 broker anchor.",
+          "method": "prior_debt_growth"
+        },
+        "tax_rate": {
+          "value": 0.23815822104654047,
+          "source": "historical",
+          "reason": "Tax rate on positive PBT excluding equity-accounted profit. Tail uses pooled FY24-26 tax / PBT before associates.",
+          "method": "absolute"
+        },
+        "deferred_tax_rate": {
+          "value": -0.0005786558650905183,
+          "source": "historical",
+          "reason": "Pooled three-year deferred tax / PBT; net deferred tax asset cannot turn negative in this adapter.",
+          "method": "absolute"
+        },
+        "bank_charges": {
+          "value": 0.013957957719969093,
+          "source": "historical",
+          "reason": "Pooled bank charges / revenue. Classified in finance costs for statements; retained as operating costs for FCFF.",
+          "method": "revenue_ratio"
+        },
+        "interest_yield": {
+          "value": 0.034692659637955044,
+          "source": "historical",
+          "reason": "Pooled interest income / year-end cash plus other bank balances, applied to opening balances to avoid circularity.",
+          "method": "absolute"
+        },
+        "dividend_income": {
+          "value": 52.666666666666664,
+          "source": "historical",
+          "reason": "Three-year average reported dividend income; includes unusually high FY24 receipt. Review this volatile default.",
+          "method": "absolute"
+        },
+        "associate_profit": {
+          "value": -22.0,
+          "source": "historical",
+          "reason": "No consistently mapped associate forecast loaded. Three-year simple mean, including FY24 loss; review before investment use.",
+          "method": "absolute"
+        },
+        "esop": {
+          "value": 0.002644978503358231,
+          "source": "historical",
+          "reason": "Included within employee budget. Credited to reserves and added back in CFO, but retained as an economic cost in FCFF.",
+          "method": "revenue_ratio"
+        },
+        "ecl_charge": {
+          "value": 0.005735739900540883,
+          "source": "historical",
+          "reason": "Net three-year credit loss charge / revenue; included within other-expense budget. Allowance increases with no write-offs assumed.",
+          "method": "revenue_ratio"
+        },
+        "provision_contracts": {
+          "value": 0.0,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_employee": {
+          "value": 0.0017633190022388208,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_damages": {
+          "value": 0.00408139005012581,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_warranty": {
+          "value": 0.01808887920274206,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "loans_advanced": {
+          "value": 110,
+          "source": "historical",
+          "reason": "Average FY24-26 increase in related-party loan balances: (220 - 0) / 2; treated as investing cash flow.",
+          "method": "absolute"
+        },
+        "declared_dps": {
+          "value": 6,
+          "source": "consensus",
+          "reason": "Forecast declaration; cash payment assumed in following financial year.",
+          "method": "absolute"
+        },
+        "fx_gain": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No reliable annual transactional FX forecast; no automatic extrapolation of gains.",
+          "method": "absolute"
+        },
+        "exceptional": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No announced exceptional item projection.",
+          "method": "absolute"
+        },
+        "oci": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast FX translation / actuarial OCI available.",
+          "method": "absolute"
+        },
+        "asset_disposals": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast disposals available.",
+          "method": "absolute"
+        },
+        "new_leases": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No signed forward lease additions schedule verified.",
+          "method": "absolute"
+        },
+        "new_equity": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future issuance amount verified; outstanding shares and current option dilution held fixed.",
+          "method": "absolute"
+        },
+        "associate_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No verified equity-method dividend forecast; do not confuse with reported dividend income.",
+          "method": "absolute"
+        },
+        "new_investments": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No separate, consistently mapped investment commitment forecast loaded.",
+          "method": "absolute"
+        },
+        "nci_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future minority distributions verified.",
+          "method": "absolute"
+        },
+        "writeoffs": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast write-offs against the ECL allowance available.",
+          "method": "absolute"
+        },
+        "nci_profit": {
+          "value": 12,
+          "source": "historical",
+          "reason": "Broker minority profit estimate; tail uses three-year mean (48 - 5 - 7) / 3.",
+          "method": "absolute"
+        }
+      }
+    },
+    {
+      "year": 2030,
+      "drivers": {
+        "revenue": {
+          "value": 0.17508681191818387,
+          "source": "historical",
+          "reason": "FY24-26 revenue CAGR carried forward; editable, not a growth fade.",
+          "method": "prior_revenue_growth"
+        },
+        "ebitda_margin": {
+          "value": 0.12634477839637034,
+          "source": "historical",
+          "reason": "EBITDA excluding non-operating income and before finance costs; tail uses pooled historical margin excluding FX gains.",
+          "method": "absolute"
+        },
+        "employees": {
+          "value": 0.07928001109504092,
+          "source": "historical",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "revenue_ratio"
+        },
+        "other_expenses": {
+          "value": 0.02852019891823351,
+          "source": "historical",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "revenue_ratio"
+        },
+        "capex": {
+          "value": 0.0021397578903572206,
+          "source": "historical",
+          "reason": "Gross cash capex; no asset disposal proceeds netted.",
+          "method": "revenue_ratio"
+        },
+        "da_target": {
+          "value": 0.0020307887385334735,
+          "source": "historical",
+          "reason": "Allocate owned PPE/ROU/software in FY26 charge proportions 43:15:4, capped at available net assets. Consensus EBITDA minus EBIT gives conflicting DA so not used.",
+          "method": "revenue_ratio"
+        },
+        "bank_debt_target": {
+          "value": -0.10354304748524279,
+          "source": "historical",
+          "reason": "Gross bank borrowings excluding leases. Tail uses FY24-26 debt CAGR after the FY28 broker anchor.",
+          "method": "prior_debt_growth"
+        },
+        "tax_rate": {
+          "value": 0.23815822104654047,
+          "source": "historical",
+          "reason": "Tax rate on positive PBT excluding equity-accounted profit. Tail uses pooled FY24-26 tax / PBT before associates.",
+          "method": "absolute"
+        },
+        "deferred_tax_rate": {
+          "value": -0.0005786558650905183,
+          "source": "historical",
+          "reason": "Pooled three-year deferred tax / PBT; net deferred tax asset cannot turn negative in this adapter.",
+          "method": "absolute"
+        },
+        "bank_charges": {
+          "value": 0.013957957719969093,
+          "source": "historical",
+          "reason": "Pooled bank charges / revenue. Classified in finance costs for statements; retained as operating costs for FCFF.",
+          "method": "revenue_ratio"
+        },
+        "interest_yield": {
+          "value": 0.034692659637955044,
+          "source": "historical",
+          "reason": "Pooled interest income / year-end cash plus other bank balances, applied to opening balances to avoid circularity.",
+          "method": "absolute"
+        },
+        "dividend_income": {
+          "value": 52.666666666666664,
+          "source": "historical",
+          "reason": "Three-year average reported dividend income; includes unusually high FY24 receipt. Review this volatile default.",
+          "method": "absolute"
+        },
+        "associate_profit": {
+          "value": -22.0,
+          "source": "historical",
+          "reason": "No consistently mapped associate forecast loaded. Three-year simple mean, including FY24 loss; review before investment use.",
+          "method": "absolute"
+        },
+        "esop": {
+          "value": 0.002644978503358231,
+          "source": "historical",
+          "reason": "Included within employee budget. Credited to reserves and added back in CFO, but retained as an economic cost in FCFF.",
+          "method": "revenue_ratio"
+        },
+        "ecl_charge": {
+          "value": 0.005735739900540883,
+          "source": "historical",
+          "reason": "Net three-year credit loss charge / revenue; included within other-expense budget. Allowance increases with no write-offs assumed.",
+          "method": "revenue_ratio"
+        },
+        "provision_contracts": {
+          "value": 0.0,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_employee": {
+          "value": 0.0017633190022388208,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_damages": {
+          "value": 0.00408139005012581,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_warranty": {
+          "value": 0.01808887920274206,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "loans_advanced": {
+          "value": 110,
+          "source": "historical",
+          "reason": "Average FY24-26 increase in related-party loan balances: (220 - 0) / 2; treated as investing cash flow.",
+          "method": "absolute"
+        },
+        "declared_dps": {
+          "value": -1,
+          "source": "derived",
+          "reason": "Sentinel -1: max(prior declared DPS, historical payout ratio \u00d7 positive EPS).",
+          "method": "absolute"
+        },
+        "fx_gain": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No reliable annual transactional FX forecast; no automatic extrapolation of gains.",
+          "method": "absolute"
+        },
+        "exceptional": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No announced exceptional item projection.",
+          "method": "absolute"
+        },
+        "oci": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast FX translation / actuarial OCI available.",
+          "method": "absolute"
+        },
+        "asset_disposals": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast disposals available.",
+          "method": "absolute"
+        },
+        "new_leases": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No signed forward lease additions schedule verified.",
+          "method": "absolute"
+        },
+        "new_equity": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future issuance amount verified; outstanding shares and current option dilution held fixed.",
+          "method": "absolute"
+        },
+        "associate_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No verified equity-method dividend forecast; do not confuse with reported dividend income.",
+          "method": "absolute"
+        },
+        "new_investments": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No separate, consistently mapped investment commitment forecast loaded.",
+          "method": "absolute"
+        },
+        "nci_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future minority distributions verified.",
+          "method": "absolute"
+        },
+        "writeoffs": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast write-offs against the ECL allowance available.",
+          "method": "absolute"
+        },
+        "nci_profit": {
+          "value": 12,
+          "source": "historical",
+          "reason": "Broker minority profit estimate; tail uses three-year mean (48 - 5 - 7) / 3.",
+          "method": "absolute"
+        }
+      }
+    },
+    {
+      "year": 2031,
+      "drivers": {
+        "revenue": {
+          "value": 0.17508681191818387,
+          "source": "historical",
+          "reason": "FY24-26 revenue CAGR carried forward; editable, not a growth fade.",
+          "method": "prior_revenue_growth"
+        },
+        "ebitda_margin": {
+          "value": 0.12634477839637034,
+          "source": "historical",
+          "reason": "EBITDA excluding non-operating income and before finance costs; tail uses pooled historical margin excluding FX gains.",
+          "method": "absolute"
+        },
+        "employees": {
+          "value": 0.07928001109504092,
+          "source": "historical",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "revenue_ratio"
+        },
+        "other_expenses": {
+          "value": 0.02852019891823351,
+          "source": "historical",
+          "reason": "Broker annual expense estimate; subsequently pooled historical expense / revenue.",
+          "method": "revenue_ratio"
+        },
+        "capex": {
+          "value": 0.0021397578903572206,
+          "source": "historical",
+          "reason": "Gross cash capex; no asset disposal proceeds netted.",
+          "method": "revenue_ratio"
+        },
+        "da_target": {
+          "value": 0.0020307887385334735,
+          "source": "historical",
+          "reason": "Allocate owned PPE/ROU/software in FY26 charge proportions 43:15:4, capped at available net assets. Consensus EBITDA minus EBIT gives conflicting DA so not used.",
+          "method": "revenue_ratio"
+        },
+        "bank_debt_target": {
+          "value": -0.10354304748524279,
+          "source": "historical",
+          "reason": "Gross bank borrowings excluding leases. Tail uses FY24-26 debt CAGR after the FY28 broker anchor.",
+          "method": "prior_debt_growth"
+        },
+        "tax_rate": {
+          "value": 0.23815822104654047,
+          "source": "historical",
+          "reason": "Tax rate on positive PBT excluding equity-accounted profit. Tail uses pooled FY24-26 tax / PBT before associates.",
+          "method": "absolute"
+        },
+        "deferred_tax_rate": {
+          "value": -0.0005786558650905183,
+          "source": "historical",
+          "reason": "Pooled three-year deferred tax / PBT; net deferred tax asset cannot turn negative in this adapter.",
+          "method": "absolute"
+        },
+        "bank_charges": {
+          "value": 0.013957957719969091,
+          "source": "historical",
+          "reason": "Pooled bank charges / revenue. Classified in finance costs for statements; retained as operating costs for FCFF.",
+          "method": "revenue_ratio"
+        },
+        "interest_yield": {
+          "value": 0.034692659637955044,
+          "source": "historical",
+          "reason": "Pooled interest income / year-end cash plus other bank balances, applied to opening balances to avoid circularity.",
+          "method": "absolute"
+        },
+        "dividend_income": {
+          "value": 52.666666666666664,
+          "source": "historical",
+          "reason": "Three-year average reported dividend income; includes unusually high FY24 receipt. Review this volatile default.",
+          "method": "absolute"
+        },
+        "associate_profit": {
+          "value": -22.0,
+          "source": "historical",
+          "reason": "No consistently mapped associate forecast loaded. Three-year simple mean, including FY24 loss; review before investment use.",
+          "method": "absolute"
+        },
+        "esop": {
+          "value": 0.002644978503358231,
+          "source": "historical",
+          "reason": "Included within employee budget. Credited to reserves and added back in CFO, but retained as an economic cost in FCFF.",
+          "method": "revenue_ratio"
+        },
+        "ecl_charge": {
+          "value": 0.005735739900540883,
+          "source": "historical",
+          "reason": "Net three-year credit loss charge / revenue; included within other-expense budget. Allowance increases with no write-offs assumed.",
+          "method": "revenue_ratio"
+        },
+        "provision_contracts": {
+          "value": 0.0,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_employee": {
+          "value": 0.0017633190022388208,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_damages": {
+          "value": 0.00408139005012581,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "provision_warranty": {
+          "value": 0.01808887920274206,
+          "source": "historical",
+          "reason": "Provision charge embedded in expense budget; schedule separately shows net utilisation.",
+          "method": "revenue_ratio"
+        },
+        "loans_advanced": {
+          "value": 110,
+          "source": "historical",
+          "reason": "Average FY24-26 increase in related-party loan balances: (220 - 0) / 2; treated as investing cash flow.",
+          "method": "absolute"
+        },
+        "declared_dps": {
+          "value": -1,
+          "source": "derived",
+          "reason": "Sentinel -1: max(prior declared DPS, historical payout ratio \u00d7 positive EPS).",
+          "method": "absolute"
+        },
+        "fx_gain": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No reliable annual transactional FX forecast; no automatic extrapolation of gains.",
+          "method": "absolute"
+        },
+        "exceptional": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No announced exceptional item projection.",
+          "method": "absolute"
+        },
+        "oci": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast FX translation / actuarial OCI available.",
+          "method": "absolute"
+        },
+        "asset_disposals": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast disposals available.",
+          "method": "absolute"
+        },
+        "new_leases": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No signed forward lease additions schedule verified.",
+          "method": "absolute"
+        },
+        "new_equity": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future issuance amount verified; outstanding shares and current option dilution held fixed.",
+          "method": "absolute"
+        },
+        "associate_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No verified equity-method dividend forecast; do not confuse with reported dividend income.",
+          "method": "absolute"
+        },
+        "new_investments": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No separate, consistently mapped investment commitment forecast loaded.",
+          "method": "absolute"
+        },
+        "nci_dividends": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No future minority distributions verified.",
+          "method": "absolute"
+        },
+        "writeoffs": {
+          "value": 0,
+          "source": "zero_unavailable",
+          "reason": "No forecast write-offs against the ECL allowance available.",
+          "method": "absolute"
+        },
+        "nci_profit": {
+          "value": 12,
+          "source": "historical",
+          "reason": "Broker minority profit estimate; tail uses three-year mean (48 - 5 - 7) / 3.",
+          "method": "absolute"
+        }
+      }
+    }
+  ]
+}

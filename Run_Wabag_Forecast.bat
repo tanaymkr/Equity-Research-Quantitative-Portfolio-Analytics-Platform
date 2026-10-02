@@ -15,7 +15,7 @@ pause
 exit /b 0
 :failed
 echo.
-echo The DCF did not finish. Read the error above.
+echo The forecast did not finish. Read the error above.
 echo Python 3.11 or later is required.
 pause
 exit /b 1

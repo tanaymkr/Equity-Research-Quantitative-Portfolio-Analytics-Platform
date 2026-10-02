@@ -1,0 +1,789 @@
+{
+  "price_date": "2026-09-25",
+  "share_price": 2008.4000244140625,
+  "gsec_yield": 0.071194,
+  "sovereign_default_spread": 0.0187,
+  "mature_erp": 0.0423,
+  "country_risk_premium": 0.0285,
+  "country_loading": 1,
+  "levered_beta": 1.4316874326603788,
+  "beta_method": "OLS with intercept, weekly simple price returns versus NIFTY50 price index, exact common dates, no fills. Gross debt treated as financing; cash not netted. Latest vendor snapshot, not historical point-in-time data.",
+  "beta_observations": [
+    {
+      "start": "2024-04-05",
+      "end": "2024-04-12",
+      "stock_return": -0.018716442257817434,
+      "benchmark_return": 0.00025323123577369877
+    },
+    {
+      "start": "2024-04-12",
+      "end": "2024-04-19",
+      "stock_return": 0.14541105599274484,
+      "benchmark_return": -0.016536869728557835
+    },
+    {
+      "start": "2024-04-19",
+      "end": "2024-04-26",
+      "stock_return": 0.08677732827690132,
+      "benchmark_return": 0.012324433049623051
+    },
+    {
+      "start": "2024-04-26",
+      "end": "2024-05-03",
+      "stock_return": -0.04778761061946901,
+      "benchmark_return": 0.0024933326155016644
+    },
+    {
+      "start": "2024-05-03",
+      "end": "2024-05-10",
+      "stock_return": -0.08050981178222916,
+      "benchmark_return": -0.018715661384811066
+    },
+    {
+      "start": "2024-05-10",
+      "end": "2024-05-17",
+      "stock_return": 0.14479608850457093,
+      "benchmark_return": 0.018630545412424926
+    },
+    {
+      "start": "2024-05-17",
+      "end": "2024-05-24",
+      "stock_return": -0.051359632718687154,
+      "benchmark_return": 0.021855151029202657
+    },
+    {
+      "start": "2024-05-24",
+      "end": "2024-05-31",
+      "stock_return": 0.04243999610995419,
+      "benchmark_return": -0.018573791893592317
+    },
+    {
+      "start": "2024-05-31",
+      "end": "2024-06-07",
+      "stock_return": 0.10300496246560487,
+      "benchmark_return": 0.03370739471960049
+    },
+    {
+      "start": "2024-06-07",
+      "end": "2024-06-14",
+      "stock_return": 0.041304370410788716,
+      "benchmark_return": 0.007533193895588708
+    },
+    {
+      "start": "2024-06-14",
+      "end": "2024-06-21",
+      "stock_return": 0.03855552211856761,
+      "benchmark_return": 0.0015128528821319875
+    },
+    {
+      "start": "2024-06-21",
+      "end": "2024-06-28",
+      "stock_return": 0.09567595134019946,
+      "benchmark_return": 0.02167983662333617
+    },
+    {
+      "start": "2024-06-28",
+      "end": "2024-07-05",
+      "stock_return": 0.02763683639576464,
+      "benchmark_return": 0.013046321420381757
+    },
+    {
+      "start": "2024-07-05",
+      "end": "2024-07-12",
+      "stock_return": -0.026513730243445055,
+      "benchmark_return": 0.007330286287466459
+    },
+    {
+      "start": "2024-07-12",
+      "end": "2024-07-19",
+      "stock_return": -0.044443633648460934,
+      "benchmark_return": 0.0011733664001589705
+    },
+    {
+      "start": "2024-07-19",
+      "end": "2024-07-26",
+      "stock_return": 0.09979997395992735,
+      "benchmark_return": 0.012390463208034497
+    },
+    {
+      "start": "2024-07-26",
+      "end": "2024-08-02",
+      "stock_return": -0.01908444865128922,
+      "benchmark_return": -0.004717177372428161
+    },
+    {
+      "start": "2024-08-02",
+      "end": "2024-08-09",
+      "stock_return": -0.04617888811448467,
+      "benchmark_return": -0.014167953726225035
+    },
+    {
+      "start": "2024-08-09",
+      "end": "2024-08-16",
+      "stock_return": 0.046311440864757136,
+      "benchmark_return": 0.007126311300913013
+    },
+    {
+      "start": "2024-08-16",
+      "end": "2024-08-23",
+      "stock_return": 0.021049836131514787,
+      "benchmark_return": 0.011490903870086111
+    },
+    {
+      "start": "2024-08-23",
+      "end": "2024-08-30",
+      "stock_return": -0.05460421034417651,
+      "benchmark_return": 0.016627623549180237
+    },
+    {
+      "start": "2024-08-30",
+      "end": "2024-09-06",
+      "stock_return": 0.03104003652852394,
+      "benchmark_return": -0.015206511123437516
+    },
+    {
+      "start": "2024-09-06",
+      "end": "2024-09-13",
+      "stock_return": 0.06928081929872909,
+      "benchmark_return": 0.020294002790408605
+    },
+    {
+      "start": "2024-09-13",
+      "end": "2024-09-20",
+      "stock_return": 0.08250472506400874,
+      "benchmark_return": 0.01713364300080844
+    },
+    {
+      "start": "2024-09-20",
+      "end": "2024-09-27",
+      "stock_return": -0.008033154384749386,
+      "benchmark_return": 0.015044037220542705
+    },
+    {
+      "start": "2024-09-27",
+      "end": "2024-10-04",
+      "stock_return": 0.0009293225450133225,
+      "benchmark_return": -0.04447656014172885
+    },
+    {
+      "start": "2024-10-04",
+      "end": "2024-10-11",
+      "stock_return": 0.0361760898432304,
+      "benchmark_return": -0.0020128089260372795
+    },
+    {
+      "start": "2024-10-11",
+      "end": "2024-10-18",
+      "stock_return": 0.19757437542921297,
+      "benchmark_return": -0.0044142811720760955
+    },
+    {
+      "start": "2024-10-18",
+      "end": "2024-10-25",
+      "stock_return": -0.15645458471010232,
+      "benchmark_return": -0.027088139713140946
+    },
+    {
+      "start": "2024-10-25",
+      "end": "2024-11-01",
+      "stock_return": 0.12344777785863892,
+      "benchmark_return": 0.00510937703191372
+    },
+    {
+      "start": "2024-11-01",
+      "end": "2024-11-08",
+      "stock_return": -0.04432537746281551,
+      "benchmark_return": -0.006424791987223899
+    },
+    {
+      "start": "2024-11-08",
+      "end": "2024-11-14",
+      "stock_return": -0.012421472590131488,
+      "benchmark_return": -0.025488443027341434
+    },
+    {
+      "start": "2024-11-14",
+      "end": "2024-11-22",
+      "stock_return": 0.011980191874169543,
+      "benchmark_return": 0.015916184444815906
+    },
+    {
+      "start": "2024-11-22",
+      "end": "2024-11-29",
+      "stock_return": 0.059782126496310095,
+      "benchmark_return": 0.009363252125401234
+    },
+    {
+      "start": "2024-11-29",
+      "end": "2024-12-06",
+      "stock_return": 0.061841884500634325,
+      "benchmark_return": 0.02265546041103761
+    },
+    {
+      "start": "2024-12-06",
+      "end": "2024-12-13",
+      "stock_return": -0.04887455964155307,
+      "benchmark_return": 0.003667263578396307
+    },
+    {
+      "start": "2024-12-13",
+      "end": "2024-12-20",
+      "stock_return": -0.10555784062112128,
+      "benchmark_return": -0.047673871198458895
+    },
+    {
+      "start": "2024-12-20",
+      "end": "2024-12-27",
+      "stock_return": 0.015295378305409058,
+      "benchmark_return": 0.009577123078961414
+    },
+    {
+      "start": "2024-12-27",
+      "end": "2025-01-03",
+      "stock_return": -0.0020045722607775485,
+      "benchmark_return": 0.008035375302820391
+    },
+    {
+      "start": "2025-01-03",
+      "end": "2025-01-10",
+      "stock_return": -0.07672411403918544,
+      "benchmark_return": -0.02388069028004869
+    },
+    {
+      "start": "2025-01-10",
+      "end": "2025-01-17",
+      "stock_return": 0.016679334960830294,
+      "benchmark_return": -0.009743327625205356
+    },
+    {
+      "start": "2025-01-17",
+      "end": "2025-01-24",
+      "stock_return": -0.13623835052349376,
+      "benchmark_return": -0.004783823082047389
+    },
+    {
+      "start": "2025-01-24",
+      "end": "2025-02-01",
+      "stock_return": 0.013325325137456767,
+      "benchmark_return": 0.01688670568710382
+    },
+    {
+      "start": "2025-02-01",
+      "end": "2025-02-07",
+      "stock_return": 0.012483312325085816,
+      "benchmark_return": 0.003313104925691146
+    },
+    {
+      "start": "2025-02-07",
+      "end": "2025-02-14",
+      "stock_return": 0.013609903964924674,
+      "benchmark_return": -0.02676997360622757
+    },
+    {
+      "start": "2025-02-14",
+      "end": "2025-02-21",
+      "stock_return": 0.03526437508459668,
+      "benchmark_return": -0.005815698698169336
+    },
+    {
+      "start": "2025-02-21",
+      "end": "2025-02-28",
+      "stock_return": -0.09106755303623626,
+      "benchmark_return": -0.02944394212878021
+    },
+    {
+      "start": "2025-02-28",
+      "end": "2025-03-07",
+      "stock_return": 0.05166856585035484,
+      "benchmark_return": 0.01933589139541625
+    },
+    {
+      "start": "2025-03-07",
+      "end": "2025-03-13",
+      "stock_return": -0.031768557853457335,
+      "benchmark_return": -0.006886189169715062
+    },
+    {
+      "start": "2025-03-13",
+      "end": "2025-03-21",
+      "stock_return": 0.1400963944332334,
+      "benchmark_return": 0.04255894509689506
+    },
+    {
+      "start": "2025-03-21",
+      "end": "2025-03-28",
+      "stock_return": -0.03872458323868333,
+      "benchmark_return": 0.007235388512559782
+    },
+    {
+      "start": "2025-03-28",
+      "end": "2025-04-04",
+      "stock_return": -0.04832780919688373,
+      "benchmark_return": -0.026144447054772924
+    },
+    {
+      "start": "2025-04-04",
+      "end": "2025-04-11",
+      "stock_return": 0.012460721858068347,
+      "benchmark_return": -0.003313698433659251
+    },
+    {
+      "start": "2025-04-11",
+      "end": "2025-04-17",
+      "stock_return": 0.022759721011500922,
+      "benchmark_return": 0.04481666923050209
+    },
+    {
+      "start": "2025-04-17",
+      "end": "2025-04-25",
+      "stock_return": -0.04527382240255495,
+      "benchmark_return": 0.007869443651739028
+    },
+    {
+      "start": "2025-04-25",
+      "end": "2025-05-02",
+      "stock_return": -0.0482244638151067,
+      "benchmark_return": 0.012785271414129218
+    },
+    {
+      "start": "2025-05-02",
+      "end": "2025-05-09",
+      "stock_return": -0.02257026329271794,
+      "benchmark_return": -0.01391150462355728
+    },
+    {
+      "start": "2025-05-09",
+      "end": "2025-05-16",
+      "stock_return": 0.12071950921826491,
+      "benchmark_return": 0.04214431777949024
+    },
+    {
+      "start": "2025-05-16",
+      "end": "2025-05-23",
+      "stock_return": 0.08767255830506282,
+      "benchmark_return": -0.006660740110684182
+    },
+    {
+      "start": "2025-05-23",
+      "end": "2025-05-30",
+      "stock_return": 0.049291237113402,
+      "benchmark_return": -0.004122260971536451
+    },
+    {
+      "start": "2025-05-30",
+      "end": "2025-06-06",
+      "stock_return": -0.026097635861221935,
+      "benchmark_return": 0.01019573468489443
+    },
+    {
+      "start": "2025-06-06",
+      "end": "2025-06-13",
+      "stock_return": -0.01960906405166296,
+      "benchmark_return": -0.011376658567134212
+    },
+    {
+      "start": "2025-06-13",
+      "end": "2025-06-20",
+      "stock_return": -0.051964787162810055,
+      "benchmark_return": 0.015931354828881306
+    },
+    {
+      "start": "2025-06-20",
+      "end": "2025-06-27",
+      "stock_return": 0.009768689134085795,
+      "benchmark_return": 0.02092195020995069
+    },
+    {
+      "start": "2025-06-27",
+      "end": "2025-07-04",
+      "stock_return": -0.016526688334522976,
+      "benchmark_return": -0.006896097787736255
+    },
+    {
+      "start": "2025-07-04",
+      "end": "2025-07-11",
+      "stock_return": 0.012705769025027625,
+      "benchmark_return": -0.012220666534111024
+    },
+    {
+      "start": "2025-07-11",
+      "end": "2025-07-18",
+      "stock_return": 0.0022934397396712214,
+      "benchmark_return": -0.007214723808223522
+    },
+    {
+      "start": "2025-07-18",
+      "end": "2025-07-25",
+      "stock_return": 0.09300757042949215,
+      "benchmark_return": -0.00526266755455973
+    },
+    {
+      "start": "2025-07-25",
+      "end": "2025-08-01",
+      "stock_return": -0.030416861742910917,
+      "benchmark_return": -0.010937326997020547
+    },
+    {
+      "start": "2025-08-01",
+      "end": "2025-08-08",
+      "stock_return": -0.03556233043528412,
+      "benchmark_return": -0.0082249522737462
+    },
+    {
+      "start": "2025-08-08",
+      "end": "2025-08-14",
+      "stock_return": 0.04306316357197337,
+      "benchmark_return": 0.011000151515029977
+    },
+    {
+      "start": "2025-08-14",
+      "end": "2025-08-22",
+      "stock_return": 0.00473454965948461,
+      "benchmark_return": 0.00969493370430441
+    },
+    {
+      "start": "2025-08-22",
+      "end": "2025-08-29",
+      "stock_return": -0.08406630360028433,
+      "benchmark_return": -0.017822606542070796
+    },
+    {
+      "start": "2025-08-29",
+      "end": "2025-09-05",
+      "stock_return": 0.033612291369717884,
+      "benchmark_return": 0.012860863993874538
+    },
+    {
+      "start": "2025-09-05",
+      "end": "2025-09-12",
+      "stock_return": 0.014666826964284452,
+      "benchmark_return": 0.015076189321369338
+    },
+    {
+      "start": "2025-09-12",
+      "end": "2025-09-19",
+      "stock_return": 0.02491986066946339,
+      "benchmark_return": 0.008483347186827972
+    },
+    {
+      "start": "2025-09-19",
+      "end": "2025-09-26",
+      "stock_return": -0.07364392113213947,
+      "benchmark_return": -0.02654677673713801
+    },
+    {
+      "start": "2025-09-26",
+      "end": "2025-10-03",
+      "stock_return": -0.03106914876306255,
+      "benchmark_return": 0.009716232152117366
+    },
+    {
+      "start": "2025-10-03",
+      "end": "2025-10-10",
+      "stock_return": 0.013011054979114922,
+      "benchmark_return": 0.015710439534229792
+    },
+    {
+      "start": "2025-10-10",
+      "end": "2025-10-17",
+      "stock_return": -0.005474486637293663,
+      "benchmark_return": 0.01678837771903341
+    },
+    {
+      "start": "2025-10-17",
+      "end": "2025-10-24",
+      "stock_return": -0.004728264764908285,
+      "benchmark_return": 0.0033178249793766046
+    },
+    {
+      "start": "2025-10-24",
+      "end": "2025-10-31",
+      "stock_return": 0.0026944101441179757,
+      "benchmark_return": -0.0028319579511562054
+    },
+    {
+      "start": "2025-10-31",
+      "end": "2025-11-07",
+      "stock_return": -0.020012677495511833,
+      "benchmark_return": -0.008933906314601336
+    },
+    {
+      "start": "2025-11-07",
+      "end": "2025-11-14",
+      "stock_return": 0.017101999088480646,
+      "benchmark_return": 0.016387300761305124
+    },
+    {
+      "start": "2025-11-14",
+      "end": "2025-11-21",
+      "stock_return": -0.010854947731908426,
+      "benchmark_return": 0.0061018641263879125
+    },
+    {
+      "start": "2025-11-21",
+      "end": "2025-11-28",
+      "stock_return": -0.027686111704058547,
+      "benchmark_return": 0.005171016205794077
+    },
+    {
+      "start": "2025-11-28",
+      "end": "2025-12-05",
+      "stock_return": 0.00833582843879932,
+      "benchmark_return": -0.0006297001097950172
+    },
+    {
+      "start": "2025-12-05",
+      "end": "2025-12-12",
+      "stock_return": -0.08859461074181219,
+      "benchmark_return": -0.005327182728543267
+    },
+    {
+      "start": "2025-12-12",
+      "end": "2025-12-19",
+      "stock_return": 0.04061645015468973,
+      "benchmark_return": -0.0030924476969846904
+    },
+    {
+      "start": "2025-12-19",
+      "end": "2025-12-26",
+      "stock_return": -0.008022234046750398,
+      "benchmark_return": 0.002923023194713048
+    },
+    {
+      "start": "2025-12-26",
+      "end": "2026-01-02",
+      "stock_return": 0.00435456888486585,
+      "benchmark_return": 0.01099173235131734
+    },
+    {
+      "start": "2026-01-02",
+      "end": "2026-01-09",
+      "stock_return": -0.07184881427062084,
+      "benchmark_return": -0.024507615529659854
+    },
+    {
+      "start": "2026-01-09",
+      "end": "2026-01-16",
+      "stock_return": 0.0,
+      "benchmark_return": 0.0004301950212359795
+    },
+    {
+      "start": "2026-01-16",
+      "end": "2026-01-23",
+      "stock_return": -0.1148649212825732,
+      "benchmark_return": -0.025130008292344796
+    },
+    {
+      "start": "2026-01-23",
+      "end": "2026-01-30",
+      "stock_return": 0.01564412022229189,
+      "benchmark_return": 0.010858868472283012
+    },
+    {
+      "start": "2026-01-30",
+      "end": "2026-02-06",
+      "stock_return": 0.12730822998831748,
+      "benchmark_return": 0.014732987595892144
+    },
+    {
+      "start": "2026-02-06",
+      "end": "2026-02-13",
+      "stock_return": 0.056877087988588926,
+      "benchmark_return": -0.008663587421952723
+    },
+    {
+      "start": "2026-02-13",
+      "end": "2026-02-20",
+      "stock_return": -0.008644840799016729,
+      "benchmark_return": 0.003931922538127797
+    },
+    {
+      "start": "2026-02-20",
+      "end": "2026-02-27",
+      "stock_return": -0.006756206631307271,
+      "benchmark_return": -0.015353164564696709
+    },
+    {
+      "start": "2026-02-27",
+      "end": "2026-03-06",
+      "stock_return": -0.031084431946793112,
+      "benchmark_return": -0.02892137428248087
+    },
+    {
+      "start": "2026-03-06",
+      "end": "2026-03-13",
+      "stock_return": 0.0021224290497448006,
+      "benchmark_return": -0.05314215692931257
+    },
+    {
+      "start": "2026-03-13",
+      "end": "2026-03-20",
+      "stock_return": 0.007575797501695236,
+      "benchmark_return": -0.0015809015551113692
+    },
+    {
+      "start": "2026-03-20",
+      "end": "2026-03-27",
+      "stock_return": -0.02942842889125641,
+      "benchmark_return": -0.012758242255943242
+    },
+    {
+      "start": "2026-03-27",
+      "end": "2026-04-02",
+      "stock_return": 0.03256974226233855,
+      "benchmark_return": -0.004667040694099067
+    },
+    {
+      "start": "2026-04-02",
+      "end": "2026-04-10",
+      "stock_return": 0.09349792408577495,
+      "benchmark_return": 0.05888672277243634
+    },
+    {
+      "start": "2026-04-10",
+      "end": "2026-04-17",
+      "stock_return": 0.02508299520472157,
+      "benchmark_return": 0.012596408272370407
+    },
+    {
+      "start": "2026-04-17",
+      "end": "2026-04-24",
+      "stock_return": 0.07470316576331415,
+      "benchmark_return": -0.01870780842565145
+    },
+    {
+      "start": "2026-05-08",
+      "end": "2026-05-15",
+      "stock_return": -0.06217863627473785,
+      "benchmark_return": -0.022032059778696267
+    },
+    {
+      "start": "2026-05-15",
+      "end": "2026-05-22",
+      "stock_return": 0.03268166050502641,
+      "benchmark_return": 0.003205988167995333
+    },
+    {
+      "start": "2026-05-22",
+      "end": "2026-05-29",
+      "stock_return": 0.06734666953322388,
+      "benchmark_return": -0.007232539560593221
+    },
+    {
+      "start": "2026-05-29",
+      "end": "2026-06-05",
+      "stock_return": 0.04751929131146726,
+      "benchmark_return": -0.007688665849178822
+    },
+    {
+      "start": "2026-06-05",
+      "end": "2026-06-12",
+      "stock_return": -0.014121454162194125,
+      "benchmark_return": 0.010964371539024187
+    },
+    {
+      "start": "2026-06-12",
+      "end": "2026-06-19",
+      "stock_return": 0.2571935062742654,
+      "benchmark_return": 0.016517837026686744
+    },
+    {
+      "start": "2026-07-03",
+      "end": "2026-07-10",
+      "stock_return": 0.06742277640077865,
+      "benchmark_return": -0.0026348158296567448
+    },
+    {
+      "start": "2026-07-10",
+      "end": "2026-07-17",
+      "stock_return": -0.10359264390607426,
+      "benchmark_return": 0.0052629782652529045
+    },
+    {
+      "start": "2026-07-17",
+      "end": "2026-07-24",
+      "stock_return": 0.025161958816856567,
+      "benchmark_return": -0.023294343552158647
+    },
+    {
+      "start": "2026-07-24",
+      "end": "2026-07-31",
+      "stock_return": -0.031354106178209995,
+      "benchmark_return": 0.025924127783090833
+    },
+    {
+      "start": "2026-07-31",
+      "end": "2026-08-07",
+      "stock_return": -0.009862431965185103,
+      "benchmark_return": 0.007671171781301833
+    },
+    {
+      "start": "2026-08-07",
+      "end": "2026-08-14",
+      "stock_return": -0.027123653731590425,
+      "benchmark_return": -0.008329058749828033
+    },
+    {
+      "start": "2026-08-14",
+      "end": "2026-08-21",
+      "stock_return": 0.051821943981608554,
+      "benchmark_return": -0.004678650578675225
+    },
+    {
+      "start": "2026-08-21",
+      "end": "2026-08-28",
+      "stock_return": 0.041331825892262586,
+      "benchmark_return": -0.003148177856465484
+    },
+    {
+      "start": "2026-08-28",
+      "end": "2026-09-04",
+      "stock_return": -0.03873258474936292,
+      "benchmark_return": -0.011497153846284358
+    },
+    {
+      "start": "2026-09-04",
+      "end": "2026-09-11",
+      "stock_return": 0.1359396832782851,
+      "benchmark_return": -0.02090576188116955
+    },
+    {
+      "start": "2026-09-11",
+      "end": "2026-09-18",
+      "stock_return": -0.06378673818722225,
+      "benchmark_return": -0.0022095477672591235
+    },
+    {
+      "start": "2026-09-18",
+      "end": "2026-09-25",
+      "stock_return": -0.05823880125424574,
+      "benchmark_return": -0.008819363464171559
+    }
+  ],
+  "beta_statistics": {
+    "n": 125,
+    "r_squared": 0.15192335492869047,
+    "covariance_sum": 0.05658483681857121,
+    "market_variance_sum": 0.03952317770466462
+  },
+  "provider_sources": [
+    {
+      "instrument": "WABAG",
+      "retrieved_at": "2026-09-28T21:20:59.137306+00:00",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/WABAG.NS?period1=1711929600&period2=1790640000&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "raw_sha256": "bbac56b6545794b81356bb2d75bbcaa2a919c8c62dc3ba188b0949a3a5cf77f4"
+    },
+    {
+      "instrument": "NIFTY50",
+      "retrieved_at": "2026-09-28T21:21:08.048400+00:00",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?period1=1711929600&period2=1790640000&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "raw_sha256": "49c522c1ebf164ec6e8ef44e5e7b1912545e01777d147d72cb5aec325ed32a84"
+    }
+  ],
+  "notes": [
+    "Price at latest populated completed common date in the verified snapshot; not current intraday quote.",
+    "Market equity=current price times FY26 ending basic shares; later issuances not incorporated. Share count is an explicitly dated proxy.",
+    "G-sec observed2026-09-25; ERP framework January2026. Inputs held constant beyond reference date, not forecasts supplied by management.",
+    "Debt market value approximated by book value, supported by AR note16; forecast equity denominator held at reference market equity to avoid a valuation circularity."
+  ]
+}

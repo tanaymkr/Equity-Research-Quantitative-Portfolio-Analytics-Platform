@@ -9,10 +9,11 @@ synthetic dataset supports learning and tests.
 
 | Component | Implemented | Remaining work |
 | --- | --- | --- |
-| SQL/data | Annual statements, company/source records, filing versions, raw-input audit trail and publication-date queries | Prices, corporate actions, provider adapters and historical membership |
+| SQL/data | Annual statements, company/source records, filing versions, raw-input audit trail, publication-date queries, dated prices and corporate actions | Wider provider coverage and historical membership |
 | Fundamental analysis | Growth, margins, ROE/ROA/ROCE, leverage, liquidity, cash metrics and company comparison | ROIC, working-capital days and market multiples |
 | Generic DCF | SQL inputs, company assumptions, FCFF scenarios, CAPM WACC, opening NWC, capital claims, terminal reinvestment and sensitivity | Market-input/claims refinement, valuation-date roll-forward and assumption versioning |
 | Screening | Configurable bounds, sorting, dated statements, unit normalization, flagged zero substitution, HTML/CSV/JSON | Valuation filters and a broader sourced universe |
+| Wabag linked statements | Three-year reported IS/BS/CF; five-year projections; debt, D&A, tax, working-capital and equity schedules; dated WACC; linked FCFF | Assumption refinement, full asset-vintage/HAM detail and current-date valuation |
 | Tega-Molycop case study | Reported history, acquisition forecasts, consolidation, group WACC, claims and scenarios | Resolve documented provisional deal/model inputs |
 | Factors, backtesting, portfolio, risk and index analytics | Planned | Dated prices, methodology and implementation |
 | Streamlit | Planned | Interface over tested analytical modules |
@@ -29,11 +30,12 @@ Run launchers from the repository folder:
 | --- | --- | --- |
 | Load SQL, analyse Tega and Wabag | `Run_Wabag_Analysis.bat` | `outputs/data/company_comparison.html` |
 | Screen companies | `Run_Screener.bat` | `outputs/screener/screener.html` |
-| Wabag DCF | `Run_Wabag_DCF.bat` | `outputs/valuation/wabag/valuation.html` |
+| Wabag linked statements and DCF | `Run_Wabag_Forecast.bat` (or `Run_Wabag_DCF.bat`) | `outputs/forecasts/wabag/forecast.html` |
 | Detailed Tega-Molycop model | `Run_Tega_Model.bat` | `outputs/tega_molycop/report.html` |
 
-Run the SQL loader first. Repeated imports record an audit entry but do not
-duplicate financial facts. The database is `outputs/data/research.sqlite`.
+Run the SQL loader first for analysis and screening. The linked Wabag launcher
+loads its own history automatically. Repeated imports record an audit entry but
+do not duplicate financial facts. The database is `outputs/data/research.sqlite`.
 `Run_Data_Pipeline.bat` remains available for loading data and exporting Tega's
 individual analysis.
 
@@ -42,7 +44,10 @@ numeric metrics count as **zero for filtering, sorting and CSV exports**, with
 substitution flags and reasons. Source SQL nulls are preserved. Percentage
 thresholds use decimals: `0.10` means 10%.
 
-Edit Wabag valuation assumptions in `examples/wabag_dcf_assumptions.json`.
+Edit the linked Wabag assumptions in `examples/wabag_linked/assumptions.json`.
+See [the forecast guide](START_WABAG_FORECAST.md) for input methods and sources.
+The older generic example still uses `examples/wabag_dcf_assumptions.json` and
+can be run explicitly with `python run_sql_dcf.py`.
 The DCF outputs remain preliminary: market inputs and some equity adjustments
 are estimates. Tanay controls those assumptions. Tests establish calculation
 and software behaviour; they do not validate an investment thesis.
@@ -57,7 +62,8 @@ python -m pip install -e ".[dev]"
 
 python run_wabag_analysis.py
 python run_screener.py
-python run_sql_dcf.py
+python run_wabag_forecast.py
+python run_sql_dcf.py  # separate legacy generic example
 python run_tega_model.py
 
 # Synthetic standalone examples
@@ -81,6 +87,7 @@ results; regenerate `outputs/` after changing assumptions or data.
 | `src/equity_analytics/screening/` | Filters, deterministic sorting, zero substitution and exports |
 | `src/equity_analytics/valuation/` | Shared DCF, SQL adapter, CAPM WACC and sensitivity |
 | `src/equity_analytics/forecasting/` | Detailed linked statements; broader company coverage requires validation |
+| `src/equity_analytics/case_studies/wabag/` | Sourced Wabag statements, schedules, annual WACC and reporting |
 | `src/equity_analytics/case_studies/tega/` | Tega-Molycop acquisition and consolidated model |
 | `src/equity_analytics/acquisition/` | Compatibility imports for earlier Tega package paths |
 | `examples/` | Sourced inputs, explicit assumptions, synthetic examples and reference reports |
@@ -110,7 +117,9 @@ are not the pro-forma group forecasts.
 - [SQL pipeline](START_DATA_PIPELINE.md)
 - [Wabag history and comparison](START_WABAG.md)
 - [Screener](START_SCREENER.md)
-- [SQL DCF](START_SQL_DCF.md)
+- [Wabag linked forecast and DCF](START_WABAG_FORECAST.md)
+- [Wabag model methods](docs/WABAG_LINKED_MODEL.md)
+- [Legacy SQL DCF](START_SQL_DCF.md)
 - [Tega model](START_TEGA_MODEL.md)
 - [Financial-analysis methods](docs/FINANCIAL_ANALYSIS_METHODS.md)
 - [Architecture](docs/PLATFORM_ARCHITECTURE.md)

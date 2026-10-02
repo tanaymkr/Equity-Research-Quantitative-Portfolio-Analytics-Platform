@@ -74,3 +74,13 @@ start that implementation.
 ## Price-data milestone
 
 Implemented the separate market SQLite store, optional Yahoo downloader, Tega/Wabag/NIFTY 50 example configuration, immutable retrieval snapshots, corporate-action records, aligned price returns and coverage reports. See [START_PRICE_DATA.md](../START_PRICE_DATA.md). Next: factor definitions and validation, followed by explicit portfolio/backtest rules. Retrieval snapshots do not establish historical point-in-time availability.
+
+## Wabag financial-statement milestone — 29 September 2026
+
+Added FY27–31 linked consolidated IS/BS/CF, debt/lease and asset schedules, tax,
+working capital, provisions, equity/dividends, dated market WACC inputs and
+explicit FCFF discounting. Three years of reported statement detail reconcile
+to SQL. Sources and missing-flow zeros are visible in the report. See
+[the Wabag forecast guide](../START_WABAG_FORECAST.md). The next platform build
+remains factor definitions and validation; a current-date Wabag valuation and
+assumption refinement are separate research tasks.
