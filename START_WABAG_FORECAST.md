@@ -5,7 +5,10 @@ and replacing matching files. Run **Run_Wabag_Forecast.bat**. The existing
 **Run_Wabag_DCF.bat** now opens this same linked model.
 
 Open **outputs/forecasts/wabag/forecast.html**. The companion `forecast.json`
-contains every statement, schedule, resolved driver, source and check.
+contains all three scenarios, with every statement, schedule, resolved driver, source and check.
+The opening page compares **Base, Upside and Downside**. Click a case to open
+its complete statements and DCF. Individual reports are in the `base`, `upside`
+and `downside` subfolders.
 Python 3.11+ is required; no new runtime packages or downloads are required.
 The launcher loads the existing Wabag source files into SQL automatically and
 checks that the detailed model agrees with the annual SQL summary.
@@ -18,7 +21,8 @@ checks that the detailed model agrees with the annual SQL summary.
 - Owned PPE, land, right-of-use assets, software, depreciation and amortisation.
 - Operating working capital, tax, provisions, credit losses, dividends and equity.
 - Dated market inputs, observed beta, market-equity weights and annual WACC.
-- Linked FCFF, terminal reinvestment, equity bridge and WACC/growth sensitivity.
+- Base, upside and downside operating cases, each with linked FCFF, terminal
+  reinvestment, equity bridge and WACC/growth sensitivity.
 - Consensus/broker comparisons, an input register, flagged zero assumptions,
   historical reconciliations and forecast accounting checks.
 
@@ -112,3 +116,27 @@ The new linked model is the default Wabag launcher.
 After reviewing the output, commit the source changes in GitHub Desktop and
 push. Generated output and SQLite files remain ignored. Suggested commit:
 **Add Wabag linked statements, schedules and sourced WACC**.
+
+## Operating scenario adjustments
+
+Edit **examples/wabag_linked/scenarios.json** to change the upside/downside
+assumptions. The patch does not replace your existing `assumptions.json`;
+your base model remains the starting point for all three cases.
+
+| Case | Revenue levels relative to base, FY27–FY31 | EBITDA margin change | Current receivable collection change |
+| --- | --- | --- | --- |
+| Base | 1.00× each year | 0 | 0 days |
+| Upside | 1.05×, 1.08×, 1.10×, 1.12×, 1.15× | +1 percentage point | −10 days |
+| Downside | 0.90×, 0.88×, 0.85×, 0.85×, 0.85× | −1.5 percentage points | +15 days |
+
+These defaults are editable analyst stress assumptions, not published forecasts.
+Revenue changes are applied to each base-year revenue level once, not compounded
+as extra growth. Historical expense ratios scale with the new revenue.
+The collection adjustment changes only current receivables, by days / 365 of
+revenue. It does not replace management's differently defined NWC-day metric.
+
+Each case reruns all financial statements, schedules and valuation. The same
+debt targets, discount inputs and terminal policy apply by default, isolating
+the operating changes. A case that cannot fund itself is marked **Needs revision**
+and receives no manufactured valuation. Previous output for that failed case
+is replaced so an old successful result cannot be mistaken for the current run.

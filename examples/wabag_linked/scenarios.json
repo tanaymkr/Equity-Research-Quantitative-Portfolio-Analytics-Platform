@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "base": {
+      "source": "analyst_scenario",
+      "reason": "Identity case preserves all existing base inputs.",
+      "adjustments": {
+        "revenue_multiplier": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "ebitda_margin_change": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "receivable_days_change": 0
+      }
+    },
+    "upside": {
+      "source": "analyst_scenario",
+      "reason": "Illustrative execution, margin and collections stress; editable analyst judgement, not management or broker guidance.",
+      "adjustments": {
+        "revenue_multiplier": [
+          1.05,
+          1.08,
+          1.1,
+          1.12,
+          1.15
+        ],
+        "ebitda_margin_change": [
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01
+        ],
+        "receivable_days_change": -10
+      }
+    },
+    "downside": {
+      "source": "analyst_scenario",
+      "reason": "Illustrative execution, margin and collections stress; editable analyst judgement, not management or broker guidance.",
+      "adjustments": {
+        "revenue_multiplier": [
+          0.9,
+          0.88,
+          0.85,
+          0.85,
+          0.85
+        ],
+        "ebitda_margin_change": [
+          -0.015,
+          -0.015,
+          -0.015,
+          -0.015,
+          -0.015
+        ],
+        "receivable_days_change": 15
+      }
+    }
+  }
+}

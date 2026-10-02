@@ -157,7 +157,7 @@ optimised. No management ROE target is relabelled as a ROIC forecast.
 
 ## Validation
 
-At delivery: 238 tests and 13 subtests pass; Ruff passes. The Wabag addition
+After the scenario correction: 246 tests and 13 subtests pass; Ruff passes. The Wabag addition
 includes tests for cash/equity dividend timing, debt draw/interest/tax effects,
 capex and valuation, bank-charge classification, allowance double counting,
 lease reinvestment, depreciation limits, historical driver scaling, missing
@@ -168,6 +168,9 @@ annual discount rates and a terminal-ROIC calculation.
 The report checks 40 forecast identities, 36 historical reconciliations and 12
 SQL values. These checks verify accounting and software behaviour; repayment
 allocation, source differences, working-capital conversion and terminal economics
-still require research judgement. A stub-period/current-date valuation, full HAM
-project model and three operating scenarios are future refinements. The legacy
-generic DCF still provides its separate illustrative scenarios.
+still require research judgement. A stub-period/current-date valuation and full HAM project model remain future
+refinements. Base, upside and downside operating cases now run through the linked
+model using editable analyst stresses in `scenarios.json`. The scenario dashboard
+links to full reports for each case, and tests cover base preservation, annual
+level adjustments, complete exports and failed-stress output replacement.
+The legacy generic DCF retains its separate illustrative scenarios.

@@ -1,6 +1,7 @@
 """Build Wabag's linked statements and DCF from reproducible source snapshots."""
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -8,8 +9,11 @@ from pathlib import Path
 def main(argv=None):
     root = Path(__file__).resolve().parent
     sys.path.insert(0, str(root / "src"))
-    from equity_analytics.case_studies.wabag import build_model, load_inputs
-    from equity_analytics.case_studies.wabag.reporting import export_report
+    from equity_analytics.case_studies.wabag import load_inputs
+    from equity_analytics.case_studies.wabag.scenarios import (
+        build_scenarios,
+        export_scenarios,
+    )
     from equity_analytics.data import DataStoreError, FinancialStore
 
     parser = argparse.ArgumentParser(description=__doc__)
@@ -27,14 +31,20 @@ def main(argv=None):
                 root / f"examples/wabag_fy{year}_reported_statements.json",
                 company_id="WABAG",
             )
-        payload = build_model(load_inputs(args.inputs), store=store)
-        path = export_report(payload, args.output)
-        print(
-            f"Linked model: {len(payload['checks'])} accounting checks passed; {len(payload['sql_crosschecks'])} SQL values matched."
+        config = json.loads(
+            (args.inputs / "scenarios.json").read_text(encoding="utf-8")
         )
-        print(
-            f"Illustrative DCF: INR {payload['dcf']['implied_value_per_share']:,.2f} per diluted share."
-        )
+        payload = build_scenarios(load_inputs(args.inputs), config, store=store)
+        path = export_scenarios(payload, args.output)
+        for name in ("downside", "base", "upside"):
+            case = payload["scenarios"][name]
+            if case["status"] == "ok":
+                model = case["model"]
+                print(
+                    f"{name.title()}: INR {model['dcf']['implied_value_per_share']:,.2f} per diluted share; {len(model['checks'])} accounting checks passed."
+                )
+            else:
+                print(f"{name.title()}: needs revision — {case['error']}")
         print(payload["convention"])
         print(f"Open: {path.resolve()}")
     except (
