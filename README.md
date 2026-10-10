@@ -15,11 +15,13 @@ synthetic dataset supports learning and tests.
 | Screening | Configurable bounds, sorting, dated statements, unit normalization, flagged zero substitution, HTML/CSV/JSON | Valuation filters and a broader sourced universe |
 | Wabag linked statements | Three-year reported IS/BS/CF; five-year projections; debt, D&A, tax, working-capital and equity schedules; dated WACC; linked FCFF | Assumption refinement, full asset-vintage/HAM detail and current-date valuation |
 | Tega-Molycop case study | Reported history, acquisition forecasts, consolidation, group WACC, claims and scenarios | Resolve documented provisional deal/model inputs |
+| Research universe | NSE index lists (Nifty 50/100/200/500) as immutable dated snapshots, as-of membership with a survivorship guard, company master with statement templates, price-config export | Historical lists, symbol-rename aliases and member financial statements |
 | Factors, backtesting, portfolio, risk and index analytics | Planned | Dated prices, methodology and implementation |
 | Streamlit | Planned | Interface over tested analytical modules |
 
-Two reported companies demonstrate the pipeline; an automated 20-30-company
-universe is not implemented. The synthetic DEMO is excluded from screening.
+Two reported companies demonstrate the financial pipeline. The universe step
+loads index membership and prices for ~100 companies; their financial
+statements are not loaded yet. The synthetic DEMO is excluded from screening.
 
 ## Run on Windows
 
@@ -32,6 +34,7 @@ Run launchers from the repository folder:
 | Screen companies | `Run_Screener.bat` | `outputs/screener/screener.html` |
 | Wabag linked statements and DCF | `Run_Wabag_Forecast.bat` (or `Run_Wabag_DCF.bat`) | `outputs/forecasts/wabag/forecast.html` |
 | Detailed Tega-Molycop model | `Run_Tega_Model.bat` | `outputs/tega_molycop/report.html` |
+| Nifty 100 universe and price config | `Run_Universe.bat` | `outputs/universe/NIFTY100/report.html` |
 
 Run the SQL loader first for analysis and screening. The linked Wabag launcher
 loads its own history automatically. Repeated imports record an audit entry but
@@ -85,6 +88,7 @@ results; regenerate `outputs/` after changing assumptions or data.
 | `src/equity_analytics/data/` | SQLite schema, ingestion, publication-date queries and comparisons |
 | `src/equity_analytics/financials/` | Annual contracts, validation, ratios and reports |
 | `src/equity_analytics/screening/` | Filters, deterministic sorting, zero substitution and exports |
+| `src/equity_analytics/universe/` | NSE constituent parsing, dated membership snapshots, company master and price-config export |
 | `src/equity_analytics/valuation/` | Shared DCF, SQL adapter, CAPM WACC and sensitivity |
 | `src/equity_analytics/forecasting/` | Detailed linked statements; broader company coverage requires validation |
 | `src/equity_analytics/case_studies/wabag/` | Sourced Wabag statements, schedules, annual WACC and reporting |
@@ -117,6 +121,7 @@ are not the pro-forma group forecasts.
 - [SQL pipeline](START_DATA_PIPELINE.md)
 - [Wabag history and comparison](START_WABAG.md)
 - [Screener](START_SCREENER.md)
+- [Research universe](START_UNIVERSE.md)
 - [Wabag linked forecast and DCF](START_WABAG_FORECAST.md)
 - [Wabag model methods](docs/WABAG_LINKED_MODEL.md)
 - [Legacy SQL DCF](START_SQL_DCF.md)

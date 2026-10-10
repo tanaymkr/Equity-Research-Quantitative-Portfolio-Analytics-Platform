@@ -84,3 +84,18 @@ to SQL. Sources and missing-flow zeros are visible in the report. See
 [the Wabag forecast guide](../START_WABAG_FORECAST.md). The next platform build
 remains factor definitions and validation; a current-date Wabag valuation and
 assumption refinement are separate research tasks.
+
+## Research-universe milestone — 10 October 2026
+
+Added `equity_analytics.universe`: strict NSE constituent-CSV parsing with ISIN
+check digits, immutable dated membership snapshots in a separate
+`universe.sqlite`, as-of membership that refuses to apply a later list to an
+earlier date unless explicitly labelled survivorship-biased, stale-list and
+unclassified-industry warnings, change detection between lists, a company
+master with `financials`/`general` statement templates, and a price config for
+the existing price pipeline. See [the universe guide](../START_UNIVERSE.md).
+
+Next: choose a bulk source for member financial statements and load them
+through the normalized annual schema; then add ROIC, working-capital days and
+market multiples, followed by factor definitions. Historical index lists and
+symbol-rename aliases remain outstanding for survivorship-free backtests.
