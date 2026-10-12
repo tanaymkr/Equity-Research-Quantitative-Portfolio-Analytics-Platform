@@ -7,10 +7,20 @@ every member in one run.
 
 ## Run on Windows
 
-Double-click `Run_Universe.bat`. It downloads the current Nifty 100 list from
-NSE, stores it, and opens `outputs/universe/NIFTY100/report.html`.
+Two launchers, run in this order:
 
-NSE sometimes blocks automated downloads. If that happens:
+1. `Run_Universe.bat` downloads the current Nifty 100 list from NSE, stores
+   it, and opens `outputs/universe/NIFTY100/report.html`. Re-running it is
+   safe: an unchanged list is recorded as "confirmed" for today.
+2. `Run_Universe_Prices.bat` first rebuilds `market_config.json` from the
+   stored list (no download, so it can never reuse an old config), then
+   downloads prices for every member and opens
+   `outputs/prices/NIFTY100/report.html`. The benchmark index is downloaded
+   first, so a rejected index fails in seconds.
+
+If NSE blocks the download but a list is already stored, `Run_Universe.bat`
+prints a WARNING and continues with the stored list; check the "list
+effective" date it prints. With nothing stored, or to load a list yourself:
 
 1. Open <https://nsearchives.nseindia.com/content/indices/ind_nifty100list.csv>
    in a browser; it downloads the constituent list CSV. The same list is also
@@ -21,10 +31,13 @@ NSE sometimes blocks automated downloads. If that happens:
 python run_universe.py --import path/to/ind_nifty100list.csv --retrieved-at 2026-10-10T18:00:00+05:30
 ```
 
-Then download prices for every member: double-click `Run_Universe_Prices.bat`
-(it opens `outputs/prices/NIFTY100/report.html`), or run:
+`--retrieved-at`, `--effective-on` and `--source-url` only work with `--import`:
+a fresh download is always dated by its own retrieval time.
+
+Command-line equivalent of `Run_Universe_Prices.bat`:
 
 ```bash
+python run_universe.py
 python run_price_pipeline.py --download --config outputs/universe/NIFTY100/market_config.json --output outputs/prices/NIFTY100
 ```
 
@@ -96,6 +109,27 @@ and ISIN changes between consecutive lists.
   "Financial Services" industry (banks, NBFCs, insurers), `general` for other
   known industries, and `unclassified` (with a warning) for any industry label
   this code has not seen.
+
+## Price-data problems found in the first Nifty 100 download
+
+An audit of the October 2026 download (2021-04-01 to 2026-10-09, all 101
+series complete to the last date) found Yahoo artefacts that would distort
+momentum and backtest returns if used unadjusted:
+
+| Instrument | Date | One-day "return" | Cause |
+| --- | --- | --- | --- |
+| VEDL | 2026-04-30 | -64.9% | Demerger; parent price not adjusted |
+| TMPV (Tata Motors) | 2025-10-14 | -40.2% | Commercial-vehicle demerger; not adjusted |
+| TRENT | 2026-01-01 | -33.0% | Price ratio 0.6695 matches a 1.5 split (0.6667); Yahoo dates the split 2026-06-04, where no step appears. Very likely a mis-dated corporate action |
+
+Other large moves are real market events (Adani group, January-February 2023
+and 21 November 2024; election-result day, 4 June 2024). Recent listings and
+demerged entities (JIOFIN, HYUNDAI, TATACAP, ENRIN, TMCV, VAML, ETERNAL) have
+missing intervals before their first trade, as expected. On 15 January 2026
+the NIFTY 50 and a few stocks have null bars from Yahoo; they stay missing.
+
+The factor step needs an explicit corporate-action adjustment table (or a
+documented exclusion window) for these cases before momentum is computed.
 
 ## Not yet covered
 

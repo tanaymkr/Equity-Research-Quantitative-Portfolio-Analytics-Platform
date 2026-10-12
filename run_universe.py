@@ -67,12 +67,36 @@ def main(argv=None):
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     try:
+        import_only = {
+            "--retrieved-at": args.retrieved_at,
+            "--effective-on": args.effective_on,
+            "--source-url": args.source_url,
+        }
+        misplaced = [flag for flag, value in import_only.items() if value]
+        if misplaced and not args.import_file:
+            # A download is dated by its own retrieval time; letting it be
+            # back-dated would apply today's list to the past.
+            raise ValueError(", ".join(misplaced) + " can only be used with --import")
         store = UniverseStore(args.db)
         output = args.output or ROOT / "outputs/universe" / args.universe
-        if args.download or args.import_file:
-            if args.download:
-                print("Downloading", args.universe, "from NSE", flush=True)
+        got = None
+        if args.download:
+            print("Downloading", args.universe, "from NSE", flush=True)
+            try:
                 got = download_constituents(args.universe)
+            except (OSError, ValueError) as exc:
+                if not store.snapshots(args.universe):
+                    raise ValueError(
+                        f"NSE download failed ({exc}) and no {args.universe} list "
+                        "is stored. Import a saved CSV (see START_UNIVERSE.md)."
+                    ) from exc
+                print(
+                    f"WARNING: NSE download failed ({exc}). Continuing with the "
+                    "stored list; check its date below.",
+                    flush=True,
+                )
+        if got or args.import_file:
+            if got:
                 raw, url, retrieved_at = got["raw"], got["url"], got["retrieved_at"]
             else:
                 raw = args.import_file.read_bytes()

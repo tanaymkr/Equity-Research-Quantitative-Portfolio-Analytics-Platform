@@ -1,7 +1,10 @@
 @echo off
 cd /d "%~dp0"
-if not exist "outputs\universe\NIFTY100\market_config.json" (
- echo Run Run_Universe.bat first to build the Nifty 100 list.
+rem Rebuild the price config from the stored list first (no download), so a
+rem stale config from an earlier run or older code is never reused.
+python run_universe.py
+if errorlevel 1 (
+ echo Could not build the price config. Run Run_Universe.bat first.
  pause
  exit /b 1
 )
