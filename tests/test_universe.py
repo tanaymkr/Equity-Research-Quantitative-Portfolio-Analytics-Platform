@@ -7,6 +7,7 @@ import pytest
 
 from equity_analytics.universe import (
     UniverseStore,
+    benchmark_for,
     company_id_for,
     download_constituents,
     isin_valid,
@@ -206,17 +207,51 @@ def test_changes_between_snapshots(tmp_path):
 
 def test_price_config_matches_price_pipeline_shape(tmp_path):
     store = UniverseStore(tmp_path / "u.sqlite")
-    ingest(store)
-    membership = store.members("TEST100", "2025-04-01")
+    ingest(store, universe_id="NIFTY100")
+    membership = store.members("NIFTY100", "2025-04-01")
     config = price_config(membership, start="2024-04-01", end_exclusive="2025-04-01")
     tickers = [i["ticker"] for i in config["instruments"]]
-    assert tickers == ["ALPHA.NS", "BETA.NS", "G&S.NS", "^NSEI"]
-    assert config["benchmark_id"] == "NIFTY50"
+    # A Nifty 100 universe is compared with the Nifty 100 index, not the Nifty 50.
+    assert tickers == ["ALPHA.NS", "BETA.NS", "G&S.NS", "^CNX100"]
+    assert config["benchmark_id"] == "NIFTY100"
     assert config["universe"]["survivorship_biased"] is True  # prices predate list
     later = price_config(membership, start="2025-03-31", end_exclusive="2025-04-01")
     assert later["universe"]["survivorship_biased"] is False
     with pytest.raises(ValueError, match="before"):
         price_config(membership, start="2025-04-01", end_exclusive="2025-04-01")
+
+
+@pytest.mark.parametrize(
+    ("universe_id", "ticker"),
+    [
+        ("NIFTY50", "^NSEI"),
+        ("NIFTY100", "^CNX100"),
+        ("NIFTY200", "^CNX200"),
+        ("NIFTY500", "^CRSLDX"),
+    ],
+)
+def test_each_universe_has_its_own_benchmark(universe_id, ticker):
+    b = benchmark_for(universe_id)
+    assert (b["instrument_id"], b["ticker"], b["kind"]) == (
+        universe_id,
+        ticker,
+        "price_index",
+    )
+
+
+def test_unknown_universe_needs_an_explicit_benchmark(tmp_path):
+    store = UniverseStore(tmp_path / "u.sqlite")
+    ingest(store)
+    membership = store.members("TEST100", "2025-04-01")
+    with pytest.raises(ValueError, match="No default benchmark"):
+        price_config(membership, start="2025-03-31", end_exclusive="2025-04-01")
+    config = price_config(
+        membership,
+        start="2025-03-31",
+        end_exclusive="2025-04-01",
+        benchmark=benchmark_for("NIFTY50"),
+    )
+    assert config["benchmark_id"] == "NIFTY50"
 
 
 def test_store_refuses_other_databases(tmp_path):
@@ -290,6 +325,27 @@ def test_runner_end_to_end(tmp_path, capsys):
     assert summary["templates"] == {"financials": 1, "general": 2}
     config = json.loads((out / "market_config.json").read_text())
     assert config["end_exclusive"] == "2025-04-15"
+    assert config["benchmark_id"] == "NIFTY100"
+    assert config["instruments"][-1]["ticker"] == "^CNX100"
+    # The benchmark can be overridden, e.g. to compare with the Nifty 50.
+    assert (
+        main(
+            [
+                *args[:2],
+                "--as-of",
+                "2025-04-15",
+                "--db",
+                str(db),
+                "--output",
+                str(out),
+                "--benchmark",
+                "NIFTY50",
+            ]
+        )
+        == 0
+    )
+    config = json.loads((out / "market_config.json").read_text())
+    assert config["instruments"][-1]["ticker"] == "^NSEI"
     assert (
         (out / "members.csv")
         .read_text(encoding="utf-8-sig")

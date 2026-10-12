@@ -317,6 +317,32 @@ class UniverseStore:
         return out
 
 
+# Yahoo price-index tickers. Each universe is compared with its own index, so a
+# Nifty 100 strategy is not judged against the narrower Nifty 50.
+BENCHMARKS = {
+    "NIFTY50": ("^NSEI", "NIFTY 50"),
+    "NIFTY100": ("^CNX100", "NIFTY 100"),
+    "NIFTY200": ("^CNX200", "NIFTY 200"),
+    "NIFTY500": ("^CRSLDX", "NIFTY 500"),
+}
+
+
+def benchmark_for(universe_id):
+    """The matching price index; an unknown universe must name its own."""
+    if universe_id not in BENCHMARKS:
+        raise ValueError(
+            f"No default benchmark for {universe_id}; choose one with --benchmark"
+        )
+    ticker, name = BENCHMARKS[universe_id]
+    return {
+        "instrument_id": universe_id,
+        "ticker": ticker,
+        "name": name,
+        "currency": "INR",
+        "kind": "price_index",
+    }
+
+
 def price_config(membership, *, start, end_exclusive, benchmark=None):
     """A market_config.json for run_price_pipeline.py from a membership result.
 
@@ -326,13 +352,7 @@ def price_config(membership, *, start, end_exclusive, benchmark=None):
     """
     if _iso_date(start, "start") >= _iso_date(end_exclusive, "end_exclusive"):
         raise ValueError("start must be before end_exclusive")
-    benchmark = benchmark or {
-        "instrument_id": "NIFTY50",
-        "ticker": "^NSEI",
-        "name": "NIFTY 50",
-        "currency": "INR",
-        "kind": "price_index",
-    }
+    benchmark = benchmark or benchmark_for(membership["universe_id"])
     instruments = [
         {
             "instrument_id": m["company_id"],
