@@ -457,5 +457,7 @@ def price_config(membership, *, start, end_exclusive, benchmark=None):
                 "survivorship-biased."
             ),
         },
-        "instruments": [*instruments, benchmark],
+        # Benchmark first: if the provider rejects it, the download fails in
+        # seconds rather than after every member has been fetched.
+        "instruments": [benchmark, *instruments],
     }

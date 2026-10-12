@@ -242,7 +242,8 @@ def test_price_config_matches_price_pipeline_shape(tmp_path):
     config = price_config(membership, start="2024-04-01", end_exclusive="2025-04-01")
     tickers = [i["ticker"] for i in config["instruments"]]
     # A Nifty 100 universe is compared with the Nifty 100 index, not the Nifty 50.
-    assert tickers == ["ALPHA.NS", "BETA.NS", "G&S.NS", "^CNX100"]
+    # Benchmark first so a rejected index fails before any member downloads.
+    assert tickers == ["^CNX100", "ALPHA.NS", "BETA.NS", "G&S.NS"]
     assert config["benchmark_id"] == "NIFTY100"
     assert config["universe"]["survivorship_biased"] is True  # prices predate list
     later = price_config(membership, start="2025-03-31", end_exclusive="2025-04-01")
@@ -323,13 +324,17 @@ def test_download_validates_before_returning():
         download_constituents("SENSEX", opener=opener)
 
 
-def test_runner_end_to_end(tmp_path, capsys):
+def load_runner():
     spec = importlib.util.spec_from_file_location(
         "run_universe", Path(__file__).parents[1] / "run_universe.py"
     )
     runner = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(runner)
-    main = runner.main
+    return runner
+
+
+def test_runner_end_to_end(tmp_path, capsys):
+    main = load_runner().main
 
     source = tmp_path / "list.csv"
     source.write_bytes(csv_bytes(BASE))
@@ -356,7 +361,7 @@ def test_runner_end_to_end(tmp_path, capsys):
     config = json.loads((out / "market_config.json").read_text())
     assert config["end_exclusive"] == "2025-04-15"
     assert config["benchmark_id"] == "NIFTY100"
-    assert config["instruments"][-1]["ticker"] == "^CNX100"
+    assert config["instruments"][0]["ticker"] == "^CNX100"
     # The benchmark can be overridden, e.g. to compare with the Nifty 50.
     assert (
         main(
@@ -375,7 +380,7 @@ def test_runner_end_to_end(tmp_path, capsys):
         == 0
     )
     config = json.loads((out / "market_config.json").read_text())
-    assert config["instruments"][-1]["ticker"] == "^NSEI"
+    assert config["instruments"][0]["ticker"] == "^NSEI"
     assert (
         (out / "members.csv")
         .read_text(encoding="utf-8-sig")
@@ -385,3 +390,92 @@ def test_runner_end_to_end(tmp_path, capsys):
     # A date before the only list fails loudly instead of backfilling.
     assert main(["--as-of", "2024-01-01", "--db", str(db), "--output", str(out)]) == 1
     assert "survivorship" in capsys.readouterr().err
+
+
+def test_runner_rebuilds_a_stale_config_without_downloading(tmp_path):
+    # The prices launcher runs the universe step with no flags first. That must
+    # overwrite an old config (e.g. one naming NIFTY50) from the stored list.
+    runner = load_runner()
+    db, out = tmp_path / "u.sqlite", tmp_path / "out"
+    source = tmp_path / "list.csv"
+    source.write_bytes(csv_bytes(BASE))
+    common = ["--db", str(db), "--output", str(out), "--as-of", "2025-04-15"]
+    assert (
+        runner.main(
+            [
+                "--import",
+                str(source),
+                "--retrieved-at",
+                "2025-03-31T10:00:00+05:30",
+                *common,
+            ]
+        )
+        == 0
+    )
+    stale = json.loads((out / "market_config.json").read_text())
+    stale["benchmark_id"] = "NIFTY50"
+    (out / "market_config.json").write_text(json.dumps(stale))
+    assert runner.main(common) == 0
+    fresh = json.loads((out / "market_config.json").read_text())
+    assert fresh["benchmark_id"] == "NIFTY100"
+
+
+def test_runner_needs_a_stored_list_when_nothing_is_imported(tmp_path, capsys):
+    runner = load_runner()
+    assert (
+        runner.main(
+            ["--db", str(tmp_path / "u.sqlite"), "--output", str(tmp_path / "out")]
+        )
+        == 1
+    )
+    assert "No snapshots stored" in capsys.readouterr().err
+
+
+def test_runner_falls_back_to_stored_list_if_nse_blocks(tmp_path, capsys):
+    runner = load_runner()
+    db, out = tmp_path / "u.sqlite", tmp_path / "out"
+    source = tmp_path / "list.csv"
+    source.write_bytes(csv_bytes(BASE))
+    common = ["--db", str(db), "--output", str(out), "--as-of", "2025-04-15"]
+
+    def blocked(universe_id):
+        raise OSError("HTTP Error 403: Forbidden")
+
+    runner.download_constituents = blocked
+    # Nothing stored yet: the failure must stop the run.
+    assert runner.main(["--download", *common]) == 1
+    assert "no NIFTY100 list is stored" in capsys.readouterr().err
+    assert (
+        runner.main(
+            [
+                "--import",
+                str(source),
+                "--retrieved-at",
+                "2025-03-31T10:00:00+05:30",
+                *common,
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    # With a stored list: warn loudly, then continue with it.
+    assert runner.main(["--download", *common]) == 0
+    printed = capsys.readouterr().out
+    assert "WARNING: NSE download failed" in printed
+    assert "list effective 2025-03-31" in printed
+
+
+@pytest.mark.parametrize(
+    "flag",
+    [
+        ["--effective-on", "2024-01-01"],
+        ["--retrieved-at", "2024-01-01T00:00:00Z"],
+        ["--source-url", "x"],
+    ],
+)
+def test_runner_rejects_import_flags_without_import(tmp_path, capsys, flag):
+    # Back-dating a fresh download would apply today's list to the past.
+    runner = load_runner()
+    args = ["--download", *flag, "--db", str(tmp_path / "u.sqlite")]
+    assert runner.main(args) == 1
+    assert "can only be used with --import" in capsys.readouterr().err
