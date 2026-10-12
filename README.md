@@ -35,6 +35,7 @@ Run launchers from the repository folder:
 | Wabag linked statements and DCF | `Run_Wabag_Forecast.bat` (or `Run_Wabag_DCF.bat`) | `outputs/forecasts/wabag/forecast.html` |
 | Detailed Tega-Molycop model | `Run_Tega_Model.bat` | `outputs/tega_molycop/report.html` |
 | Nifty 100 universe and price config | `Run_Universe.bat` | `outputs/universe/NIFTY100/report.html` |
+| Prices for every Nifty 100 member (after the step above) | `Run_Universe_Prices.bat` | `outputs/prices/NIFTY100/report.html` |
 
 Run the SQL loader first for analysis and screening. The linked Wabag launcher
 loads its own history automatically. Repeated imports record an audit entry but

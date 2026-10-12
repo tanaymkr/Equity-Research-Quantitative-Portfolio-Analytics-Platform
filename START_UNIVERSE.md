@@ -21,7 +21,8 @@ NSE sometimes blocks automated downloads. If that happens:
 python run_universe.py --import path/to/ind_nifty100list.csv --retrieved-at 2026-10-10T18:00:00+05:30
 ```
 
-Then download prices for every member using the generated config:
+Then download prices for every member: double-click `Run_Universe_Prices.bat`
+(it opens `outputs/prices/NIFTY100/report.html`), or run:
 
 ```bash
 python run_price_pipeline.py --download --config outputs/universe/NIFTY100/market_config.json --output outputs/prices/NIFTY100
@@ -29,6 +30,9 @@ python run_price_pipeline.py --download --config outputs/universe/NIFTY100/marke
 
 Other NSE broad indices use the same file layout: `--universe NIFTY50`,
 `NIFTY200` or `NIFTY500` (with `--download`, or `--import` plus a saved file).
+
+`Run_Price_Pipeline.bat` is unchanged: it still downloads only Tega, Wabag and
+the NIFTY 50 from `examples/market_config.json` into `outputs/prices/`.
 
 ## Outputs
 
