@@ -102,9 +102,39 @@ def test_ingest_is_idempotent_and_snapshots_are_immutable(tmp_path):
     assert ingest(store)["status"] == "unchanged"
     with pytest.raises(ValueError, match="immutable"):
         ingest(store, rows=LATER)  # different list, same date
-    with pytest.raises(ValueError, match="cannot describe two dates"):
-        ingest(store, effective_on="2025-09-30")  # same file, new date
     assert len(store.snapshots("TEST100")) == 1
+
+
+def test_unchanged_list_redownloaded_later_is_confirmed(tmp_path):
+    # Re-running the launcher days later downloads an identical list. It must
+    # confirm the list is still current, not fail (the bug this guards against).
+    store = UniverseStore(tmp_path / "u.sqlite")
+    first = ingest(store, effective_on="2025-03-31")
+    again = ingest(store, effective_on="2025-09-30")
+    assert again["status"] == "confirmed"
+    assert again["snapshot_id"] == first["snapshot_id"]  # stored once
+    dates = [s["effective_on"] for s in store.snapshots("TEST100")]
+    assert dates == ["2025-03-31", "2025-09-30"]
+    later = store.members("TEST100", "2026-01-31")
+    assert later["snapshot"]["effective_on"] == "2025-09-30"
+    assert later["list_age_days"] == 123  # age resets from the confirmation
+    assert later["warnings"] == []
+    assert store.changes("TEST100") == []  # no change between identical lists
+    with sqlite3.connect(tmp_path / "u.sqlite") as db:
+        assert db.execute("SELECT COUNT(*) FROM universe_members").fetchone()[0] == 3
+
+
+def test_version_1_database_is_upgraded_in_place(tmp_path):
+    path = tmp_path / "u.sqlite"
+    ingest(UniverseStore(path))
+    with sqlite3.connect(path) as db:  # rebuild what version 1 looked like
+        db.execute("DROP TABLE universe_observations")
+        db.execute("PRAGMA user_version=1")
+    store = UniverseStore(path)
+    with sqlite3.connect(path) as db:
+        assert db.execute("PRAGMA user_version").fetchone()[0] == 2
+    assert [s["effective_on"] for s in store.snapshots("TEST100")] == ["2025-03-31"]
+    assert ingest(store, effective_on="2025-04-30")["status"] == "confirmed"
 
 
 def test_ingest_validates_dates_and_ids(tmp_path):

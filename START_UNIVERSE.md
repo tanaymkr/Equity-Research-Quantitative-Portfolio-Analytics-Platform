@@ -62,9 +62,11 @@ list downloaded today only proves today's membership. Set `--effective-on` when
 you import an older list whose date you can document (for example an archived
 copy from before an index review).
 
-- Snapshots are immutable. Re-importing the same file is a no-op. A different
-  list for the same universe and date is rejected; the same file cannot be
-  stored under two dates.
+- Each distinct list is stored once. Re-running `Run_Universe.bat` when NSE's
+  list has not changed records a new date for the same list ("confirmed"), so
+  it is never flagged stale while you keep refreshing it. Re-importing the same
+  file for the same date is a no-op. A different list for a universe and date
+  that already has one is rejected.
 - `--as-of DATE` uses the latest snapshot effective on or before that date.
 - **Survivorship guard:** asking for a date before the earliest stored list
   fails. Today's Nifty 100 excludes companies that dropped out, so applying it

@@ -1,12 +1,14 @@
 """Dated index-membership snapshots and the company master derived from them.
 
-A snapshot records "these companies were in this universe on effective_on".
-Snapshots are immutable, like annual filings: a changed list for the same
-universe and date is rejected; a new list needs its own effective date.
+A snapshot is one distinct constituent list (stored once, by content hash).
+An observation records "this list was the universe on this date". The same
+list can be observed on several dates: re-downloading an unchanged list
+confirms it is still current. Observations are immutable: a different list
+for a universe and date that already has one is rejected.
 
-Membership for a date uses the latest snapshot effective on or before it.
-Using a later list for an earlier date is survivorship bias, so it is refused
-unless the caller explicitly allows it, and the result is then labelled.
+Membership for a date uses the latest observation on or before it. Using a
+later list for an earlier date is survivorship bias, so it is refused unless
+the caller explicitly allows it, and the result is then labelled.
 """
 
 import hashlib
@@ -18,7 +20,7 @@ from pathlib import Path
 
 from .nse import parse_constituents
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 # NSE membership dates are Indian calendar dates. A fixed offset avoids
 # needing tzdata on Windows; India has no daylight saving.
 IST = timezone(timedelta(hours=5, minutes=30))
@@ -47,6 +49,23 @@ CREATE TABLE universe_members (
  UNIQUE(snapshot_id, symbol),
  UNIQUE(snapshot_id, isin));
 CREATE INDEX universe_dates ON universe_snapshots(universe_id, effective_on);
+"""
+# Version 2: dated observations of a snapshot. A version-1 database gets this
+# table, filled with one observation per existing snapshot, on first open.
+OBSERVATIONS = """
+CREATE TABLE universe_observations (
+ universe_id TEXT NOT NULL,
+ observed_on TEXT NOT NULL,
+ snapshot_id INTEGER NOT NULL REFERENCES universe_snapshots,
+ retrieved_at TEXT NOT NULL,
+ loaded_at TEXT NOT NULL,
+ source_url TEXT NOT NULL,
+ PRIMARY KEY(universe_id, observed_on));
+"""
+MIGRATE_V1 = """
+INSERT INTO universe_observations
+SELECT universe_id, effective_on, snapshot_id, retrieved_at, loaded_at, source_url
+FROM universe_snapshots;
 """
 
 UNIVERSE_ID = re.compile(r"[A-Z0-9][A-Z0-9_-]{0,31}")
@@ -126,15 +145,22 @@ class UniverseStore:
             tables = db.execute(
                 "SELECT name FROM sqlite_master WHERE type='table'"
             ).fetchall()
+            names = {t[0] for t in tables}
             if version == 0 and not tables:
                 db.executescript(
                     "BEGIN IMMEDIATE;\n"
                     + SCHEMA
+                    + OBSERVATIONS
                     + f"\nPRAGMA user_version={SCHEMA_VERSION};\nCOMMIT;"
                 )
-            elif version != SCHEMA_VERSION or not any(
-                t[0] == "universe_snapshots" for t in tables
-            ):
+            elif version == 1 and "universe_snapshots" in names:
+                db.executescript(
+                    "BEGIN IMMEDIATE;\n"
+                    + OBSERVATIONS
+                    + MIGRATE_V1
+                    + f"\nPRAGMA user_version={SCHEMA_VERSION};\nCOMMIT;"
+                )
+            elif version != SCHEMA_VERSION or "universe_observations" not in names:
                 raise ValueError(
                     "Not a supported universe database; use a separate universe.sqlite"
                 )
@@ -150,7 +176,12 @@ class UniverseStore:
             db.close()
 
     def ingest(self, raw, *, universe_id, effective_on, retrieved_at, source_url):
-        """Store one constituent list. Identical re-imports are no-ops."""
+        """Record that this list was the universe on effective_on.
+
+        Returns status "loaded" for a new list, "confirmed" when an already
+        stored list is observed on a new date, and "unchanged" when the same
+        list and date were already recorded.
+        """
         if not isinstance(universe_id, str) or not UNIVERSE_ID.fullmatch(universe_id):
             raise ValueError("universe_id must be upper-case letters, digits, _ or -")
         effective = _iso_date(effective_on, "effective_on")
@@ -168,66 +199,103 @@ class UniverseStore:
         if len(set(ids)) != len(ids):
             raise ValueError("Two symbols map to the same company_id")
         digest = hashlib.sha256(raw).hexdigest()
+        loaded_at = datetime.now(UTC).isoformat(timespec="seconds")
+        retrieved = stamp.isoformat(timespec="seconds")
         with self.connection() as db, db:
             db.execute("BEGIN IMMEDIATE")
-            same = db.execute(
-                "SELECT snapshot_id, effective_on, sha256 FROM universe_snapshots "
-                "WHERE universe_id=? AND (sha256=? OR effective_on=?)",
-                (universe_id, digest, effective_on),
-            ).fetchall()
-            for row in same:
-                if row["sha256"] == digest and row["effective_on"] == effective_on:
-                    return {"status": "unchanged", "snapshot_id": row["snapshot_id"]}
-                if row["effective_on"] == effective_on:
-                    raise ValueError(
-                        f"{universe_id} already has a different list effective "
-                        f"{effective_on}; snapshots are immutable"
-                    )
+            dated = db.execute(
+                "SELECT o.snapshot_id, s.sha256 FROM universe_observations o "
+                "JOIN universe_snapshots s USING (snapshot_id) "
+                "WHERE o.universe_id=? AND o.observed_on=?",
+                (universe_id, effective_on),
+            ).fetchone()
+            if dated:
+                if dated["sha256"] == digest:
+                    return {"status": "unchanged", "snapshot_id": dated["snapshot_id"]}
                 raise ValueError(
-                    f"This exact file is already stored for {universe_id} as "
-                    f"effective {row['effective_on']}; one file cannot describe "
-                    "two dates"
+                    f"{universe_id} already has a different list effective "
+                    f"{effective_on}; observations are immutable"
                 )
-            sid = db.execute(
-                "INSERT INTO universe_snapshots (universe_id,effective_on,"
-                "retrieved_at,loaded_at,source_url,sha256,member_count,raw_content) "
-                "VALUES (?,?,?,?,?,?,?,?)",
+            known = db.execute(
+                "SELECT snapshot_id FROM universe_snapshots "
+                "WHERE universe_id=? AND sha256=?",
+                (universe_id, digest),
+            ).fetchone()
+            status = "confirmed" if known else "loaded"
+            if known:
+                sid = known["snapshot_id"]
+            else:
+                sid = self._insert_snapshot(
+                    db,
+                    universe_id,
+                    effective_on,
+                    retrieved,
+                    loaded_at,
+                    source_url.strip(),
+                    digest,
+                    members,
+                    raw,
+                )
+            db.execute(
+                "INSERT INTO universe_observations VALUES (?,?,?,?,?,?)",
                 (
                     universe_id,
                     effective_on,
-                    stamp.isoformat(timespec="seconds"),
-                    datetime.now(UTC).isoformat(timespec="seconds"),
+                    sid,
+                    retrieved,
+                    loaded_at,
                     source_url.strip(),
-                    digest,
-                    len(members),
-                    raw,
                 ),
-            ).lastrowid
-            db.executemany(
-                "INSERT INTO universe_members VALUES (?,?,?,?,?,?,?)",
-                [
-                    (
-                        sid,
-                        company_id_for(m["symbol"]),
-                        m["symbol"],
-                        m["name"],
-                        m["industry"],
-                        m["series"],
-                        m["isin"],
-                    )
-                    for m in members
-                ],
             )
-        return {"status": "loaded", "snapshot_id": sid, "members": len(members)}
+        return {"status": status, "snapshot_id": sid, "members": len(members)}
+
+    @staticmethod
+    def _insert_snapshot(
+        db, universe_id, effective_on, retrieved, loaded_at, url, digest, members, raw
+    ):
+        sid = db.execute(
+            "INSERT INTO universe_snapshots (universe_id,effective_on,"
+            "retrieved_at,loaded_at,source_url,sha256,member_count,raw_content) "
+            "VALUES (?,?,?,?,?,?,?,?)",
+            (
+                universe_id,
+                effective_on,
+                retrieved,
+                loaded_at,
+                url,
+                digest,
+                len(members),
+                raw,
+            ),
+        ).lastrowid
+        db.executemany(
+            "INSERT INTO universe_members VALUES (?,?,?,?,?,?,?)",
+            [
+                (
+                    sid,
+                    company_id_for(m["symbol"]),
+                    m["symbol"],
+                    m["name"],
+                    m["industry"],
+                    m["series"],
+                    m["isin"],
+                )
+                for m in members
+            ],
+        )
+        return sid
 
     def snapshots(self, universe_id):
+        """Every dated list for a universe, oldest first (one row per date)."""
         with self.connection() as db:
             return [
                 dict(r)
                 for r in db.execute(
-                    "SELECT snapshot_id,universe_id,effective_on,retrieved_at,"
-                    "source_url,sha256,member_count FROM universe_snapshots "
-                    "WHERE universe_id=? ORDER BY effective_on",
+                    "SELECT o.snapshot_id, o.universe_id, o.observed_on AS effective_on, "
+                    "o.retrieved_at, o.source_url, s.sha256, s.member_count "
+                    "FROM universe_observations o "
+                    "JOIN universe_snapshots s USING (snapshot_id) "
+                    "WHERE o.universe_id=? ORDER BY o.observed_on",
                     (universe_id,),
                 )
             ]
@@ -289,12 +357,18 @@ class UniverseStore:
         }
 
     def changes(self, universe_id):
-        """Additions and removals between consecutive snapshots."""
+        """Additions and removals between consecutive different lists."""
         snaps = self.snapshots(universe_id)
         out = []
         with self.connection() as db:
             previous = None
             for s in snaps:
+                if (
+                    previous is not None
+                    and s["snapshot_id"] == previous[0]["snapshot_id"]
+                ):
+                    previous = (s, previous[1])  # same list re-confirmed
+                    continue
                 current = {
                     m["company_id"]: m for m in self._members(db, s["snapshot_id"])
                 }
