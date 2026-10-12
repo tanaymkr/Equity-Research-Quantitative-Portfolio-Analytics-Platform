@@ -14,7 +14,13 @@ from equity_analytics.universe.nse import (
     download_constituents,
 )
 from equity_analytics.universe.report import write_report
-from equity_analytics.universe.store import IST, UniverseStore, price_config
+from equity_analytics.universe.store import (
+    BENCHMARKS,
+    IST,
+    UniverseStore,
+    benchmark_for,
+    price_config,
+)
 
 
 def main(argv=None):
@@ -44,6 +50,11 @@ def main(argv=None):
         "--allow-backfill",
         action="store_true",
         help="Use a later list for an earlier date (labelled survivorship-biased)",
+    )
+    parser.add_argument(
+        "--benchmark",
+        choices=sorted(BENCHMARKS),
+        help="Price index to compare against. Default: the universe's own index",
     )
     parser.add_argument("--price-start", default="2021-04-01")
     parser.add_argument(
@@ -103,6 +114,7 @@ def main(argv=None):
             membership,
             start=args.price_start,
             end_exclusive=args.price_end_exclusive or as_of,
+            benchmark=benchmark_for(args.benchmark) if args.benchmark else None,
         )
         report = write_report(membership, store.changes(args.universe), config, output)
         print(
@@ -112,6 +124,7 @@ def main(argv=None):
         for warning in membership["warnings"]:
             print("WARNING:", warning)
         print("Report:", report)
+        print("Benchmark:", config["benchmark_id"])
         print("Price config:", output / "market_config.json")
         return 0
     except (ValueError, KeyError, OSError) as exc:

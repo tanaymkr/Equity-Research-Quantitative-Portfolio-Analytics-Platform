@@ -31,6 +31,12 @@ python run_price_pipeline.py --download --config outputs/universe/NIFTY100/marke
 Other NSE broad indices use the same file layout: `--universe NIFTY50`,
 `NIFTY200` or `NIFTY500` (with `--download`, or `--import` plus a saved file).
 
+**Benchmark.** Each universe is compared with its own price index: NIFTY50
+with `^NSEI`, NIFTY100 with `^CNX100`, NIFTY200 with `^CNX200` and NIFTY500
+with `^CRSLDX` (Yahoo tickers). Use `--benchmark NIFTY50` (or another of these)
+to compare against a different index. These are price indices, so returns
+exclude dividends on both sides.
+
 `Run_Price_Pipeline.bat` is unchanged: it still downloads only Tega, Wabag and
 the NIFTY 50 from `examples/market_config.json` into `outputs/prices/`.
 
