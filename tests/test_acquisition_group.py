@@ -8,8 +8,8 @@ from unittest.mock import patch
 
 import pytest
 
-from equity_analytics.acquisition import engine
-from equity_analytics.acquisition.history import load_acquisition_facts
+from equity_analytics.case_studies.tega import engine
+from equity_analytics.case_studies.tega.history import load_acquisition_facts
 
 ROOT = Path(__file__).resolve().parents[1]
 

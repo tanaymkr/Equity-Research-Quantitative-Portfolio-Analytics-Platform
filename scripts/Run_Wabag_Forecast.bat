@@ -1,12 +1,12 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 where py >nul 2>nul
 if errorlevel 1 goto use_python
-py -3 run_wabag_forecast.py
+py -3 scripts\run_wabag_forecast.py
 goto finished
 :use_python
-python run_wabag_forecast.py
+python scripts\run_wabag_forecast.py
 :finished
 if errorlevel 1 goto failed
 echo.
@@ -15,7 +15,7 @@ pause
 exit /b 0
 :failed
 echo.
-echo The DCF did not finish. Read the error above.
+echo The forecast did not finish. Read the error above.
 echo Python 3.11 or later is required.
 pause
 exit /b 1

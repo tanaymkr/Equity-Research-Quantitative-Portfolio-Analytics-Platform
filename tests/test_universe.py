@@ -326,7 +326,7 @@ def test_download_validates_before_returning():
 
 def load_runner():
     spec = importlib.util.spec_from_file_location(
-        "run_universe", Path(__file__).parents[1] / "run_universe.py"
+        "run_universe", Path(__file__).parents[1] / "scripts" / "run_universe.py"
     )
     runner = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(runner)

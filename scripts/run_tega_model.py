@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def main() -> None:
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(root / "src"))
     from equity_analytics.case_studies.tega.__main__ import main as run
 

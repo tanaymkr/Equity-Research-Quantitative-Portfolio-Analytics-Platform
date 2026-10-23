@@ -1032,7 +1032,7 @@ def write_reports(
             f"<li>{source['date']}: <a href='{escape(source['url'], quote=True)}'>{escape(source['title'])}</a> — {escape(source['location'])}</li>"
         ]
     html += [
-        "</ul></section><p>Recalculate: python run_tega_model.py · Full machine-readable results: base/model.json, downside/model.json, upside/model.json.</p></main></html>"
+        "</ul></section><p>Recalculate: python scripts/run_tega_model.py · Full machine-readable results: base/model.json, downside/model.json, upside/model.json.</p></main></html>"
     ]
     (output / "report.html").write_text("\n".join(html), encoding="utf-8")
     (output / "scenarios.md").write_text("\n".join(md), encoding="utf-8")

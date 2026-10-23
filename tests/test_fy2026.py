@@ -6,8 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from equity_analytics.acquisition import build_acquisition_model
-from equity_analytics.acquisition.history import (
+from equity_analytics.case_studies.tega import build_acquisition_model
+from equity_analytics.case_studies.tega.history import (
     legacy_facts_from_statements,
     load_acquisition_facts,
 )

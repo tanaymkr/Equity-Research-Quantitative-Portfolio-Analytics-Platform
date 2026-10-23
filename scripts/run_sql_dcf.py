@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def main(argv=None):
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(root / "src"))
     from equity_analytics.data import DataStoreError, FinancialStore
     from equity_analytics.valuation.sql_dcf import export_sql_dcf
@@ -22,7 +22,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if not args.db.is_file():
-            raise ValueError("Database missing. Run Run_Wabag_Analysis.bat first.")
+            raise ValueError("Database missing. Run scripts/Run_Company_Analysis.bat first.")
         payload = export_sql_dcf(FinancialStore(args.db), args.assumptions, args.output)
         for name, case in payload["scenarios"].items():
             print(

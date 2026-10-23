@@ -1,6 +1,6 @@
 @echo off
-cd /d "%~dp0"
-python run_price_pipeline.py --download
+cd /d "%~dp0.."
+python scripts\run_price_pipeline.py --download
 if errorlevel 1 (
  echo Price pipeline failed. Review the message above.
 ) else (

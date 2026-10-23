@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 def main(argv=None):
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(root / "src"))
     from equity_analytics.data import DataStoreError, FinancialStore
     from equity_analytics.data.__main__ import export_analysis

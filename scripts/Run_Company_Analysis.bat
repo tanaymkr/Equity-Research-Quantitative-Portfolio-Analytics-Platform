@@ -1,12 +1,12 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 where py >nul 2>nul
 if errorlevel 1 goto use_python
-py -3 run_wabag_analysis.py
+py -3 scripts\run_company_analysis.py
 goto finished
 :use_python
-python run_wabag_analysis.py
+python scripts\run_company_analysis.py
 :finished
 if errorlevel 1 goto failed
 echo.

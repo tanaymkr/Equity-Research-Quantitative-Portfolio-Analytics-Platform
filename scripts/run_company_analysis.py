@@ -5,7 +5,7 @@ from run_data_pipeline import main as load_pipeline
 
 
 def main():
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     # The existing loader retains its standalone CLI and earlier-cutoff behaviour.
     load_pipeline([])
     from equity_analytics.data import FinancialStore

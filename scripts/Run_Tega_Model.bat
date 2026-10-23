@@ -1,12 +1,12 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 where py >nul 2>nul
 if errorlevel 1 goto use_python
-py -3 run_tega_model.py
+py -3 scripts\run_tega_model.py
 goto finished
 :use_python
-python run_tega_model.py
+python scripts\run_tega_model.py
 :finished
 if errorlevel 1 goto failed
 echo.

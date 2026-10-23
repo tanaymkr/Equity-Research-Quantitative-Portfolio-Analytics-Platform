@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 def main(argv=None):
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(root / "src"))
     from equity_analytics.case_studies.wabag import load_inputs
     from equity_analytics.case_studies.wabag.scenarios import (

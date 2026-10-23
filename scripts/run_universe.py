@@ -6,7 +6,7 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from equity_analytics.universe.nse import (
     INDEX_FILES,
@@ -88,7 +88,7 @@ def main(argv=None):
                 if not store.snapshots(args.universe):
                     raise ValueError(
                         f"NSE download failed ({exc}) and no {args.universe} list "
-                        "is stored. Import a saved CSV (see START_UNIVERSE.md)."
+                        "is stored. Import a saved CSV (see docs/guides/universe.md)."
                     ) from exc
                 print(
                     f"WARNING: NSE download failed ({exc}). Continuing with the "

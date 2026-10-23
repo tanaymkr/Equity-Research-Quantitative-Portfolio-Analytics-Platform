@@ -418,7 +418,7 @@ def benchmark_for(universe_id):
 
 
 def price_config(membership, *, start, end_exclusive, benchmark=None):
-    """A market_config.json for run_price_pipeline.py from a membership result.
+    """A market_config.json for scripts/run_price_pipeline.py from a membership result.
 
     Tickers use Yahoo's NSE suffix (.NS) on the exact NSE symbol. Company IDs
     are NSE symbols with '&' replaced by '_', which match the existing TEGA and

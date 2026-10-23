@@ -65,7 +65,7 @@ def report_html(payload):
         + " Source forecasts are benchmarks; this model calculates its own profit, cash flow and EPS. Amounts use INR millions (10 million = 1 crore).</p>"
     )
     parts.append(
-        "<p>Edit <code>examples/wabag_linked/assumptions.json</code> and rerun <code>Run_Wabag_Forecast.bat</code>. Each input includes its source and rationale. The old SQL-only DCF remains a separate legacy example.</p>"
+        "<p>Edit <code>examples/wabag_linked/assumptions.json</code> and rerun <code>scripts/Run_Wabag_Forecast.bat</code>. Each input includes its source and rationale. The old SQL-only DCF remains a separate legacy example.</p>"
     )
     for key, identifier, title, fields in (
         ("income_statement", "income", "Consolidated profit and loss", IS_ROWS),

@@ -1,6 +1,5 @@
-"""Guard company identity and the supported migration entry points."""
+"""Guard company identity at the Tega statement adapter boundary."""
 
-import importlib
 import json
 from pathlib import Path
 
@@ -14,16 +13,6 @@ from equity_analytics.financials.models import FinancialDataError
 from equity_analytics.forecasting.inputs import ModelInputError
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-@pytest.mark.parametrize("module", [
-    "engine", "history", "consolidation", "currency", "drivers",
-    "equity_bridge", "legacy_statements", "reporting", "statements", "wacc",
-])
-def test_legacy_module_is_the_same_implementation(module):
-    old = importlib.import_module(f"equity_analytics.acquisition.{module}")
-    new = importlib.import_module(f"equity_analytics.case_studies.tega.{module}")
-    assert old is new
 
 
 def test_tega_adapter_does_not_relabel_another_company(tmp_path):
