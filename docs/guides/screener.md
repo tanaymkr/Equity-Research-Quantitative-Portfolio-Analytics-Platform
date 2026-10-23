@@ -1,13 +1,11 @@
 # Fundamental stock screener
 
-Copy this update's contents into your repository folder, merging folders.
-Run `Run_Screener.bat`, then open `outputs/screener/screener.html`.
-If the database is missing, run `Run_Wabag_Analysis.bat` first.
-No new runtime packages are required. Python 3.11+ is supported.
+Filters and ranks companies on reported fundamentals (growth, profitability,
+leverage, cash flow) as of a publication date, using the financial database.
 
-This package adds new files only. It does not replace DCF assumptions, valuation
-code or your existing README. It works with the verified three-year Wabag update
-and can also be used after the SQL DCF update.
+On Windows, run `scripts/Run_Company_Analysis.bat` once to build the database,
+then double-click `scripts/Run_Screener.bat` and open
+`outputs/screener/screener.html`. Python 3.11+; no third-party runtime packages.
 
 ## What you can change
 
@@ -37,8 +35,8 @@ position among matches, not a factor score or a claim that a stock is better.
 
 ## Missing numeric data: zero
 
-As requested, any unavailable calculated metric becomes **0** for filtering,
-sorting and output. This includes missing inputs, missing prior-year balances,
+By design, any unavailable calculated metric becomes **0** for filtering,
+sorting and output, and every substitution is flagged. This includes missing inputs, missing prior-year balances,
 and ratios the analytics layer cannot compute (such as a zero denominator).
 Substitution happens after the financial calculations; individual statement
 inputs are not altered or replaced before calculating ratios.
@@ -94,15 +92,15 @@ The definitions are inherited from `financials/ratios.py`.
 - `screener.json`: configuration, units, results, source metadata and audit reasons.
 
 CSV files use UTF-8 with BOM for Excel. Formula-like text is prefixed with an
-apostrophe; numeric negative values remain numeric. Generated outputs are ignored
-by git. Commit/push the new source files through GitHub Desktop as usual.
+apostrophe; numeric negative values remain numeric. Generated outputs are not
+committed to Git.
 
 ## Command line
 
 ```bash
-python run_screener.py
-python run_screener.py --config examples/screener_config.json --db outputs/data/research.sqlite --output outputs/screener
-python run_screener.py --as-of 2026-09-28
+python scripts/run_screener.py
+python scripts/run_screener.py --config examples/screener_config.json --db outputs/data/research.sqlite --output outputs/screener
+python scripts/run_screener.py --as-of 2026-09-28
 ```
 
 Implementation lives in `src/equity_analytics/screening/`. The Windows launcher

@@ -1,34 +1,22 @@
 # Pro-forma consolidated Tega model
 
-Prepared 23 September 2026 against GitHub main `df264ada0aaf7b56d60678ee0e0b4e226ff2a63d`.
-This update supersedes the proportionate cash-flow valuation. It does not refresh
-all financial research to September 23 or change the June 30 valuation date.
+Method as of 23 September 2026. It replaced an earlier proportionate
+cash-flow valuation; the valuation date remains 30 June 2026.
 
-## Install and run
+Run it with `scripts/Run_Tega_Model.bat` or `python scripts/run_tega_model.py`
+and open `outputs/tega_molycop/report.html` (see [the guide](guides/tega-model.md)).
+Precomputed results are in `examples/tega_molycop_reports/`.
 
-1. Extract `tega-pro-forma-consolidated-update.zip`.
-2. In GitHub Desktop choose **Repository > Show in Explorer**.
-3. Copy the **contents** of the extracted `equity-research-quant-platform` folder
-   into your existing repository. Choose **Replace**. Do not nest another project folder.
-4. Double-click `Run_Tega_Model.bat`.
-5. Open `outputs/tega_molycop/report.html` and select the scenario.
-6. Commit with **Refactor Tega model to pro-forma consolidation and blended WACC**,
-   then **Push origin**.
-
-No deletion, PowerShell, or additional runtime packages are required. The earlier
-Python-version test fix is included. Precomputed results are under
-`examples/tega_molycop_reports/`.
-
-## What changed
+## Modules
 
 | Module | Responsibility |
 | --- | --- |
-| `acquisition/consolidation.py` | 100% line-by-line IS, BS, CF and FCFF; eliminate parent investment and internal dividends; annual FY27 income and future-period views |
-| `acquisition/wacc.py` | Separate CAPM and financing costs, including non-tax-deductible preference funding; operating-EV-weighted blend |
-| `acquisition/equity_bridge.py` | Full capital claims, common NCI, share roll-forward and matching issue cash |
-| `acquisition/currency.py` | Reconvert an explicit registry of USD-origin inputs using the adjustable FX rate |
-| `acquisition/engine.py` | Business operating/financing schedules, consolidation orchestration and valuation |
-| `acquisition/reporting.py` | Intermediate rates, EVs, consolidated statements, bridge deductions, assumptions and sensitivities |
+| `case_studies/tega/consolidation.py` | 100% line-by-line IS, BS, CF and FCFF; eliminate parent investment and internal dividends; annual FY27 income and future-period views |
+| `case_studies/tega/wacc.py` | Separate CAPM and financing costs, including non-tax-deductible preference funding; operating-EV-weighted blend |
+| `case_studies/tega/equity_bridge.py` | Full capital claims, common NCI, share roll-forward and matching issue cash |
+| `case_studies/tega/currency.py` | Reconvert an explicit registry of USD-origin inputs using the adjustable FX rate |
+| `case_studies/tega/engine.py` | Business operating/financing schedules, consolidation orchestration and valuation |
+| `case_studies/tega/reporting.py` | Intermediate rates, EVs, consolidated statements, bridge deductions, assumptions and sensitivities |
 
 Paths above are relative to `src/equity_analytics/`.
 Business schedules remain as supporting worksheets. Group FCFF is now calculated
@@ -156,7 +144,7 @@ cash/equity overlay; no interest income or debt sweep is assumed on that overlay
 Forecast ordinary dividends retain the existing schedule; per-share valuation
 uses all pro-forma shares. This denominator is not statutory weighted-average EPS.
 
-## Fact checks and differences from the request
+## Fact checks against filings
 
 - Closing filing: approximately 84.2%/15.8%, with ordinary contributions of
   USD394,295,423 and USD74,107,477. Their ratio is 84.1786895%/15.8213105%; 84.12% plus
@@ -164,7 +152,7 @@ uses all pro-forma shares. This denominator is not statutory weighted-average EP
 - The closing filing calls the USD270m instrument **redeemable preference shares**.
   The separate debt-like senior claim is retained; no unsupported fixed redemption
   date is invented. Economic classification here does not determine legal/Ind AS classification.
-- User's USD1.455bn EV is retained as a first-pass weight with a note that the closing
+- An initial USD1.455bn EV is retained as a first-pass weight, noting that the closing
   filing states approximately USD1.5bn.
 - USD1.54bn revenue / USD172m EBITDA are older disclosed figures. Existing newer
   management FY26 EBITDA/volume and approved revenue forecasts remain in place.
@@ -178,7 +166,7 @@ Primary filings:
 
 ## Verification
 
-139 tests and 13 subtests pass on Python 3.11 and 3.12; Ruff checks pass. Tests cover independent WACC and
+Tests (`tests/test_pro_forma.py` and the other `test_acquisition*` files) cover independent WACC and
 bridge arithmetic, full-ownership FCFF, minority loss floors, source FX conversion,
 share dilution with cash, no duplicate paydown/loan deductions, investment/dividend
 eliminations, frozen opening allocations, consolidated cash/BS roll-forwards and

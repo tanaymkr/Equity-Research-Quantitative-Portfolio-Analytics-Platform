@@ -1,16 +1,20 @@
-# Historical price-data layer
+# Historical price data
 
-## Install and run
+Downloads daily prices into a SQLite store of immutable, dated snapshots and
+builds an audited return comparison against a benchmark index. The
+[research universe guide](universe.md) uses this layer for all Nifty 100
+members; the small example below covers Tega, Wabag and the NIFTY 50.
 
-1. Pull the latest repository cleanup first. This update was built on commit `e110e47949c3bec1c051b7bc6f6a89cd33329fe5`.
-2. Copy the update ZIP contents directly into the repository root, preserving the `src`, `examples`, and `tests` folders. Python 3.11 or newer is required; no new runtime packages are needed.
-3. Double-click `Run_Price_Pipeline.bat`. This downloads real data and opens `outputs/prices/report.html` when successful. Use this new launcher, rather than Run Tega Model.
+## Run
 
-Command-line equivalent:
+On Windows, double-click `scripts/Run_Price_Pipeline.bat`. It downloads the
+data and opens `outputs/prices/report.html`. From a terminal:
 
 ```bash
-python run_price_pipeline.py --download
+python scripts/run_price_pipeline.py --download
 ```
+
+Python 3.11+; no third-party runtime packages.
 
 The example configuration covers 2024-04-01 through 2026-09-28 (exclusive end 2026-09-29), using TEGA.NS, WABAG.NS and ^NSEI. Edit `examples/market_config.json` to change the dates. Use a completed trading-day range; downloading today's unfinished session can capture provisional values. Availability varies by provider; requested dates are not a promise of complete coverage.
 
@@ -31,7 +35,7 @@ The default comparison uses **price returns**: Yahoo split-adjusted Close for eq
 
 The total-return proxy option requires an explicitly classified total-return index benchmark and dividend-adjusted equity observations. **^NSEI is not configured as a total-return index.** Renaming it will not produce TRI data; obtain a genuine TRI series before enabling that comparison.
 
-Missing prices and returns remain null (blank in CSV). There is no forward fill, zero substitution, or adjusted-close fallback when Close is missing. This differs intentionally from the fundamental screener's requested missing-metric-as-zero policy. Both endpoints are required for each interval. An endpoint cumulative return can still be available when intermediate prices are missing: always inspect missing-interval counts.
+Missing prices and returns remain null (blank in CSV). There is no forward fill, zero substitution, or adjusted-close fallback when Close is missing. This differs intentionally from the fundamental screener's missing-metric-as-zero policy. Both endpoints are required for each interval. An endpoint cumulative return can still be available when intermediate prices are missing: always inspect missing-interval counts.
 
 The benchmark's rows propose the comparison calendar; this is not yet an official NSE holiday/session calendar. Two kinds of row are dropped and listed under "Calendar checks" in the report and `calendar_checks` in `summary.json`: dates where no series has a price (a listed holiday, or a session not yet final), and dates where the benchmark is blank and every priced series repeats its previous price exactly (vendor placeholder rows on a holiday). A date where the benchmark is blank but stocks moved is a real session: it is kept, listed as a benchmark gap, and only the benchmark's returns around it are missing. "Priced dates" counts dates with an actual price, not blank vendor rows. Missing sessions absent from all series cannot be detected by this layer. Off-benchmark stock dates are counted, not silently inserted into the return calendar. Mixed currencies and mixed synthetic/reported data are rejected.
 
@@ -40,13 +44,13 @@ The benchmark's rows propose the comparison calendar; this is not yet an officia
 After a successful download, regenerate the report without network access:
 
 ```bash
-python run_price_pipeline.py
+python scripts/run_price_pipeline.py
 ```
 
 Import saved normalized JSON files into another database:
 
 ```bash
-python run_price_pipeline.py --import path/to/first.json path/to/second.json path/to/benchmark.json
+python scripts/run_price_pipeline.py --import path/to/first.json path/to/second.json path/to/benchmark.json
 ```
 
 Each snapshot has a raw-content SHA-256, retrieval time, load time, adjustment metadata and retained source payload. Identical-file imports are idempotent. A newly retrieved series is a new full snapshot, even if market values are unchanged. Older snapshots remain available; we never splice differently adjusted versions together.
@@ -57,22 +61,14 @@ The market database is separate from the existing financial database to preserve
 
 ## Data source and limitations
 
-The optional standard-library adapter uses Yahoo Finance's chart endpoint. This is an unofficial integration, so availability and response shape can change. Retained normalized JSON enables offline reproduction. Respect the provider's data-use terms; this update does not bundle downloaded histories for redistribution.
+The optional standard-library adapter uses Yahoo Finance's chart endpoint. This is an unofficial integration, so availability and response shape can change. Retained normalized JSON enables offline reproduction. Respect the provider's data-use terms; downloaded histories are not committed to this repository.
 
 Provider references:
 - Yahoo Adjusted Close: https://in.help.yahoo.com/kb/finance/adjusted-close-sln28256.html
 - Upstream chart-adapter implementation: https://github.com/ranaroussi/yfinance/blob/main/yfinance/scrapers/history.py
 
-This milestone supplies the inputs for momentum/factor research. It does not implement portfolios, trading costs, rebalancing, risk metrics, or a complete backtest. Wabag DCF assumptions remain your separate research task.
+This layer supplies the inputs for momentum and factor research. It does not implement portfolios, trading costs, rebalancing, risk metrics, or a backtest.
 
-## Verification
+## Tests
 
-Install development dependencies, then run:
-
-```bash
-python -m pip install -e ".[dev]"
-python -m pytest
-python -m ruff check .
-```
-
-New tests cover immutable revisions, duplicate imports, retrieval cutoffs, rollback, invalid prices, missing endpoints, dividend conventions, benchmark compatibility, exchange dates and preservation of unrelated financial databases.
+Tests in `tests/test_market.py` cover immutable revisions, duplicate imports, retrieval cutoffs, rollback, invalid prices, missing endpoints, dividend conventions, benchmark compatibility, exchange dates and preservation of unrelated financial databases.

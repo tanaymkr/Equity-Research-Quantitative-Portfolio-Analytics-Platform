@@ -1,15 +1,17 @@
 # Wabag linked financial statements and DCF
 
-Copy the update's contents into your existing repository folder, merging folders
-and replacing matching files. Run **Run_Wabag_Forecast.bat**. The existing
-**Run_Wabag_DCF.bat** now opens this same linked model.
+A fully linked three-statement model of VA Tech Wabag (income statement,
+balance sheet and cash flow, FY2024–FY2026 history and FY2027–FY2031
+forecasts) with supporting schedules and an FCFF DCF in three scenarios.
 
-Open **outputs/forecasts/wabag/forecast.html**. The companion `forecast.json`
+On Windows, double-click `scripts/Run_Wabag_Forecast.bat`; from a terminal,
+run `python scripts/run_wabag_forecast.py`. Then open
+**outputs/forecasts/wabag/forecast.html**. The companion `forecast.json`
 contains all three scenarios, with every statement, schedule, resolved driver, source and check.
 The opening page compares **Base, Upside and Downside**. Click a case to open
 its complete statements and DCF. Individual reports are in the `base`, `upside`
 and `downside` subfolders.
-Python 3.11+ is required; no new runtime packages or downloads are required.
+Python 3.11+; no third-party runtime packages and no downloads.
 The launcher loads the existing Wabag source files into SQL automatically and
 checks that the detailed model agrees with the annual SQL summary.
 
@@ -97,31 +99,25 @@ The important editable judgements are working-capital ratios, repayment timing,
 future interest rates, future lease additions, restricted-cash allocation,
 book-value claims, dilution and terminal growth/ROIC. A balanced model does not
 establish the accuracy of these assumptions. See
-[Wabag model methods](docs/WABAG_LINKED_MODEL.md) for definitions and limits.
+[Wabag model methods](../WABAG_LINKED_MODEL.md) for definitions and limits.
 
-## Commands and GitHub
+## Commands
 
 ```bash
-python run_wabag_forecast.py
-python run_wabag_forecast.py --output outputs/forecasts/wabag_review
-python -m pytest
-python -m ruff check .
+python scripts/run_wabag_forecast.py
+python scripts/run_wabag_forecast.py --output outputs/forecasts/wabag_review
 ```
 
-The old generic driver-based example is still available with
-`python run_sql_dcf.py`, writing `outputs/valuation/wabag/valuation.html`.
-It uses a separate, older assumption file and will give a different answer.
-The new linked model is the default Wabag launcher.
-
-After reviewing the output, commit the source changes in GitHub Desktop and
-push. Generated output and SQLite files remain ignored. Suggested commit:
-**Add Wabag linked statements, schedules and sourced WACC**.
+The [generic SQL-backed DCF](sql-dcf.md) (`python scripts/run_sql_dcf.py`)
+values Wabag with the reusable engine and a separate, simpler assumption file,
+so it gives a different answer. The linked model here is the main Wabag
+valuation.
 
 ## Operating scenario adjustments
 
 Edit **examples/wabag_linked/scenarios.json** to change the upside/downside
-assumptions. The patch does not replace your existing `assumptions.json`;
-your base model remains the starting point for all three cases.
+assumptions. The base model in `assumptions.json` is the starting point for
+all three cases.
 
 | Case | Revenue levels relative to base, FY27–FY31 | EBITDA margin change | Current receivable collection change |
 | --- | --- | --- | --- |

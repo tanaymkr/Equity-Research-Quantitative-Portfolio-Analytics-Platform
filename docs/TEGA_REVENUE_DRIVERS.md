@@ -1,22 +1,14 @@
-# Revenue and financial-driver update — 20 September 2026
+# Tega revenue and financial drivers (reviewed 20 September 2026)
 
-This update applies the approved FY2027–FY2034 revenue paths. Management guidance
+The model applies the approved FY2027–FY2034 revenue paths. Management guidance
 takes priority for other drivers, followed by verifiable comparable consensus,
 then available historical ratios. Where none supplies a usable input, the report
 identifies an unresolved estimate or a missing line. It does not invent consensus,
 Molycop historical accounts, or a complete post-close balance sheet.
 
-## Install with GitHub Desktop
-
-1. Extract `tega-revenue-drivers-update.zip`.
-2. In GitHub Desktop, select this repository and choose **Repository → Show in Explorer**.
-3. Copy the contents of the ZIP's `equity-research-quant-platform` folder into that repository folder. Choose **Replace files**. Do not create a second nested project folder.
-4. Double-click `Run_Tega_Model.bat`.
-5. Open `outputs/tega_molycop/report.html`. Start with **Assumptions**, then the case you want. Each case includes income, balance-sheet and cash-flow schedules, with unresolved lines clearly labeled.
-6. Review the changed files in GitHub Desktop. Suggested summary: **Apply approved revenue forecasts and source financial drivers**. Commit, then **Push origin** when ready.
-
-No files need deletion. The ZIP overlays main commit `ffb79b196d61d56f4f658b83652c7311ff59b8ff`.
-The remote repository is not changed by preparing this package.
+In `outputs/tega_molycop/report.html`, start with **Assumptions**, then open a
+case. Each case includes income, balance-sheet and cash-flow schedules, with
+unresolved lines labelled.
 
 ## Approved annual revenue growth
 
@@ -93,7 +85,7 @@ Molycop revenue base limit comparability. No earnings plug forces agreement.
 
 ## What remains incomplete
 
-The new `linked_statements_inr_m` output is a **partial forecast**, at 100% of each
+The `linked_statements_inr_m` output is a **partial forecast**, at 100% of each
 business. It is not a statutory group consolidation. FY27 rows cover July–March;
 the existing operating tables separately show full-year/owned-period revenue.
 

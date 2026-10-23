@@ -64,15 +64,15 @@ from reported earnings. Forecast operating margins are explicit assumptions.
    file referenced in `tega_molycop_facts.json`, runs all historical checks and
    derives the legacy annual inputs. These drive segment revenue, opening cash,
    debt, working capital, asset balances, nonoperating assets and issued shares.
-   The duplicated FY26 financial block was removed from the editable acquisition
+   There is no second, editable copy of the FY26 figures in the acquisition
    facts file. A missing or unreconciled statement file stops the run.
-2. **Financial ratios:** `run_financial_analysis.py` accepts the same complete
+2. **Financial ratios:** the ratio module accepts the same complete
    statement file, validates it, and derives its inputs without a second editable
    FY26 dataset.
 
 ## Run and read
 
-With Python 3.11+, double-click `Run_Tega_Model.bat`. Open
+With Python 3.11+, double-click `scripts/Run_Tega_Model.bat`. Open
 `outputs/tega_molycop/report.html` and choose **Complete FY26 statements**.
 
 The committed example can be read without Python:
@@ -81,24 +81,22 @@ It includes every statement row, supporting reconciliations and source locations
 `historical_checks.json` contains the calculated residuals;
 `reported_statements_used.json` is the exact statement snapshot used.
 
-Optional commands in Command Prompt, opened in the repository folder:
+From a terminal in the repository folder (the second command needs
+`pip install -e .`):
 
-```text
-python run_tega_model.py
-python run_financial_analysis.py examples/tega_fy2026_reported_statements.json --output-dir outputs/history-tega-fy2026
+```bash
+python scripts/run_tega_model.py
+python -m equity_analytics.financials examples/tega_fy2026_reported_statements.json --output-dir outputs/history-tega-fy2026
 ```
 
-The older FY25-based forecasts and the separate legacy-only forecast have been
-removed. Audited FY24/FY25 source files remain available for historical analysis;
-FY26 actuals remain the current model's historical foundation.
+Audited FY24/FY25 source files remain available for historical analysis;
+FY26 actuals are the current model's historical foundation.
 
 ## Effect on the acquisition DCF
 
-Under unchanged acquisition assumptions, the displayed scenario values remain
-unchanged: the selected FY26 numerical inputs already used by the acquisition
-DCF agree with the full reported statements. This update replaces the duplicated
-input block with a reconciled common source and supplies the missing full
-statements and supporting schedules; it does not fit values to the share price.
+The FY26 inputs used by the acquisition DCF are read from this one reconciled
+source, which also supplies the full statements and supporting schedules.
+Nothing is fitted to the share price.
 
 The acquisition valuation is still dated 30 June 2026, using reviewed disclosures
 through 11 September 2026. March actuals do not establish June closing cash,
@@ -106,9 +104,11 @@ acquired working capital, preference-return economics or final purchase accounti
 Those estimates remain labeled. A complete statutory forecast of the acquired
 group's balance sheet is still outside the available source detail.
 
-## Currency conversion update
+## Currency
 
-The combined model now uses INR million throughout. USD-origin acquisition
-figures use the 2 September 2026 closing rate of INR94.97 per dollar; reported
-INR statements remain unchanged. This FX change can change the combined DCF
-values. See [the conversion guide](TEGA_INR_CONVERSION.md).
+The combined model uses INR million throughout. USD-origin acquisition figures
+use INR94.97 per US dollar, the Indian market close on 2 September 2026
+[reported by Reuters](https://www.reuters.com/world/india/rbis-bid-lift-indian-rupee-put-test-by-oil-us-yields-2026-09-02/)
+(a market closing rate, not an FBIL reference rate). Reported INR statements
+are not converted. The rate is adjustable under `pro_forma` in the assumptions,
+and changing it changes the combined DCF values.

@@ -1,18 +1,20 @@
-# Legacy SQL-backed generic DCF: Wabag example
+# Generic SQL-backed DCF (Wabag example)
 
-The default Wabag launcher now runs the [linked financial-statement model](START_WABAG_FORECAST.md). This guide describes the retained earlier generic example and its separate illustrative assumptions.
+A reusable five-year FCFF DCF that reads a company's annual history from the
+SQL database and its assumptions from a separate file. Wabag is the worked
+example. The main Wabag valuation is the
+[linked three-statement model](wabag-forecast.md); this one shows the generic
+engine that any company in the database can use.
 
-Copy this update into the repository, merge folders and replace matching files.
-No deletion or new runtime dependencies are needed. Python 3.11+ is required.
+1. Build the SQL history: `scripts/Run_Company_Analysis.bat`
+   (or `python scripts/run_company_analysis.py`).
+2. Run `python scripts/run_sql_dcf.py`.
+3. Open `outputs/valuation/wabag/valuation.html`. The full audit output is
+   `valuation.json` in the same folder.
 
-1. Run `Run_Wabag_Analysis.bat` to create/update the three-year SQL history.
-2. Run `python run_sql_dcf.py`.
-3. Open `outputs/valuation/wabag/valuation.html`.
+Python 3.11+; no third-party runtime packages.
 
-The complete machine-readable audit output is `valuation.json` in the same folder.
-Use GitHub Desktop to commit source changes and push; outputs remain ignored.
-
-## What is now implemented
+## What it does
 
 - SQL selection of latest available consolidated annuals, with publication cutoff.
 - Separate editable company assumptions: `examples/wabag_dcf_assumptions.json`.
@@ -33,8 +35,8 @@ in the engine. The example configuration supplies Wabag's supplemental inputs.
 The current SQL adapter supports monetary units of million, with shares in
 millions. Other units fail explicitly instead of silently producing wrong prices.
 
-The detailed Tega-Molycop model remains its own case study. It does not use the
-new Wabag assumptions. The original demo's terminal calculation is preserved
+The detailed Tega-Molycop model is a separate case study and does not use
+these assumptions. The original demo's terminal calculation is preserved
 when `terminal_roic` is omitted, so existing callers retain their behaviour.
 
 ## Forecast conventions
@@ -98,13 +100,13 @@ visible assumptions; a downside case may fall below management guidance.
 - No live stock price or upside/downside versus market is reported.
 
 These limitations are shown in the output, not hidden behind a price target.
-The next refinement is a dated market-input/claims review and valuation-date
-roll-forward; adding more companies is not required for this milestone.
+The next refinement is a dated market-input and claims review and a
+valuation-date roll-forward.
 
 ## CLI and checks
 
 ```bash
-python run_sql_dcf.py --db outputs/data/research.sqlite --assumptions examples/wabag_dcf_assumptions.json --output outputs/valuation/wabag
+python scripts/run_sql_dcf.py --db outputs/data/research.sqlite --assumptions examples/wabag_dcf_assumptions.json --output outputs/valuation/wabag
 python -m pip install -e ".[dev]"
 python -m pytest
 python -m ruff check .

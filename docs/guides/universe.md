@@ -9,10 +9,10 @@ every member in one run.
 
 Two launchers, run in this order:
 
-1. `Run_Universe.bat` downloads the current Nifty 100 list from NSE, stores
+1. `scripts/Run_Universe.bat` downloads the current Nifty 100 list from NSE, stores
    it, and opens `outputs/universe/NIFTY100/report.html`. Re-running it is
    safe: an unchanged list is recorded as "confirmed" for today.
-2. `Run_Universe_Prices.bat` first rebuilds `market_config.json` from the
+2. `scripts/Run_Universe_Prices.bat` first rebuilds `market_config.json` from the
    stored list (no download, so it can never reuse an old config), then
    downloads prices for every member and opens
    `outputs/prices/NIFTY100/report.html`. The benchmark index is downloaded
@@ -28,7 +28,7 @@ effective" date it prints. With nothing stored, or to load a list yourself:
 2. Import the saved file, stating when you downloaded it:
 
 ```bash
-python run_universe.py --import path/to/ind_nifty100list.csv --retrieved-at 2026-10-10T18:00:00+05:30
+python scripts/run_universe.py --import path/to/ind_nifty100list.csv --retrieved-at 2026-10-10T18:00:00+05:30
 ```
 
 `--retrieved-at`, `--effective-on` and `--source-url` only work with `--import`:
@@ -37,8 +37,8 @@ a fresh download is always dated by its own retrieval time.
 Command-line equivalent of `Run_Universe_Prices.bat`:
 
 ```bash
-python run_universe.py
-python run_price_pipeline.py --download --config outputs/universe/NIFTY100/market_config.json --output outputs/prices/NIFTY100
+python scripts/run_universe.py
+python scripts/run_price_pipeline.py --download --config outputs/universe/NIFTY100/market_config.json --output outputs/prices/NIFTY100
 ```
 
 Other NSE broad indices use the same file layout: `--universe NIFTY50`,
@@ -50,7 +50,7 @@ with `^CRSLDX` (Yahoo tickers). Use `--benchmark NIFTY50` (or another of these)
 to compare against a different index. These are price indices, so returns
 exclude dividends on both sides.
 
-`Run_Price_Pipeline.bat` is unchanged: it still downloads only Tega, Wabag and
+`scripts/Run_Price_Pipeline.bat` is separate: it downloads only Tega, Wabag and
 the NIFTY 50 from `examples/market_config.json` into `outputs/prices/`.
 
 ## Outputs

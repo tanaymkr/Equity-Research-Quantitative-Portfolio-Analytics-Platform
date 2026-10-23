@@ -1,52 +1,72 @@
 # Platform architecture
 
-## Current components
+All code is in the `equity_analytics` package under `src/`. It uses only the
+Python standard library (SQLite included), so it runs on any Python 3.11+
+installation without third-party packages.
 
-`financials` owns normalized annual contracts, validation, ratios and reports.
-`data` owns versioned SQLite annuals, source dates and ingestion evidence.
-`screening` filters dated fundamentals and applies flagged zero substitution
-without changing source data. `valuation` owns generic FCFF, CAPM WACC,
-SQL-backed scenarios, the equity bridge and sensitivity. `forecasting` owns the
-linked statement engine. Its detailed schema requires consolidated INR
-million reports and includes Tega-derived account mappings; broad company
-coverage is not established.
+```mermaid
+flowchart LR
+    subgraph Sources
+        AR[Annual reports<br/>JSON transcriptions]
+        NSE[NSE index lists]
+        YF[Yahoo Finance<br/>daily prices]
+    end
+    subgraph Storage
+        RDB[(research.sqlite<br/>filing versions)]
+        UDB[(universe.sqlite<br/>dated membership)]
+        MDB[(market.sqlite<br/>price snapshots)]
+    end
+    AR --> data --> RDB
+    NSE --> universe --> UDB
+    YF --> market --> MDB
+    universe -- price config --> market
+    RDB --> financials --> screening
+    RDB --> valuation
+    RDB --> case_studies
+    forecasting --> case_studies
+    valuation --> case_studies
+```
 
-`case_studies.tega` owns acquisition forecasts, drivers, financing, June opening
-estimates, consolidation, capital claims and reports. It consumes forecasting
-reconciliation/report utilities. Its `financial_history` adapter converts
-Tega statements to the normalized annual schema and rejects other companies.
+## Packages
 
-The financial-history loader retains a legacy dispatch to that adapter for
-full statement files. New companies should use the normalized schema directly.
-Future source adapters belong in the data layer with explicit company,
-currency, units and basis. The generic DCF does not import the Tega package.
+| Package | Responsibility |
+| --- | --- |
+| `financials` | Normalized annual-statement contract, validation, ratios and reports |
+| `data` | `research.sqlite`: immutable filing versions, publication dates, ingestion audit trail, as-of queries, company comparison |
+| `screening` | Filters and ranks dated fundamentals; flags any zero-substituted metric without altering source data |
+| `valuation` | Generic FCFF DCF, CAPM WACC, SQL-backed scenarios, equity bridge, explicit-cash-flow discounting and sensitivity |
+| `forecasting` | Linked three-statement engine (consolidated, INR million; account mappings derived from Tega) |
+| `case_studies.tega` | Tega + Molycop acquisition: forecasts, drivers, financing, consolidation, blended WACC, equity bridge, reports |
+| `case_studies.wabag` | Wabag linked statements, schedules, annual WACC and scenarios |
+| `universe` | NSE constituent parsing, dated membership in `universe.sqlite`, survivorship guard, company master, price-config export |
+| `market` | `market.sqlite`: immutable price snapshots, corporate actions, Yahoo adapter, benchmark-calendar returns and reports |
 
-## Migration
+`cli.py` runs the original standalone DCF demonstration
+(`examples/demo_dcf.json`).
 
-- Move acquisition implementations to `equity_analytics.case_studies.tega`.
-- Retain `equity_analytics.acquisition` as aliases to the same module objects,
-  preserving imports, exceptions and patched-function behavior.
-- Include compatibility files at the old module locations for copy-and-paste
-  upgrades, so replacing files does not require deleting the old source files.
-- Preserve `python -m equity_analytics.acquisition` and `run_tega_model.py`.
-  The canonical command is `python -m equity_analytics.case_studies.tega`.
-- Move the Tega statement adapter out of `forecasting/history.py`, retaining
-  the former import as a compatibility re-export.
-- Keep inputs, source registrations and report formats in their existing paths.
+## Design rules
 
-Historical method documents retain compatible old import references. New
-implementation references should use the canonical case-study path.
+- **Dates are explicit.** Financial facts carry a publication date separate
+  from the period end; index lists carry an effective date; price snapshots
+  carry a retrieval time. Queries select by these dates, never by load order.
+- **Stored records are immutable.** A changed filing, list or price history is
+  stored as a new version; nothing is silently overwritten. Re-imports are
+  idempotent and failed imports roll back.
+- **Missing stays missing.** Prices and statements are never forward-filled or
+  zero-filled. The screener's zero substitution is the one deliberate,
+  flagged exception, applied at its output boundary.
+- **Company-specific code stays in `case_studies`.** The generic DCF does not
+  import either case study. The Tega statement adapter rejects other
+  companies; new companies use the normalized schema.
+- **Separate databases.** Financial, universe and price data live in separate
+  SQLite files, so a schema change in one cannot corrupt another.
+
+Storage details: [data layer](DATA_LAYER.md), [price data](guides/price-data.md),
+[research universe](guides/universe.md).
 
 ## Planned flow
 
-Providers/files feed SQL through validated loaders. As-of SQL queries feed
-fundamentals, price signals and forecasts. Fundamentals and valuation feed
-screening. Dated signals feed strategy and index construction. Portfolio and
-risk functions consume holdings, prices, cash flows and trades. Streamlit
-calls these functions and owns no financial calculations.
-
-The first SQL implementation now stores publication dates and statement
-versions separately from financial period ends. See [Data layer](DATA_LAYER.md).
-Price storage and ingestion are the next part of this layer. Prices must
-declare adjustment basis, and historical universes require documented
-membership before describing a backtest as free of survivorship bias.
+As-of queries feed fundamentals and price signals; dated signals feed
+strategy and index construction; portfolio and risk functions consume
+holdings, prices and trades; a Streamlit interface calls these functions and
+owns no financial calculations. See the [roadmap](ROADMAP.md).

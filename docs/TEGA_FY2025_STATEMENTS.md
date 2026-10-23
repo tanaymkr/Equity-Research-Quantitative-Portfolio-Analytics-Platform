@@ -1,9 +1,8 @@
 # FY24/FY25 reported history: sources and reconciliation
 
-The historical statements remain available for financial analysis. The earlier
-forecasts, scenario outputs and walkthrough have been removed. For the active
-combined model, see [the FY26 walkthrough](TEGA_FY2026_STATEMENTS.md) and
-[acquisition validation](TEGA_MOLYCOP_VALIDATION.md).
+These statements are used for historical financial analysis. For the current
+combined model, see [the FY26 statements](TEGA_FY2026_STATEMENTS.md) and
+[the pro-forma method](TEGA_PRO_FORMA_CONSOLIDATION.md).
 
 ## Primary data source
 
