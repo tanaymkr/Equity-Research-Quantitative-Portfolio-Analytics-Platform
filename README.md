@@ -1,140 +1,193 @@
-# Investment Research Platform
+# Indian Equity Research & Quantitative Analytics Platform
 
-Python and SQLite research software for company financial analysis, valuation
-and screening. Built by Tanay Malekar. The reported examples are **Tega
-Industries** and **VA Tech Wabag**, each covering FY2024-FY2026. A separate
-synthetic dataset supports learning and tests.
+[![CI](https://github.com/tanaymkr/Equity-Research-Quantitative-Portfolio-Analytics-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/tanaymkr/Equity-Research-Quantitative-Portfolio-Analytics-Platform/actions/workflows/ci.yml)
+![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)
+![Dependencies: standard library only](https://img.shields.io/badge/runtime%20dependencies-none-brightgreen)
 
-## What works today
+A Python and SQLite platform for fundamental and quantitative research on
+Indian listed equities. It combines point-in-time financial data, linked
+three-statement models and DCF valuations of two NSE-listed companies, a
+fundamental screener, and a Nifty 100 research universe with five and a half
+years of audited daily prices. It is the foundation for factor research and
+backtesting, which are in progress.
 
-| Component | Implemented | Remaining work |
+Built by [Tanay Malekar](https://github.com/tanaymkr).
+
+## Highlights
+
+- **Tega Industries + Molycop acquisition model.** Pro-forma consolidated
+  DCF built on Tega's audited FY2026 statements (92 reconciliation checks),
+  with a blended WACC, an explicit preference / minority / dilution equity
+  bridge and three scenarios.
+- **VA Tech Wabag linked three-statement model.** FY2027–FY2031 income
+  statement, balance sheet and cash flow with debt, asset, tax,
+  working-capital and equity schedules; 40 accounting checks per scenario;
+  FCFF DCF with dated market inputs.
+- **Point-in-time financial data.** Every filing version is stored with its
+  publication date, so a query reconstructs what was public on any date
+  rather than what is known today.
+- **Nifty 100 research universe.** Index membership stored as dated,
+  immutable lists with a guard against survivorship bias; daily prices for
+  all 100 members and the index from April 2021.
+- **Data-quality auditing.** Automated calendar checks and an audit of the
+  vendor data that found unadjusted demergers, a mis-dated split and
+  placeholder rows on market holidays ([findings](docs/guides/universe.md#price-data-problems-found-in-the-first-nifty-100-download)).
+- **Tested.** 287 automated tests run in continuous integration on every push.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/images/wabag-forecast.png" alt="Wabag three-scenario valuation summary"><br><sub>Wabag: three operating cases from the linked statements and DCF</sub></td>
+    <td width="50%"><img src="docs/images/tega-report.png" alt="Tega and Molycop pro-forma consolidated DCF summary"><br><sub>Tega + Molycop: pro-forma consolidated DCF</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/images/company-comparison.png" alt="Reported financial comparison of Tega and Wabag"><br><sub>Point-in-time comparison of reported fundamentals</sub></td>
+    <td width="50%"><img src="docs/images/nifty100-prices.png" alt="Nifty 100 price coverage report"><br><sub>Nifty 100 price coverage against the NIFTY 100 benchmark</sub></td>
+  </tr>
+</table>
+
+## Status
+
+| Area | Status | What exists |
 | --- | --- | --- |
-| SQL/data | Annual statements, company/source records, filing versions, raw-input audit trail, publication-date queries, dated prices and corporate actions | Wider provider coverage and historical membership |
-| Fundamental analysis | Growth, margins, ROE/ROA/ROCE, leverage, liquidity, cash metrics and company comparison | ROIC, working-capital days and market multiples |
-| Generic DCF | SQL inputs, company assumptions, FCFF scenarios, CAPM WACC, opening NWC, capital claims, terminal reinvestment and sensitivity | Market-input/claims refinement, valuation-date roll-forward and assumption versioning |
-| Screening | Configurable bounds, sorting, dated statements, unit normalization, flagged zero substitution, HTML/CSV/JSON | Valuation filters and a broader sourced universe |
-| Wabag linked statements | Three-year reported IS/BS/CF; five-year projections; debt, D&A, tax, working-capital and equity schedules; dated WACC; linked FCFF | Assumption refinement, full asset-vintage/HAM detail and current-date valuation |
-| Tega-Molycop case study | Reported history, acquisition forecasts, consolidation, group WACC, claims and scenarios | Resolve documented provisional deal/model inputs |
-| Research universe | NSE index lists (Nifty 50/100/200/500) as immutable dated snapshots, as-of membership with a survivorship guard, company master with statement templates, price-config export | Historical lists, symbol-rename aliases and member financial statements |
-| Factors, backtesting, portfolio, risk and index analytics | Planned | Dated prices, methodology and implementation |
-| Streamlit | Planned | Interface over tested analytical modules |
+| Financial data (SQL) | ✅&nbsp;Done | Filing versions, publication dates, as-of queries, ingestion audit trail |
+| Fundamental analysis | ✅&nbsp;Done | Growth, margins, ROE/ROA/ROCE, liquidity, leverage, cash conversion, company comparison |
+| Valuation | ✅&nbsp;Done | Generic FCFF DCF, CAPM WACC, scenarios, sensitivity; Tega and Wabag case studies |
+| Screening | ✅&nbsp;Done | Configurable filters on dated fundamentals |
+| Price data | ✅&nbsp;Done | Immutable price snapshots, corporate actions, benchmark-calendar returns |
+| Research universe | ✅&nbsp;Done | Nifty 100 dated membership, company master, survivorship guard |
+| Factor signals | 🔜&nbsp;Next | Momentum first, then value, quality and growth |
+| Backtesting | ⏳&nbsp;Planned | Information coefficient, decile portfolios, costs, out-of-sample tests |
+| Portfolio and risk analytics | ⏳&nbsp;Planned | Performance statistics, VaR / Expected Shortfall, stress tests |
+| Index construction | ⏳&nbsp;Planned | Selection, weighting, rebalancing, tracking |
+| Streamlit interface | ⏳&nbsp;Planned | Front end over the tested modules |
 
-Two reported companies demonstrate the financial pipeline. The universe step
-loads index membership and prices for ~100 companies; their financial
-statements are not loaded yet. The synthetic DEMO is excluded from screening.
+Details in the [roadmap](docs/ROADMAP.md).
 
-## Run on Windows
+## How it fits together
 
-Python 3.11+ is required. Runtime calculations use the standard library.
-Run launchers from the repository folder:
+```mermaid
+flowchart LR
+    AR[Annual reports] --> FD[(Financial data)]
+    NSE[NSE index lists] --> UV[(Universe)]
+    YF[Daily prices] --> MK[(Price data)]
+    UV --> MK
+    FD --> FA[Fundamental analysis] --> SC[Screener]
+    FD --> VAL[Valuation and case studies]
+    MK -.-> SIG[Factor signals and backtests<br/>in progress]
+    FD -.-> SIG
+```
 
-| Task | Double-click | Open the resulting report |
-| --- | --- | --- |
-| Load SQL, analyse Tega and Wabag | `Run_Wabag_Analysis.bat` | `outputs/data/company_comparison.html` |
-| Screen companies | `Run_Screener.bat` | `outputs/screener/screener.html` |
-| Wabag linked statements and DCF | `Run_Wabag_Forecast.bat` (or `Run_Wabag_DCF.bat`) | `outputs/forecasts/wabag/forecast.html` |
-| Detailed Tega-Molycop model | `Run_Tega_Model.bat` | `outputs/tega_molycop/report.html` |
-| Nifty 100 universe and price config | `Run_Universe.bat` | `outputs/universe/NIFTY100/report.html` |
-| Prices for every Nifty 100 member (after the step above) | `Run_Universe_Prices.bat` | `outputs/prices/NIFTY100/report.html` |
+Three separate SQLite databases hold financial statements, index membership
+and prices. Each records when every fact became known, and nothing stored is
+ever overwritten. See [the architecture](docs/PLATFORM_ARCHITECTURE.md).
 
-Run the SQL loader first for analysis and screening. The linked Wabag launcher
-loads its own history automatically. Repeated imports record an audit entry but
-do not duplicate financial facts. The database is `outputs/data/research.sqlite`.
-`Run_Data_Pipeline.bat` remains available for loading data and exporting Tega's
-individual analysis.
+## Quick start
 
-Edit screening rules in `examples/screener_config.json`. Missing/unavailable
-numeric metrics count as **zero for filtering, sorting and CSV exports**, with
-substitution flags and reasons. Source SQL nulls are preserved. Percentage
-thresholds use decimals: `0.10` means 10%.
+Requires Python 3.11 or later. There are no third-party runtime packages.
 
-Edit the linked Wabag assumptions in `examples/wabag_linked/assumptions.json`.
-See [the forecast guide](START_WABAG_FORECAST.md) for input methods and sources.
-The older generic example still uses `examples/wabag_dcf_assumptions.json` and
-can be run explicitly with `python run_sql_dcf.py`.
-The DCF outputs remain preliminary: market inputs and some equity adjustments
-are estimates. Tanay controls those assumptions. Tests establish calculation
-and software behaviour; they do not validate an investment thesis.
+```bash
+git clone https://github.com/tanaymkr/Equity-Research-Quantitative-Portfolio-Analytics-Platform.git
+cd Equity-Research-Quantitative-Portfolio-Analytics-Platform
 
-## Python commands and development
+python scripts/run_company_analysis.py   # load statements into SQL, analyse Tega and Wabag
+python scripts/run_wabag_forecast.py     # Wabag linked statements and DCF
+python scripts/run_tega_model.py         # Tega + Molycop acquisition model
+python scripts/run_screener.py           # fundamental screener
+```
+
+Reports are written to `outputs/` (not committed). Reference copies of the
+Tega model output are in [`examples/tega_molycop_reports/`](examples/tega_molycop_reports/).
+
+The research universe and prices need an internet connection:
+
+```bash
+python scripts/run_universe.py --download
+python scripts/run_price_pipeline.py --download --config outputs/universe/NIFTY100/market_config.json --output outputs/prices/NIFTY100
+```
+
+On Windows, each step also has a double-click launcher in `scripts/`
+(`Run_Company_Analysis.bat`, `Run_Wabag_Forecast.bat`, `Run_Tega_Model.bat`,
+`Run_Screener.bat`, `Run_Universe.bat`, `Run_Universe_Prices.bat`,
+`Run_Price_Pipeline.bat`). Each opens its report when it finishes.
+
+### Development
 
 ```bash
 python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 python -m pip install -e ".[dev]"
-
-python run_wabag_analysis.py
-python run_screener.py
-python run_wabag_forecast.py
-python run_sql_dcf.py  # separate legacy generic example
-python run_tega_model.py
-
-# Synthetic standalone examples
-python -m equity_analytics.cli examples/demo_dcf.json --json-output outputs/demo_dcf.json
-python -m equity_analytics.financials examples/demo_financial_history.json --output-dir outputs/demo_financials
-
 python -m pytest
 python -m ruff check .
 ```
 
-Generated outputs, local databases and Python caches are ignored by Git.
-The committed reports under `examples/` are reference snapshots, not live
-results; regenerate `outputs/` after changing assumptions or data.
+## Repository layout
 
-## Code map
+```text
+src/equity_analytics/
+  data/          financial-statement database, as-of queries, comparison
+  financials/    statement contract, validation, ratios
+  screening/     fundamental screener
+  valuation/     generic DCF, WACC, sensitivity, SQL adapter
+  forecasting/   linked three-statement engine
+  case_studies/  tega/ (acquisition model), wabag/ (linked model)
+  universe/      NSE index membership and company master
+  market/        price snapshots, returns, reports
+scripts/         command-line entry points and Windows launchers
+examples/        sourced inputs, assumptions and reference outputs
+tests/           287 automated tests
+docs/            guides and method notes
+notebooks/       walkthrough of the ratio engine
+```
 
-| Location | Responsibility |
+## Design decisions
+
+- **Publication date, not period end.** Tega's FY2026 annual report was
+  published on 28 August 2026, so a query as of 1 August 2026 must not see
+  FY2026 figures. Queries select filings by publication date
+  ([data layer](docs/DATA_LAYER.md)).
+- **Survivorship guard.** Applying today's Nifty 100 to 2021 would include
+  only companies that survived and grew. The universe refuses to apply a list
+  to dates before it took effect unless the result is explicitly labelled
+  biased ([universe](docs/guides/universe.md)).
+- **Missing stays missing.** Prices and statements are never forward-filled
+  or zero-filled; gaps are reported, not hidden.
+- **Immutable, auditable storage.** New information becomes a new version;
+  every import records the exact source bytes and their hash.
+- **Assumptions are visible.** Valuation inputs record their source or are
+  labelled as analyst assumptions, and each report states what is
+  provisional.
+
+## Documentation
+
+| Guide | Method notes |
 | --- | --- |
-| `src/equity_analytics/data/` | SQLite schema, ingestion, publication-date queries and comparisons |
-| `src/equity_analytics/financials/` | Annual contracts, validation, ratios and reports |
-| `src/equity_analytics/screening/` | Filters, deterministic sorting, zero substitution and exports |
-| `src/equity_analytics/universe/` | NSE constituent parsing, dated membership snapshots, company master and price-config export |
-| `src/equity_analytics/valuation/` | Shared DCF, SQL adapter, CAPM WACC and sensitivity |
-| `src/equity_analytics/forecasting/` | Detailed linked statements; broader company coverage requires validation |
-| `src/equity_analytics/case_studies/wabag/` | Sourced Wabag statements, schedules, annual WACC and reporting |
-| `src/equity_analytics/case_studies/tega/` | Tega-Molycop acquisition and consolidated model |
-| `src/equity_analytics/acquisition/` | Compatibility imports for earlier Tega package paths |
-| `examples/` | Sourced inputs, explicit assumptions, synthetic examples and reference reports |
-| `tests/` | Accounting identities, valuation, ingestion, screening and compatibility checks |
-| `docs/` | Methodology, dated validation records and roadmap |
+| [Company financial analysis](docs/guides/company-analysis.md) | [Data layer](docs/DATA_LAYER.md) |
+| [Wabag linked model and DCF](docs/guides/wabag-forecast.md) | [Financial-analysis conventions](docs/FINANCIAL_ANALYSIS_METHODS.md) |
+| [Tega + Molycop model](docs/guides/tega-model.md) | [Code walkthrough](docs/FINANCIAL_ANALYSIS_WALKTHROUGH.md) |
+| [Generic SQL DCF](docs/guides/sql-dcf.md) | [Wabag model methods](docs/WABAG_LINKED_MODEL.md) |
+| [Screener](docs/guides/screener.md) | [Tega pro-forma consolidation](docs/TEGA_PRO_FORMA_CONSOLIDATION.md) |
+| [Research universe](docs/guides/universe.md) | [Tega revenue drivers](docs/TEGA_REVENUE_DRIVERS.md) |
+| [Price data](docs/guides/price-data.md) | [Tega FY2026 statements](docs/TEGA_FY2026_STATEMENTS.md) · [FY2024–25](docs/TEGA_FY2025_STATEMENTS.md) |
+| | [Architecture](docs/PLATFORM_ARCHITECTURE.md) · [Roadmap](docs/ROADMAP.md) |
 
-## Model conventions and limits
+## Data sources
 
-Annual SQL queries use public source dates, not the date the database first
-learned a fact. Annual reports can lag earlier results releases. This is not
-complete point-in-time market data or a survivorship-free backtest universe.
+- **Financial statements:** company annual reports, transcribed with page
+  references and publication dates (sources listed in each guide).
+- **Index membership:** NSE's published constituent lists.
+- **Prices:** Yahoo Finance's public chart endpoint, an unofficial source.
+  Downloaded data is not committed to this repository.
 
-The SQL DCF uses money and shares in millions. It supports explicit opening
-NWC and a terminal ROIC reinvestment method. The older standalone demo retains
-its original terminal-FCFF-growth method. Wabag's annual model is anchored at
-31 March 2026 using later information; it is not a current-date price target.
-See its guide for dilution, book-value claims and WACC limitations.
+## Limitations
 
-The detailed Tega model uses INR million, a 30 June 2026 valuation date and an
-11 September 2026 research cutoff. Acquisition allocations and financing inputs
-remain provisional. Its documented opening gap is INR15.875 million, without
-a balancing plug. Reported Tega screening metrics predate the acquisition and
-are not the pro-forma group forecasts.
-
-## Guides
-
-- [SQL pipeline](START_DATA_PIPELINE.md)
-- [Wabag history and comparison](START_WABAG.md)
-- [Screener](START_SCREENER.md)
-- [Research universe](START_UNIVERSE.md)
-- [Wabag linked forecast and DCF](START_WABAG_FORECAST.md)
-- [Wabag model methods](docs/WABAG_LINKED_MODEL.md)
-- [Legacy SQL DCF](START_SQL_DCF.md)
-- [Tega model](START_TEGA_MODEL.md)
-- [Financial-analysis methods](docs/FINANCIAL_ANALYSIS_METHODS.md)
-- [Architecture](docs/PLATFORM_ARCHITECTURE.md)
-- [Delivery plan](docs/PROJECT_PLAN.md)
-
-One-time ZIP manifests and the completed old-forecast cleanup utility have been
-retired. Their prior versions remain in Git history. Model inputs, tested
-compatibility imports and reference reports are retained.
-
-## Historical price data
-
-The price-data milestone adds SQLite history for Tega, Wabag and the NIFTY 50 price benchmark, source snapshots, corporate actions, coverage checks and aligned returns. Start with [START_PRICE_DATA.md](START_PRICE_DATA.md) and `Run_Price_Pipeline.bat`. The next research milestone is factor construction; a full backtest is not yet implemented.
+- The valuations are conditional on stated assumptions, several of them
+  provisional, and are not investment advice or price targets.
+- Financial statements are loaded for two companies; the Nifty 100 universe
+  has prices but not yet fundamentals.
+- Index membership is recorded from October 2026. Earlier periods need
+  historical lists before a backtest can be called survivorship-free.
+- Vendor price history reflects later adjustments, so it is not
+  point-in-time; known errors are documented and will be corrected before
+  signals are built.

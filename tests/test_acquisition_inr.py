@@ -6,9 +6,12 @@ from pathlib import Path
 
 import pytest
 
-from equity_analytics.acquisition import AcquisitionInputError, build_acquisition_model
-from equity_analytics.acquisition.history import load_acquisition_facts
-from equity_analytics.acquisition.reporting import sensitivities
+from equity_analytics.case_studies.tega import (
+    AcquisitionInputError,
+    build_acquisition_model,
+)
+from equity_analytics.case_studies.tega.history import load_acquisition_facts
+from equity_analytics.case_studies.tega.reporting import sensitivities
 
 ROOT = Path(__file__).resolve().parents[1]
 

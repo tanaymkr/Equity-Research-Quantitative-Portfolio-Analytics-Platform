@@ -6,9 +6,11 @@ SQLite storage for company identities, annual filing versions and ingestion
 evidence; a local-file importer; publication-date queries; and JSON, Markdown
 and HTML financial-analysis exports. This integrates the existing ratio engine.
 
-Initial coverage: TEGA reported financials and DEMO synthetic arithmetic data.
-Price ingestion, exchanges/sectors, corporate-action data, model-assumption
-versions, automated providers and historical universe membership are not yet built.
+Coverage: Tega and Wabag reported financials (FY2024–FY2026) and the synthetic
+DEMO company used in tests. Prices and index membership are stored in separate
+databases (see [price data](guides/price-data.md) and
+[research universe](guides/universe.md)). Model-assumption versions and
+automated statement providers are not built.
 
 ## Tables
 

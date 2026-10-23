@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "equity-research-quant-platform"
 version = "0.1.0"
-description = "Equity research, valuation, portfolio analytics, and risk platform"
+description = "Point-in-time equity research, valuation and quantitative research platform for Indian equities"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Tanay Malekar" }]

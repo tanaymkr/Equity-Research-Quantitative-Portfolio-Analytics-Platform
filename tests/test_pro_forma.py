@@ -6,10 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from equity_analytics.acquisition import build_acquisition_model
-from equity_analytics.acquisition.equity_bridge import build_equity_bridge
-from equity_analytics.acquisition.history import load_acquisition_facts
-from equity_analytics.acquisition.wacc import blended_wacc, standalone_wacc
+from equity_analytics.case_studies.tega import build_acquisition_model
+from equity_analytics.case_studies.tega.equity_bridge import build_equity_bridge
+from equity_analytics.case_studies.tega.history import load_acquisition_facts
+from equity_analytics.case_studies.tega.wacc import blended_wacc, standalone_wacc
 
 ROOT = Path(__file__).resolve().parents[1]
 
