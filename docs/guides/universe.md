@@ -18,7 +18,7 @@ Two launchers, run in this order:
    `outputs/prices/NIFTY100/report.html`. The benchmark index is downloaded
    first, so a rejected index fails in seconds.
 
-If NSE blocks the download but a list is already stored, `Run_Universe.bat`
+If NSE blocks the download but a list is already stored, `scripts/Run_Universe.bat`
 prints a WARNING and continues with the stored list; check the "list
 effective" date it prints. With nothing stored, or to load a list yourself:
 
@@ -34,7 +34,7 @@ python scripts/run_universe.py --import path/to/ind_nifty100list.csv --retrieved
 `--retrieved-at`, `--effective-on` and `--source-url` only work with `--import`:
 a fresh download is always dated by its own retrieval time.
 
-Command-line equivalent of `Run_Universe_Prices.bat`:
+Command-line equivalent of `scripts/Run_Universe_Prices.bat`:
 
 ```bash
 python scripts/run_universe.py
@@ -75,7 +75,7 @@ list downloaded today only proves today's membership. Set `--effective-on` when
 you import an older list whose date you can document (for example an archived
 copy from before an index review).
 
-- Each distinct list is stored once. Re-running `Run_Universe.bat` when NSE's
+- Each distinct list is stored once. Re-running `scripts/Run_Universe.bat` when NSE's
   list has not changed records a new date for the same list ("confirmed"), so
   it is never flagged stale while you keep refreshing it. Re-importing the same
   file for the same date is a no-op. A different list for a universe and date
