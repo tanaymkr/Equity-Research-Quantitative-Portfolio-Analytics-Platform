@@ -65,6 +65,9 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
                 continue
         calendar.append(d)
     kept = set(calendar)
+    # Dates already explained under calendar_checks are not counted again as
+    # a series' priced or off-calendar dates (e.g. copied prices on a holiday).
+    explained = set(dropped_dates) | set(stale_dates)
     benchmark_gaps = [d for d in calendar if maps[benchmark_id].get(d) is None]
     if len(calendar) < 2:
         raise ValueError("At least two priced benchmark-calendar dates are required")
@@ -88,7 +91,7 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
     first, last = calendar[0], calendar[-1]
     summaries = []
     for cid, prices in maps.items():
-        priced = {d for d, v in prices.items() if v is not None}
+        priced = {d for d, v in prices.items() if v is not None} - explained
         before, after = prices.get(first), prices.get(last)
         cumulative = None if before is None or after is None else after / before - 1
         if cumulative is not None and not isfinite(cumulative):
@@ -102,7 +105,8 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
                 "missing_intervals": sum(
                     r["return"] is None for r in rows if r["instrument_id"] == cid
                 ),
-                # Dates with an actual price; vendor rows with no price excluded.
+                # Dates with an actual price, excluding blank vendor rows and
+                # dates dropped as holiday/stale rows (listed in calendar_checks).
                 "observed_dates": len(priced),
                 "off_benchmark_dates": len(priced - kept),
             }

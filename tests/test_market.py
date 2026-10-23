@@ -291,6 +291,11 @@ def test_vendor_holiday_rows_repeating_prices_are_dropped():
     }
     b = next(x for x in r["summaries"] if x["instrument_id"] == "B")
     assert b["missing_intervals"] == 0
+    # The copied holiday prices are explained in calendar_checks, so they are
+    # neither counted as priced dates nor flagged as off-calendar dates.
+    for cid in ("A", "C"):
+        row = next(x for x in r["summaries"] if x["instrument_id"] == cid)
+        assert (row["observed_dates"], row["off_benchmark_dates"]) == (3, 0)
     a_rows = [x for x in r["returns"] if x["instrument_id"] == "A"]
     assert a_rows[-1]["start_date"] == "2026-01-02"
     assert a_rows[-1]["return"] == pytest.approx(105 / 102 - 1)
