@@ -43,9 +43,31 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
         maps[cid] = {
             b["date"]: b.get(field) for b in s["bars"] if start <= b["date"] < end
         }
-    calendar = sorted(maps[benchmark_id])
+    # Benchmark rows propose the dates. Two kinds of row are not sessions and
+    # are dropped (and reported):
+    # - no series has a price (a listed holiday, or a session not yet final);
+    # - the benchmark is blank and every priced series repeats its previous
+    #   price exactly (vendor placeholder rows on an exchange holiday).
+    # A date where the benchmark is blank but stocks moved is a real session
+    # and is kept: dropping it would merge two sessions of stock returns.
+    candidates = sorted(maps[benchmark_id])
+    calendar, dropped_dates, stale_dates = [], [], []
+    for d in candidates:
+        priced = {cid: p[d] for cid, p in maps.items() if p.get(d) is not None}
+        if not priced:
+            dropped_dates.append(d)
+            continue
+        if calendar and maps[benchmark_id].get(d) is None:
+            previous = {cid: maps[cid].get(calendar[-1]) for cid in priced}
+            comparable = {c: v for c, v in priced.items() if previous[c] is not None}
+            if comparable and all(v == previous[c] for c, v in comparable.items()):
+                stale_dates.append(d)
+                continue
+        calendar.append(d)
+    kept = set(calendar)
+    benchmark_gaps = [d for d in calendar if maps[benchmark_id].get(d) is None]
     if len(calendar) < 2:
-        raise ValueError("At least two benchmark observations are required")
+        raise ValueError("At least two priced benchmark-calendar dates are required")
     rows = []
     for prior, current in pairwise(calendar):
         for cid, prices in maps.items():
@@ -66,6 +88,7 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
     first, last = calendar[0], calendar[-1]
     summaries = []
     for cid, prices in maps.items():
+        priced = {d for d, v in prices.items() if v is not None}
         before, after = prices.get(first), prices.get(last)
         cumulative = None if before is None or after is None else after / before - 1
         if cumulative is not None and not isfinite(cumulative):
@@ -79,8 +102,9 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
                 "missing_intervals": sum(
                     r["return"] is None for r in rows if r["instrument_id"] == cid
                 ),
-                "observed_dates": len(prices),
-                "off_benchmark_dates": len(set(prices) - set(calendar)),
+                # Dates with an actual price; vendor rows with no price excluded.
+                "observed_dates": len(priced),
+                "off_benchmark_dates": len(priced - kept),
             }
         )
     return {
@@ -91,6 +115,11 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
         "data_kind": benchmark["data_kind"],
         "currency": benchmark["instrument"]["currency"],
         "summaries": summaries,
+        "calendar_checks": {
+            "dropped_dates": dropped_dates,
+            "stale_dates": stale_dates,
+            "benchmark_gaps": benchmark_gaps,
+        },
         "returns": rows,
         "snapshots": [
             {
@@ -103,7 +132,8 @@ def compare_returns(snapshots, benchmark_id, *, start, end, basis="price"):
             for s in snapshots
         ],
         "limitations": [
-            "Benchmark observations define the calendar; no authoritative exchange-session completeness check.",
+            "Benchmark rows propose the calendar; dates where no series has a price, or where the benchmark is blank and every priced series repeats its previous price, are dropped and listed. No authoritative exchange-session completeness check.",
+            "Benchmark gaps (benchmark blank, other series priced) stay in the calendar and are listed; the benchmark's returns around them remain missing.",
             "Null prices/returns remain missing; no zero substitution or forward fill.",
             "Cumulative endpoint returns can exist despite gaps; inspect missing intervals.",
             "Latest vendor-adjusted history is not historical point-in-time data.",

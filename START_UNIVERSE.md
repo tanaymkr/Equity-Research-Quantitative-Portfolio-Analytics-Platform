@@ -125,8 +125,20 @@ momentum and backtest returns if used unadjusted:
 Other large moves are real market events (Adani group, January-February 2023
 and 21 November 2024; election-result day, 4 June 2024). Recent listings and
 demerged entities (JIOFIN, HYUNDAI, TATACAP, ENRIN, TMCV, VAML, ETERNAL) have
-missing intervals before their first trade, as expected. On 15 January 2026
-the NIFTY 50 and a few stocks have null bars from Yahoo; they stay missing.
+missing intervals before their first trade, as expected.
+
+**Calendar problems in the same download** (13 October 2026, NIFTY 100
+benchmark), now handled by the price report's calendar checks:
+
+| Date | What Yahoo returned | Handling |
+| --- | --- | --- |
+| 2026-10-12 | No close for any of the 101 series, although it was a normal trading day (data not yet final at 00:46 IST next day) | Dropped; previously this blanked every cumulative return |
+| 2026-01-15 | NSE holiday (Maharashtra municipal elections). Index blank; 97 stocks repeat the previous close exactly | Dropped as a stale holiday row |
+| 2022-12-26, 2024-01-01, 2024-02-19, 2025-01-01, 2025-02-01 (Saturday budget session), 2026-01-01 | `^CNX100` index blank on real trading days; stocks traded normally | Kept as sessions and listed as benchmark gaps; the index's own returns around them are missing (12 intervals) |
+
+The NIFTY 50 series (`^NSEI`) has none of the six index gaps. Before using
+the NIFTY 100 benchmark for relative returns, decide whether to accept these
+gaps or source the index history from NSE (niftyindices.com).
 
 The factor step needs an explicit corporate-action adjustment table (or a
 documented exclusion window) for these cases before momentum is computed.

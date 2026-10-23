@@ -181,3 +181,137 @@ def test_yahoo_normalization():
             "2026-01-01",
             "2026-01-04",
         )
+
+
+def series(cid, kind, closes):
+    """Artificial series on consecutive January 2026 dates; None is a blank bar."""
+    p = sample(cid, kind)
+    p["bars"] = [
+        {"date": f"2026-01-{n:02d}", "close": v, "adjusted_close": v, "volume": None}
+        for n, v in enumerate(closes, 1)
+        if v != "absent"
+    ]
+    return p
+
+
+def calendar_result(stock, bench, end="2026-01-06"):
+    return compare_returns([stock, bench], "B", start="2026-01-01", end=end)
+
+
+def test_unpriced_trailing_date_is_dropped_not_fatal():
+    # Yahoo can return the latest session with no close for every series. That
+    # used to blank every cumulative return; the date is now dropped and listed.
+    stock = series("A", "equity", (100, 110, 121, None))
+    bench = series("B", "price_index", (1000, 1010, 1020, None))
+    r = calendar_result(stock, bench)
+    assert r["calendar_checks"] == {
+        "dropped_dates": ["2026-01-04"],
+        "stale_dates": [],
+        "benchmark_gaps": [],
+    }
+    a, b = r["summaries"]
+    assert a["last_date"] == "2026-01-03"
+    assert a["cumulative_endpoint_return"] == pytest.approx(0.21)
+    assert b["cumulative_endpoint_return"] == pytest.approx(0.02)
+    assert a["missing_intervals"] == b["missing_intervals"] == 0
+    assert a["observed_dates"] == 3  # the blank row is not a priced date
+
+
+def test_holiday_row_is_dropped_and_spanned_by_one_interval():
+    # A vendor row on an exchange holiday, blank for every series that has it.
+    stock = series("A", "equity", (100, "absent", 105, 110))
+    bench = series("B", "price_index", (1000, None, 1050, 1100))
+    r = calendar_result(stock, bench, end="2026-01-05")
+    assert r["calendar_checks"]["dropped_dates"] == ["2026-01-02"]
+    a_rows = [x for x in r["returns"] if x["instrument_id"] == "A"]
+    assert [(x["start_date"], x["end_date"]) for x in a_rows] == [
+        ("2026-01-01", "2026-01-03"),
+        ("2026-01-03", "2026-01-04"),
+    ]
+    assert a_rows[0]["calendar_days"] == 2
+    assert a_rows[0]["return"] == pytest.approx(0.05)
+
+
+def test_benchmark_gap_keeps_the_session_for_stocks():
+    # The index is blank on a day the stock traded: keep the day so stock
+    # returns are not merged across two sessions; only the benchmark is missing.
+    stock = series("A", "equity", (100, 102, 104, 106))
+    bench = series("B", "price_index", (1000, None, 1020, 1030))
+    r = calendar_result(stock, bench, end="2026-01-05")
+    assert r["calendar_checks"] == {
+        "dropped_dates": [],
+        "stale_dates": [],
+        "benchmark_gaps": ["2026-01-02"],
+    }
+    a, b = r["summaries"]
+    assert a["missing_intervals"] == 0
+    assert b["missing_intervals"] == 2
+    assert b["cumulative_endpoint_return"] == pytest.approx(0.03)
+    assert all(x["calendar_days"] == 1 for x in r["returns"])
+
+
+def test_stock_gap_is_still_never_bridged():
+    # Unchanged rule: a stock blank on a real session stays missing on both sides.
+    stock = series("A", "equity", (100, None, 104, 106))
+    bench = series("B", "price_index", (1000, 1010, 1020, 1030))
+    r = calendar_result(stock, bench, end="2026-01-05")
+    assert r["calendar_checks"]["dropped_dates"] == []
+    a_rows = [x for x in r["returns"] if x["instrument_id"] == "A"]
+    assert [x["return"] is None for x in a_rows] == [True, True, False]
+
+
+def test_report_lists_calendar_checks(tmp_path):
+    from equity_analytics.market.report import write_report
+
+    stock = series("A", "equity", (100, 102, 104, None))
+    bench = series("B", "price_index", (1000, None, 1020, None))
+    snaps = [{**s, "snapshot_id": 1, "sha256": "x"} for s in (stock, bench)]
+    r = compare_returns(snaps, "B", start="2026-01-01", end="2026-01-05")
+    html = write_report(r, snaps, tmp_path).read_text(encoding="utf-8")
+    assert "Calendar checks" in html
+    assert "2026-01-04" in html.split("Dropped dates")[1].split("</li>")[0]
+    assert "2026-01-02" in html.split("Benchmark gaps")[1].split("</li>")[0]
+    assert "Stale holiday rows" in html
+    assert json.loads((tmp_path / "summary.json").read_text())["calendar_checks"]
+
+
+def test_vendor_holiday_rows_repeating_prices_are_dropped():
+    # Seen in real Yahoo data on 2026-01-15 (an NSE holiday): the index is blank
+    # and every stock repeats the previous close. Not a session.
+    stock = series("A", "equity", (100, 102, 102, 105))
+    other = series("C", "equity", (50, 51, 51, 50))
+    bench = series("B", "price_index", (1000, 1010, None, 1030))
+    r = compare_returns(
+        [stock, other, bench], "B", start="2026-01-01", end="2026-01-05"
+    )
+    assert r["calendar_checks"] == {
+        "dropped_dates": [],
+        "stale_dates": ["2026-01-03"],
+        "benchmark_gaps": [],
+    }
+    b = next(x for x in r["summaries"] if x["instrument_id"] == "B")
+    assert b["missing_intervals"] == 0
+    a_rows = [x for x in r["returns"] if x["instrument_id"] == "A"]
+    assert a_rows[-1]["start_date"] == "2026-01-02"
+    assert a_rows[-1]["return"] == pytest.approx(105 / 102 - 1)
+
+
+def test_unchanged_prices_with_a_benchmark_price_are_a_real_session():
+    # The stale rule only applies when the benchmark is blank.
+    stock = series("A", "equity", (100, 102, 102, 105))
+    bench = series("B", "price_index", (1000, 1010, 1010, 1030))
+    r = calendar_result(stock, bench, end="2026-01-05")
+    assert r["calendar_checks"]["stale_dates"] == []
+    assert len([x for x in r["returns"] if x["instrument_id"] == "A"]) == 3
+
+
+def test_benchmark_gap_with_one_moving_stock_is_kept():
+    # Any priced series moving means the session happened.
+    stock = series("A", "equity", (100, 102, 102, 105))
+    other = series("C", "equity", (50, 51, 52, 50))
+    bench = series("B", "price_index", (1000, 1010, None, 1030))
+    r = compare_returns(
+        [stock, other, bench], "B", start="2026-01-01", end="2026-01-05"
+    )
+    assert r["calendar_checks"]["stale_dates"] == []
+    assert r["calendar_checks"]["benchmark_gaps"] == ["2026-01-03"]
