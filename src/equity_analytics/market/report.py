@@ -94,6 +94,21 @@ def write_report(result, snapshots, output):
             + "</tr>"
         )
     notes = "".join("<li>" + escape(v) + "</li>" for v in result["limitations"])
+    checks = result["calendar_checks"]
+
+    def date_list(dates):
+        return escape(", ".join(dates)) if dates else "None"
+
+    calendar_html = (
+        "<h2>Calendar checks</h2><ul>"
+        f"<li><b>Dropped dates</b> (no series has a price; holidays or "
+        f"unfinalised sessions): {date_list(checks['dropped_dates'])}</li>"
+        f"<li><b>Stale holiday rows</b> (benchmark blank; every priced series "
+        f"repeats its previous price): {date_list(checks['stale_dates'])}</li>"
+        f"<li><b>Benchmark gaps</b> (benchmark blank while other series "
+        f"traded; benchmark returns around these dates are missing): "
+        f"{date_list(checks['benchmark_gaps'])}</li></ul>"
+    )
     sources = "".join(
         "<li>"
         + escape(
@@ -110,7 +125,8 @@ def write_report(result, snapshots, output):
 <style>body{{font:16px system-ui;max-width:1150px;margin:40px auto;padding:20px;color:#183044;background:#f5f8fb}}table{{border-collapse:collapse;width:100%;background:white}}td,th{{padding:12px;text-align:left;border-bottom:1px solid #ddd}}li{{margin:10px 0}}a{{color:#1268a0}}</style>
 <h1>Historical price data</h1><p>Basis: <b>{escape(result["return_basis"])}</b> · Benchmark: {escape(result["benchmark_id"])} · Currency: {escape(result["currency"])} · Data: {escape(result["data_kind"])}</p>
 <p>Requested period: {result["start"]} to {result["end_exclusive"]} (end excluded). Returns below use common benchmark endpoints; dates with missing prices are not filled.</p>
-<table><tr><th>Instrument</th><th>First endpoint</th><th>Last endpoint</th><th>Observed dates</th><th>Endpoint return</th><th>Missing intervals</th><th>Off-calendar dates</th></tr>{rows}</table>
+<table><tr><th>Instrument</th><th>First endpoint</th><th>Last endpoint</th><th>Priced dates</th><th>Endpoint return</th><th>Missing intervals</th><th>Off-calendar dates</th></tr>{rows}</table>
+{calendar_html}
 <h2>Downloads</h2><p><a href="prices.csv">Prices</a> · <a href="returns.csv">Returns</a> · <a href="corporate_actions.csv">Corporate actions</a> · <a href="summary.json">Audit summary</a></p>
 <h2>Sources</h2><ul>{sources}</ul><h2>Interpretation</h2><ul>{notes}</ul>
 <p>NIFTY 50 (^NSEI) is configured as a price index. Its comparison excludes dividends. Equity adjusted closes are stored separately for future total-return research.</p></html>"""
