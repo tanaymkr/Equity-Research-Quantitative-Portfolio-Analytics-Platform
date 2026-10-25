@@ -14,6 +14,7 @@ from equity_analytics.valuation.cost_of_capital import (
 )
 from equity_analytics.valuation.dcf import HistoricalSnapshot, _finite, _validate_rate
 from equity_analytics.valuation.explicit import ExplicitCashFlow, discount_cash_flows
+from equity_analytics.valuation.multiples import pe_cross_check
 
 from .layout import (
     BS_KEYS,
@@ -921,6 +922,14 @@ def build_model(inputs: dict, *, store=None) -> dict:
         ),
         "method": "One rate for every year and the terminal value; the anchor value is rolled forward to the price date at that same rate; cash flows held fixed.",
     }
+    fy2028 = next(r for r in forecast if r["year"] == 2028)
+    market_check["pe_cross_check"] = pe_cross_check(
+        inputs["forecast_references"]["multiples"]["pe_benchmark"],
+        2028,
+        fy2028["income_statement"]["diluted_eps"],
+        reference["share_price"],
+        dcf["implied_value_per_share"],
+    )
     return {
         "schema_version": 1,
         "company": h["company"],

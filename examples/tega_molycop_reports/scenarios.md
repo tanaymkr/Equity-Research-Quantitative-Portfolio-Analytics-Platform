@@ -4,13 +4,15 @@ PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion IN
 
 | Scenario | Provisional INR / share | Raw equity INR m | Group WACC | Group terminal growth |
 | --- | --- | --- | --- | --- |
-| Downside | INR 337.06 | 25,483.65 | 10.5% | 4.0% |
-| Base | INR 685.40 | 51,820.75 | 10.5% | 4.0% |
-| Upside | INR 829.32 | 62,701.52 | 10.6% | 4.0% |
+| Downside | INR 382.46 | 28,916.14 | 10.5% | 4.0% |
+| Base | INR 743.26 | 56,194.89 | 10.5% | 4.0% |
+| Upside | INR 895.43 | 67,700.37 | 10.6% | 4.0% |
 
 ## What the market price implies
 
-Tega closed at INR1,696.80 on 30 June 2026, the valuation date, against the base-case value of INR685.40. Holding the forecasts and claims fixed, that price implies a group WACC of 8.54%, versus 10.53% from the cost-of-capital method, and a group enterprise value of INR252,839m versus the model's INR176,372m. The market is either discounting these cash flows at a lower rate or expecting more cash than the forecasts contain; this check never changes the forecasts.
+Tega closed at INR1,696.80 on 30 June 2026, the valuation date, against the base-case value of INR743.26. Holding the forecasts and claims fixed, that price implies a group WACC of 8.65%, versus 10.55% from the cost-of-capital method, and a group enterprise value of INR252,838m versus the model's INR180,744m. The market is either discounting these cash flows at a lower rate or expecting more cash than the forecasts contain; this check never changes the forecasts.
+
+P/E cross-check: at the Nifty India Manufacturing three-year median 28.2x P/E (trailing earnings; 23 October 2026), Tega's FY2028 EPS of INR40.26 gives INR1,133.84 per share. On the same EPS the share price is 42.1x and the DCF value 18.5x. The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF. FY2028 is the first full year with Molycop; its pro-forma EPS is after interest, the preference return and minority interest.
 
 FY27 full-year revenue includes twelve months of Tega and ten months of Molycop from 1 June. Forecast income/cash-flow columns and DCF include only July–March (nine months) after the June valuation. Future balance-sheet columns are at 31 March. Subsequent years have twelve months. Auxiliary standalone EVs support NCI/audit only; the combined EV is calculated from the consolidated stream. All monetary figures are INR million except per-share figures. Constant expected FX is an explicit assumption.
 
@@ -52,42 +54,42 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 
 | Input changed | Value | INR/share |
 | --- | --- | --- |
-| Group WACC (blended) | 0.0953 | 1,101.12 |
-| Group WACC (blended) | 0.1053 | 685.40 |
-| Group WACC (blended) | 0.1153 | 379.48 |
-| Equity premium stress for both businesses | -0.0100 | 971.48 |
-| Equity premium stress for both businesses | 0.0000 | 685.40 |
-| Equity premium stress for both businesses | 0.0100 | 462.92 |
-| Conversion INR per USD | 90.0000 | 671.86 |
-| Conversion INR per USD | 94.9700 | 685.40 |
-| Conversion INR per USD | 100.0000 | 699.13 |
-| Group terminal growth | 0.0300 | 599.94 |
-| Group terminal growth | 0.0400 | 685.40 |
-| Group terminal growth | 0.0500 | 799.35 |
-| Group terminal ROIC | 0.1300 | 590.83 |
-| Group terminal ROIC | 0.1600 | 685.40 |
-| Group terminal ROIC | 0.1900 | 750.10 |
-| Preference current fair value (INR m) | 25,641.90 | 685.40 |
-| Preference current fair value (INR m) | 31,340.10 | 621.96 |
-| Preference current fair value (INR m) | 37,988.00 | 547.94 |
-| Other claims reserve (INR m) | 0.00 | 738.27 |
-| Other claims reserve (INR m) | 4,748.50 | 685.40 |
-| Other claims reserve (INR m) | 9,497.00 | 632.53 |
-| Earnout cash payment (INR m) | 0.00 | 729.33 |
-| Earnout cash payment (INR m) | 5,698.20 | 685.40 |
-| Earnout cash payment (INR m) | 11,396.40 | 641.48 |
-| Legacy Q1 cash flow estimate (INR m) | 0.00 | 677.48 |
-| Legacy Q1 cash flow estimate (INR m) | 600.00 | 685.41 |
-| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 693.35 |
-| Molycop forecast NWC / revenue | 0.1800 | 725.74 |
-| Molycop forecast NWC / revenue | 0.2000 | 685.40 |
-| Molycop forecast NWC / revenue | 0.2300 | 624.86 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 572.98 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 685.40 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 797.82 |
-| Cost savings after FY2027 / base ramp | 0.0000 | 537.79 |
-| Cost savings after FY2027 / base ramp | 0.5000 | 611.60 |
-| Cost savings after FY2027 / base ramp | 1.0000 | 685.40 |
+| Group WACC (blended) | 0.0955 | 1,165.89 |
+| Group WACC (blended) | 0.1055 | 743.26 |
+| Group WACC (blended) | 0.1155 | 431.84 |
+| Equity premium stress for both businesses | -0.0100 | 1,035.57 |
+| Equity premium stress for both businesses | 0.0000 | 743.26 |
+| Equity premium stress for both businesses | 0.0100 | 515.76 |
+| Conversion INR per USD | 90.0000 | 729.74 |
+| Conversion INR per USD | 94.9700 | 743.26 |
+| Conversion INR per USD | 100.0000 | 756.95 |
+| Group terminal growth | 0.0300 | 656.51 |
+| Group terminal growth | 0.0400 | 743.26 |
+| Group terminal growth | 0.0500 | 858.84 |
+| Group terminal ROIC | 0.1300 | 646.78 |
+| Group terminal ROIC | 0.1600 | 743.26 |
+| Group terminal ROIC | 0.1900 | 809.25 |
+| Preference current fair value (INR m) | 25,641.90 | 743.26 |
+| Preference current fair value (INR m) | 31,340.10 | 679.82 |
+| Preference current fair value (INR m) | 37,988.00 | 605.80 |
+| Other claims reserve (INR m) | 0.00 | 796.13 |
+| Other claims reserve (INR m) | 4,748.50 | 743.26 |
+| Other claims reserve (INR m) | 9,497.00 | 690.39 |
+| Earnout cash payment (INR m) | 0.00 | 787.16 |
+| Earnout cash payment (INR m) | 5,698.20 | 743.26 |
+| Earnout cash payment (INR m) | 11,396.40 | 699.36 |
+| Legacy Q1 cash flow estimate (INR m) | 0.00 | 735.33 |
+| Legacy Q1 cash flow estimate (INR m) | 600.00 | 743.27 |
+| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 751.20 |
+| Molycop forecast NWC / revenue | 0.1800 | 783.69 |
+| Molycop forecast NWC / revenue | 0.2000 | 743.26 |
+| Molycop forecast NWC / revenue | 0.2300 | 682.56 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 630.82 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 743.26 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 855.68 |
+| Cost savings after FY2027 / base ramp | 0.0000 | 595.65 |
+| Cost savings after FY2027 / base ramp | 0.5000 | 669.46 |
+| Cost savings after FY2027 / base ramp | 1.0000 | 743.26 |
 
 ## Material limitations
 
@@ -126,3 +128,5 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 - 2026-01: [Damodaran: betas by sector (US), January 2026](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html) — Unlevered beta corrected for cash: Machinery 0.89 (105 firms, D/E 14.69%); Steel 0.94 (19 firms) (`damodaran_industry_betas`).
 - 2026-09-02: [YCharts: 10-year US Treasury constant-maturity rate](https://ycharts.com/indicators/10year_treasury_constant_maturity_rate) — 2 September 2026: 4.79% (`us_treasury_20260902`).
 - 2026-06-30: [Yahoo Finance daily chart, TEGA.NS (platform price snapshot)](https://query1.finance.yahoo.com/v8/finance/chart/TEGA.NS?period1=1711929600&period2=1790640000&interval=1d&events=div%2Csplits&includeAdjustedClose=true) — Closes: 9 September 2025 INR2,094.10 (day before the deal announcement); 30 June 2026 INR1,696.80 (valuation date). Snapshot retrieved 28 September 2026, SHA-256 291afb00... (`tega_prices`).
+- 2025-07-03: [CRISIL rating rationale, Tega Industries Limited](https://www.crisil.com/mnt/winshare/Ratings/RatingList/RatingDocs/TegaIndustriesLimited_July 03_ 2025_RR_373439.html) — FY2025 capex of INR154 crore included the Chile project; Chile INR220-230 crore over two years; Dahej debottlenecking INR30 crore in FY2026; annual maintenance capex INR70-80 crore over the medium term (`crisil_2025`).
+- 2026-10-26: [Stock Analysis: Tega Industries cash-flow and income statements](https://stockanalysis.com/quote/nse/TEGA/financials/cash-flow-statement/) — Capital expenditure FY2022 INR409.99m and FY2023 INR922.11m; revenue FY2022 INR9,518m and FY2023 INR12,140m. Figures from Tega's FY2022-FY2023 annual reports, retrieved 26 October 2026 from this secondary source; its FY2024 values match the audited statements used here (`capex_history`).

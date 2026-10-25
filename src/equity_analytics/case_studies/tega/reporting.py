@@ -9,6 +9,7 @@ from html import escape
 from pathlib import Path
 
 from equity_analytics.forecasting.reporting import write_historical_reports
+from equity_analytics.valuation.multiples import pe_text
 
 from .engine import build_acquisition_model, market_implied_group_wacc
 
@@ -872,6 +873,10 @@ def write_reports(
         "flows at a lower rate or expecting more cash than the forecasts contain; this check "
         "never changes the forecasts."
     )
+    pe_paragraph = pe_text(market["pe_cross_check"], "Tega") + (
+        " FY2028 is the first full year with Molycop; its pro-forma EPS is after "
+        "interest, the preference return and minority interest."
+    )
     md = [
         f"# {title}",
         "",
@@ -883,6 +888,8 @@ def write_reports(
         "",
         market_text,
         "",
+        pe_paragraph,
+        "",
         timing,
         "",
     ]
@@ -891,7 +898,7 @@ def write_reports(
         "<style>body{margin:0;background:#f3f5f8;color:#172536;font:16px/1.55 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:32px 22px}h1{font-size:34px;letter-spacing:-1px}h2{margin-top:36px}h3{margin-top:28px}.notice{background:#fff4d5;border-left:5px solid #c28514;padding:18px}section,details{background:white;border:1px solid #d8e0e9;border-radius:10px;padding:18px;margin:18px 0}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0}th,td{padding:10px;border-bottom:1px solid #dce3eb;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{background:#edf2f8}a{color:#125ca1}summary{cursor:pointer;font-weight:650}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}li{margin:8px 0}nav a{margin-right:20px}@media print{body{background:white}main{max-width:none}details{break-inside:avoid}.table-wrap{overflow:visible}th,td{padding:5px;font-size:10px}}</style><main>",
         f"<h1>{title}</h1><p class='notice'>{escape(intro)}</p>",
         _table(headers, summary_rows, True),
-        f"<section><h2>What the market price implies</h2><p>{escape(market_text)}</p></section>",
+        f"<section><h2>What the market price implies</h2><p>{escape(market_text)}</p><p>{escape(pe_paragraph)}</p></section>",
         f"<p>{escape(timing)}</p>",
         "<nav><a href='#assumptions'>Assumptions</a><a href='#base'>Base</a><a href='#downside'>Downside</a><a href='#upside'>Upside</a><a href='#sensitivity'>Sensitivity</a><a href='#sources'>Sources</a></nav>",
     ]

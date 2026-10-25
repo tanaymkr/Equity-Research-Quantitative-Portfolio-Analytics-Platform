@@ -7,9 +7,10 @@ from html import escape
 from pathlib import Path
 
 from equity_analytics.valuation.dcf import _finite
+from equity_analytics.valuation.multiples import pe_text
 
 from .model import build_model
-from .reporting import CSS, export_report, fmt, market_text, table
+from .reporting import CSS, broker_text, export_report, fmt, market_text, table
 
 CASE_ORDER = ("downside", "base", "upside")
 ADJUSTMENTS = {"revenue_multiplier", "ebitda_margin_change", "receivable_days_change"}
@@ -220,6 +221,11 @@ def export_scenarios(bundle, directory):
         body += (
             "<section><h2>What the market price implies (base case)</h2><p>"
             + escape(market_text(base_item["model"]["market_check"]))
+            + "</p><p>"
+            + escape(
+                pe_text(base_item["model"]["market_check"]["pe_cross_check"], "Wabag")
+                + broker_text(base_item["model"]["forecast_references"]["multiples"])
+            )
             + "</p></section>"
         )
     body += (

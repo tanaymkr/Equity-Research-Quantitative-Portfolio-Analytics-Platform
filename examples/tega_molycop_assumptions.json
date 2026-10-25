@@ -197,7 +197,7 @@
         0.0
       ],
       "legacy_capex_fy27_inr_m": 3798.8,
-      "legacy_later_capex_revenue_fraction": 0.07377294292230359,
+      "legacy_later_capex_revenue_fraction": 0.052051071365418616,
       "molycop_capex_fy27_ten_month_inr_m": 2659.16,
       "molycop_later_annual_capex_inr_m": [
         0,
@@ -333,7 +333,7 @@
         0.0
       ],
       "legacy_capex_fy27_inr_m": 3798.8,
-      "legacy_later_capex_revenue_fraction": 0.07377294292230359,
+      "legacy_later_capex_revenue_fraction": 0.052051071365418616,
       "molycop_capex_fy27_ten_month_inr_m": 2659.16,
       "molycop_later_annual_capex_inr_m": [
         0,
@@ -468,7 +468,7 @@
         0.0
       ],
       "legacy_capex_fy27_inr_m": 3798.8,
-      "legacy_later_capex_revenue_fraction": 0.07377294292230359,
+      "legacy_later_capex_revenue_fraction": 0.052051071365418616,
       "molycop_capex_fy27_ten_month_inr_m": 2659.16,
       "molycop_later_annual_capex_inr_m": [
         0,
@@ -1020,14 +1020,16 @@
         "basis": "historical",
         "period": "FY2028-FY2034",
         "source_ids": [
-          "annual26"
+          "annual26",
+          "capex_history",
+          "crisil_2025"
         ],
-        "method": "Mean FY24-FY26 cash capex / revenue; does not repeat FY27 Chile expansion ratio.",
+        "method": "Reviewed 26 October 2026. Mean FY22-FY24 cash capex / revenue (4.31%, 7.60%, 3.71%; mean 5.21%), the years before the Chile and Dahej expansions. FY25-FY26 (10.39%, 8.03%) included that expansion capex (CRISIL, July 2025), and FY27 carries the remaining Chile spend separately. Cross-check: CRISIL's INR70-80 crore annual maintenance capex is 4.4-4.7% of FY25-FY26 revenue.",
         "status": "Applied",
         "reviewed_values": {
-          "scenarios.downside.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-          "scenarios.base.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-          "scenarios.upside.legacy_later_capex_revenue_fraction": 0.07377294292230359
+          "scenarios.downside.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+          "scenarios.base.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+          "scenarios.upside.legacy_later_capex_revenue_fraction": 0.052051071365418616
         }
       },
       {

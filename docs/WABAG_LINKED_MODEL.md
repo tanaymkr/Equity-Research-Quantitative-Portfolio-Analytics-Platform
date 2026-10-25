@@ -151,8 +151,8 @@ WACC is 13.31%.
 
 The report also solves for the single WACC at which the base-case value,
 rolled forward from the 31 March anchor, equals the 25 September close of
-INR2,008.40. It is 7.36%, so the market expects much more cash than this
-forecast contains.
+INR2,008.40. It is 8.00%, so the market expects much more cash than this
+forecast contains. A P/E cross-check (28.2x FY28 EPS) is reported beside it.
 
 Explicit FCFF uses operating NOPAT (no negative-profit tax benefit), D&A, cash
 capex, noncash lease additions and operating NWC. The CFO reconciliation removes
@@ -162,13 +162,15 @@ dividends and non-operating asset allocation do not become operating cash flow.
 
 Discounting uses the product of annual (1 + WACC) factors. Terminal FCFF uses
 NOPAT × (1 + growth) × (1 − growth / ROIC), avoiding a second terminal deduction
-for capex or NWC. Terminal growth 4% and ROIC 15% are editable analyst choices.
+for capex or NWC. Terminal growth 5% (the RBI's 4% inflation target plus about
+1% real growth, below the 5.25% default-free rate) and ROIC 15% are editable
+analyst choices.
 The last forecast WACC is the terminal WACC; terminal financing is not separately
 optimised. No management ROE target is relabelled as a ROIC forecast.
 
 ## Validation
 
-The full suite (300 tests and 13 subtests) passes; Ruff passes. The Wabag addition
+The full suite (306 tests and 13 subtests) passes; Ruff passes. The Wabag addition
 includes tests for cash/equity dividend timing, debt draw/interest/tax effects,
 capex and valuation, bank-charge classification, allowance double counting,
 lease reinvestment, depreciation limits, historical driver scaling, missing

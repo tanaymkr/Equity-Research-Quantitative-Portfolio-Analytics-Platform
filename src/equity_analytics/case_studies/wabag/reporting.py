@@ -5,6 +5,8 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
+from equity_analytics.valuation.multiples import pe_text
+
 from .layout import BS_ROWS, CF_ROWS, IS_ROWS, LABELS
 
 
@@ -35,6 +37,17 @@ def table(headers, rows):
 def _long_date(text):
     day = date.fromisoformat(text)
     return f"{day.day} {day:%B %Y}"
+
+
+def broker_text(multiples):
+    brokers = multiples["broker_target_multiples"]
+    if not brokers:
+        return ""
+    quoted = "; ".join(
+        f"{b['broker']} {b['pe']:g}x FY{b['eps_year']} EPS ({_long_date(b['date'])})"
+        for b in brokers
+    )
+    return f" Broker target multiples for comparison: {quoted}."
 
 
 def market_text(check):
@@ -96,7 +109,14 @@ def report_html(payload):
         section(
             "market",
             "What the market price implies",
-            "<p>" + escape(market_text(payload["market_check"])) + "</p>",
+            "<p>"
+            + escape(market_text(payload["market_check"]))
+            + "</p><p>"
+            + escape(
+                pe_text(payload["market_check"]["pe_cross_check"], "Wabag")
+                + broker_text(payload["forecast_references"]["multiples"])
+            )
+            + "</p>",
         )
     )
     for key, identifier, title, fields in (
@@ -268,6 +288,8 @@ def report_html(payload):
             ]
         )
         for name, ref in payload["forecast_references"].items():
+            if name == "multiples":
+                continue
             if r["year"] in ref["years"]:
                 j = ref["years"].index(r["year"])
                 comparisons.append(

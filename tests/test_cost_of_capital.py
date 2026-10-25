@@ -89,7 +89,12 @@ def test_scenarios_share_discount_and_terminal_parameters():
     assert {
         (c["forecast"]["terminal_growth"], c["forecast"]["terminal_roic"])
         for c in generic.values()
-    } == {(0.04, 0.15)}
+    } == {(0.05, 0.15)}
+    linked = _json("wabag_linked/assumptions.json")["policy"]
+    assert (linked["terminal_growth"]["value"], linked["terminal_roic"]["value"]) == (
+        0.05,
+        0.15,
+    )
 
 
 def test_tega_scenarios_use_the_same_business_rates():

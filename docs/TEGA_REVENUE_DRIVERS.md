@@ -44,14 +44,14 @@ No additional unquantified cross-selling revenue is stacked on these rates.
 | Legacy inventory / payables | 25.3063% / 15.1890% of sales | Mean FY24–FY26 closing ratios |
 | Other operating current assets / liabilities | 4.1668% / 6.8701% of sales | FY24–FY26; exclude treasury, derivatives and tax balances |
 | Legacy FY27 capex | INR3,798.80m | USD40m management estimate including Chile, converted once at 94.97 |
-| Legacy FY28 onward capex | 7.3773% of revenue | Mean FY24–FY26 cash capex / sales |
+| Legacy FY28 onward capex | 5.2051% of revenue | Mean FY22–FY24 cash capex / sales, before the Chile and Dahej expansions; FY25–FY26 included expansion capex (CRISIL, July 2025). See [cost of capital](COST_OF_CAPITAL.md#tega-legacy-capex) |
 | Molycop FY27 EBITDA | 4% growth in each case | Comparable-ten-month guidance; uniform-month earnings proxy because the comparable period is not disclosed |
 | Molycop core profit / tonne | Flat after FY27; savings separately phased | Management's profit-per-tonne approach; no unsupported future margin expansion |
 | Molycop capex | FY27 INR2,659.16m for ten months; FY28/29 INR3,323.95m downside, INR3,134.01m base, INR3,039.04m upside | Interpretations of management's USD28m and low/mid30s statements |
 | Molycop later capex | FY29 amount grows with revenue from FY30 | Explicit extrapolation beyond the two-year guidance window; no verified historical capex series |
 | Legacy FY27 finance cost | INR1,200m / 1,150m / 1,100m | Down/base/up selections within the INR1,100–1,200m management range; remove actual Q1 expense |
 | Legacy tax proxy | 24.4558% | Mean FY24–FY26 accounting tax/PBT; not a statutory marginal tax rate or separately projected current/deferred tax |
-| Group WACC | 10.51% / 10.53% / 10.56% | Platform cost-of-capital method ([cost of capital](COST_OF_CAPITAL.md)): the same business rates in every scenario, blended by each scenario's business values |
+| Group WACC | 10.53% / 10.55% / 10.57% | Platform cost-of-capital method ([cost of capital](COST_OF_CAPITAL.md)): the same business rates in every scenario, blended by each scenario's business values |
 
 Revenue drives expenses and working capital. Capex and lease additions feed asset
 cohorts; those cohorts determine depreciation. Land is held outside depreciable

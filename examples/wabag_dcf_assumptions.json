@@ -32,6 +32,12 @@
       "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
       "locator": "India: Baa3, default spread 1.87%, CRP 2.85%, ERP 7.08%. Betas page (datafile/Betas.html): Engineering/Construction unlevered beta corrected for cash 1.14.",
       "available_on": "2026-01-31"
+    },
+    {
+      "title": "Outlook Money: RBI to maintain 4% inflation target until 2031",
+      "url": "https://www.outlookmoney.com/banking/rbi-to-maintain-4-per-cent-inflation-target-until-2031-centre",
+      "locator": "4% CPI target with a 2-6% band, 1 April 2026 to 31 March 2031.",
+      "available_on": "2026-03-26"
     }
   ],
   "rationale": {
@@ -45,7 +51,7 @@
     "bridge": "Cash and lease-inclusive debt come from SQL. 721 nonoperating assets = 669 equity-accounted investments +52 other investments, book-value proxies. Minority value52 uses book equity proxy, not fair value. Other claims0 is explicit analyst assumption, not a verified absence of all contingent claims. All reported cash assumed available; operational/restricted cash review remains needed. Shares63.150829m = FY2026 ending62.309595m + incremental diluted EPS options0.841234m; this is a dilution proxy, not an exact current-date treasury-stock calculation.",
     "dates": "Discount periods begin at FY2026 year-end with full FY2027 first forecast. Uses later report/guidance and analyst assumptions. Not a contemporaneous March2026 valuation, September2026 target, quarterly roll-forward or backtest.",
     "consensus": "No verified multi-broker consensus dataset available in this build. Management guidance is used where verified; remaining operational drivers use historical ratios with explicit analyst scenarios. Discount/terminal assumptions remain analyst inputs.",
-    "terminal": "Explicit-year FCFF uses operating reinvestment. Terminal FCFF = next-year NOPAT * (1-g/ROIC), with stable margin and a separately stated terminal ROIC. This avoids perpetuating final high-growth working-capital investment. Transition is simplified and should be reviewed."
+    "terminal": "Explicit-year FCFF uses operating reinvestment. Terminal FCFF = next-year NOPAT * (1-g/ROIC), with stable margin and a separately stated terminal ROIC. This avoids perpetuating final high-growth working-capital investment. Transition is simplified and should be reviewed. Terminal growth is 5% in every scenario: the RBI's 4% inflation target (2026-2031) plus about 1% real growth, below the 5.25% default-free INR rate."
   },
   "scenarios": {
     "downside": {
@@ -76,7 +82,7 @@
         "depreciation_pct_revenue": 0.0020307887385334735,
         "capex_pct_revenue": 0.0032096368355358307,
         "nwc_pct_revenue": 0.43804218852999344,
-        "terminal_growth": 0.04,
+        "terminal_growth": 0.05,
         "terminal_roic": 0.15
       }
     },
@@ -108,7 +114,7 @@
         "depreciation_pct_revenue": 0.0020307887385334735,
         "capex_pct_revenue": 0.0021397578903572206,
         "nwc_pct_revenue": 0.4080421885299934,
-        "terminal_growth": 0.04,
+        "terminal_growth": 0.05,
         "terminal_roic": 0.15
       }
     },
@@ -140,7 +146,7 @@
         "depreciation_pct_revenue": 0.0020307887385334735,
         "capex_pct_revenue": 0.0021397578903572206,
         "nwc_pct_revenue": 0.4080421885299934,
-        "terminal_growth": 0.04,
+        "terminal_growth": 0.05,
         "terminal_roic": 0.15
       }
     }
@@ -154,9 +160,9 @@
       0.14
     ],
     "terminal_growth_values": [
-      0.03,
       0.04,
-      0.05
+      0.05,
+      0.06
     ]
   },
   "ticker": "WABAG.NS",

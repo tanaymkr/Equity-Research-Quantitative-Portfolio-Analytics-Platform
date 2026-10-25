@@ -120,6 +120,18 @@
         "title": "Yahoo Finance daily chart, TEGA.NS (platform price snapshot)",
         "url": "https://query1.finance.yahoo.com/v8/finance/chart/TEGA.NS?period1=1711929600&period2=1790640000&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
         "location": "Closes: 9 September 2025 INR2,094.10 (day before the deal announcement); 30 June 2026 INR1,696.80 (valuation date). Snapshot retrieved 28 September 2026, SHA-256 291afb00..."
+      },
+      "crisil_2025": {
+        "date": "2025-07-03",
+        "title": "CRISIL rating rationale, Tega Industries Limited",
+        "url": "https://www.crisil.com/mnt/winshare/Ratings/RatingList/RatingDocs/TegaIndustriesLimited_July 03_ 2025_RR_373439.html",
+        "location": "FY2025 capex of INR154 crore included the Chile project; Chile INR220-230 crore over two years; Dahej debottlenecking INR30 crore in FY2026; annual maintenance capex INR70-80 crore over the medium term"
+      },
+      "capex_history": {
+        "date": "2026-10-26",
+        "title": "Stock Analysis: Tega Industries cash-flow and income statements",
+        "url": "https://stockanalysis.com/quote/nse/TEGA/financials/cash-flow-statement/",
+        "location": "Capital expenditure FY2022 INR409.99m and FY2023 INR922.11m; revenue FY2022 INR9,518m and FY2023 INR12,140m. Figures from Tega's FY2022-FY2023 annual reports, retrieved 26 October 2026 from this secondary source; its FY2024 values match the audited statements used here"
       }
     },
     "deal": {
@@ -335,6 +347,14 @@
       "close_inr": 1696.8,
       "source_id": "tega_prices",
       "note": "Closing price on the valuation date. Used only to solve for the market-implied group WACC; it never calibrates the forecasts."
+    },
+    "pe_benchmark": {
+      "name": "Nifty India Manufacturing three-year median",
+      "pe": 28.16,
+      "basis": "trailing earnings",
+      "observed_on": "23 October 2026",
+      "url": "https://www.indexpe.in/nifty-india-manufacturing",
+      "note": "The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF."
     },
     "tega_fy2026": {
       "source_ids": [
@@ -1346,7 +1366,7 @@
           0.0
         ],
         "legacy_capex_fy27_inr_m": 3798.8,
-        "legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "legacy_later_capex_revenue_fraction": 0.052051071365418616,
         "molycop_capex_fy27_ten_month_inr_m": 2659.16,
         "molycop_later_annual_capex_inr_m": [
           0,
@@ -1482,7 +1502,7 @@
           0.0
         ],
         "legacy_capex_fy27_inr_m": 3798.8,
-        "legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "legacy_later_capex_revenue_fraction": 0.052051071365418616,
         "molycop_capex_fy27_ten_month_inr_m": 2659.16,
         "molycop_later_annual_capex_inr_m": [
           0,
@@ -1617,7 +1637,7 @@
           0.0
         ],
         "legacy_capex_fy27_inr_m": 3798.8,
-        "legacy_later_capex_revenue_fraction": 0.07377294292230359,
+        "legacy_later_capex_revenue_fraction": 0.052051071365418616,
         "molycop_capex_fy27_ten_month_inr_m": 2659.16,
         "molycop_later_annual_capex_inr_m": [
           0,
@@ -2169,14 +2189,16 @@
           "basis": "historical",
           "period": "FY2028-FY2034",
           "source_ids": [
-            "annual26"
+            "annual26",
+            "capex_history",
+            "crisil_2025"
           ],
-          "method": "Mean FY24-FY26 cash capex / revenue; does not repeat FY27 Chile expansion ratio.",
+          "method": "Reviewed 26 October 2026. Mean FY22-FY24 cash capex / revenue (4.31%, 7.60%, 3.71%; mean 5.21%), the years before the Chile and Dahej expansions. FY25-FY26 (10.39%, 8.03%) included that expansion capex (CRISIL, July 2025), and FY27 carries the remaining Chile spend separately. Cross-check: CRISIL's INR70-80 crore annual maintenance capex is 4.4-4.7% of FY25-FY26 revenue.",
           "status": "Applied",
           "reviewed_values": {
-            "scenarios.downside.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-            "scenarios.base.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-            "scenarios.upside.legacy_later_capex_revenue_fraction": 0.07377294292230359
+            "scenarios.downside.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+            "scenarios.base.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+            "scenarios.upside.legacy_later_capex_revenue_fraction": 0.052051071365418616
           }
         },
         {

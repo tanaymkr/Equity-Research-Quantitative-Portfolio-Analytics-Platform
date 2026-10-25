@@ -39,21 +39,26 @@ FY2026 statements. Python 3.11+; no third-party runtime packages.
   audited statements, notes, debt/asset/equity roll-forwards and checks.
 - The same folder holds the HTML report and full JSON model output.
 
-With the stored assumptions the model gives **INR337.06 (downside),
-INR685.40 (base) and INR829.32 (upside) per share** on 75,606,133 diluted
-shares, at a base group WACC of 10.53%. These reproduce the stored
+With the stored assumptions the model gives **INR382.46 (downside),
+INR743.26 (base) and INR895.43 (upside) per share** on 75,606,133 diluted
+shares, at a base group WACC of 10.55%. These reproduce the stored
 assumptions; they are not current price targets.
 
 Tega closed at INR1,696.80 on 30 June 2026, the valuation date. Holding the
-forecasts fixed, that price implies a group WACC of 8.54%
+forecasts fixed, that price implies a group WACC of 8.65%
 ([`market_check.json`](../../examples/tega_molycop_reports/market_check.json)).
-An 8.5% rate is below both businesses' standalone WACCs (11.19% and 10.44%),
+An 8.7% rate is below both businesses' standalone WACCs (11.19% and 10.44%),
 so the market is most likely expecting more cash than these forecasts contain.
-Leverage magnifies any such difference: group claims of INR124,876m (net debt,
+Leverage magnifies any such difference: group claims of INR124,874m (net debt,
 preference shares, earnout, other claims and minority interest) sit ahead of
-shareholders against an enterprise value of INR176,372m, so each percentage
-point of WACC moves the value by roughly INR300–420 per share. The discount-rate method is in
-[the cost-of-capital note](../COST_OF_CAPITAL.md).
+shareholders against an enterprise value of INR180,744m, so each percentage
+point of WACC moves the value by roughly INR310–420 per share.
+
+**P/E cross-check.** At 28.2x, the Nifty India Manufacturing three-year median
+P/E, FY2028 pro-forma EPS of INR40.26 gives INR1,133.84 per share. The share
+price is 42.1x the same EPS and the DCF value 18.5x. The method, the terminal
+growth choice (4%, because most of the value is in dollars) and the legacy
+capex basis are in [the cost-of-capital note](../COST_OF_CAPITAL.md).
 
 ## Inputs
 

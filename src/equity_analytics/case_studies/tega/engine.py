@@ -12,6 +12,7 @@ from datetime import date
 from math import isfinite
 
 from equity_analytics.valuation.cost_of_capital import implied_discount_rate
+from equity_analytics.valuation.multiples import pe_cross_check
 
 from .consolidation import (
     consolidate_operating,
@@ -1133,6 +1134,13 @@ def market_implied_group_wacc(facts: dict, assumptions: dict) -> dict:
         + bridge["total_bridge_deductions_inr_m"]
         - bridge["nonoperating_assets_inr_m"]
     )
+    fy2028 = next(
+        row
+        for row in base["consolidated_statements_inr_m"]["full_fiscal_year_income"][
+            "rows"
+        ]
+        if row["fiscal_year"] == 2028
+    )
     return {
         "price_date": reference["date"],
         "price_inr": price,
@@ -1143,4 +1151,11 @@ def market_implied_group_wacc(facts: dict, assumptions: dict) -> dict:
         "model_group_ev_inr_m": bridge["group_enterprise_value_inr_m"],
         "required_group_ev_inr_m": required_ev,
         "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection.",
+        "pe_cross_check": pe_cross_check(
+            facts["pe_benchmark"],
+            2028,
+            fy2028["income"]["pro_forma_eps_inr"],
+            price,
+            bridge["value_per_share_inr"],
+        ),
     }

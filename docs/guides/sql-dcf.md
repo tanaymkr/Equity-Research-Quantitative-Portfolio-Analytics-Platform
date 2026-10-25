@@ -103,8 +103,9 @@ visible assumptions; a downside case may fall below management guidance.
 - Physical capex is not all business reinvestment: contract working capital
   is explicitly forecast. Provisions and detailed HAM project models are not.
 - The market check uses the 25 September 2026 close (INR2,008.40), not a live
-  quote. With the stored inputs the base case is INR712.60 at a 13.30% WACC,
-  and the price implies 7.37%.
+  quote. With the stored inputs the base case is INR725.69 at a 13.30% WACC
+  and 5% terminal growth, and the price implies 8.01%. This model has no
+  earnings forecast, so it has no P/E cross-check.
 
 These limitations are shown in the output, not hidden behind a price target.
 The next refinement is a dated market-input and claims review and a

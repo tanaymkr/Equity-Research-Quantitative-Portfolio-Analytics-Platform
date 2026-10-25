@@ -64,8 +64,8 @@ Every new parameter group has adjacent `_note` fields. Decimal rates are used.
 | Equity-premium stress by scenario | 0 in every scenario; the stress is tested in the sensitivity table only |
 
 Results: Tega legacy WACC 11.19% and Molycop 10.44% in every scenario. The base
-blend is 10.53% (legacy 11.9% / Molycop 88.1% of standalone value); downside and
-upside blends are 10.51% and 10.56% because the business mix differs. Terminal
+blend is 10.55% (legacy 14.1% / Molycop 85.9% of standalone value); downside and
+upside blends are 10.53% and 10.57% because the business mix differs. Terminal
 growth (4%) and terminal ROIC (16%) are the same in every scenario.
 
 `examples/tega_capm_reference_20260902.json` keeps the earlier CAPM research:
@@ -75,8 +75,10 @@ It is a cross-check only. No consensus WACC is claimed.
 The report also solves for the **market-implied group WACC**: the single group
 rate at which the base case equals Tega's INR1,696.80 close on 30 June 2026, the
 valuation date, with forecasts, claims and the NCI valuation held fixed. It is
-8.54%, against 10.53% from the method above. The result is written to
-`market_check.json` and never changes the forecasts.
+8.65%, against 10.55% from the method above. The same file holds a P/E
+cross-check: 28.2x (Nifty India Manufacturing three-year median) times FY2028
+pro-forma EPS of INR40.26 gives INR1,133.84. Neither result changes the
+forecasts.
 
 The model retains the user's **constant expected INR/USD** convention through the
 forecast and terminal period. Under this explicit expectation, the USD discount

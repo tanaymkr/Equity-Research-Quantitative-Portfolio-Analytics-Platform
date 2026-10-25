@@ -35,19 +35,27 @@ checks that the detailed model agrees with the annual SQL summary.
 
 | INR per diluted share | Downside | Base | Upside |
 | --- | ---: | ---: | ---: |
-| DCF value at the 31 March 2026 anchor | 461.30 | 630.42 | 780.79 |
+| DCF value at the 31 March 2026 anchor | 471.55 | 644.36 | 798.27 |
 
 The FY27 WACC is 13.31% in every case: cost of equity 13.43% from an
 Engineering/Construction unlevered beta of 1.14 relevered to 1.155, a 5.25%
-default-free rate and India's 7.08% equity risk premium.
+default-free rate and India's 7.08% equity risk premium. Terminal growth is 5%
+(the RBI's 4% inflation target plus about 1% real growth) and terminal ROIC
+15%.
 
 Wabag closed at INR2,008.40 on 25 September 2026. Holding the base-case cash
-flows fixed, that price implies a WACC of 7.36%. That is below the 12.3%
+flows fixed, that price implies a WACC of 8.00%. That is below the 12.3%
 expected return on an average Indian stock under the same inputs, so the gap is
 in the cash flows, not the discount rate. Each extra rupee of revenue ties up
 about 48 paise of working capital, so growth of 12–18% a year absorbs most of
 the profit. In FY27, free cash flow is −INR91m against after-tax operating
 profit of INR4,248m.
+
+**P/E cross-check.** At 28.2x, the Nifty India Manufacturing three-year median
+P/E, FY28 EPS of INR83.86 gives INR2,361.50 per share. The share price is
+23.9x the same EPS and the DCF value 7.7x. For comparison, Motilal Oswal's
+target multiples were 22x FY28 EPS (May 2026) and 28x (October 2026). See
+[the cost-of-capital note](../COST_OF_CAPITAL.md#pe-cross-check).
 
 ## Edit assumptions
 

@@ -119,6 +119,18 @@
       "title": "Yahoo Finance daily chart, TEGA.NS (platform price snapshot)",
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/TEGA.NS?period1=1711929600&period2=1790640000&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
       "location": "Closes: 9 September 2025 INR2,094.10 (day before the deal announcement); 30 June 2026 INR1,696.80 (valuation date). Snapshot retrieved 28 September 2026, SHA-256 291afb00..."
+    },
+    "crisil_2025": {
+      "date": "2025-07-03",
+      "title": "CRISIL rating rationale, Tega Industries Limited",
+      "url": "https://www.crisil.com/mnt/winshare/Ratings/RatingList/RatingDocs/TegaIndustriesLimited_July 03_ 2025_RR_373439.html",
+      "location": "FY2025 capex of INR154 crore included the Chile project; Chile INR220-230 crore over two years; Dahej debottlenecking INR30 crore in FY2026; annual maintenance capex INR70-80 crore over the medium term"
+    },
+    "capex_history": {
+      "date": "2026-10-26",
+      "title": "Stock Analysis: Tega Industries cash-flow and income statements",
+      "url": "https://stockanalysis.com/quote/nse/TEGA/financials/cash-flow-statement/",
+      "location": "Capital expenditure FY2022 INR409.99m and FY2023 INR922.11m; revenue FY2022 INR9,518m and FY2023 INR12,140m. Figures from Tega's FY2022-FY2023 annual reports, retrieved 26 October 2026 from this secondary source; its FY2024 values match the audited statements used here"
     }
   },
   "deal": {
@@ -334,5 +346,13 @@
     "close_inr": 1696.8,
     "source_id": "tega_prices",
     "note": "Closing price on the valuation date. Used only to solve for the market-implied group WACC; it never calibrates the forecasts."
+  },
+  "pe_benchmark": {
+    "name": "Nifty India Manufacturing three-year median",
+    "pe": 28.16,
+    "basis": "trailing earnings",
+    "observed_on": "23 October 2026",
+    "url": "https://www.indexpe.in/nifty-india-manufacturing",
+    "note": "The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF."
   }
 }

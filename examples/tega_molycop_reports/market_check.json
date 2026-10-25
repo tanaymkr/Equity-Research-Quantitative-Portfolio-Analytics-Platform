@@ -2,10 +2,27 @@
   "price_date": "2026-06-30",
   "price_inr": 1696.8,
   "source_id": "tega_prices",
-  "model_value_per_share_inr": 685.4040419436184,
-  "model_group_wacc": 0.105325989406686,
-  "implied_group_wacc": 0.08535824239253999,
-  "model_group_ev_inr_m": 176371.73781266948,
-  "required_group_ev_inr_m": 252839.47513314267,
-  "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection."
+  "model_value_per_share_inr": 743.2582997984028,
+  "model_group_wacc": 0.1054887213117092,
+  "implied_group_wacc": 0.08654152929782867,
+  "model_group_ev_inr_m": 180744.08011752827,
+  "required_group_ev_inr_m": 252837.68072401633,
+  "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection.",
+  "pe_cross_check": {
+    "benchmark": {
+      "name": "Nifty India Manufacturing three-year median",
+      "pe": 28.16,
+      "basis": "trailing earnings",
+      "observed_on": "23 October 2026",
+      "url": "https://www.indexpe.in/nifty-india-manufacturing",
+      "note": "The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF."
+    },
+    "eps_year": 2028,
+    "eps": 40.26409285337236,
+    "pe_value_per_share": 1133.8368547509656,
+    "market_price": 1696.8,
+    "market_pe": 42.14176651586682,
+    "dcf_value_per_share": 743.2582997984028,
+    "dcf_pe": 18.45958140681544
+  }
 }
