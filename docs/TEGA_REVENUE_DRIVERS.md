@@ -51,7 +51,7 @@ No additional unquantified cross-selling revenue is stacked on these rates.
 | Molycop later capex | FY29 amount grows with revenue from FY30 | Explicit extrapolation beyond the two-year guidance window; no verified historical capex series |
 | Legacy FY27 finance cost | INR1,200m / 1,150m / 1,100m | Down/base/up selections within the INR1,100–1,200m management range; remove actual Q1 expense |
 | Legacy tax proxy | 24.4558% | Mean FY24–FY26 accounting tax/PBT; not a statutory marginal tax rate or separately projected current/deferred tax |
-| Group WACC | 10.82% in every scenario | Platform cost-of-capital method ([cost of capital](COST_OF_CAPITAL.md)); scenarios change operating drivers only |
+| Group WACC | 10.51% / 10.53% / 10.56% | Platform cost-of-capital method ([cost of capital](COST_OF_CAPITAL.md)): the same business rates in every scenario, blended by each scenario's business values |
 
 Revenue drives expenses and working capital. Capex and lease additions feed asset
 cohorts; those cohorts determine depreciation. Land is held outside depreciable

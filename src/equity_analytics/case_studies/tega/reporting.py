@@ -184,7 +184,6 @@ def sensitivities(facts, assumptions):
     base_wacc = build_acquisition_model(facts, assumptions)["wacc_calculation"][
         "blended_wacc"
     ]
-    legacy_weight = assumptions["pro_forma"]["tega_ev_weight_inr_m"]
     definitions = [
         (
             "Group WACC (blended)",
@@ -197,12 +196,6 @@ def sensitivities(facts, assumptions):
             "wacc_stress",
             "base",
             [-0.01, 0.0, 0.01],
-        ),
-        (
-            "Legacy standalone EV weight (INR m)",
-            "pro_forma",
-            "tega_ev_weight_inr_m",
-            [legacy_weight * 0.75, legacy_weight, legacy_weight * 1.25],
         ),
         ("Conversion INR per USD", "pro_forma", "fx_inr_per_usd", [90, 94.97, 100]),
         (

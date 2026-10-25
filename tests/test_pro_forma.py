@@ -61,16 +61,26 @@ def test_invalid_wacc_rejected(inputs, key, value):
         standalone_wacc(x)
 
 
-def test_ev_weights_are_business_operating_values_not_ownership(inputs):
-    w = blended_wacc(inputs[1]["pro_forma"], "base")
-    legacy = 2094.10 * 66.535492 + (2619.29 + 677.20 - 1142.95 - 68.61 - 2397.45)
-    share = legacy / (legacy + 1455 * 94.97)
+def test_blend_weights_are_the_models_own_business_values(inputs):
+    f, a = inputs
+    m = build_acquisition_model(f, a)
+    w = m["wacc_calculation"]
+    values = m["standalone_values_for_audit_inr_m"]
+    tega, molycop = (values[k]["enterprise_value"] for k in ("tega", "molycop"))
+    share = tega / (tega + molycop)
     assert w["tega_ev_weight"] == pytest.approx(share)
     assert w["molycop_ev_weight"] == pytest.approx(1 - share)
     assert w["blended_wacc"] == pytest.approx(
         share * w["tega"]["standalone_wacc"]
         + (1 - share) * w["molycop"]["standalone_wacc"]
     )
+    # One blended rate should nearly reproduce the sum of the two valuations.
+    group = m["group_dcf_inr_m"]["enterprise_value"]
+    assert group == pytest.approx(tega + molycop, rel=0.01)
+    direct = blended_wacc(a["pro_forma"], "base", tega, molycop)
+    assert direct["blended_wacc"] == pytest.approx(w["blended_wacc"])
+    with pytest.raises(ValueError):
+        blended_wacc(a["pro_forma"], "base", -1.0, molycop)
 
 
 @pytest.mark.parametrize("case", ["downside", "base", "upside"])
@@ -152,7 +162,9 @@ def test_fx_input_reconverts_usd_origins_and_preserves_reported_inr(inputs):
     assert m["equity_bridge"]["preference_fair_value_full_inr_m"] == pytest.approx(
         270 * 100
     )
-    assert m["wacc_calculation"]["molycop_weight_ev_inr_m"] == pytest.approx(1455 * 100)
+    assert m["wacc_calculation"]["molycop_weight_ev_inr_m"] == pytest.approx(
+        m["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+    )
     assert m["fy27_stub_bridge"]["actual_ytd_revenue"] == pytest.approx(
         f0["q1_fy2027"]["group_revenue"]
     )

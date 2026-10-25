@@ -4,13 +4,13 @@ PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion IN
 
 | Scenario | Provisional INR / share | Raw equity INR m | Group WACC | Group terminal growth |
 | --- | --- | --- | --- | --- |
-| Downside | INR 258.47 | 19,541.62 | 10.8% | 4.0% |
-| Base | INR 589.01 | 44,532.83 | 10.8% | 4.0% |
-| Upside | INR 732.64 | 55,391.89 | 10.8% | 4.0% |
+| Downside | INR 337.06 | 25,483.65 | 10.5% | 4.0% |
+| Base | INR 685.40 | 51,820.75 | 10.5% | 4.0% |
+| Upside | INR 829.32 | 62,701.52 | 10.6% | 4.0% |
 
 ## What the market price implies
 
-Tega closed at INR1,696.80 on 30 June 2026, the valuation date, against the base-case value of INR589.01. Holding the forecasts and claims fixed, that price implies a group WACC of 8.54%, versus 10.82% from the cost-of-capital method, and a group enterprise value of INR252,808m versus the model's INR169,053m. The market is either discounting these cash flows at a lower rate or expecting more cash than the forecasts contain; this check never changes the forecasts.
+Tega closed at INR1,696.80 on 30 June 2026, the valuation date, against the base-case value of INR685.40. Holding the forecasts and claims fixed, that price implies a group WACC of 8.54%, versus 10.53% from the cost-of-capital method, and a group enterprise value of INR252,839m versus the model's INR176,372m. The market is either discounting these cash flows at a lower rate or expecting more cash than the forecasts contain; this check never changes the forecasts.
 
 FY27 full-year revenue includes twelve months of Tega and ten months of Molycop from 1 June. Forecast income/cash-flow columns and DCF include only July–March (nine months) after the June valuation. Future balance-sheet columns are at 31 March. Subsequent years have twelve months. Auxiliary standalone EVs support NCI/audit only; the combined EV is calculated from the consolidated stream. All monetary figures are INR million except per-share figures. Constant expected FX is an explicit assumption.
 
@@ -52,45 +52,42 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 
 | Input changed | Value | INR/share |
 | --- | --- | --- |
-| Group WACC (blended) | 0.0982 | 967.99 |
-| Group WACC (blended) | 0.1082 | 589.01 |
-| Group WACC (blended) | 0.1182 | 306.43 |
-| Equity premium stress for both businesses | -0.0100 | 854.75 |
-| Equity premium stress for both businesses | 0.0000 | 589.01 |
-| Equity premium stress for both businesses | 0.0100 | 381.09 |
-| Legacy standalone EV weight (INR m) | 104,264.59 | 606.40 |
-| Legacy standalone EV weight (INR m) | 139,019.45 | 589.01 |
-| Legacy standalone EV weight (INR m) | 173,774.31 | 575.68 |
-| Conversion INR per USD | 90.0000 | 579.24 |
-| Conversion INR per USD | 94.9700 | 589.01 |
-| Conversion INR per USD | 100.0000 | 599.08 |
-| Group terminal growth | 0.0300 | 516.32 |
-| Group terminal growth | 0.0400 | 589.01 |
-| Group terminal growth | 0.0500 | 684.22 |
-| Group terminal ROIC | 0.1300 | 500.54 |
-| Group terminal ROIC | 0.1600 | 589.01 |
-| Group terminal ROIC | 0.1900 | 649.54 |
-| Preference current fair value (INR m) | 25,641.90 | 589.01 |
-| Preference current fair value (INR m) | 31,340.10 | 525.57 |
-| Preference current fair value (INR m) | 37,988.00 | 451.55 |
-| Other claims reserve (INR m) | 0.00 | 641.88 |
-| Other claims reserve (INR m) | 4,748.50 | 589.01 |
-| Other claims reserve (INR m) | 9,497.00 | 536.14 |
-| Earnout cash payment (INR m) | 0.00 | 632.52 |
-| Earnout cash payment (INR m) | 5,698.20 | 589.01 |
-| Earnout cash payment (INR m) | 11,396.40 | 545.50 |
-| Legacy Q1 cash flow estimate (INR m) | 0.00 | 581.08 |
-| Legacy Q1 cash flow estimate (INR m) | 600.00 | 589.02 |
-| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 596.96 |
-| Molycop forecast NWC / revenue | 0.1800 | 628.53 |
-| Molycop forecast NWC / revenue | 0.2000 | 589.01 |
-| Molycop forecast NWC / revenue | 0.2300 | 529.73 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 483.47 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 589.01 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 694.55 |
-| Cost savings after FY2027 / base ramp | 0.0000 | 450.75 |
-| Cost savings after FY2027 / base ramp | 0.5000 | 519.88 |
-| Cost savings after FY2027 / base ramp | 1.0000 | 589.01 |
+| Group WACC (blended) | 0.0953 | 1,101.12 |
+| Group WACC (blended) | 0.1053 | 685.40 |
+| Group WACC (blended) | 0.1153 | 379.48 |
+| Equity premium stress for both businesses | -0.0100 | 971.48 |
+| Equity premium stress for both businesses | 0.0000 | 685.40 |
+| Equity premium stress for both businesses | 0.0100 | 462.92 |
+| Conversion INR per USD | 90.0000 | 671.86 |
+| Conversion INR per USD | 94.9700 | 685.40 |
+| Conversion INR per USD | 100.0000 | 699.13 |
+| Group terminal growth | 0.0300 | 599.94 |
+| Group terminal growth | 0.0400 | 685.40 |
+| Group terminal growth | 0.0500 | 799.35 |
+| Group terminal ROIC | 0.1300 | 590.83 |
+| Group terminal ROIC | 0.1600 | 685.40 |
+| Group terminal ROIC | 0.1900 | 750.10 |
+| Preference current fair value (INR m) | 25,641.90 | 685.40 |
+| Preference current fair value (INR m) | 31,340.10 | 621.96 |
+| Preference current fair value (INR m) | 37,988.00 | 547.94 |
+| Other claims reserve (INR m) | 0.00 | 738.27 |
+| Other claims reserve (INR m) | 4,748.50 | 685.40 |
+| Other claims reserve (INR m) | 9,497.00 | 632.53 |
+| Earnout cash payment (INR m) | 0.00 | 729.33 |
+| Earnout cash payment (INR m) | 5,698.20 | 685.40 |
+| Earnout cash payment (INR m) | 11,396.40 | 641.48 |
+| Legacy Q1 cash flow estimate (INR m) | 0.00 | 677.48 |
+| Legacy Q1 cash flow estimate (INR m) | 600.00 | 685.41 |
+| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 693.35 |
+| Molycop forecast NWC / revenue | 0.1800 | 725.74 |
+| Molycop forecast NWC / revenue | 0.2000 | 685.40 |
+| Molycop forecast NWC / revenue | 0.2300 | 624.86 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 572.98 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 685.40 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 797.82 |
+| Cost savings after FY2027 / base ramp | 0.0000 | 537.79 |
+| Cost savings after FY2027 / base ramp | 0.5000 | 611.60 |
+| Cost savings after FY2027 / base ramp | 1.0000 | 685.40 |
 
 ## Material limitations
 
@@ -98,7 +95,7 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 - June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).
 - Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.
 - ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.
-- Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value.
+- Blend weights are each business's standalone DCF value from this model, so the single group rate matches the cash flows it discounts.
 - NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.
 - Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.
 - Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.

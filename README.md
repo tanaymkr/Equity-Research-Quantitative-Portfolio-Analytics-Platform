@@ -164,7 +164,7 @@ notebooks/       walkthrough of the ratio engine
   labelled as analyst assumptions, and each report states what is
   provisional.
 - **The market is a cross-check, not a target.** Scenarios change operating
-  drivers only, at one discount rate. Each report then asks what WACC the share
+  drivers only; discount rates stay the same. Each report then asks what WACC the share
   price implies with the forecasts held fixed. At Wabag the answer is 7.4%,
   against 13.3% from the method, which shows the gap is in expected cash flows
   rather than the discount rate.
@@ -194,7 +194,7 @@ notebooks/       walkthrough of the ratio engine
 
 - The valuations are conditional on stated assumptions, several of them
   provisional, and are not investment advice or price targets.
-- Both DCFs value their companies well below the market: Tega at ₹589 against
+- Both DCFs value their companies well below the market: Tega at ₹685 against
   ₹1,697, and Wabag at ₹630 against ₹2,008. The forecasts are the next thing
   to review: Wabag's working capital and five-year horizon, and Tega's legacy
   cash conversion.

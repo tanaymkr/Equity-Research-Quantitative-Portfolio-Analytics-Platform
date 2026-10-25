@@ -39,9 +39,9 @@ FY2026 statements. Python 3.11+; no third-party runtime packages.
   audited statements, notes, debt/asset/equity roll-forwards and checks.
 - The same folder holds the HTML report and full JSON model output.
 
-With the stored assumptions the model gives **INR258.47 (downside),
-INR589.01 (base) and INR732.64 (upside) per share** on 75,606,133 diluted
-shares, at a group WACC of 10.82% in every scenario. These reproduce the stored
+With the stored assumptions the model gives **INR337.06 (downside),
+INR685.40 (base) and INR829.32 (upside) per share** on 75,606,133 diluted
+shares, at a base group WACC of 10.53%. These reproduce the stored
 assumptions; they are not current price targets.
 
 Tega closed at INR1,696.80 on 30 June 2026, the valuation date. Holding the
@@ -49,17 +49,17 @@ forecasts fixed, that price implies a group WACC of 8.54%
 ([`market_check.json`](../../examples/tega_molycop_reports/market_check.json)).
 An 8.5% rate is below both businesses' standalone WACCs (11.19% and 10.44%),
 so the market is most likely expecting more cash than these forecasts contain.
-Leverage magnifies any such difference: group claims of INR124,845m (net debt,
+Leverage magnifies any such difference: group claims of INR124,876m (net debt,
 preference shares, earnout, other claims and minority interest) sit ahead of
-shareholders against an enterprise value of INR169,053m, so each percentage
-point of WACC moves the value by roughly INR280–380 per share. The discount-rate method is in
+shareholders against an enterprise value of INR176,372m, so each percentage
+point of WACC moves the value by roughly INR300–420 per share. The discount-rate method is in
 [the cost-of-capital note](../COST_OF_CAPITAL.md).
 
 ## Inputs
 
 | File | Contents |
 | --- | --- |
-| `examples/tega_molycop_assumptions.json` | Forecast scenarios, with `group_terminal_growth_inr` and `group_terminal_roic` (equal in every scenario); FX, cost-of-capital inputs, EV weights and consolidation proxies are under `pro_forma` |
+| `examples/tega_molycop_assumptions.json` | Forecast scenarios, with `group_terminal_growth_inr` and `group_terminal_roic` (equal in every scenario); FX, cost-of-capital inputs and consolidation proxies are under `pro_forma` |
 | `examples/tega_fy2026_reported_statements.json` | Audited FY2026 actuals (FY2025 comparatives) |
 | `examples/tega_fy2025_reported_statements.json` | Audited FY2025 actuals |
 | `examples/tega_molycop_facts.json` | Deal and post-close disclosures, risk-premium and price sources, and the valuation-date market price |

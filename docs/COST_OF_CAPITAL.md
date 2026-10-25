@@ -26,7 +26,8 @@ WACC             = E/V × Ke + D/V × Kd × (1 − tax) + P/V × Kp
   as cross-checks, because they are statistically too weak to value a company
   (see below).
 - **Scenarios.** Downside, base and upside change operating drivers only. Every
-  scenario uses the same discount rate, terminal growth and terminal ROIC.
+  scenario uses the same business discount rates, terminal growth and
+  terminal ROIC.
   Discount-rate and terminal assumptions are tested in each report's
   sensitivity table instead, so a downside never stacks a business shock on a
   higher risk premium.
@@ -58,7 +59,7 @@ better (see open items).
 | Wabag (generic DCF) | Engineering/Construction | 1.14 | Debt incl. leases ₹2,284m / market equity (debt 1.8%) | 1.156 | 13.43% | 13.30% |
 | Tega legacy business | Machinery | 0.89 | Industry D/E 14.69% (debt 12.8%) | 0.989 | 12.11% | 11.19% |
 | Molycop (USD) | Steel | 0.94 | At close: term loan 48.1%, preference 18.6%, equity 33.3% | 2.454 | 15.17% | 10.44% |
-| Tega + Molycop group | | | EV-weighted: legacy 50.15% / Molycop 49.85% | | | 10.82% |
+| Tega + Molycop group (base) | | | Value-weighted: legacy 11.9% / Molycop 88.1% | | | 10.53% |
 
 Notes on the capital structures:
 
@@ -81,13 +82,15 @@ Debt costs:
   with its 27% tax rate, are still unsourced estimates, because the contractual
   rates are not disclosed.
 
-The group blend weights each business by an operating enterprise value:
-
-- **Molycop:** the USD1,455m deal-value weight.
-- **Legacy Tega:** the market's own valuation before the deal. The close of
-  ₹2,094.10 on 9 September 2025, the day before the announcement, times
-  66,535,492 shares, plus 31 March 2025 net debt including leases, gives
-  ₹139,019m.
+The group blend weights each business by its standalone DCF value in this
+model (its own cash flows at its own WACC): ₹20,853m for legacy Tega and
+₹154,659m for Molycop in the base case. One blended rate then nearly reproduces
+the sum of the two valuations. Weighting by market or deal values would mix in
+cash flows the model does not contain; an earlier version of this change did
+that (legacy Tega at its ₹139,019m pre-announcement market value) and
+understated the base value by ₹96 per share. Because the mix differs by
+scenario, the blend is 10.51% / 10.53% / 10.56% (downside / base / upside),
+while each business's own rate is the same in every scenario.
 
 ## Why not the stocks' own regression betas
 
@@ -107,14 +110,14 @@ legacy business) and 14.0% (Wabag).
 | --- | --- | --- |
 | Tega cost of equity | 11.0%: G-sec 6.98% + 0.67 regression beta × 5.97% historical Nifty premium, no country risk | 12.1%: method above |
 | Molycop WACC inputs | Risk-free 4.5%, ERP 5%, beta 1.10, all unsourced | Treasury 4.79%, ERP 4.23%, Steel beta relevered at the deal structure |
-| Tega legacy EV weight | ₹80,000m, unsourced | ₹139,019m, pre-announcement market value |
-| Tega scenarios | Premium stress +2 / 0 / −0.5 points, terminal growth 3 / 4 / 4.5%, terminal ROIC 13 / 16 / 18% (downside / base / upside) | One rate; 4% growth and 16% ROIC in every case |
+| Tega blend weights | Legacy ₹80,000m (unsourced) / Molycop USD1,455m deal value | Each business's standalone DCF value in this model |
+| Tega scenarios | Premium stress +2 / 0 / −0.5 points, terminal growth 3 / 4 / 4.5%, terminal ROIC 13 / 16 / 18% (downside / base / upside) | Same business rates; 4% growth and 16% ROIC in every case |
 | Wabag linked model | Regression beta 1.43; ke = rf + β × 4.23% + 2.85% | Engineering/Construction beta; ke = rf + β × 7.08% |
 | Wabag generic DCF | Risk-free 6.5%, ERP 6%; beta 1.2 / 1.0 / 0.9 and ROIC 12 / 15 / 18% (downside / base / upside) | Same inputs as the linked model; 15% ROIC in every case |
 
 | INR per share (downside / base / upside) | Before | After |
 | --- | --- | --- |
-| Tega + Molycop | 294.22 / 1,171.99 / 1,734.08 | 258.47 / 589.01 / 732.64 |
+| Tega + Molycop | 294.22 / 1,171.99 / 1,734.08 | 337.06 / 685.40 / 829.32 |
 | Wabag linked model | 424.27 / 579.30 / 716.59 | 461.30 / 630.42 / 780.79 |
 | Wabag generic DCF | 497.90 / 808.15 / 1,037.41 | 527.67 / 712.60 / 809.49 |
 
@@ -126,7 +129,7 @@ forecasts.
 
 | Model | Price | Model value (base) | Model WACC | Market-implied WACC |
 | --- | --- | ---: | ---: | ---: |
-| Tega + Molycop | ₹1,696.80 on 30 Jun 2026 (valuation date) | ₹589.01 | 10.82% | **8.54%** |
+| Tega + Molycop | ₹1,696.80 on 30 Jun 2026 (valuation date) | ₹685.40 | 10.53% | **8.54%** |
 | Wabag linked model | ₹2,008.40 on 25 Sep 2026 | ₹630.42 at the 31 Mar anchor | 13.31% | **7.36%** |
 | Wabag generic DCF | ₹2,008.40 on 25 Sep 2026 | ₹712.60 at the 31 Mar anchor | 13.30% | **7.37%** |
 
@@ -148,10 +151,10 @@ expects far more cash than the forecasts contain.
   faster cash conversion or a longer period of high growth.
 - **Tega: legacy forecast and leverage.** The legacy business alone is valued
   at ₹20,853m by its own forecast at its own WACC. The market valued it at
-  about ₹139,000m before the deal was announced. Claims of ₹124,845m (net
+  about ₹139,000m before the deal was announced. Claims of ₹124,876m (net
   debt, preference shares, earnout, other claims and minority interest) sit
-  ahead of shareholders against a group enterprise value of ₹169,053m. Each
-  percentage point of group WACC therefore moves the value by about ₹280–380
+  ahead of shareholders against a group enterprise value of ₹176,372m. Each
+  percentage point of group WACC therefore moves the value by about ₹300–420
   per share.
 
 ## Open items

@@ -92,16 +92,18 @@ def test_scenarios_share_discount_and_terminal_parameters():
     } == {(0.04, 0.15)}
 
 
-def test_tega_scenarios_use_one_discount_rate():
+def test_tega_scenarios_use_the_same_business_rates():
     facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
     assumptions = _json("tega_molycop_assumptions.json")
-    rates = {
-        build_acquisition_model(facts, assumptions, case)["wacc_calculation"][
-            "blended_wacc"
-        ]
+    models = [
+        build_acquisition_model(facts, assumptions, case)["wacc_calculation"]
         for case in ("downside", "base", "upside")
-    }
-    assert len(rates) == 1
+    ]
+    for business in ("tega", "molycop"):
+        assert len({w[business]["standalone_wacc"] for w in models}) == 1
+    # The blend moves only with each scenario's business mix.
+    blends = [w["blended_wacc"] for w in models]
+    assert max(blends) - min(blends) < 0.001
 
 
 def test_tega_market_implied_rate_reproduces_the_price():

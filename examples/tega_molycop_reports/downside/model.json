@@ -51,7 +51,7 @@
     "June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).",
     "Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.",
     "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
-    "Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value.",
+    "Blend weights are each business's standalone DCF value from this model, so the single group rate matches the cash flows it discounts.",
     "NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.",
     "Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.",
     "Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.",
@@ -825,23 +825,23 @@
   ],
   "group_dcf_inr_m": {
     "scope": "100% consolidated operating cash flows; full enterprise value",
-    "wacc": 0.10817977720717337,
+    "wacc": 0.10511251296655828,
     "terminal_growth": 0.04,
     "terminal_roic": 0.16,
-    "pv_forecast_fcff": 62632.401892826354,
+    "pv_forecast_fcff": 63395.09533539812,
     "terminal_nopat": 14949.854589296978,
     "terminal_reinvestment": 3737.4636473242444,
     "terminal_fcff": 11212.390941972733,
-    "terminal_value": 164453.32327652504,
-    "pv_terminal_value": 74137.58755592533,
-    "enterprise_value": 136769.98944875167,
-    "terminal_share_of_ev": 0.5420603441934535
+    "terminal_value": 172200.2489403443,
+    "pv_terminal_value": 79316.92224346123,
+    "enterprise_value": 142712.01757885935,
+    "terminal_share_of_ev": 0.555783062905915
   },
   "equity_bridge": {
     "molycop_ordinary_ownership": 0.8417868954269924,
     "minority_fraction": 0.15821310457300763,
     "fx_inr_per_usd": 94.97,
-    "group_enterprise_value_inr_m": 136769.98944875167,
+    "group_enterprise_value_inr_m": 142712.01757885935,
     "legacy_net_debt_inr_m": 18695.138822309997,
     "parent_new_term_debt_already_included_inr_m": 15000.0,
     "molycop_net_debt_full_inr_m": 63867.325,
@@ -859,8 +859,8 @@
     "minority_interest_inr_m": 5554.6434336465745,
     "total_bridge_deductions_inr_m": 117553.50786595656,
     "nonoperating_assets_inr_m": 325.14,
-    "raw_tega_equity_inr_m": 19541.62158279511,
-    "tega_equity_inr_m": 19541.62158279511,
+    "raw_tega_equity_inr_m": 25483.649712902785,
+    "tega_equity_inr_m": 25483.649712902785,
     "pre_november_2025_shares": 66535492,
     "november_2025_issue_shares": 8592206,
     "issued_shares": 75127698,
@@ -869,7 +869,7 @@
     "diluted_shares": 75606133,
     "incremental_issue_cash_inr_m": 953.99939,
     "status": "First issue already in FY26 shares/cash. Main valuation includes proposed follow-on pro forma, with matching cash once. Completion not verified; 22 August filing is subject to approvals. No other dilutive instruments identified.",
-    "value_per_share_inr": 258.4660900828655,
+    "value_per_share_inr": 337.05797005783626,
     "bridge_residual_inr_m": 7.275957614183426e-12,
     "debt_basis": "June post-close Molycop net debt excludes preferences and already follows preference-funded refinancing. Parent June debt already includes INR15000m acquisition loan. Neither flow is applied twice.",
     "nci_basis": "Standalone Molycop operating EV at its own WACC, less full net bank debt, preference fair value, earnout PV and other claims; ordinary equity floored at zero before applying NCI. Subsidiary support/recourse not established."
@@ -933,17 +933,17 @@
         "preference_weight": 0.18556701030927836,
         "cost_of_preference": 0.12,
         "currency": "USD",
-        "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m EV weight. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+        "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
       }
     },
-    "tega_weight_ev_inr_m": 139019.45,
-    "molycop_weight_ev_inr_m": 138181.35,
-    "tega_ev_weight": 0.501511720023896,
-    "molycop_ev_weight": 0.498488279976104,
+    "tega_weight_ev_inr_m": 12823.530147696452,
+    "molycop_weight_ev_inr_m": 129366.34289001414,
+    "tega_ev_weight": 0.09018595961679693,
+    "molycop_ev_weight": 0.9098140403832031,
     "molycop_wacc_inr_constant_fx": 0.1044399945017182,
-    "blended_wacc": 0.10817977720717337,
+    "blended_wacc": 0.10511251296655828,
     "currency_convention": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
-    "weight_basis": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization. Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value."
+    "weight_basis": "Each business's standalone DCF enterprise value from this model's own forecast, discounted at its own WACC; market or deal values are not used as weights because they price different cash flows."
   },
   "standalone_values_for_audit_inr_m": {
     "tega": {
@@ -2532,9 +2532,7 @@
     "fx_inr_per_usd": 94.97,
     "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
     "molycop_ev_weight_usd_m": 1455.0,
-    "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
-    "tega_ev_weight_inr_m": 139019.45,
-    "_tega_ev_note": "Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value.",
+    "_ev_note": "Deal enterprise value USD1,455m (user first-pass; the closing filing rounds it to USD1.5bn). It is used only to derive Molycop's capital-structure weights at close. The WACC blend is weighted by each business's standalone DCF value from this model, not by deal or market values.",
     "molycop_nci_fraction_override": null,
     "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
     "shares": {
@@ -2585,7 +2583,7 @@
         "preference_weight": 0.18556701030927836,
         "cost_of_preference": 0.12,
         "currency": "USD",
-        "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m EV weight. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+        "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
       },
       "scenario_risk_premium": {
         "downside": 0.0,
@@ -6963,19 +6961,16 @@
         "source_ids": [
           "closing",
           "q1_results",
-          "pending_issue",
-          "tega_prices"
+          "pending_issue"
         ],
-        "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. Reviewed 23 October 2026: standalone WACCs use the platform cost-of-capital method, and the legacy EV weight is the pre-announcement market capitalisation plus March 2025 net debt. See adjacent input notes.",
+        "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. Reviewed 26 October 2026: standalone WACCs use the platform cost-of-capital method, and the blend is weighted by each business's standalone DCF value from this model. See adjacent input notes.",
         "status": "Provisional; not statutory accounts",
         "reviewed_values": {
           "pro_forma": {
             "fx_inr_per_usd": 94.97,
             "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
             "molycop_ev_weight_usd_m": 1455.0,
-            "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
-            "tega_ev_weight_inr_m": 139019.45,
-            "_tega_ev_note": "Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value.",
+            "_ev_note": "Deal enterprise value USD1,455m (user first-pass; the closing filing rounds it to USD1.5bn). It is used only to derive Molycop's capital-structure weights at close. The WACC blend is weighted by each business's standalone DCF value from this model, not by deal or market values.",
             "molycop_nci_fraction_override": null,
             "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
             "shares": {
@@ -7026,7 +7021,7 @@
                 "preference_weight": 0.18556701030927836,
                 "cost_of_preference": 0.12,
                 "currency": "USD",
-                "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m EV weight. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+                "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
               },
               "scenario_risk_premium": {
                 "downside": 0.0,
@@ -7328,9 +7323,7 @@
             "fx_inr_per_usd": 94.97,
             "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
             "molycop_ev_weight_usd_m": 1455.0,
-            "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
-            "tega_ev_weight_inr_m": 139019.45,
-            "_tega_ev_note": "Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value.",
+            "_ev_note": "Deal enterprise value USD1,455m (user first-pass; the closing filing rounds it to USD1.5bn). It is used only to derive Molycop's capital-structure weights at close. The WACC blend is weighted by each business's standalone DCF value from this model, not by deal or market values.",
             "molycop_nci_fraction_override": null,
             "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
             "shares": {
@@ -7381,7 +7374,7 @@
                 "preference_weight": 0.18556701030927836,
                 "cost_of_preference": 0.12,
                 "currency": "USD",
-                "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m EV weight. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+                "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
               },
               "scenario_risk_premium": {
                 "downside": 0.0,

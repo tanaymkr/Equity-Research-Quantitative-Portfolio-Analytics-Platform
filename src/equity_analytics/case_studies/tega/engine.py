@@ -27,7 +27,7 @@ from .legacy_statements import (
     statement_parameters,
 )
 from .statements import linked_statements
-from .wacc import blended_wacc
+from .wacc import blended_wacc, standalone_rates
 
 REFERENCE_FX_DATE = "2026-09-02"
 REFERENCE_FX_INR_PER_USD = 94.97
@@ -143,7 +143,10 @@ def _validate(facts, assumptions, case):
     if retired.intersection(a):
         raise AcquisitionInputError("Separate business DCF assumptions are retired")
     w, g, r = (
-        blended_wacc(assumptions["pro_forma"], case)["blended_wacc"],
+        min(
+            rate["standalone_wacc"]
+            for rate in standalone_rates(assumptions["pro_forma"], case)
+        ),
         a["group_terminal_growth_inr"],
         a["group_terminal_roic"],
     )
@@ -623,16 +626,14 @@ def build_acquisition_model(
         raise AcquisitionInputError(str(exc)) from exc
     _validate(facts, assumptions, scenario)
     assumptions["_active_scenario"] = scenario
-    wacc = blended_wacc(assumptions["pro_forma"], scenario)
-    if group_wacc_override is not None:
-        if (
-            isinstance(group_wacc_override, bool)
-            or not isinstance(group_wacc_override, (int, float))
-            or not isfinite(group_wacc_override)
-            or not 0 < group_wacc_override < 1
-        ):
-            raise AcquisitionInputError("Group WACC override must be in (0, 1)")
-        wacc = {**wacc, "blended_wacc": group_wacc_override}
+    tega_rate, molycop_rate = standalone_rates(assumptions["pro_forma"], scenario)
+    if group_wacc_override is not None and (
+        isinstance(group_wacc_override, bool)
+        or not isinstance(group_wacc_override, (int, float))
+        or not isfinite(group_wacc_override)
+        or not 0 < group_wacc_override < 1
+    ):
+        raise AcquisitionInputError("Group WACC override must be in (0, 1)")
     a, s = deepcopy(assumptions["scenarios"][scenario]), assumptions["shared"]
     h, q, d, mh = (
         facts["tega_fy2026"],
@@ -865,15 +866,10 @@ def build_acquisition_model(
         s["earned_income_tax_rate_molycop"],
         assumptions["pro_forma"],
     )
-    group_value = _dcf(
-        group,
-        wacc["blended_wacc"],
-        a["group_terminal_growth_inr"],
-        a["group_terminal_roic"],
-    )
 
-    # Auxiliary business EVs ONLY determine NCI and show audit diagnostics.
-    # They are never summed to replace the requested consolidated group DCF.
+    # Standalone business EVs set the WACC blend weights, value the NCI and are
+    # shown as diagnostics. They are never summed to replace the requested
+    # consolidated group DCF.
     def standalone_rows(rows, tax):
         result = deepcopy(rows)
         for row in result:
@@ -886,17 +882,34 @@ def build_acquisition_model(
     standalone_values = {
         "tega": _dcf(
             legacy_only,
-            wacc["tega"]["standalone_wacc"],
+            tega_rate["standalone_wacc"],
             a["group_terminal_growth_inr"],
             a["group_terminal_roic"],
         ),
         "molycop": _dcf(
             mc_only,
-            wacc["molycop_wacc_inr_constant_fx"],
+            molycop_rate["standalone_wacc"],
             a["group_terminal_growth_inr"],
             a["group_terminal_roic"],
         ),
     }
+    try:
+        wacc = blended_wacc(
+            assumptions["pro_forma"],
+            scenario,
+            standalone_values["tega"]["enterprise_value"],
+            standalone_values["molycop"]["enterprise_value"],
+        )
+    except ValueError as exc:
+        raise AcquisitionInputError(str(exc)) from exc
+    if group_wacc_override is not None:
+        wacc = {**wacc, "blended_wacc": group_wacc_override}
+    group_value = _dcf(
+        group,
+        wacc["blended_wacc"],
+        a["group_terminal_growth_inr"],
+        a["group_terminal_roic"],
+    )
     earn_years = (
         date.fromisoformat(a["earnout_payment_date"])
         - date.fromisoformat(facts["valuation_date"])
@@ -945,7 +958,7 @@ def build_acquisition_model(
         "June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).",
         "Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.",
         assumptions["pro_forma"]["_fx_note"],
-        assumptions["pro_forma"]["_tega_ev_note"],
+        "Blend weights are each business's standalone DCF value from this model, so the single group rate matches the cash flows it discounts.",
         "NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.",
         "Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.",
         "Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.",

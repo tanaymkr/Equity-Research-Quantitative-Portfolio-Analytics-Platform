@@ -76,25 +76,35 @@ def standalone_wacc(inputs, equity_premium_stress=0.0):
     }
 
 
-def blended_wacc(config, scenario):
-    """Blend at 100% business EV weights, never the parent's ownership fraction.
-
-    The current model assumes constant expected INR/USD throughout the forecast
-    AND terminal period. Under that assumption the USD rate is numerically
-    unchanged on conversion. If forecasting FX drift, both cash flows and rates
-    must change together; editing the spot translation rate is not FX drift.
-    """
+def standalone_rates(config, scenario):
+    """Each business's own WACC; the scenario stress is zero in stored inputs."""
     w = config["wacc"]
     stress = w["scenario_risk_premium"][scenario]
     tega = standalone_wacc(w["tega"], stress)
     mc = standalone_wacc(w["molycop"], stress)
     if tega["currency"] != "INR" or mc["currency"] != "USD":
         raise ValueError("Expected INR Tega and USD Molycop WACC inputs")
-    tev = config["tega_ev_weight_inr_m"]
-    mev = config["molycop_ev_weight_usd_m"] * config["fx_inr_per_usd"]
+    return tega, mc
+
+
+def blended_wacc(config, scenario, tega_ev_inr_m, molycop_ev_inr_m):
+    """Blend at each business's own DCF value, so the weights match the cash flows.
+
+    The weights are the standalone enterprise values of the forecast cash flows,
+    each discounted at its own WACC. Neither depends on the blend, so there is
+    no circularity, and the single group rate approximately reproduces the sum
+    of the two standalone valuations. Ownership fractions are never used.
+
+    The current model assumes constant expected INR/USD throughout the forecast
+    AND terminal period. Under that assumption the USD rate is numerically
+    unchanged on conversion. If forecasting FX drift, both cash flows and rates
+    must change together; editing the spot translation rate is not FX drift.
+    """
+    tega, mc = standalone_rates(config, scenario)
+    tev, mev = tega_ev_inr_m, molycop_ev_inr_m
     if min(tev, mev) <= 0 or not all(isfinite(x) for x in (tev, mev)):
         raise ValueError(
-            "Standalone operating EV weights must be positive finite amounts"
+            "Standalone operating values must be positive to weight the WACC blend"
         )
     weight = tev / (tev + mev)
     return {
@@ -108,5 +118,9 @@ def blended_wacc(config, scenario):
         "blended_wacc": weight * tega["standalone_wacc"]
         + (1 - weight) * mc["standalone_wacc"],
         "currency_convention": config["_fx_note"],
-        "weight_basis": config["_ev_note"] + " " + config["_tega_ev_note"],
+        "weight_basis": (
+            "Each business's standalone DCF enterprise value from this model's own "
+            "forecast, discounted at its own WACC; market or deal values are not used "
+            "as weights because they price different cash flows."
+        ),
     }
