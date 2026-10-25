@@ -1,0 +1,11 @@
+{
+  "price_date": "2026-06-30",
+  "price_inr": 1696.8,
+  "source_id": "tega_prices",
+  "model_value_per_share_inr": 589.0107784107565,
+  "model_group_wacc": 0.10817977720717337,
+  "implied_group_wacc": 0.08535824239253999,
+  "model_group_ev_inr_m": 169052.5258965024,
+  "required_group_ev_inr_m": 252808.1851199452,
+  "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection."
+}

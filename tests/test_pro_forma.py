@@ -22,9 +22,10 @@ def inputs():
 
 def test_hand_calculated_wacc_includes_nondeductible_preference():
     x = {
-        "risk_free_rate": 0.04,
+        "government_bond_yield": 0.05,
+        "sovereign_default_spread": 0.01,
         "equity_risk_premium": 0.06,
-        "beta": 1.2,
+        "unlevered_beta": 0.6,
         "cost_of_debt": 0.08,
         "tax_rate": 0.25,
         "debt_weight": 0.4,
@@ -33,9 +34,12 @@ def test_hand_calculated_wacc_includes_nondeductible_preference():
         "currency": "USD",
     }
     w = standalone_wacc(x)
-    assert w["cost_of_equity"] == pytest.approx(0.112)
+    # D/E = 0.8, P/E = 0.2: beta = 0.6 x (1 + 0.75 x 0.8 + 0.2) = 1.08
+    assert w["risk_free_rate"] == pytest.approx(0.04)
+    assert w["beta"] == pytest.approx(1.08)
+    assert w["cost_of_equity"] == pytest.approx(0.04 + 1.08 * 0.06)
     assert w["standalone_wacc"] == pytest.approx(
-        0.5 * 0.112 + 0.4 * 0.08 * 0.75 + 0.1 * 0.12
+        0.5 * 0.1048 + 0.4 * 0.08 * 0.75 + 0.1 * 0.12
     )
 
 
@@ -45,7 +49,9 @@ def test_hand_calculated_wacc_includes_nondeductible_preference():
         ("debt_weight", 1.1),
         ("preference_weight", -0.1),
         ("tax_rate", 1.1),
-        ("beta", float("nan")),
+        ("unlevered_beta", float("nan")),
+        ("unlevered_beta", 0.0),
+        ("sovereign_default_spread", 0.2),
     ],
 )
 def test_invalid_wacc_rejected(inputs, key, value):
@@ -57,7 +63,8 @@ def test_invalid_wacc_rejected(inputs, key, value):
 
 def test_ev_weights_are_business_operating_values_not_ownership(inputs):
     w = blended_wacc(inputs[1]["pro_forma"], "base")
-    share = 80000 / (80000 + 1455 * 94.97)
+    legacy = 2094.10 * 66.535492 + (2619.29 + 677.20 - 1142.95 - 68.61 - 2397.45)
+    share = legacy / (legacy + 1455 * 94.97)
     assert w["tega_ev_weight"] == pytest.approx(share)
     assert w["molycop_ev_weight"] == pytest.approx(1 - share)
     assert w["blended_wacc"] == pytest.approx(
@@ -213,7 +220,7 @@ def test_intercompany_eliminations_change_presentation_not_cashflow(inputs):
 def test_higher_entity_risk_changes_blend_and_value(inputs):
     f, a = deepcopy(inputs)
     before = build_acquisition_model(f, a)
-    a["pro_forma"]["wacc"]["molycop"]["beta"] += 0.3
+    a["pro_forma"]["wacc"]["molycop"]["unlevered_beta"] += 0.3
     after = build_acquisition_model(f, a)
     assert (
         after["wacc_calculation"]["blended_wacc"]

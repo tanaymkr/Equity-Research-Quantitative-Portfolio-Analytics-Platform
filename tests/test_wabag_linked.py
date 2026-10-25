@@ -112,8 +112,11 @@ def test_banks_are_operating_costs_not_wacc_interest(inputs):
     assert b["wacc"] == a["wacc"]
     assert a["wacc"]["market_equity"] == pytest.approx(2008.4000244140625 * 62.309595)
     assert a["wacc"]["default_free_inr_rate"] == pytest.approx(0.071194 - 0.0187)
+    debt_to_equity = a["wacc"]["average_gross_debt"] / a["wacc"]["market_equity"]
+    beta = 1.14 * (1 + (1 - 0.238) * debt_to_equity)
+    assert a["wacc"]["relevered_beta"] == pytest.approx(beta)
     assert a["wacc"]["cost_of_equity"] == pytest.approx(
-        0.052494 + a["wacc"]["relevered_beta"] * 0.0423 + 0.0285
+        0.052494 + beta * (0.0423 + 0.0285)
     )
 
 

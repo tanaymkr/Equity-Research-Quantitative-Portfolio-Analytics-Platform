@@ -6,6 +6,12 @@ from datetime import date, timedelta
 from hashlib import sha256
 from pathlib import Path
 
+from equity_analytics.valuation.cost_of_capital import (
+    cost_of_equity,
+    default_free_rate,
+    implied_discount_rate,
+    relever_beta,
+)
 from equity_analytics.valuation.dcf import HistoricalSnapshot, _finite, _validate_rate
 from equity_analytics.valuation.explicit import ExplicitCashFlow, discount_cash_flows
 
@@ -261,7 +267,7 @@ def verify_beta(reference):
     if variance <= 0:
         raise ValueError("Benchmark has no variance")
     beta = covariance / variance
-    if abs(beta - reference["levered_beta"]) > 1e-10:
+    if abs(beta - reference["regression_beta"]) > 1e-10:
         raise ValueError("Stored beta does not match included weekly returns")
     return beta
 
@@ -382,7 +388,13 @@ def _debt_schedule(previous, previous_bs, d, p, period):
     }
 
 
-def _wacc(reference, overrides, debt, tax, base_debt, basic_shares, base_tax):
+def _wacc(reference, overrides, debt, tax, basic_shares):
+    """Platform cost-of-capital method (equity_analytics.valuation.cost_of_capital).
+
+    The industry unlevered beta is relevered at each year's average forecast debt
+    against the dated market equity. The stock's own regression beta is kept in
+    the reference file as a cross-check only.
+    """
     r = {**reference, **overrides}
     allowed = {
         "share_price",
@@ -390,8 +402,7 @@ def _wacc(reference, overrides, debt, tax, base_debt, basic_shares, base_tax):
         "sovereign_default_spread",
         "mature_erp",
         "country_risk_premium",
-        "country_loading",
-        "levered_beta",
+        "unlevered_beta",
     }
     if set(overrides) - allowed:
         raise ValueError("Unknown WACC override")
@@ -399,17 +410,17 @@ def _wacc(reference, overrides, debt, tax, base_debt, basic_shares, base_tax):
         _finite(k, r[k])
         if r[k] < 0:
             raise ValueError(f"{k} cannot be negative")
-    if r["share_price"] <= 0:
-        raise ValueError("A positive market equity price is required")
+    if r["share_price"] <= 0 or r["unlevered_beta"] <= 0:
+        raise ValueError("A positive market price and unlevered beta are required")
     market_equity = r["share_price"] * basic_shares
-    rf = r["gsec_yield"] - r["sovereign_default_spread"]
+    rf = default_free_rate(r["gsec_yield"], r["sovereign_default_spread"])
     _validate_rate("default_free_inr_rate", rf)
-    unlevered = r["levered_beta"] / (1 + (1 - base_tax) * base_debt / market_equity)
+    equity_risk_premium = r["mature_erp"] + r["country_risk_premium"]
     average_debt = (debt["total_open"] + debt["total_close"]) / 2
-    beta = unlevered * (1 + (1 - tax) * average_debt / market_equity)
+    beta = relever_beta(r["unlevered_beta"], average_debt / market_equity, tax)
     debt_weight = average_debt / (market_equity + average_debt)
     kd = debt["interest_total"] / average_debt if average_debt else 0.0
-    ke = rf + beta * r["mature_erp"] + r["country_loading"] * r["country_risk_premium"]
+    ke = cost_of_equity(rf, beta, equity_risk_premium)
     wacc = ke * (1 - debt_weight) + kd * (1 - tax) * debt_weight
     _validate_rate("wacc", wacc)
     return {
@@ -418,7 +429,8 @@ def _wacc(reference, overrides, debt, tax, base_debt, basic_shares, base_tax):
         "debt_weight": debt_weight,
         "equity_weight": 1 - debt_weight,
         "default_free_inr_rate": rf,
-        "unlevered_beta": unlevered,
+        "equity_risk_premium": equity_risk_premium,
+        "unlevered_beta": r["unlevered_beta"],
         "relevered_beta": beta,
         "cost_of_equity": ke,
         "pretax_cost_of_debt": kd,
@@ -497,10 +509,6 @@ def build_model(inputs: dict, *, store=None) -> dict:
     base_debt = sum(
         b0[k] for k in ("debt_nc", "debt_current", "lease_nc", "lease_current")
     )
-    base_tax = (
-        base["income_statement"]["current_tax"]
-        + base["income_statement"]["deferred_tax"]
-    ) / (base["income_statement"]["pbt"] - base["income_statement"]["associate_profit"])
     forecast, checks = [], []
     for period, row in enumerate(cfg["years"]):
         year = row["year"]
@@ -708,9 +716,7 @@ def build_model(inputs: dict, *, store=None) -> dict:
             cfg["wacc_overrides"],
             debt,
             d["tax_rate"],
-            base_debt,
             shares,
-            base_tax,
         )
         year_checks = [
             _check("Balance sheet", year, b["balance_residual"]),
@@ -885,6 +891,36 @@ def build_model(inputs: dict, *, store=None) -> dict:
                 value = None
             cells.append({"terminal_growth": growth, "value_per_share": value})
         sensitivity.append({"wacc_shift": shift, "cells": cells})
+    reference = {**inputs["wacc_reference"], **cfg["wacc_overrides"]}
+    price_years = (
+        date.fromisoformat(reference["price_date"])
+        - date.fromisoformat(cfg["anchor_date"])
+    ).days / 365
+
+    def value_at(rate):
+        altered = [ExplicitCashFlow(r.year, r.fcff, r.nopat, rate) for r in cash_flows]
+        value = discount_cash_flows(
+            snapshot,
+            altered,
+            terminal_growth=p["terminal_growth"],
+            terminal_roic=p["terminal_roic"],
+        )["implied_value_per_share"]
+        return value * (1 + rate) ** price_years
+
+    market_check = {
+        "price_date": reference["price_date"],
+        "price_inr": reference["share_price"],
+        "anchor_date": cfg["anchor_date"],
+        "model_value_per_share_inr": dcf["implied_value_per_share"],
+        "model_wacc_first_year": cash_flows[0].wacc,
+        "implied_wacc": implied_discount_rate(
+            value_at,
+            reference["share_price"],
+            low=p["terminal_growth"] + 0.005,
+            high=0.30,
+        ),
+        "method": "One rate for every year and the terminal value; the anchor value is rolled forward to the price date at that same rate; cash flows held fixed.",
+    }
     return {
         "schema_version": 1,
         "company": h["company"],
@@ -897,6 +933,7 @@ def build_model(inputs: dict, *, store=None) -> dict:
         "forecast": forecast,
         "dcf": dcf,
         "sensitivity": sensitivity,
+        "market_check": market_check,
         "checks": checks,
         "sql_crosschecks": sql_checks,
         "historical_checks": history_checks,

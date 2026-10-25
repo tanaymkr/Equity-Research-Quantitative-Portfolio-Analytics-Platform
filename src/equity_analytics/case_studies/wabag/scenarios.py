@@ -9,7 +9,7 @@ from pathlib import Path
 from equity_analytics.valuation.dcf import _finite
 
 from .model import build_model
-from .reporting import CSS, export_report, fmt, table
+from .reporting import CSS, export_report, fmt, market_text, table
 
 CASE_ORDER = ("downside", "base", "upside")
 ADJUSTMENTS = {"revenue_multiplier", "ebitda_margin_change", "receivable_days_change"}
@@ -215,6 +215,13 @@ def export_scenarios(bundle, directory):
                 ]
             )
     body = '<div class="cards scenarios">' + "".join(cards) + "</div>"
+    base_item = bundle["scenarios"]["base"]
+    if base_item["status"] == "ok":
+        body += (
+            "<section><h2>What the market price implies (base case)</h2><p>"
+            + escape(market_text(base_item["model"]["market_check"]))
+            + "</p></section>"
+        )
     body += (
         '<p class="notice">'
         + escape(bundle["convention"])

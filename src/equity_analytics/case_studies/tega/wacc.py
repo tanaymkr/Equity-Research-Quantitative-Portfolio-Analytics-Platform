@@ -6,49 +6,64 @@ Constant FX is an explicit expected-rate assumption, not an implicit USD/INR hed
 
 from math import isfinite
 
+from equity_analytics.valuation.cost_of_capital import (
+    cost_of_equity,
+    default_free_rate,
+    relever_beta,
+)
+
+REQUIRED = (
+    "government_bond_yield",
+    "sovereign_default_spread",
+    "equity_risk_premium",
+    "unlevered_beta",
+    "cost_of_debt",
+    "tax_rate",
+    "debt_weight",
+    "preference_weight",
+    "cost_of_preference",
+)
+
 
 def standalone_wacc(inputs, equity_premium_stress=0.0):
-    for key in (
-        "risk_free_rate",
-        "equity_risk_premium",
-        "beta",
-        "cost_of_debt",
-        "tax_rate",
-        "debt_weight",
-        "preference_weight",
-        "cost_of_preference",
-    ):
-        if not isinstance(inputs[key], (int, float)) or not isfinite(inputs[key]):
+    """Platform cost-of-capital method: industry beta relevered at the weights."""
+    for key in REQUIRED:
+        if (
+            isinstance(inputs[key], bool)
+            or not isinstance(inputs[key], (int, float))
+            or not isfinite(inputs[key])
+        ):
             raise ValueError(f"WACC {key} must be finite")
     debt, pref = inputs["debt_weight"], inputs["preference_weight"]
     equity = 1 - debt - pref
-    if min(debt, pref, equity) < 0 or not 0 <= inputs["tax_rate"] <= 1:
+    if min(debt, pref) < 0 or equity <= 0 or not 0 <= inputs["tax_rate"] < 1:
         raise ValueError(
-            "Capital weights must be nonnegative and sum to one; tax in [0,1]"
+            "Capital weights must be nonnegative with positive equity; tax in [0,1)"
         )
-    if (
-        min(
-            inputs["risk_free_rate"],
-            inputs["cost_of_debt"],
-            inputs["cost_of_preference"],
-            inputs["beta"],
-        )
-        < 0
-    ):
-        raise ValueError("Risk-free rate, financing costs and beta cannot be negative")
+    if min(inputs["cost_of_debt"], inputs["cost_of_preference"]) < 0:
+        raise ValueError("Financing costs cannot be negative")
     premium = inputs["equity_risk_premium"] + equity_premium_stress
     if premium < 0:
         raise ValueError("Equity risk premium cannot be negative")
-    ke = inputs["risk_free_rate"] + inputs["beta"] * premium
+    rf = default_free_rate(
+        inputs["government_bond_yield"], inputs["sovereign_default_spread"]
+    )
+    beta = relever_beta(
+        inputs["unlevered_beta"], debt / equity, inputs["tax_rate"], pref / equity
+    )
+    ke = cost_of_equity(rf, beta, premium)
     after_tax_debt = inputs["cost_of_debt"] * (1 - inputs["tax_rate"])
     rate = equity * ke + debt * after_tax_debt + pref * inputs["cost_of_preference"]
     if not 0 < rate < 1:
         raise ValueError("WACC must be between zero and one")
     return {
         "currency": inputs["currency"],
-        "risk_free_rate": inputs["risk_free_rate"],
+        "government_bond_yield": inputs["government_bond_yield"],
+        "sovereign_default_spread": inputs["sovereign_default_spread"],
+        "risk_free_rate": rf,
         "equity_risk_premium": premium,
-        "beta": inputs["beta"],
+        "unlevered_beta": inputs["unlevered_beta"],
+        "beta": beta,
         "cost_of_equity": ke,
         "cost_of_debt": inputs["cost_of_debt"],
         "after_tax_cost_of_debt": after_tax_debt,

@@ -1,6 +1,6 @@
 # Downside acquisition scenario
 
-PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR94.9700/USD. 100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. Full net debt, preferences and ordinary minority interest are explicit bridge deductions. Molycop WACC inputs and legacy EV weight include unsourced analyst assumptions. These outputs are conditional scenario values, not validated current price targets. Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; this does not validate purchase accounting or resolve the separate legacy June gap. Main share count includes the proposed follow-on issue pro forma and matching cash once.
+PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR94.9700/USD. 100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. Full net debt, preferences and ordinary minority interest are explicit bridge deductions. Discount rates follow the platform cost-of-capital method (industry betas and January 2026 risk premiums); Molycop's debt cost, preference return and tax rate remain unsourced estimates. These outputs are conditional scenario values, not validated current price targets. Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; this does not validate purchase accounting or resolve the separate legacy June gap. Main share count includes the proposed follow-on issue pro forma and matching cash once.
 
 Approved downside revenue path. Consumables margin uses the management range; equipment margin and legacy working capital/capex use audited historical ratios. Molycop FY27 EBITDA follows 4% guidance in every case; later core profit per tonne stays flat, with an explicit savings ramp. Later capex scales with revenue after the two-year guidance window. Unverified acquisition/financing inputs remain provisional.
 
@@ -14,19 +14,19 @@ Approved downside revenue path. Consumables margin uses the management range; eq
 
 ## Standalone WACCs and operating-EV blend
 
-| Business | RF | ERP | Beta | Ke | Debt cost | Debt weight | Pref weight | WACC | Weight EV INR m | EV weight |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Tega INR | 6.975% | 7.975% | 0.6749 | 12.357% | 7.00% | 20.00% | 0.00% | 10.943% | 80,000.00 | 36.67% |
-| Molycop USD / constant INR | 4.500% | 7.000% | 1.1000 | 12.200% | 9.00% | 45.00% | 18.00% | 9.630% | 138,181.35 | 63.33% |
+| Business | Bond yield | RF | ERP | Unlevered beta | Relevered beta | Ke | Debt cost | Debt weight | Pref weight | WACC | Weight EV INR m | EV weight |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Tega INR | 6.975% | 5.105% | 7.080% | 0.89 | 0.9888 | 12.106% | 6.56% | 12.81% | 0.00% | 11.190% | 139,019.45 | 50.15% |
+| Molycop USD / constant INR | 4.790% | 4.790% | 4.230% | 0.94 | 2.4537 | 15.169% | 9.00% | 48.11% | 18.56% | 10.444% | 138,181.35 | 49.85% |
 
 ## Blended WACC and valuation diagnostics
 
 | Item | Value |
 | --- | --- |
-| Blended WACC | 10.1119% |
-| Tega standalone calculated EV (audit only) | 12,227.74 |
-| Molycop standalone calculated EV (NCI only) | 134,421.71 |
-| EV weighting basis | USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization. UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV. |
+| Blended WACC | 10.8180% |
+| Tega standalone calculated EV (audit only) | 12,823.53 |
+| Molycop standalone calculated EV (NCI only) | 129,366.34 |
+| EV weighting basis | USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization. Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value. |
 | FX convention | ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast. |
 
 ## FY27 consolidation and valuation stub
@@ -155,53 +155,53 @@ Approved downside revenue path. Consumables margin uses the management range; eq
 
 | FY end | FCFF | Discount years | PV FCFF |
 | --- | --- | --- | --- |
-| 2027 | 2,446.42 | 0.7507 | 2,275.76 |
-| 2028 | 12,107.72 | 1.7534 | 10,226.08 |
-| 2029 | 12,985.21 | 2.7534 | 9,960.05 |
-| 2030 | 13,733.28 | 3.7534 | 9,566.49 |
-| 2031 | 14,208.53 | 4.7534 | 8,988.63 |
-| 2032 | 14,545.11 | 5.7562 | 8,354.35 |
-| 2033 | 14,906.77 | 6.7562 | 7,775.80 |
-| 2034 | 15,328.15 | 7.7562 | 7,261.35 |
+| 2027 | 2,446.42 | 0.7507 | 2,264.87 |
+| 2028 | 12,107.72 | 1.7534 | 10,112.11 |
+| 2029 | 12,985.21 | 2.7534 | 9,786.29 |
+| 2030 | 13,733.28 | 3.7534 | 9,339.70 |
+| 2031 | 14,208.53 | 4.7534 | 8,719.63 |
+| 2032 | 14,545.11 | 5.7562 | 8,052.55 |
+| 2033 | 14,906.77 | 6.7562 | 7,447.14 |
+| 2034 | 15,328.15 | 7.7562 | 6,910.12 |
 
 ## Consolidated terminal value and enterprise value
 
 | Item | Value |
 | --- | --- |
-| wacc | 0.10 |
-| terminal growth | 0.03 |
-| terminal roic | 0.13 |
-| pv forecast fcff | 64,408.52 |
-| terminal nopat | 14,806.11 |
-| terminal reinvestment | 3,416.79 |
-| terminal fcff | 11,389.31 |
-| terminal value | 160,144.95 |
-| pv terminal value | 75,864.84 |
-| enterprise value | 140,273.36 |
+| wacc | 0.11 |
+| terminal growth | 0.04 |
+| terminal roic | 0.16 |
+| pv forecast fcff | 62,632.40 |
+| terminal nopat | 14,949.85 |
+| terminal reinvestment | 3,737.46 |
+| terminal fcff | 11,212.39 |
+| terminal value | 164,453.32 |
+| pv terminal value | 74,137.59 |
+| enterprise value | 136,769.99 |
 | terminal share of ev | 0.54 |
 
 ## Explicit equity value bridge
 
 | Item | Amount |
 | --- | --- |
-| Combined enterprise value | 140,273.36 |
+| Combined enterprise value | 136,769.99 |
 | Legacy net debt (new term loan already included) | 18,695.14 |
 | Molycop post-refinancing net debt | 63,867.32 |
 | Less net debt: consolidated, after pro-forma issue cash | 81,608.46 |
 | Less: Apollo preference fair-value claim, 100% | 25,641.90 |
 | Less: earnout PV, 100% | 0.00 |
 | Less: other senior claims, 100% | 4,748.50 |
-| Molycop standalone common equity, after claims | 40,163.98 |
-| Less: Apollo common minority interest | 6,354.47 |
+| Molycop standalone common equity, after claims | 35,108.62 |
+| Less: Apollo common minority interest | 5,554.64 |
 | Add: nonoperating assets | 325.14 |
-| Equity attributable to Tega before zero floor | 22,245.17 |
-| Equity attributable to Tega after zero floor | 22,245.17 |
+| Equity attributable to Tega before zero floor | 19,541.62 |
+| Equity attributable to Tega after zero floor | 19,541.62 |
 | Pre-November shares | 66,535,492.00 |
 | November 2025 shares added (already in FY26) | 8,592,206.00 |
 | Follow-on shares assumed issued | 478,435.00 |
 | Diluted pro-forma shares | 75,606,133.00 |
 | Follow-on cash included once (INR m) | 954.00 |
-| Value per diluted share (INR) | 294.22 |
+| Value per diluted share (INR) | 258.47 |
 
 ## Legacy operating schedule (INR m)
 
@@ -520,7 +520,7 @@ Approved downside revenue path. Consumables margin uses the management range; eq
 - June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).
 - Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.
 - ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.
-- UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.
+- Market-based proxy for the standalone legacy operating EV: close of INR2,094.10 on 9 September 2025, the day before the deal announcement, x 66,535,492 shares = INR139,331.97m, plus 31 March 2025 net debt including leases of INR-312.52m (borrowings 2,619.29 + leases 677.20 - cash 1,142.95 - other bank balances 68.61 - current investments 2,397.45). It sets the blend weight only; the group DCF does not use it as a value.
 - NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.
 - Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.
 - Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.
@@ -542,7 +542,7 @@ Approved downside revenue path. Consumables margin uses the management range; eq
   "max_asset_rollforward_residual": 7.275957614183426e-12,
   "max_group_consolidation_fcff_residual": 5.4569682106375694e-12,
   "max_group_fcff_identity_residual": 0.0,
-  "equity_bridge_residual": 1.0913936421275139e-11,
+  "equity_bridge_residual": 7.275957614183426e-12,
   "max_consolidated_cash_residual": 3.637978807091713e-12,
   "max_consolidated_bs_residual": 2.9103830456733704e-11,
   "max_parent_cash_rollforward_residual": 0.0,

@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import json
 from copy import deepcopy
+from datetime import date
 from html import escape
 from pathlib import Path
 
 from equity_analytics.forecasting.reporting import write_historical_reports
 
-from .engine import build_acquisition_model
+from .engine import build_acquisition_model, market_implied_group_wacc
 
 
 def _n(value):
@@ -173,29 +174,44 @@ def _legacy_statement_tables(result):
     )
 
 
+def _long_date(text):
+    day = date.fromisoformat(text)
+    return f"{day.day} {day:%B %Y}"
+
+
 def sensitivities(facts, assumptions):
     """Change one parameter at a time, preserving the full valuation waterfall."""
+    base_wacc = build_acquisition_model(facts, assumptions)["wacc_calculation"][
+        "blended_wacc"
+    ]
+    legacy_weight = assumptions["pro_forma"]["tega_ev_weight_inr_m"]
     definitions = [
+        (
+            "Group WACC (blended)",
+            "group_wacc",
+            None,
+            [base_wacc - 0.01, base_wacc, base_wacc + 0.01],
+        ),
         (
             "Equity premium stress for both businesses",
             "wacc_stress",
             "base",
-            [-0.005, 0.0, 0.02],
+            [-0.01, 0.0, 0.01],
         ),
         (
             "Legacy standalone EV weight (INR m)",
             "pro_forma",
             "tega_ev_weight_inr_m",
-            [60000, 80000, 100000],
+            [legacy_weight * 0.75, legacy_weight, legacy_weight * 1.25],
         ),
         ("Conversion INR per USD", "pro_forma", "fx_inr_per_usd", [90, 94.97, 100]),
         (
             "Group terminal growth",
             "scenario",
             "group_terminal_growth_inr",
-            [0.03, 0.04, 0.045],
+            [0.03, 0.04, 0.05],
         ),
-        ("Group terminal ROIC", "scenario", "group_terminal_roic", [0.13, 0.16, 0.18]),
+        ("Group terminal ROIC", "scenario", "group_terminal_roic", [0.13, 0.16, 0.19]),
         (
             "Preference current fair value (INR m)",
             "shared",
@@ -237,6 +253,20 @@ def sensitivities(facts, assumptions):
     for label, scope, key, values in definitions:
         for value in values:
             changed = deepcopy(assumptions)
+            if scope == "group_wacc":
+                result = build_acquisition_model(
+                    facts, changed, group_wacc_override=value
+                )
+                rows.append(
+                    {
+                        "parameter": label,
+                        "input": value,
+                        "value_per_share_inr": result["equity_bridge"][
+                            "value_per_share_inr"
+                        ],
+                    }
+                )
+                continue
             if scope == "wacc_stress":
                 target = changed["pro_forma"]["wacc"]["scenario_risk_premium"]
             elif scope == "pro_forma":
@@ -313,9 +343,11 @@ def _case_tables(result):
         "Standalone WACCs and operating-EV blend",
         [
             "Business",
+            "Bond yield",
             "RF",
             "ERP",
-            "Beta",
+            "Unlevered beta",
+            "Relevered beta",
             "Ke",
             "Debt cost",
             "Debt weight",
@@ -327,8 +359,10 @@ def _case_tables(result):
         [
             [
                 label,
+                f"{w[key]['government_bond_yield']:.3%}",
                 f"{w[key]['risk_free_rate']:.3%}",
                 f"{w[key]['equity_risk_premium']:.3%}",
+                f"{w[key]['unlevered_beta']:.2f}",
                 f"{w[key]['beta']:.4f}",
                 f"{w[key]['cost_of_equity']:.3%}",
                 f"{w[key]['cost_of_debt']:.2%}",
@@ -809,7 +843,7 @@ def write_reports(
         f"PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR{fx:.4f}/USD. "
         "100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. "
         "Full net debt, preferences and ordinary minority interest are explicit bridge deductions. "
-        "Molycop WACC inputs and legacy EV weight include unsourced analyst assumptions. "
+        "Discount rates follow the platform cost-of-capital method (industry betas and January 2026 risk premiums); Molycop's debt cost, preference return and tax rate remain unsourced estimates. "
         "These outputs are conditional scenario values, not validated current price targets. "
         "Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; "
         "this does not validate purchase accounting or resolve the separate legacy June gap. "
@@ -829,12 +863,42 @@ def write_reports(
         "Group WACC",
         "Group terminal growth",
     ]
-    md = [f"# {title}", "", intro, "", _table(headers, summary_rows), "", timing, ""]
+    market = market_implied_group_wacc(facts, assumptions)
+    implied = (
+        f"a group WACC of {market['implied_group_wacc']:.2%}"
+        if market["implied_group_wacc"] is not None
+        else "a group WACC outside the 4.5%-30% search range"
+    )
+    market_text = (
+        f"Tega closed at INR{market['price_inr']:,.2f} on {_long_date(market['price_date'])}, the valuation date, "
+        f"against the base-case value of INR{market['model_value_per_share_inr']:,.2f}. "
+        f"Holding the forecasts and claims fixed, that price implies {implied}, "
+        f"versus {market['model_group_wacc']:.2%} from the cost-of-capital method, and a group "
+        f"enterprise value of INR{market['required_group_ev_inr_m']:,.0f}m versus the model's "
+        f"INR{market['model_group_ev_inr_m']:,.0f}m. The market is either discounting these cash "
+        "flows at a lower rate or expecting more cash than the forecasts contain; this check "
+        "never changes the forecasts."
+    )
+    md = [
+        f"# {title}",
+        "",
+        intro,
+        "",
+        _table(headers, summary_rows),
+        "",
+        "## What the market price implies",
+        "",
+        market_text,
+        "",
+        timing,
+        "",
+    ]
     html = [
         f"<!doctype html><html lang='en'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>{title}</title>",
         "<style>body{margin:0;background:#f3f5f8;color:#172536;font:16px/1.55 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:32px 22px}h1{font-size:34px;letter-spacing:-1px}h2{margin-top:36px}h3{margin-top:28px}.notice{background:#fff4d5;border-left:5px solid #c28514;padding:18px}section,details{background:white;border:1px solid #d8e0e9;border-radius:10px;padding:18px;margin:18px 0}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0}th,td{padding:10px;border-bottom:1px solid #dce3eb;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{background:#edf2f8}a{color:#125ca1}summary{cursor:pointer;font-weight:650}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}li{margin:8px 0}nav a{margin-right:20px}@media print{body{background:white}main{max-width:none}details{break-inside:avoid}.table-wrap{overflow:visible}th,td{padding:5px;font-size:10px}}</style><main>",
         f"<h1>{title}</h1><p class='notice'>{escape(intro)}</p>",
         _table(headers, summary_rows, True),
+        f"<section><h2>What the market price implies</h2><p>{escape(market_text)}</p></section>",
         f"<p>{escape(timing)}</p>",
         "<nav><a href='#assumptions'>Assumptions</a><a href='#base'>Base</a><a href='#downside'>Downside</a><a href='#upside'>Upside</a><a href='#sensitivity'>Sensitivity</a><a href='#sources'>Sources</a></nav>",
     ]
@@ -1036,6 +1100,9 @@ def write_reports(
     ]
     (output / "report.html").write_text("\n".join(html), encoding="utf-8")
     (output / "scenarios.md").write_text("\n".join(md), encoding="utf-8")
+    (output / "market_check.json").write_text(
+        json.dumps(market, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     (output / "sensitivity.json").write_text(
         json.dumps(sensitivity, indent=2, allow_nan=False) + "\n", encoding="utf-8"
     )

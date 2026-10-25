@@ -95,6 +95,30 @@
       "title": "Reuters: Indian rupee closing exchange rate",
       "url": "https://www.reuters.com/world/india/rbis-bid-lift-indian-rupee-put-test-by-oil-us-yields-2026-09-02/",
       "location": "September 2 closing rate: INR94.97 per US dollar; market close, not the official reference fixing"
+    },
+    "damodaran_country_risk": {
+      "date": "2026-01-05",
+      "title": "Damodaran: country default spreads and risk premiums, January 2026",
+      "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+      "location": "India (Baa3): default spread 1.87%, country risk premium 2.85%, equity risk premium 7.08%; Aaa countries 4.23% (mature-market premium)"
+    },
+    "damodaran_industry_betas": {
+      "date": "2026-01",
+      "title": "Damodaran: betas by sector (US), January 2026",
+      "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+      "location": "Unlevered beta corrected for cash: Machinery 0.89 (105 firms, D/E 14.69%); Steel 0.94 (19 firms)"
+    },
+    "us_treasury_20260902": {
+      "date": "2026-09-02",
+      "title": "YCharts: 10-year US Treasury constant-maturity rate",
+      "url": "https://ycharts.com/indicators/10year_treasury_constant_maturity_rate",
+      "location": "2 September 2026: 4.79%"
+    },
+    "tega_prices": {
+      "date": "2026-06-30",
+      "title": "Yahoo Finance daily chart, TEGA.NS (platform price snapshot)",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/TEGA.NS?period1=1711929600&period2=1790640000&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "location": "Closes: 9 September 2025 INR2,094.10 (day before the deal announcement); 30 June 2026 INR1,696.80 (valuation date). Snapshot retrieved 28 September 2026, SHA-256 291afb00..."
     }
   },
   "deal": {
@@ -304,5 +328,11 @@
       "q1_income": "Q1 FY27 investor presentation, Consolidated Profit & Loss Statement, Tega column"
     },
     "scope": "Reported legacy Tega information only; Molycop input values are unchanged."
+  },
+  "market_reference": {
+    "date": "2026-06-30",
+    "close_inr": 1696.8,
+    "source_id": "tega_prices",
+    "note": "Closing price on the valuation date. Used only to solve for the market-implied group WACC; it never calibrates the forecasts."
   }
 }

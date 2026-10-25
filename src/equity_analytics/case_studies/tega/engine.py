@@ -11,6 +11,8 @@ from copy import deepcopy
 from datetime import date
 from math import isfinite
 
+from equity_analytics.valuation.cost_of_capital import implied_discount_rate
+
 from .consolidation import (
     consolidate_operating,
     consolidate_statements,
@@ -600,8 +602,19 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership, statement_policy
     return result
 
 
-def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> dict:
-    """Build a reproducible, explicitly provisional post-acquisition valuation."""
+def build_acquisition_model(
+    facts: dict,
+    assumptions: dict,
+    scenario="base",
+    *,
+    group_wacc_override: float | None = None,
+) -> dict:
+    """Build a reproducible, explicitly provisional post-acquisition valuation.
+
+    ``group_wacc_override`` replaces only the blended group discount rate (group
+    DCF and earnout). It exists to solve for the market-implied rate and is
+    never set by the stored assumptions.
+    """
     _finite(facts)
     _finite(assumptions)
     try:
@@ -611,6 +624,15 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
     _validate(facts, assumptions, scenario)
     assumptions["_active_scenario"] = scenario
     wacc = blended_wacc(assumptions["pro_forma"], scenario)
+    if group_wacc_override is not None:
+        if (
+            isinstance(group_wacc_override, bool)
+            or not isinstance(group_wacc_override, (int, float))
+            or not isfinite(group_wacc_override)
+            or not 0 < group_wacc_override < 1
+        ):
+            raise AcquisitionInputError("Group WACC override must be in (0, 1)")
+        wacc = {**wacc, "blended_wacc": group_wacc_override}
     a, s = deepcopy(assumptions["scenarios"][scenario]), assumptions["shared"]
     h, q, d, mh = (
         facts["tega_fy2026"],
@@ -1067,4 +1089,45 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "checks": checks,
         "scenario_assumptions": a,
         "shared_assumptions": deepcopy(s),
+    }
+
+
+def market_implied_group_wacc(facts: dict, assumptions: dict) -> dict:
+    """Solve for the group discount rate that reproduces the valuation-date price.
+
+    Forecasts, claims and the NCI valuation stay fixed; only the blended group
+    rate moves. The answer explains the gap to the market and never feeds back
+    into the stored assumptions.
+    """
+    reference = facts["market_reference"]
+    if reference["date"] != facts["valuation_date"]:
+        raise AcquisitionInputError("Market reference must be the valuation-date close")
+    price = reference["close_inr"]
+    if isinstance(price, bool) or not isinstance(price, (int, float)) or price <= 0:
+        raise AcquisitionInputError("Market reference price must be positive")
+    base = build_acquisition_model(facts, assumptions)
+    growth = base["group_dcf_inr_m"]["terminal_growth"]
+
+    def value_at(rate):
+        return build_acquisition_model(facts, assumptions, group_wacc_override=rate)[
+            "equity_bridge"
+        ]["value_per_share_inr"]
+
+    implied = implied_discount_rate(value_at, price, low=growth + 0.005, high=0.30)
+    bridge = base["equity_bridge"]
+    required_ev = (
+        price * bridge["diluted_shares"] / 1_000_000
+        + bridge["total_bridge_deductions_inr_m"]
+        - bridge["nonoperating_assets_inr_m"]
+    )
+    return {
+        "price_date": reference["date"],
+        "price_inr": price,
+        "source_id": reference["source_id"],
+        "model_value_per_share_inr": bridge["value_per_share_inr"],
+        "model_group_wacc": base["wacc_calculation"]["blended_wacc"],
+        "implied_group_wacc": implied,
+        "model_group_ev_inr_m": bridge["group_enterprise_value_inr_m"],
+        "required_group_ev_inr_m": required_ev,
+        "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection.",
     }
