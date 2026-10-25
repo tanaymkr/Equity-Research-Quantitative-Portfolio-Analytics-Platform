@@ -12,7 +12,7 @@ Precomputed results are in `examples/tega_molycop_reports/`.
 | Module | Responsibility |
 | --- | --- |
 | `case_studies/tega/consolidation.py` | 100% line-by-line IS, BS, CF and FCFF; eliminate parent investment and internal dividends; annual FY27 income and future-period views |
-| `case_studies/tega/wacc.py` | Separate CAPM and financing costs, including non-tax-deductible preference funding; operating-EV-weighted blend |
+| `case_studies/tega/wacc.py` | Standalone costs of capital using the platform method, including non-tax-deductible preference funding; operating-EV-weighted blend |
 | `case_studies/tega/equity_bridge.py` | Full capital claims, common NCI, share roll-forward and matching issue cash |
 | `case_studies/tega/currency.py` | Reconvert an explicit registry of USD-origin inputs using the adjustable FX rate |
 | `case_studies/tega/engine.py` | Business operating/financing schedules, consolidation orchestration and valuation |
@@ -26,9 +26,12 @@ reinvestment deduction under the existing lease-as-financing convention.
 
 ## WACC and currency convention
 
-For each business:
+For each business, using the platform method in
+[the cost-of-capital note](COST_OF_CAPITAL.md):
 
-`Ke = risk-free rate + beta × equity risk premium`
+`Ke = (bond yield − sovereign default spread) + relevered beta × equity risk premium`
+
+`Relevered beta = industry unlevered beta × (1 + (1 − tax) × D/E + P/E)`
 
 `WACC = common equity weight × Ke + debt weight × Kd × (1 − tax rate) + preference weight × Kp`
 
@@ -44,20 +47,31 @@ Every new parameter group has adjacent `_note` fields. Decimal rates are used.
 | Editable input | Default / status |
 | --- | --- |
 | `fx_inr_per_usd` | 94.97, retained September 2 reference |
-| `tega_ev_weight_inr_m` | 80,000; **unsourced analyst operating-EV proxy**, not a disclosed deal or group market cap |
+| `tega_ev_weight_inr_m` | 139,019.45: close of INR2,094.10 on 9 September 2025 (day before the deal announcement) × 66,535,492 shares, plus 31 March 2025 net debt including leases (INR−312.52m) |
 | `molycop_ev_weight_usd_m` | 1,455; user's requested first-pass weight; closing filing rounds EV to 1,500 |
-| Tega risk-free / ERP / beta | 6.9754% / 5.974538% / 0.674868; carried from prior September 2 CAPM research |
-| Tega debt cost / debt weight | 7% / 20%; provisional analyst inputs |
+| Tega bond yield / default spread / ERP | 6.9754% G-sec (2 September 2026) / 1.87% / 7.08% India total premium (Damodaran, January 2026) |
+| Tega beta | Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026), relevered at the industry D/E of 14.69% to 0.9888 |
+| Tega debt cost / debt weight | 6.56%, FY2025–FY2026 borrowing interest paid / average borrowings / 12.81%, the industry D/E |
 | Tega tax | Existing 24.4558% historical effective proxy; not a marginal statutory tax rate |
-| Molycop RF / ERP / beta | 4.5% / 5% / 1.10; **unsourced analyst starting assumptions** |
-| Molycop debt cost / tax | 9% / 27%; provisional existing proxies |
-| Molycop common / debt / preference weights | 37% / 45% / 18%; provisional target market-value weights |
-| Preference cost | 12%; stress assumption, **not a verified contractual coupon** |
-| Down / base / up equity-premium stress | +2 / 0 / −0.5 percentage points to both CAPMs |
+| Molycop bond yield / ERP | 4.79% US 10-year Treasury (2 September 2026) / 4.23% mature-market premium |
+| Molycop beta | Steel unlevered beta corrected for cash 0.94, relevered at the structure at close to 2.4537 |
+| Molycop common / debt / preference weights | 33.33% / 48.11% / 18.56%: term loan INR66,479m and preference INR25,641.9m against the USD1,455m EV weight |
+| Molycop debt cost / tax | 9% / 27%; **unsourced estimates** (contractual rates not disclosed) |
+| Preference cost | 12%; **not a verified contractual coupon** |
+| Equity-premium stress by scenario | 0 in every scenario; the stress is tested in the sensitivity table only |
 
-The CAPM reference calculations, observations and source URLs are included in
-`examples/tega_capm_reference_20260902.json`. Observed TEGA beta spans the acquisition
-period and is an imperfect standalone legacy beta. No consensus WACC is claimed.
+Results: Tega legacy WACC 11.19%, Molycop 10.44%, blended group WACC 10.82%.
+Terminal growth (4%) and terminal ROIC (16%) are the same in every scenario.
+
+`examples/tega_capm_reference_20260902.json` keeps the earlier CAPM research:
+a weekly regression beta of 0.67 with R² 0.05 and a historical Nifty premium.
+It is a cross-check only. No consensus WACC is claimed.
+
+The report also solves for the **market-implied group WACC**: the single group
+rate at which the base case equals Tega's INR1,696.80 close on 30 June 2026, the
+valuation date, with forecasts, claims and the NCI valuation held fixed. It is
+8.54%, against 10.82% from the method above. The result is written to
+`market_check.json` and never changes the forecasts.
 
 The model retains the user's **constant expected INR/USD** convention through the
 forecast and terminal period. Under this explicit expectation, the USD discount
@@ -170,5 +184,8 @@ Tests (`tests/test_pro_forma.py` and the other `test_acquisition*` files) cover 
 bridge arithmetic, full-ownership FCFF, minority loss floors, source FX conversion,
 share dilution with cash, no duplicate paydown/loan deductions, investment/dividend
 eliminations, frozen opening allocations, consolidated cash/BS roll-forwards and
-stub timing. Original business operating forecasts are regression-tested unchanged.
+stub timing. `tests/test_cost_of_capital.py` checks the shared cost-of-capital
+arithmetic, that every scenario uses one discount rate, and that the market-implied
+rate reproduces the valuation-date price. Original business operating forecasts
+are regression-tested unchanged.
 Passing tests establishes arithmetic consistency, not the validity of unsourced inputs.

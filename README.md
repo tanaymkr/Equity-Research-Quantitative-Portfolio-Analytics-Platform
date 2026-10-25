@@ -23,6 +23,11 @@ Built by [Tanay Malekar](https://github.com/tanaymkr).
   statement, balance sheet and cash flow with debt, asset, tax,
   working-capital and equity schedules; 40 accounting checks per scenario;
   FCFF DCF with dated market inputs.
+- **One cost of capital, checked against the market.** Every DCF uses the
+  same method: industry betas relevered at each company's capital structure,
+  plus India risk premiums (Damodaran, January 2026). Each report also solves
+  for the discount rate the share price implies, rather than tuning forecasts
+  to match it ([method and results](docs/COST_OF_CAPITAL.md)).
 - **Point-in-time financial data.** Every filing version is stored with its
   publication date, so a query reconstructs what was public on any date
   rather than what is known today.
@@ -32,7 +37,7 @@ Built by [Tanay Malekar](https://github.com/tanaymkr).
 - **Data-quality auditing.** Automated calendar checks and an audit of the
   vendor data that found unadjusted demergers, a mis-dated split and
   placeholder rows on market holidays ([findings](docs/guides/universe.md#price-data-problems-found-in-the-first-nifty-100-download)).
-- **Tested.** 287 automated tests run in continuous integration on every push.
+- **Tested.** 300 automated tests run in continuous integration on every push.
 
 ## Screenshots
 
@@ -53,7 +58,7 @@ Built by [Tanay Malekar](https://github.com/tanaymkr).
 | --- | --- | --- |
 | Financial data (SQL) | ✅&nbsp;Done | Filing versions, publication dates, as-of queries, ingestion audit trail |
 | Fundamental analysis | ✅&nbsp;Done | Growth, margins, ROE/ROA/ROCE, liquidity, leverage, cash conversion, company comparison |
-| Valuation | ✅&nbsp;Done | Generic FCFF DCF, CAPM WACC, scenarios, sensitivity; Tega and Wabag case studies |
+| Valuation | ✅&nbsp;Done | Generic FCFF DCF, shared cost-of-capital method, market-implied WACC, scenarios, sensitivity; Tega and Wabag case studies |
 | Screening | ✅&nbsp;Done | Configurable filters on dated fundamentals |
 | Price data | ✅&nbsp;Done | Immutable price snapshots, corporate actions, benchmark-calendar returns |
 | Research universe | ✅&nbsp;Done | Nifty 100 dated membership, company master, survivorship guard |
@@ -129,14 +134,14 @@ src/equity_analytics/
   data/          financial-statement database, as-of queries, comparison
   financials/    statement contract, validation, ratios
   screening/     fundamental screener
-  valuation/     generic DCF, WACC, sensitivity, SQL adapter
+  valuation/     generic DCF, cost of capital, sensitivity, SQL adapter
   forecasting/   linked three-statement engine
   case_studies/  tega/ (acquisition model), wabag/ (linked model)
   universe/      NSE index membership and company master
   market/        price snapshots, returns, reports
 scripts/         command-line entry points and Windows launchers
 examples/        sourced inputs, assumptions and reference outputs
-tests/           287 automated tests
+tests/           300 automated tests
 docs/            guides and method notes
 notebooks/       walkthrough of the ratio engine
 ```
@@ -158,6 +163,11 @@ notebooks/       walkthrough of the ratio engine
 - **Assumptions are visible.** Valuation inputs record their source or are
   labelled as analyst assumptions, and each report states what is
   provisional.
+- **The market is a cross-check, not a target.** Scenarios change operating
+  drivers only, at one discount rate. Each report then asks what WACC the share
+  price implies with the forecasts held fixed. At Wabag the answer is 7.4%,
+  against 13.3% from the method, which shows the gap is in expected cash flows
+  rather than the discount rate.
 
 ## Documentation
 
@@ -166,7 +176,7 @@ notebooks/       walkthrough of the ratio engine
 | [Company financial analysis](docs/guides/company-analysis.md) | [Data layer](docs/DATA_LAYER.md) |
 | [Wabag linked model and DCF](docs/guides/wabag-forecast.md) | [Financial-analysis conventions](docs/FINANCIAL_ANALYSIS_METHODS.md) |
 | [Tega + Molycop model](docs/guides/tega-model.md) | [Code walkthrough](docs/FINANCIAL_ANALYSIS_WALKTHROUGH.md) |
-| [Generic SQL DCF](docs/guides/sql-dcf.md) | [Wabag model methods](docs/WABAG_LINKED_MODEL.md) |
+| [Generic SQL DCF](docs/guides/sql-dcf.md) | [Cost of capital and market check](docs/COST_OF_CAPITAL.md) · [Wabag model methods](docs/WABAG_LINKED_MODEL.md) |
 | [Screener](docs/guides/screener.md) | [Tega pro-forma consolidation](docs/TEGA_PRO_FORMA_CONSOLIDATION.md) |
 | [Research universe](docs/guides/universe.md) | [Tega revenue drivers](docs/TEGA_REVENUE_DRIVERS.md) |
 | [Price data](docs/guides/price-data.md) | [Tega FY2026 statements](docs/TEGA_FY2026_STATEMENTS.md) · [FY2024–25](docs/TEGA_FY2025_STATEMENTS.md) |
@@ -184,6 +194,10 @@ notebooks/       walkthrough of the ratio engine
 
 - The valuations are conditional on stated assumptions, several of them
   provisional, and are not investment advice or price targets.
+- Both DCFs value their companies well below the market: Tega at ₹589 against
+  ₹1,697, and Wabag at ₹630 against ₹2,008. The forecasts are the next thing
+  to review: Wabag's working capital and five-year horizon, and Tega's legacy
+  cash conversion.
 - Financial statements are loaded for two companies; the Nifty 100 universe
   has prices but not yet fundamentals.
 - Index membership is recorded from October 2026. Earlier periods need

@@ -22,11 +22,32 @@ checks that the detailed model agrees with the annual SQL summary.
 - Debt, current maturities, revolving facilities, lease interest and repayments.
 - Owned PPE, land, right-of-use assets, software, depreciation and amortisation.
 - Operating working capital, tax, provisions, credit losses, dividends and equity.
-- Dated market inputs, observed beta, market-equity weights and annual WACC.
+- Dated market inputs, an industry beta relevered each year, market-equity
+  weights and annual WACC, using the platform's
+  [cost-of-capital method](../COST_OF_CAPITAL.md).
+- The WACC implied by the share price, so the gap to the market is measured.
 - Base, upside and downside operating cases, each with linked FCFF, terminal
   reinvestment, equity bridge and WACC/growth sensitivity.
 - Consensus/broker comparisons, an input register, flagged zero assumptions,
   historical reconciliations and forecast accounting checks.
+
+## Results with the stored inputs
+
+| INR per diluted share | Downside | Base | Upside |
+| --- | ---: | ---: | ---: |
+| DCF value at the 31 March 2026 anchor | 461.30 | 630.42 | 780.79 |
+
+The FY27 WACC is 13.31% in every case: cost of equity 13.43% from an
+Engineering/Construction unlevered beta of 1.14 relevered to 1.155, a 5.25%
+default-free rate and India's 7.08% equity risk premium.
+
+Wabag closed at INR2,008.40 on 25 September 2026. Holding the base-case cash
+flows fixed, that price implies a WACC of 7.36%. That is below the 12.3%
+expected return on an average Indian stock under the same inputs, so the gap is
+in the cash flows, not the discount rate. Each extra rupee of revenue ties up
+about 48 paise of working capital, so growth of 12–18% a year absorbs most of
+the profit. In FY27, free cash flow is −INR91m against after-tax operating
+profit of INR4,248m.
 
 ## Edit assumptions
 
@@ -56,9 +77,10 @@ A declaration is paid in the following financial year.
 
 The `policy` section holds terminal growth/ROIC, debt-rate proxies, repayment
 assumptions and the cash exclusion. `wacc_overrides` can override `share_price`,
-`gsec_yield`, `sovereign_default_spread`, `mature_erp`, `country_risk_premium`,
-`country_loading` or `levered_beta`. The original dated evidence remains in
-`wacc_reference.json`; document any new observations when updating the model.
+`gsec_yield`, `sovereign_default_spread`, `mature_erp`, `country_risk_premium`
+or `unlevered_beta`. The original dated evidence remains in
+`wacc_reference.json`, including Wabag's own regression beta as a cross-check;
+document any new observations when updating the model.
 
 Nonzero OCI, asset disposals and new equity issuance require additional
 accounting schedules and are rejected. Other missing future flows are explicitly

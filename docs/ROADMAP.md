@@ -9,7 +9,8 @@ Tests and documentation ship with every feature rather than at the end.
 | --- | --- |
 | SQL data | Company, source and annual-statement storage with units, currency, basis, publication dates and filing versions; duplicate and reconciliation checks; an audit record of every ingestion run |
 | Fundamentals | Growth, margins, ROE/ROA/ROCE, liquidity, leverage, coverage and cash conversion |
-| Generic DCF | FCFF scenarios from SQL with CAPM WACC, opening working capital, capital claims, ROIC-based terminal reinvestment and sensitivity |
+| Generic DCF | FCFF scenarios from SQL with opening working capital, capital claims, ROIC-based terminal reinvestment and sensitivity |
+| Cost of capital | One method for every model (industry betas relevered, India risk premiums), with the market-implied WACC reported beside each valuation |
 | Screening | Configurable filters on growth, quality and leverage as of a publication date |
 | Case studies | Tega + Molycop pro-forma consolidated DCF; Wabag linked three-statement model and DCF |
 

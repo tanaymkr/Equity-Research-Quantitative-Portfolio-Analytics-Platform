@@ -34,7 +34,7 @@ flowchart LR
 | `financials` | Normalized annual-statement contract, validation, ratios and reports |
 | `data` | `research.sqlite`: immutable filing versions, publication dates, ingestion audit trail, as-of queries, company comparison |
 | `screening` | Filters and ranks dated fundamentals; flags any zero-substituted metric without altering source data |
-| `valuation` | Generic FCFF DCF, CAPM WACC, SQL-backed scenarios, equity bridge, explicit-cash-flow discounting and sensitivity |
+| `valuation` | Generic FCFF DCF, the shared cost-of-capital method and market-implied rate solver, SQL-backed scenarios, equity bridge, explicit-cash-flow discounting and sensitivity |
 | `forecasting` | Linked three-statement engine (consolidated, INR million; account mappings derived from Tega) |
 | `case_studies.tega` | Tega + Molycop acquisition: forecasts, drivers, financing, consolidation, blended WACC, equity bridge, reports |
 | `case_studies.wabag` | Wabag linked statements, schedules, annual WACC and scenarios |
