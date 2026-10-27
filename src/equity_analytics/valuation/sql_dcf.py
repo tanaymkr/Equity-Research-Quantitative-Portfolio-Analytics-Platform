@@ -10,10 +10,10 @@ from pathlib import Path
 from equity_analytics.data import DataStoreError
 
 from .cost_of_capital import (
-    cost_of_equity,
     default_free_rate,
     implied_discount_rate,
-    relever_beta,
+    unlevered_cost_of_capital,
+    wacc_with_tax_shield,
 )
 from .dcf import (
     DCFAssumptions,
@@ -45,21 +45,24 @@ def capm_wacc(inputs, tax_rate):
         if name != "unlevered_beta":
             _validate_rate(name, value)
     _validate_rate("tax_rate", tax_rate)
-    weight = inputs["debt_weight"]
     risk_free = default_free_rate(
         inputs["government_bond_yield"], inputs["sovereign_default_spread"]
     )
-    beta = relever_beta(inputs["unlevered_beta"], weight / (1 - weight), tax_rate)
-    equity_cost = cost_of_equity(risk_free, beta, inputs["equity_risk_premium"])
-    cost_of_debt = inputs["pretax_cost_of_debt"] * (1 - tax_rate)
-    wacc = equity_cost * (1 - weight) + cost_of_debt * weight
-    _validate_rate("wacc", wacc)
+    rates = wacc_with_tax_shield(
+        unlevered_cost_of_capital(
+            risk_free, inputs["unlevered_beta"], inputs["equity_risk_premium"]
+        ),
+        inputs["debt_weight"],
+        tax_rate,
+        inputs["pretax_cost_of_debt"],
+    )
+    _validate_rate("wacc", rates["wacc"])
     return {
         "risk_free_rate": risk_free,
-        "levered_beta": beta,
-        "cost_of_equity": equity_cost,
-        "aftertax_cost_of_debt": cost_of_debt,
-        "wacc": wacc,
+        "unlevered_cost_of_capital": rates["unlevered_cost_of_capital"],
+        "tax_shield": rates["tax_shield"],
+        "aftertax_cost_of_debt": inputs["pretax_cost_of_debt"] * (1 - tax_rate),
+        "wacc": rates["wacc"],
     }
 
 
@@ -221,8 +224,11 @@ def export_sql_dcf(store, config_path, output):
                 ["Metric", "Value"],
                 [
                     ["WACC", f"{r['wacc']:.2%}"],
-                    ["Cost of equity", f"{case['wacc_build']['cost_of_equity']:.2%}"],
-                    ["Relevered beta", f"{case['wacc_build']['levered_beta']:.4f}"],
+                    [
+                        "Unlevered cost of capital",
+                        f"{case['wacc_build']['unlevered_cost_of_capital']:.2%}",
+                    ],
+                    ["Debt tax shield", f"{case['wacc_build']['tax_shield']:.3%}"],
                     ["Enterprise value", f"{r['enterprise_value']:,.2f}"],
                     ["Add cash", r["cash"]],
                     ["Add nonoperating assets (proxy)", r["nonoperating_assets"]],

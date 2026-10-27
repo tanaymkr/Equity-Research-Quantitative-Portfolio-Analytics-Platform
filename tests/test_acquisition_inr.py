@@ -96,5 +96,5 @@ def test_money_sensitivities_use_inr_ranges(inputs):
     assert [r["input"] for r in preference] == pytest.approx(
         [270 * 94.97, 330 * 94.97, 400 * 94.97]
     )
-    assert len(rows) == 36
+    assert len(rows) == 39
     assert any(r["parameter"] == "Conversion INR per USD" for r in rows)

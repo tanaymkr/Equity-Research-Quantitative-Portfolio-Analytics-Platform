@@ -6,14 +6,17 @@ from pathlib import Path
 import pytest
 
 from equity_analytics.case_studies.tega import build_acquisition_model
-from equity_analytics.case_studies.tega.engine import market_implied_group_wacc
+from equity_analytics.case_studies.tega.engine import (
+    calibrate_molycop_premium,
+    market_implied_group_wacc,
+)
 from equity_analytics.case_studies.tega.history import load_acquisition_facts
 from equity_analytics.case_studies.wabag.model import build_model, load_inputs
 from equity_analytics.valuation.cost_of_capital import (
-    cost_of_equity,
     default_free_rate,
     implied_discount_rate,
-    relever_beta,
+    unlevered_cost_of_capital,
+    wacc_with_tax_shield,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,19 +35,44 @@ def test_default_free_rate_removes_sovereign_spread():
         default_free_rate(0.05, -0.01)
 
 
-def test_relever_beta_hand_calculation():
-    # 0.9 x (1 + 0.75 x 0.5 + 0.25) = 1.4625
-    assert relever_beta(0.9, 0.5, 0.25, 0.25) == pytest.approx(1.4625)
-    assert relever_beta(1.14, 0.0, 0.25) == pytest.approx(1.14)
-    for bad in ((0.0, 0.5, 0.25), (1.0, -0.1, 0.25), (1.0, 0.5, 1.0)):
+def test_unlevered_cost_is_capm_with_an_asset_beta():
+    assert unlevered_cost_of_capital(0.0479, 0.94, 0.0423) == pytest.approx(0.087662)
+    for bad in ((0.05, 0.0, 0.07), (0.05, float("nan"), 0.07), (-0.01, 1.0, 0.07)):
+        with pytest.raises((TypeError, ValueError)):
+            unlevered_cost_of_capital(*bad)
+
+
+def test_wacc_is_unlevered_cost_less_the_tax_shield():
+    # Molycop inputs: 8.7662% - 48.11% x 27% x 9% = 7.5972%
+    rates = wacc_with_tax_shield(0.087662, 0.4811, 0.27, 0.09)
+    assert rates["tax_shield"] == pytest.approx(0.4811 * 0.27 * 0.09)
+    assert rates["wacc"] == pytest.approx(0.087662 - 0.4811 * 0.27 * 0.09)
+    for bad in ((0.1, 1.0, 0.25, 0.08), (0.1, 0.4, 1.0, 0.08), (0.1, -0.1, 0.25, 0.08)):
         with pytest.raises(ValueError):
-            relever_beta(*bad)
+            wacc_with_tax_shield(*bad)
 
 
-def test_cost_of_equity_is_capm():
-    assert cost_of_equity(0.05, 1.2, 0.07) == pytest.approx(0.134)
-    with pytest.raises(ValueError):
-        cost_of_equity(0.05, float("nan"), 0.07)
+@pytest.mark.parametrize("debt_weight", [0.0, 0.2, 0.5, 0.8])
+@pytest.mark.parametrize("cost_of_debt", [0.04, 0.09, 0.15])
+def test_borrowing_never_raises_the_wacc_above_the_unlevered_cost(
+    debt_weight, cost_of_debt
+):
+    rates = wacc_with_tax_shield(0.0877, debt_weight, 0.27, cost_of_debt)
+    assert rates["wacc"] <= rates["unlevered_cost_of_capital"]
+
+
+def test_molycop_premium_reproduces_the_june_2026_deal_value():
+    facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
+    assumptions = _json("tega_molycop_assumptions.json")
+    stored = assumptions["pro_forma"]["wacc"]["molycop"]["transaction_premium"]
+    model = build_acquisition_model(facts, assumptions)
+    value = model["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+    assert value == pytest.approx(
+        facts["deal"]["headline_enterprise_value_inr_m_approx"], abs=1.0
+    )
+    assert calibrate_molycop_premium(facts, assumptions)[
+        "transaction_premium"
+    ] == pytest.approx(stored, abs=1e-7)
 
 
 def test_implied_rate_solves_and_refuses_to_extrapolate():

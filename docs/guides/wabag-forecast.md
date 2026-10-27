@@ -22,8 +22,8 @@ checks that the detailed model agrees with the annual SQL summary.
 - Debt, current maturities, revolving facilities, lease interest and repayments.
 - Owned PPE, land, right-of-use assets, software, depreciation and amortisation.
 - Operating working capital, tax, provisions, credit losses, dividends and equity.
-- Dated market inputs, an industry beta relevered each year, market-equity
-  weights and annual WACC, using the platform's
+- Dated market inputs, an industry unlevered beta, market-equity weights and
+  annual WACC, using the platform's
   [cost-of-capital method](../COST_OF_CAPITAL.md).
 - The WACC implied by the share price, so the gap to the market is measured.
 - Base, upside and downside operating cases, each with linked FCFF, terminal
@@ -35,11 +35,11 @@ checks that the detailed model agrees with the annual SQL summary.
 
 | INR per diluted share | Downside | Base | Upside |
 | --- | ---: | ---: | ---: |
-| DCF value at the 31 March 2026 anchor | 471.55 | 644.36 | 798.27 |
+| DCF value at the 31 March 2026 anchor | 472.85 | 646.15 | 800.51 |
 
-The FY27 WACC is 13.31% in every case: cost of equity 13.43% from an
-Engineering/Construction unlevered beta of 1.14 relevered to 1.155, a 5.25%
-default-free rate and India's 7.08% equity risk premium. Terminal growth is 5%
+The FY27 WACC is 13.29% in every case: an unlevered cost of capital of 13.32%
+(5.25% default-free rate + Engineering/Construction unlevered beta 1.14 ×
+India's 7.08% equity risk premium) less a 0.04% interest tax shield. Terminal growth is 5%
 (the RBI's 4% inflation target plus about 1% real growth) and terminal ROIC
 15%.
 

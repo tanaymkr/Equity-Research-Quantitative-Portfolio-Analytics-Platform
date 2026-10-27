@@ -7,10 +7,10 @@ from hashlib import sha256
 from pathlib import Path
 
 from equity_analytics.valuation.cost_of_capital import (
-    cost_of_equity,
     default_free_rate,
     implied_discount_rate,
-    relever_beta,
+    unlevered_cost_of_capital,
+    wacc_with_tax_shield,
 )
 from equity_analytics.valuation.dcf import HistoricalSnapshot, _finite, _validate_rate
 from equity_analytics.valuation.explicit import ExplicitCashFlow, discount_cash_flows
@@ -392,9 +392,10 @@ def _debt_schedule(previous, previous_bs, d, p, period):
 def _wacc(reference, overrides, debt, tax, basic_shares):
     """Platform cost-of-capital method (equity_analytics.valuation.cost_of_capital).
 
-    The industry unlevered beta is relevered at each year's average forecast debt
-    against the dated market equity. The stock's own regression beta is kept in
-    the reference file as a cross-check only.
+    WACC = unlevered cost of capital - debt weight x tax x cost of debt, with the
+    debt weight from each year's average forecast debt against the dated market
+    equity. The stock's own regression beta stays in the reference file as a
+    cross-check only.
     """
     r = {**reference, **overrides}
     allowed = {
@@ -418,12 +419,15 @@ def _wacc(reference, overrides, debt, tax, basic_shares):
     _validate_rate("default_free_inr_rate", rf)
     equity_risk_premium = r["mature_erp"] + r["country_risk_premium"]
     average_debt = (debt["total_open"] + debt["total_close"]) / 2
-    beta = relever_beta(r["unlevered_beta"], average_debt / market_equity, tax)
     debt_weight = average_debt / (market_equity + average_debt)
     kd = debt["interest_total"] / average_debt if average_debt else 0.0
-    ke = cost_of_equity(rf, beta, equity_risk_premium)
-    wacc = ke * (1 - debt_weight) + kd * (1 - tax) * debt_weight
-    _validate_rate("wacc", wacc)
+    rates = wacc_with_tax_shield(
+        unlevered_cost_of_capital(rf, r["unlevered_beta"], equity_risk_premium),
+        debt_weight,
+        tax,
+        kd,
+    )
+    _validate_rate("wacc", rates["wacc"])
     return {
         "market_equity": market_equity,
         "average_gross_debt": average_debt,
@@ -432,12 +436,12 @@ def _wacc(reference, overrides, debt, tax, basic_shares):
         "default_free_inr_rate": rf,
         "equity_risk_premium": equity_risk_premium,
         "unlevered_beta": r["unlevered_beta"],
-        "relevered_beta": beta,
-        "cost_of_equity": ke,
+        "unlevered_cost_of_capital": rates["unlevered_cost_of_capital"],
         "pretax_cost_of_debt": kd,
         "aftertax_cost_of_debt": kd * (1 - tax),
         "tax_rate": tax,
-        "wacc": wacc,
+        "tax_shield": rates["tax_shield"],
+        "wacc": rates["wacc"],
     }
 
 

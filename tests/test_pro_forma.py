@@ -20,7 +20,7 @@ def inputs():
     return f, json.loads((ROOT / "examples/tega_molycop_assumptions.json").read_text())
 
 
-def test_hand_calculated_wacc_includes_nondeductible_preference():
+def test_hand_calculated_wacc_with_tax_shield_and_premium():
     x = {
         "government_bond_yield": 0.05,
         "sovereign_default_spread": 0.01,
@@ -29,25 +29,25 @@ def test_hand_calculated_wacc_includes_nondeductible_preference():
         "cost_of_debt": 0.08,
         "tax_rate": 0.25,
         "debt_weight": 0.4,
-        "preference_weight": 0.1,
-        "cost_of_preference": 0.12,
         "currency": "USD",
     }
     w = standalone_wacc(x)
-    # D/E = 0.8, P/E = 0.2: beta = 0.6 x (1 + 0.75 x 0.8 + 0.2) = 1.08
+    # Unlevered cost 4% + 0.6 x 6% = 7.6%; shield 40% x 25% x 8% = 0.8%
     assert w["risk_free_rate"] == pytest.approx(0.04)
-    assert w["beta"] == pytest.approx(1.08)
-    assert w["cost_of_equity"] == pytest.approx(0.04 + 1.08 * 0.06)
-    assert w["standalone_wacc"] == pytest.approx(
-        0.5 * 0.1048 + 0.4 * 0.08 * 0.75 + 0.1 * 0.12
-    )
+    assert w["unlevered_cost_of_capital"] == pytest.approx(0.076)
+    assert w["tax_shield"] == pytest.approx(0.008)
+    assert w["standalone_wacc"] == pytest.approx(0.068)
+    premium = standalone_wacc({**x, "transaction_premium": 0.02})
+    assert premium["standalone_wacc"] == pytest.approx(0.088)
+    with pytest.raises(ValueError):
+        standalone_wacc({**x, "transaction_premium": -0.01})
 
 
 @pytest.mark.parametrize(
     "key,value",
     [
         ("debt_weight", 1.1),
-        ("preference_weight", -0.1),
+        ("debt_weight", -0.1),
         ("tax_rate", 1.1),
         ("unlevered_beta", float("nan")),
         ("unlevered_beta", 0.0),

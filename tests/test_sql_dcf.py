@@ -123,10 +123,10 @@ def test_capm_weights_tax_only_debt():
         },
         0.25,
     )
-    # D/E = 1/3, so beta = 1 + 0.75 / 3 = 1.25 and Ke = 6% + 1.25 x 5%
-    assert x["levered_beta"] == pytest.approx(1.25)
-    assert x["cost_of_equity"] == pytest.approx(0.1225)
-    assert x["wacc"] == pytest.approx(0.1225 * 0.75 + 0.08 * 0.75 * 0.25)
+    # Unlevered cost 6% + 1.0 x 5% = 11%; shield 25% x 25% x 8% = 0.5%
+    assert x["unlevered_cost_of_capital"] == pytest.approx(0.11)
+    assert x["tax_shield"] == pytest.approx(0.005)
+    assert x["wacc"] == pytest.approx(0.105)
 
 
 def test_terminal_reinvestment_validation():

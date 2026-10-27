@@ -137,6 +137,12 @@
       "title": "MarketScreener: Tega Industries financial estimates (analyst consensus)",
       "url": "https://www.marketscreener.com/quote/stock/TEGA-INDUSTRIES-LIMITED-130615467/finances/",
       "location": "FY2027-FY2029 consensus: net sales, EBITDA, EBIT, interest paid, earnings before tax, net income, EPS; P/E 29.2x FY2027 and 20.7x FY2028 at the 9 October 2026 close of INR1,935. Observed after this model's cutoff; definitions (reported or adjusted) and analyst count not shown"
+    },
+    "analyst_targets": {
+      "date": "2026-10-01",
+      "title": "Stock Analysis: Tega Industries analyst forecast (S&P Global)",
+      "url": "https://stockanalysis.com/quote/bom/543413/forecast/",
+      "location": "4 analysts, consensus rating Hold; price targets average INR1,799, median INR1,788, high INR1,880, low INR1,740; close INR2,093.85 on 1 October 2026. Observed after this model's cutoff"
     }
   },
   "deal": {
@@ -394,6 +400,17 @@
         "owners_net_income": 7897.0,
         "eps": 105.1
       }
+    },
+    "targets": {
+      "source_id": "analyst_targets",
+      "price_date": "2026-10-01",
+      "price_inr": 2093.85,
+      "analysts": 4,
+      "rating": "Hold",
+      "average_inr": 1799.0,
+      "median_inr": 1788.0,
+      "high_inr": 1880.0,
+      "low_inr": 1740.0
     }
   }
 }

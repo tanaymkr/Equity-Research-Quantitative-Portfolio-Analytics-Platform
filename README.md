@@ -24,8 +24,8 @@ Built by [Tanay Malekar](https://github.com/tanaymkr).
   working-capital and equity schedules; 40 accounting checks per scenario;
   FCFF DCF with dated market inputs.
 - **One cost of capital, checked against the market.** Every DCF uses the
-  same method: industry betas relevered at each company's capital structure,
-  plus India risk premiums (Damodaran, January 2026). Each report also solves
+  same method: an industry unlevered cost of capital less the interest tax
+  shield, with India risk premiums (Damodaran, January 2026). Each report also solves
   for the discount rate the share price implies and shows a P/E cross-check,
   rather than tuning forecasts to match the market
   ([method and results](docs/COST_OF_CAPITAL.md)).
@@ -38,7 +38,7 @@ Built by [Tanay Malekar](https://github.com/tanaymkr).
 - **Data-quality auditing.** Automated calendar checks and an audit of the
   vendor data that found unadjusted demergers, a mis-dated split and
   placeholder rows on market holidays ([findings](docs/guides/universe.md#price-data-problems-found-in-the-first-nifty-100-download)).
-- **Tested.** 307 automated tests run in continuous integration on every push.
+- **Tested.** 320 automated tests run in continuous integration on every push.
 
 ## Screenshots
 
@@ -142,7 +142,7 @@ src/equity_analytics/
   market/        price snapshots, returns, reports
 scripts/         command-line entry points and Windows launchers
 examples/        sourced inputs, assumptions and reference outputs
-tests/           307 automated tests
+tests/           320 automated tests
 docs/            guides and method notes
 notebooks/       walkthrough of the ratio engine
 ```
@@ -195,9 +195,11 @@ notebooks/       walkthrough of the ratio engine
 
 - The valuations are conditional on stated assumptions, several of them
   provisional, and are not investment advice or price targets.
-- Both DCFs value their companies well below the market: Tega at ₹743 against
-  ₹1,697, and Wabag at ₹644 against ₹2,008. At a manufacturing-sector P/E the
-  values would be ₹1,134 and ₹2,362. Wabag's working capital and five-year
+- Both DCFs value their companies well below the market: Tega at ₹599 against
+  ₹1,697 (analysts' average target ₹1,799), and Wabag at ₹646 against ₹2,008.
+  At a manufacturing-sector P/E the values would be ₹1,134 and ₹2,362. With
+  Molycop valued at the price paid for it, the Tega gap is the market's much
+  higher valuation of the legacy business. Wabag's working capital and five-year
   horizon are the next forecast items to review.
 - Financial statements are loaded for two companies; the Nifty 100 universe
   has prices but not yet fundamentals.

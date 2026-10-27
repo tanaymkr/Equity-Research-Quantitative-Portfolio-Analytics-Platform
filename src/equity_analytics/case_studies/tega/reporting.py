@@ -221,6 +221,16 @@ def _consensus_parts(comparison, pe_check):
         "the reported June quarter; its 12% preference return is an estimate. "
         + comparison["note"]
     )
+    targets = comparison.get("targets")
+    if targets:
+        explanation += (
+            f" Analyst price targets ({targets['analysts']} analysts, rated "
+            f"{targets['rating']}, {_long_date(targets['price_date'])}): average "
+            f"INR{targets['average_inr']:,.0f}, range INR{targets['low_inr']:,.0f}-"
+            f"{targets['high_inr']:,.0f}, against a close of INR{targets['price_inr']:,.2f}. "
+            "The range is the spread of analysts' single targets, not bull and bear "
+            "scenarios. They rest on consensus earnings of roughly twice the model's."
+        )
     consensus_eps = line["EPS (INR)"]["consensus"]
     pe_sentence = (
         f" Consensus FY2028 EPS is INR{consensus_eps:,.2f} (MarketScreener, "
@@ -257,12 +267,21 @@ def sensitivities(facts, assumptions):
     base_wacc = build_acquisition_model(facts, assumptions)["wacc_calculation"][
         "blended_wacc"
     ]
+    molycop_premium = assumptions["pro_forma"]["wacc"]["molycop"].get(
+        "transaction_premium", 0.0
+    )
     definitions = [
         (
             "Group WACC (blended)",
             "group_wacc",
             None,
             [base_wacc - 0.01, base_wacc, base_wacc + 0.01],
+        ),
+        (
+            "Molycop deal-calibrated premium",
+            "molycop_premium",
+            "transaction_premium",
+            [0.0, molycop_premium / 2, molycop_premium],
         ),
         (
             "Equity premium stress for both businesses",
@@ -333,7 +352,9 @@ def sensitivities(facts, assumptions):
                     }
                 )
                 continue
-            if scope == "wacc_stress":
+            if scope == "molycop_premium":
+                target = changed["pro_forma"]["wacc"]["molycop"]
+            elif scope == "wacc_stress":
                 target = changed["pro_forma"]["wacc"]["scenario_risk_premium"]
             elif scope == "pro_forma":
                 target = changed["pro_forma"]
@@ -413,11 +434,13 @@ def _case_tables(result):
             "RF",
             "ERP",
             "Unlevered beta",
-            "Relevered beta",
-            "Ke",
+            "CAPM cost",
+            "Deal premium",
+            "Unlevered cost",
             "Debt cost",
             "Debt weight",
-            "Pref weight",
+            "Tax rate",
+            "Tax shield",
             "WACC",
             "Weight EV INR m",
             "EV weight",
@@ -429,11 +452,13 @@ def _case_tables(result):
                 f"{w[key]['risk_free_rate']:.3%}",
                 f"{w[key]['equity_risk_premium']:.3%}",
                 f"{w[key]['unlevered_beta']:.2f}",
-                f"{w[key]['beta']:.4f}",
-                f"{w[key]['cost_of_equity']:.3%}",
+                f"{w[key]['capm_unlevered_cost']:.3%}",
+                f"{w[key]['transaction_premium']:.3%}",
+                f"{w[key]['unlevered_cost_of_capital']:.3%}",
                 f"{w[key]['cost_of_debt']:.2%}",
                 f"{w[key]['debt_weight']:.2%}",
-                f"{w[key]['preference_weight']:.2%}",
+                f"{w[key]['tax_rate']:.2%}",
+                f"{w[key]['tax_shield']:.3%}",
                 f"{w[key]['standalone_wacc']:.3%}",
                 _n(w[key + "_weight_ev_inr_m"]),
                 f"{w[key + '_ev_weight']:.2%}",
@@ -909,7 +934,7 @@ def write_reports(
         f"PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR{fx:.4f}/USD. "
         "100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. "
         "Full net debt, preferences and ordinary minority interest are explicit bridge deductions. "
-        "Discount rates follow the platform cost-of-capital method (industry betas and January 2026 risk premiums); Molycop's debt cost, preference return and tax rate remain unsourced estimates. "
+        "Discount rates follow the platform cost-of-capital method (industry unlevered cost of capital less the interest tax shield; January 2026 risk premiums). Molycop's rate adds a premium calibrated to the June 2026 purchase price; its debt cost and tax rate remain unsourced estimates. "
         "These outputs are conditional scenario values, not validated current price targets. "
         "Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; "
         "this does not validate purchase accounting or resolve the separate legacy June gap. "

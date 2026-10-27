@@ -138,16 +138,17 @@ R-squared of about 0.152, a standard error near 0.31: too imprecise to value
 the company.
 
 Default-free INR rate = 7.1194% G-sec yield − 1.87% sovereign default spread.
-Cost of equity = default-free INR rate + relevered beta × 7.08% India equity
-risk premium (4.23% mature-market premium + 2.85% country risk premium). This
-is the platform method in [the cost-of-capital note](COST_OF_CAPITAL.md). The
-industry beta is relevered at each forecast year's average gross debt against
-the dated market equity. Market equity remains
+Unlevered cost of capital = default-free INR rate + unlevered beta × 7.08% India
+equity risk premium (4.23% mature-market premium + 2.85% country risk premium).
+WACC = unlevered cost − debt weight × tax rate × pre-tax cost of debt, with the
+debt weight from each forecast year's average gross debt against the dated
+market equity. This is the platform method in
+[the cost-of-capital note](COST_OF_CAPITAL.md). Market equity remains
 reference price × basic shares; it is not replaced with book equity or the DCF
 result. Debt approximates market value using its book amount. Forecast WACC
 therefore changes with debt, borrowing rates and tax while market observations
 are held constant. It is not a published Wabag or consensus WACC. The FY27
-WACC is 13.31%.
+WACC is 13.29%.
 
 The report also solves for the single WACC at which the base-case value,
 rolled forward from the 31 March anchor, equals the 25 September close of
@@ -170,7 +171,7 @@ optimised. No management ROE target is relabelled as a ROIC forecast.
 
 ## Validation
 
-The full suite (307 tests and 13 subtests) passes; Ruff passes. The Wabag addition
+The full suite (320 tests and 13 subtests) passes; Ruff passes. The Wabag addition
 includes tests for cash/equity dividend timing, debt draw/interest/tax effects,
 capex and valuation, bank-charge classification, allowance double counting,
 lease reinvestment, depreciation limits, historical driver scaling, missing

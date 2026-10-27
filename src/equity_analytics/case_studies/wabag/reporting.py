@@ -224,7 +224,6 @@ def report_html(payload):
                         "market_equity",
                         "average_gross_debt",
                         "unlevered_beta",
-                        "relevered_beta",
                     )
                     else r["wacc"][k]
                 )
@@ -232,8 +231,8 @@ def report_html(payload):
             ]
         )
     basis = rates["beta_basis"]
-    wacc_note = f"<p>Price reference: {escape(rates['price_date'])}; INR{rates['share_price']:,.2f}. Beta: {escape(basis['industry'])} unlevered beta {rates['unlevered_beta']:.2f} ({escape(basis['measure'].lower())}; {escape(basis['dataset'])}), relevered each year. Cross-check only: Wabag's own weekly regression beta is {rates['regression_beta']:.4f} from {len(rates['beta_observations'])} Wabag / NIFTY50 return pairs, with R² {rates['beta_statistics']['r_squared']:.3f}, too imprecise to value the company.</p>"
-    wacc_note += "<p>Platform cost-of-capital method, shared with every model: default-free INR rate = Indian 10-year G-sec yield − sovereign default spread; cost of equity = default-free rate + relevered beta × India equity risk premium (mature-market premium + country risk premium). Relevered beta = unlevered beta × (1 + (1 − tax) × average forecast debt / market equity). Book debt approximates market debt; equity value is held at the dated reference price × basic shares to avoid circular valuation.</p>"
+    wacc_note = f"<p>Price reference: {escape(rates['price_date'])}; INR{rates['share_price']:,.2f}. Beta: {escape(basis['industry'])} unlevered beta {rates['unlevered_beta']:.2f} ({escape(basis['measure'].lower())}; {escape(basis['dataset'])}). Cross-check only: Wabag's own weekly regression beta is {rates['regression_beta']:.4f} from {len(rates['beta_observations'])} Wabag / NIFTY50 return pairs, with R² {rates['beta_statistics']['r_squared']:.3f}, too imprecise to value the company.</p>"
+    wacc_note += "<p>Platform cost-of-capital method, shared with every model: default-free INR rate = Indian 10-year G-sec yield − sovereign default spread; unlevered cost of capital = default-free rate + unlevered beta × India equity risk premium (mature-market premium + country risk premium); WACC = unlevered cost of capital − debt weight × tax rate × pre-tax cost of debt. The debt weight uses each year's average forecast debt against the dated market equity. Book debt approximates market debt; equity value is held at the dated reference price × basic shares to avoid circular valuation.</p>"
     parts.append(
         section(
             "wacc", "WACC and capital structure", wacc_note + table(headers, wacc_rows)

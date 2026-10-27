@@ -825,23 +825,23 @@
   ],
   "group_dcf_inr_m": {
     "scope": "100% consolidated operating cash flows; full enterprise value",
-    "wacc": 0.10527455362010868,
+    "wacc": 0.11052762698675647,
     "terminal_growth": 0.04,
     "terminal_roic": 0.16,
-    "pv_forecast_fcff": 65412.793536873265,
+    "pv_forecast_fcff": 64072.80876288342,
     "terminal_nopat": 15271.743765235775,
     "terminal_reinvestment": 3817.9359413089437,
     "terminal_fcff": 11453.80782392683,
-    "terminal_value": 175471.25470343066,
-    "pv_terminal_value": 80731.71631307525,
-    "enterprise_value": 146144.50984994852,
-    "terminal_share_of_ev": 0.5524101890379954
+    "terminal_value": 162401.71849362808,
+    "pv_terminal_value": 72020.70443525825,
+    "enterprise_value": 136093.51319814165,
+    "terminal_share_of_ev": 0.5292001267569724
   },
   "equity_bridge": {
     "molycop_ordinary_ownership": 0.8417868954269924,
     "minority_fraction": 0.15821310457300763,
     "fx_inr_per_usd": 94.97,
-    "group_enterprise_value_inr_m": 146144.50984994852,
+    "group_enterprise_value_inr_m": 136093.51319814165,
     "legacy_net_debt_inr_m": 18695.138822309997,
     "parent_new_term_debt_already_included_inr_m": 15000.0,
     "molycop_net_debt_full_inr_m": 63867.325,
@@ -853,14 +853,14 @@
     "preference_fair_value_full_inr_m": 25641.9,
     "earnout_present_value_full_inr_m": 0.0,
     "other_claims_full_inr_m": 4748.5,
-    "molycop_standalone_ev_for_nci_inr_m": 129366.34289001414,
-    "molycop_raw_common_equity_inr_m": 35108.617890014146,
-    "molycop_common_equity_inr_m": 35108.617890014146,
-    "minority_interest_inr_m": 5554.6434336465745,
-    "total_bridge_deductions_inr_m": 117553.50786595656,
+    "molycop_standalone_ev_for_nci_inr_m": 119721.96887019463,
+    "molycop_raw_common_equity_inr_m": 25464.24387019463,
+    "molycop_common_equity_inr_m": 25464.24387019463,
+    "minority_interest_inr_m": 4028.7770783076717,
+    "total_bridge_deductions_inr_m": 116027.64151061766,
     "nonoperating_assets_inr_m": 325.14,
-    "raw_tega_equity_inr_m": 28916.141983991954,
-    "tega_equity_inr_m": 28916.141983991954,
+    "raw_tega_equity_inr_m": 20391.01168752399,
+    "tega_equity_inr_m": 20391.01168752399,
     "pre_november_2025_shares": 66535492,
     "november_2025_issue_shares": 8592206,
     "issued_shares": 75127698,
@@ -869,7 +869,7 @@
     "diluted_shares": 75606133,
     "incremental_issue_cash_inr_m": 953.99939,
     "status": "First issue already in FY26 shares/cash. Main valuation includes proposed follow-on pro forma, with matching cash once. Completion not verified; 22 August filing is subject to approvals. No other dilutive instruments identified.",
-    "value_per_share_inr": 382.45762396010855,
+    "value_per_share_inr": 269.70049754461047,
     "bridge_residual_inr_m": 7.275957614183426e-12,
     "debt_basis": "June post-close Molycop net debt excludes preferences and already follows preference-funded refinancing. Parent June debt already includes INR15000m acquisition loan. Neither flow is applied twice.",
     "nci_basis": "Standalone Molycop operating EV at its own WACC, less full net bank debt, preference fair value, earnout PV and other claims; ordinary equity floored at zero before applying NCI. Subsidiary support/recourse not established."
@@ -882,15 +882,14 @@
       "risk_free_rate": 0.051053999999999995,
       "equity_risk_premium": 0.0708,
       "unlevered_beta": 0.89,
-      "beta": 0.9887672856225312,
-      "cost_of_equity": 0.12105872382207522,
+      "capm_unlevered_cost": 0.114066,
+      "transaction_premium": 0.0,
+      "unlevered_cost_of_capital": 0.114066,
       "cost_of_debt": 0.06556427856889312,
-      "after_tax_cost_of_debt": 0.0495300313447891,
-      "cost_of_preference": 0.0,
-      "common_equity_weight": 0.8719155985700584,
       "debt_weight": 0.12808440142994157,
-      "preference_weight": 0.0,
-      "standalone_wacc": 0.11189701406105566,
+      "tax_rate": 0.2445576703365335,
+      "tax_shield": 0.002053736958079065,
+      "standalone_wacc": 0.11201226304192094,
       "inputs": {
         "government_bond_yield": 0.069754,
         "sovereign_default_spread": 0.0187,
@@ -899,10 +898,8 @@
         "cost_of_debt": 0.06556427856889312,
         "tax_rate": 0.2445576703365335,
         "debt_weight": 0.12808440142994157,
-        "preference_weight": 0.0,
-        "cost_of_preference": 0.0,
         "currency": "INR",
-        "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md). Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026). Beta = Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026), relevered at the industry's 14.69% D/E, which also sets the 12.81% debt weight; the pre-deal balance sheet held acquisition funding, so Tega's own ratio is not a normal structure. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
+        "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md): WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026); unlevered beta = Machinery, corrected for cash, 0.89 (Damodaran, January 2026). Debt weight 12.81% from the industry's 14.69% D/E, because the pre-deal balance sheet held acquisition funding. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
         "_regression_beta_note": "The 0.6749 weekly regression beta in tega_capm_reference_20260902.json has R-squared 0.05 (standard error about 0.29) and is kept only as a cross-check."
       }
     },
@@ -913,15 +910,14 @@
       "risk_free_rate": 0.0479,
       "equity_risk_premium": 0.0423,
       "unlevered_beta": 0.94,
-      "beta": 2.453690721649484,
-      "cost_of_equity": 0.1516911175257732,
+      "capm_unlevered_cost": 0.08766199999999999,
+      "transaction_premium": 0.03435456426814196,
+      "unlevered_cost_of_capital": 0.12201656426814195,
       "cost_of_debt": 0.09,
-      "after_tax_cost_of_debt": 0.0657,
-      "cost_of_preference": 0.12,
-      "common_equity_weight": 0.33333333333333337,
       "debt_weight": 0.4810996563573883,
-      "preference_weight": 0.18556701030927836,
-      "standalone_wacc": 0.1044399945017182,
+      "tax_rate": 0.27,
+      "tax_shield": 0.011690721649484537,
+      "standalone_wacc": 0.11032584261865741,
       "inputs": {
         "government_bond_yield": 0.0479,
         "sovereign_default_spread": 0.0,
@@ -930,49 +926,49 @@
         "cost_of_debt": 0.09,
         "tax_rate": 0.27,
         "debt_weight": 0.4810996563573883,
-        "preference_weight": 0.18556701030927836,
-        "cost_of_preference": 0.12,
         "currency": "USD",
-        "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+        "_note": "Platform cost-of-capital method in USD: WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not in the sources. Unlevered beta = Steel, corrected for cash, 0.94 (Damodaran, January 2026). Debt weight 48.11% = term loan INR66,479m at close / the USD1,455m deal EV. The Apollo preference shares earn no tax shield, so they do not change the WACC; their claim is deducted in the equity bridge. A deal-calibrated premium is added to the unlevered cost (see _transaction_premium_note). STILL UNSOURCED: 9% debt cost (contractual rates not disclosed) and 27% tax.",
+        "transaction_premium": 0.03435456426814196,
+        "_transaction_premium_note": "Calibrated: the premium over CAPM at which the base-case Molycop DCF equals the INR142,455m headline EV paid at the 1 June 2026 close (USD1.5bn at 94.97). Without it the industry inputs give a 7.60% WACC and value Molycop at INR268,764m, nearly twice the arm's-length price paid four months before the valuation date. It stands for risk the US steel beta and mature-market ERP omit: B+ credit, private ownership and emerging-market mines (the earnout depends on Cobre Panama and Grasberg). If the price paid excluded the forecast cost savings, the true premium would be lower. Recompute with engine.calibrate_molycop_premium when Molycop forecasts change; a test enforces it."
       }
     },
-    "tega_weight_ev_inr_m": 16302.681161240707,
-    "molycop_weight_ev_inr_m": 129366.34289001414,
-    "tega_ev_weight": 0.11191590846043202,
-    "molycop_ev_weight": 0.888084091539568,
-    "molycop_wacc_inr_constant_fx": 0.1044399945017182,
-    "blended_wacc": 0.10527455362010868,
+    "tega_weight_ev_inr_m": 16272.016129483012,
+    "molycop_weight_ev_inr_m": 119721.96887019463,
+    "tega_ev_weight": 0.11965246940533131,
+    "molycop_ev_weight": 0.8803475305946686,
+    "molycop_wacc_inr_constant_fx": 0.11032584261865741,
+    "blended_wacc": 0.11052762698675647,
     "currency_convention": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
     "weight_basis": "Each business's standalone DCF enterprise value from this model's own forecast, discounted at its own WACC; market or deal values are not used as weights because they price different cash flows."
   },
   "standalone_values_for_audit_inr_m": {
     "tega": {
       "scope": "100% consolidated operating cash flows; full enterprise value",
-      "wacc": 0.11189701406105566,
+      "wacc": 0.11201226304192094,
       "terminal_growth": 0.04,
       "terminal_roic": 0.16,
-      "pv_forecast_fcff": 4860.79545200326,
+      "pv_forecast_fcff": 4857.621717555305,
       "terminal_nopat": 2497.07465397478,
       "terminal_reinvestment": 624.268663493695,
       "terminal_fcff": 1872.8059904810852,
-      "terminal_value": 26048.45298430168,
-      "pv_terminal_value": 11441.885709237447,
-      "enterprise_value": 16302.681161240707,
-      "terminal_share_of_ev": 0.7018407338076572
+      "terminal_value": 26006.764839356005,
+      "pv_terminal_value": 11414.394411927708,
+      "enterprise_value": 16272.016129483012,
+      "terminal_share_of_ev": 0.701473887507163
     },
     "molycop": {
       "scope": "100% consolidated operating cash flows; full enterprise value",
-      "wacc": 0.1044399945017182,
+      "wacc": 0.11032584261865741,
       "terminal_growth": 0.04,
       "terminal_roic": 0.16,
-      "pv_forecast_fcff": 60558.488719147404,
+      "pv_forecast_fcff": 59219.258214203495,
       "terminal_nopat": 12774.669111260995,
       "terminal_reinvestment": 3193.667277815249,
       "terminal_fcff": 9581.001833445745,
-      "terminal_value": 148680.98465139198,
-      "pv_terminal_value": 68807.85417086675,
-      "enterprise_value": 129366.34289001414,
-      "terminal_share_of_ev": 0.5318837391064416
+      "terminal_value": 136237.28456975377,
+      "pv_terminal_value": 60502.71065599113,
+      "enterprise_value": 119721.96887019463,
+      "terminal_share_of_ev": 0.5053601375499395
     }
   },
   "consolidated_statements_inr_m": {
@@ -2566,10 +2562,8 @@
         "cost_of_debt": 0.06556427856889312,
         "tax_rate": 0.2445576703365335,
         "debt_weight": 0.12808440142994157,
-        "preference_weight": 0.0,
-        "cost_of_preference": 0.0,
         "currency": "INR",
-        "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md). Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026). Beta = Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026), relevered at the industry's 14.69% D/E, which also sets the 12.81% debt weight; the pre-deal balance sheet held acquisition funding, so Tega's own ratio is not a normal structure. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
+        "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md): WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026); unlevered beta = Machinery, corrected for cash, 0.89 (Damodaran, January 2026). Debt weight 12.81% from the industry's 14.69% D/E, because the pre-deal balance sheet held acquisition funding. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
         "_regression_beta_note": "The 0.6749 weekly regression beta in tega_capm_reference_20260902.json has R-squared 0.05 (standard error about 0.29) and is kept only as a cross-check."
       },
       "molycop": {
@@ -2580,10 +2574,10 @@
         "cost_of_debt": 0.09,
         "tax_rate": 0.27,
         "debt_weight": 0.4810996563573883,
-        "preference_weight": 0.18556701030927836,
-        "cost_of_preference": 0.12,
         "currency": "USD",
-        "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+        "_note": "Platform cost-of-capital method in USD: WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not in the sources. Unlevered beta = Steel, corrected for cash, 0.94 (Damodaran, January 2026). Debt weight 48.11% = term loan INR66,479m at close / the USD1,455m deal EV. The Apollo preference shares earn no tax shield, so they do not change the WACC; their claim is deducted in the equity bridge. A deal-calibrated premium is added to the unlevered cost (see _transaction_premium_note). STILL UNSOURCED: 9% debt cost (contractual rates not disclosed) and 27% tax.",
+        "transaction_premium": 0.03435456426814196,
+        "_transaction_premium_note": "Calibrated: the premium over CAPM at which the base-case Molycop DCF equals the INR142,455m headline EV paid at the 1 June 2026 close (USD1.5bn at 94.97). Without it the industry inputs give a 7.60% WACC and value Molycop at INR268,764m, nearly twice the arm's-length price paid four months before the valuation date. It stands for risk the US steel beta and mature-market ERP omit: B+ credit, private ownership and emerging-market mines (the earnout depends on Cobre Panama and Grasberg). If the price paid excluded the forecast cost savings, the true premium would be lower. Recompute with engine.calibrate_molycop_premium when Molycop forecasts change; a test enforces it."
       },
       "scenario_risk_premium": {
         "downside": 0.0,
@@ -6713,7 +6707,7 @@
           "damodaran_industry_betas",
           "us_treasury_20260902"
         ],
-        "method": "Reviewed 23 October 2026. One discount rate for every scenario: the platform cost-of-capital method (industry betas relevered at each business's weights; Damodaran January 2026 risk premiums) sets the standalone WACCs in pro_forma.wacc. Terminal growth 4% and terminal ROIC 16% are analyst assumptions held equal across scenarios; scenarios change operating drivers only, and the sensitivity table tests both.",
+        "method": "Reviewed 23 October 2026. One discount rate for every scenario: the platform cost-of-capital method (industry unlevered cost of capital less the interest tax shield; Damodaran January 2026 risk premiums) sets the standalone WACCs in pro_forma.wacc. Terminal growth 4% and terminal ROIC 16% are analyst assumptions held equal across scenarios; scenarios change operating drivers only, and the sensitivity table tests both.",
         "status": "Applied; terminal parameters remain analyst assumptions",
         "reviewed_values": {
           "scenarios.downside.group_terminal_growth_inr": 0.04,
@@ -6965,7 +6959,7 @@
           "q1_results",
           "pending_issue"
         ],
-        "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. Reviewed 26 October 2026: standalone WACCs use the platform cost-of-capital method, and the blend is weighted by each business's standalone DCF value from this model. See adjacent input notes.",
+        "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. Reviewed 27 October 2026: standalone WACCs use the platform method (unlevered cost of capital less the interest tax shield), Molycop's unlevered cost includes a premium calibrated to the June 2026 purchase price, and the blend is weighted by each business's standalone DCF value from this model. See adjacent input notes.",
         "status": "Provisional; not statutory accounts",
         "reviewed_values": {
           "pro_forma": {
@@ -7006,10 +7000,8 @@
                 "cost_of_debt": 0.06556427856889312,
                 "tax_rate": 0.2445576703365335,
                 "debt_weight": 0.12808440142994157,
-                "preference_weight": 0.0,
-                "cost_of_preference": 0.0,
                 "currency": "INR",
-                "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md). Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026). Beta = Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026), relevered at the industry's 14.69% D/E, which also sets the 12.81% debt weight; the pre-deal balance sheet held acquisition funding, so Tega's own ratio is not a normal structure. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
+                "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md): WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026); unlevered beta = Machinery, corrected for cash, 0.89 (Damodaran, January 2026). Debt weight 12.81% from the industry's 14.69% D/E, because the pre-deal balance sheet held acquisition funding. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
                 "_regression_beta_note": "The 0.6749 weekly regression beta in tega_capm_reference_20260902.json has R-squared 0.05 (standard error about 0.29) and is kept only as a cross-check."
               },
               "molycop": {
@@ -7020,10 +7012,10 @@
                 "cost_of_debt": 0.09,
                 "tax_rate": 0.27,
                 "debt_weight": 0.4810996563573883,
-                "preference_weight": 0.18556701030927836,
-                "cost_of_preference": 0.12,
                 "currency": "USD",
-                "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+                "_note": "Platform cost-of-capital method in USD: WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not in the sources. Unlevered beta = Steel, corrected for cash, 0.94 (Damodaran, January 2026). Debt weight 48.11% = term loan INR66,479m at close / the USD1,455m deal EV. The Apollo preference shares earn no tax shield, so they do not change the WACC; their claim is deducted in the equity bridge. A deal-calibrated premium is added to the unlevered cost (see _transaction_premium_note). STILL UNSOURCED: 9% debt cost (contractual rates not disclosed) and 27% tax.",
+                "transaction_premium": 0.03435456426814196,
+                "_transaction_premium_note": "Calibrated: the premium over CAPM at which the base-case Molycop DCF equals the INR142,455m headline EV paid at the 1 June 2026 close (USD1.5bn at 94.97). Without it the industry inputs give a 7.60% WACC and value Molycop at INR268,764m, nearly twice the arm's-length price paid four months before the valuation date. It stands for risk the US steel beta and mature-market ERP omit: B+ credit, private ownership and emerging-market mines (the earnout depends on Cobre Panama and Grasberg). If the price paid excluded the forecast cost savings, the true premium would be lower. Recompute with engine.calibrate_molycop_premium when Molycop forecasts change; a test enforces it."
               },
               "scenario_risk_premium": {
                 "downside": 0.0,
@@ -7359,10 +7351,8 @@
                 "cost_of_debt": 0.06556427856889312,
                 "tax_rate": 0.2445576703365335,
                 "debt_weight": 0.12808440142994157,
-                "preference_weight": 0.0,
-                "cost_of_preference": 0.0,
                 "currency": "INR",
-                "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md). Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026). Beta = Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026), relevered at the industry's 14.69% D/E, which also sets the 12.81% debt weight; the pre-deal balance sheet held acquisition funding, so Tega's own ratio is not a normal structure. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
+                "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md): WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026); unlevered beta = Machinery, corrected for cash, 0.89 (Damodaran, January 2026). Debt weight 12.81% from the industry's 14.69% D/E, because the pre-deal balance sheet held acquisition funding. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
                 "_regression_beta_note": "The 0.6749 weekly regression beta in tega_capm_reference_20260902.json has R-squared 0.05 (standard error about 0.29) and is kept only as a cross-check."
               },
               "molycop": {
@@ -7373,10 +7363,10 @@
                 "cost_of_debt": 0.09,
                 "tax_rate": 0.27,
                 "debt_weight": 0.4810996563573883,
-                "preference_weight": 0.18556701030927836,
-                "cost_of_preference": 0.12,
                 "currency": "USD",
-                "_note": "Platform cost-of-capital method in USD. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not disclosed in the sources. Beta = Steel unlevered beta corrected for cash 0.94 (Damodaran, January 2026), relevered at the capital structure at close: term loan INR66,479m (48.11%) and Apollo preference INR25,641.9m (18.56%) against the USD1,455m deal EV. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed), 12% preference return, 27% tax."
+                "_note": "Platform cost-of-capital method in USD: WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not in the sources. Unlevered beta = Steel, corrected for cash, 0.94 (Damodaran, January 2026). Debt weight 48.11% = term loan INR66,479m at close / the USD1,455m deal EV. The Apollo preference shares earn no tax shield, so they do not change the WACC; their claim is deducted in the equity bridge. A deal-calibrated premium is added to the unlevered cost (see _transaction_premium_note). STILL UNSOURCED: 9% debt cost (contractual rates not disclosed) and 27% tax.",
+                "transaction_premium": 0.03435456426814196,
+                "_transaction_premium_note": "Calibrated: the premium over CAPM at which the base-case Molycop DCF equals the INR142,455m headline EV paid at the 1 June 2026 close (USD1.5bn at 94.97). Without it the industry inputs give a 7.60% WACC and value Molycop at INR268,764m, nearly twice the arm's-length price paid four months before the valuation date. It stands for risk the US steel beta and mature-market ERP omit: B+ credit, private ownership and emerging-market mines (the earnout depends on Cobre Panama and Grasberg). If the price paid excluded the forecast cost savings, the true premium would be lower. Recompute with engine.calibrate_molycop_premium when Molycop forecasts change; a test enforces it."
               },
               "scenario_risk_premium": {
                 "downside": 0.0,

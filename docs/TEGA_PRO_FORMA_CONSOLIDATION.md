@@ -29,15 +29,12 @@ reinvestment deduction under the existing lease-as-financing convention.
 For each business, using the platform method in
 [the cost-of-capital note](COST_OF_CAPITAL.md):
 
-`Ke = (bond yield − sovereign default spread) + relevered beta × equity risk premium`
+`Unlevered cost = (bond yield − sovereign default spread) + industry unlevered beta × equity risk premium (+ Molycop's deal-calibrated premium)`
 
-`Relevered beta = industry unlevered beta × (1 + (1 − tax) × D/E + P/E)`
+`WACC = unlevered cost − debt weight × tax rate × pre-tax cost of debt`
 
-`WACC = common equity weight × Ke + debt weight × Kd × (1 − tax rate) + preference weight × Kp`
-
-Preference funding has no assumed tax shield. It is a distinct capital class,
-not bank debt or ordinary equity. Its inclusion in the capital cost does not
-replace its explicit deduction in the EV-to-common-equity bridge.
+Preference funding has no tax shield, so it does not change the WACC. Its claim
+is deducted explicitly in the EV-to-common-equity bridge.
 
 `Blended WACC = legacy weight × legacy WACC + Molycop weight × Molycop WACC`
 
@@ -53,20 +50,22 @@ Every new parameter group has adjacent `_note` fields. Decimal rates are used.
 | `fx_inr_per_usd` | 94.97, retained September 2 reference |
 | `molycop_ev_weight_usd_m` | 1,455 deal EV (closing filing rounds to 1,500); sets Molycop's capital-structure weights at close, not the blend |
 | Tega bond yield / default spread / ERP | 6.9754% G-sec (2 September 2026) / 1.87% / 7.08% India total premium (Damodaran, January 2026) |
-| Tega beta | Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026), relevered at the industry D/E of 14.69% to 0.9888 |
+| Tega beta | Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026); unlevered cost 11.41% |
 | Tega debt cost / debt weight | 6.56%, FY2025–FY2026 borrowing interest paid / average borrowings / 12.81%, the industry D/E |
 | Tega tax | Existing 24.4558% historical effective proxy; not a marginal statutory tax rate |
 | Molycop bond yield / ERP | 4.79% US 10-year Treasury (2 September 2026) / 4.23% mature-market premium |
-| Molycop beta | Steel unlevered beta corrected for cash 0.94, relevered at the structure at close to 2.4537 |
-| Molycop common / debt / preference weights | 33.33% / 48.11% / 18.56%: term loan INR66,479m and preference INR25,641.9m against the USD1,455m EV weight |
+| Molycop beta | Steel unlevered beta corrected for cash 0.94; CAPM unlevered cost 8.77% |
+| Molycop deal premium | 3.44%, calibrated so the base-case Molycop DCF equals the INR142,455m paid at the 1 June 2026 close (`transaction_premium`; recompute with `engine.calibrate_molycop_premium`) |
+| Molycop debt weight | 48.11%: term loan INR66,479m against the USD1,455m deal EV |
 | Molycop debt cost / tax | 9% / 27%; **unsourced estimates** (contractual rates not disclosed) |
-| Preference cost | 12%; **not a verified contractual coupon** |
 | Equity-premium stress by scenario | 0 in every scenario; the stress is tested in the sensitivity table only |
 
-Results: Tega legacy WACC 11.19% and Molycop 10.44% in every scenario. The base
-blend is 10.55% (legacy 14.1% / Molycop 85.9% of standalone value); downside and
-upside blends are 10.53% and 10.57% because the business mix differs. Terminal
-growth (4%) and terminal ROIC (16%) are the same in every scenario.
+Results: Tega legacy WACC 11.20% and Molycop 11.03% in every scenario. The base
+blend is 11.06% (legacy 15.1% / Molycop 84.9% of standalone value); downside and
+upside blends are 11.05% and 11.06% because the business mix differs. Terminal
+growth (4%) and terminal ROIC (16%) are the same in every scenario. Without the
+deal premium, Molycop's WACC would be 7.60% and the model would value Molycop at
+nearly twice the price paid; the sensitivity table shows that case.
 
 `examples/tega_capm_reference_20260902.json` keeps the earlier CAPM research:
 a weekly regression beta of 0.67 with R² 0.05 and a historical Nifty premium.
@@ -75,7 +74,7 @@ It is a cross-check only. No consensus WACC is claimed.
 The report also solves for the **market-implied group WACC**: the single group
 rate at which the base case equals Tega's INR1,696.80 close on 30 June 2026, the
 valuation date, with forecasts, claims and the NCI valuation held fixed. It is
-8.65%, against 10.55% from the method above. The same file holds a P/E
+8.69%, against 11.06% from the method above. The same file holds a P/E
 cross-check: 28.2x (Nifty India Manufacturing three-year median) times FY2028
 pro-forma EPS of INR40.26 gives INR1,133.84. Neither result changes the
 forecasts.

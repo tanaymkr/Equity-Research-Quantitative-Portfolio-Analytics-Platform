@@ -1222,4 +1222,38 @@ def consensus_comparison(facts: dict, model: dict) -> dict | None:
         "price_inr": snapshot["price_inr"],
         "note": snapshot["note"],
         "years": years,
+        "targets": snapshot.get("targets"),
+    }
+
+
+def calibrate_molycop_premium(facts: dict, assumptions: dict) -> dict:
+    """Premium over CAPM at which the base-case Molycop DCF equals the deal EV.
+
+    The June 2026 purchase is an arm's-length price for Molycop's operations. Its
+    implied premium captures risk that the US steel beta and mature-market ERP
+    leave out (credit quality, emerging-market mines, private ownership).
+    Calibrated once on the base case; every scenario then uses the same rate.
+    """
+    target = facts["deal"]["headline_enterprise_value_inr_m_approx"]
+
+    def molycop_ev(premium):
+        trial = deepcopy(assumptions)
+        trial["pro_forma"]["wacc"]["molycop"]["transaction_premium"] = premium
+        model = build_acquisition_model(facts, trial)
+        return model["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+
+    def value_at(rate):
+        # implied_discount_rate expects a value that falls as the input rises.
+        return molycop_ev(rate - 0.10)
+
+    shifted = implied_discount_rate(
+        value_at, target, low=0.10, high=0.25, tolerance=1e-9
+    )
+    if shifted is None:
+        raise AcquisitionInputError("Deal EV is outside the calibration range")
+    premium = shifted - 0.10
+    return {
+        "target_enterprise_value_inr_m": target,
+        "transaction_premium": premium,
+        "calibrated_enterprise_value_inr_m": molycop_ev(premium),
     }

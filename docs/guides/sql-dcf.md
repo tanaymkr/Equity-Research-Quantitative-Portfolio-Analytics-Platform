@@ -21,8 +21,8 @@ Python 3.11+; no third-party runtime packages.
 - Five forecast years: revenue, operating EBIT, NOPAT, D&A, capex, operating
   working capital, change in working capital, FCFF and discounted FCFF.
 - Cost of capital from the platform's [shared method](../COST_OF_CAPITAL.md):
-  industry beta relevered at the debt weight, India risk premiums, the same
-  inputs in every scenario.
+  industry unlevered cost of capital less the interest tax shield, India risk
+  premiums, the same inputs in every scenario.
 - The WACC implied by a dated market price, holding the base-case cash flows
   fixed.
 - Downside, base and upside assumptions and results.
@@ -103,7 +103,7 @@ visible assumptions; a downside case may fall below management guidance.
 - Physical capex is not all business reinvestment: contract working capital
   is explicitly forecast. Provisions and detailed HAM project models are not.
 - The market check uses the 25 September 2026 close (INR2,008.40), not a live
-  quote. With the stored inputs the base case is INR725.69 at a 13.30% WACC
+  quote. With the stored inputs the base case is INR726.48 at a 13.29% WACC
   and 5% terminal growth, and the price implies 8.01%. This model has no
   earnings forecast, so it has no P/E cross-check.
 

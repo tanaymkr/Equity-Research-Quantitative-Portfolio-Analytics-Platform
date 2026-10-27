@@ -39,24 +39,28 @@ FY2026 statements. Python 3.11+; no third-party runtime packages.
   audited statements, notes, debt/asset/equity roll-forwards and checks.
 - The same folder holds the HTML report and full JSON model output.
 
-With the stored assumptions the model gives **INR382.46 (downside),
-INR743.26 (base) and INR895.43 (upside) per share** on 75,606,133 diluted
-shares, at a base group WACC of 10.55%. These reproduce the stored
+With the stored assumptions the model gives **INR269.70 (downside),
+INR599.31 (base) and INR743.36 (upside) per share** on 75,606,133 diluted
+shares, at a base group WACC of 11.06%. Molycop's rate is calibrated so that its
+DCF equals the INR142,455m paid for it in June 2026; with industry inputs alone
+the base value would be INR2,086.79, but Molycop would then be worth nearly
+twice the price paid. These reproduce the stored
 assumptions; they are not current price targets.
 
 Tega closed at INR1,696.80 on 30 June 2026, the valuation date. Holding the
-forecasts fixed, that price implies a group WACC of 8.65%
+forecasts fixed, that price implies a group WACC of 8.69%
 ([`market_check.json`](../../examples/tega_molycop_reports/market_check.json)).
-An 8.7% rate is below both businesses' standalone WACCs (11.19% and 10.44%),
-so the market is most likely expecting more cash than these forecasts contain.
-Leverage magnifies any such difference: group claims of INR124,874m (net debt,
+An 8.7% rate is below both businesses' standalone WACCs (11.20% and 11.03%).
+With Molycop at the price paid, the market is in effect valuing legacy Tega at
+about 32–41 times EBITDA, against the model's 7.4 times.
+Leverage magnifies any such difference: group claims of INR122,888m (net debt,
 preference shares, earnout, other claims and minority interest) sit ahead of
-shareholders against an enterprise value of INR180,744m, so each percentage
-point of WACC moves the value by roughly INR310–420 per share.
+shareholders against an enterprise value of INR167,875m, so each percentage
+point of WACC moves the value by roughly INR270–360 per share.
 
 **P/E cross-check.** At 28.2x, the Nifty India Manufacturing three-year median
 P/E, FY2028 pro-forma EPS of INR40.26 gives INR1,133.84 per share. The share
-price is 42.1x the same EPS and the DCF value 18.5x.
+price is 42.1x the same EPS and the DCF value 14.9x.
 
 **Model versus consensus.** MarketScreener's consensus (9 October 2026) has
 FY2028 EPS of INR93.60, so the INR1,935 price then was 20.7x consensus earnings

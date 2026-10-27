@@ -1,4 +1,4 @@
-"""Standalone CAPM/financing costs and an auditable operating-EV blend.
+"""Standalone costs of capital and an auditable value-weighted blend.
 
 All numeric choices live in assumptions.pro_forma, with adjacent source notes.
 Constant FX is an explicit expected-rate assumption, not an implicit USD/INR hedge.
@@ -7,9 +7,9 @@ Constant FX is an explicit expected-rate assumption, not an implicit USD/INR hed
 from math import isfinite
 
 from equity_analytics.valuation.cost_of_capital import (
-    cost_of_equity,
     default_free_rate,
-    relever_beta,
+    unlevered_cost_of_capital,
+    wacc_with_tax_shield,
 )
 
 REQUIRED = (
@@ -20,13 +20,16 @@ REQUIRED = (
     "cost_of_debt",
     "tax_rate",
     "debt_weight",
-    "preference_weight",
-    "cost_of_preference",
 )
 
 
 def standalone_wacc(inputs, equity_premium_stress=0.0):
-    """Platform cost-of-capital method: industry beta relevered at the weights."""
+    """Platform method: unlevered cost of capital less the interest tax shield.
+
+    Preference capital earns no tax shield, so it does not change the WACC; its
+    claim is deducted in the equity bridge. An optional ``transaction_premium``
+    adds business-specific risk calibrated to an arm's-length purchase price.
+    """
     for key in REQUIRED:
         if (
             isinstance(inputs[key], bool)
@@ -34,28 +37,27 @@ def standalone_wacc(inputs, equity_premium_stress=0.0):
             or not isfinite(inputs[key])
         ):
             raise ValueError(f"WACC {key} must be finite")
-    debt, pref = inputs["debt_weight"], inputs["preference_weight"]
-    equity = 1 - debt - pref
-    if min(debt, pref) < 0 or equity <= 0 or not 0 <= inputs["tax_rate"] < 1:
-        raise ValueError(
-            "Capital weights must be nonnegative with positive equity; tax in [0,1)"
-        )
-    if min(inputs["cost_of_debt"], inputs["cost_of_preference"]) < 0:
-        raise ValueError("Financing costs cannot be negative")
     premium = inputs["equity_risk_premium"] + equity_premium_stress
     if premium < 0:
         raise ValueError("Equity risk premium cannot be negative")
     rf = default_free_rate(
         inputs["government_bond_yield"], inputs["sovereign_default_spread"]
     )
-    beta = relever_beta(
-        inputs["unlevered_beta"], debt / equity, inputs["tax_rate"], pref / equity
+    transaction_premium = inputs.get("transaction_premium", 0.0)
+    if (
+        isinstance(transaction_premium, bool)
+        or not isinstance(transaction_premium, (int, float))
+        or not isfinite(transaction_premium)
+        or transaction_premium < 0
+    ):
+        raise ValueError("WACC transaction_premium must be finite and nonnegative")
+    capm_cost = unlevered_cost_of_capital(rf, inputs["unlevered_beta"], premium)
+    rates = wacc_with_tax_shield(
+        capm_cost + transaction_premium,
+        inputs["debt_weight"],
+        inputs["tax_rate"],
+        inputs["cost_of_debt"],
     )
-    ke = cost_of_equity(rf, beta, premium)
-    after_tax_debt = inputs["cost_of_debt"] * (1 - inputs["tax_rate"])
-    rate = equity * ke + debt * after_tax_debt + pref * inputs["cost_of_preference"]
-    if not 0 < rate < 1:
-        raise ValueError("WACC must be between zero and one")
     return {
         "currency": inputs["currency"],
         "government_bond_yield": inputs["government_bond_yield"],
@@ -63,15 +65,14 @@ def standalone_wacc(inputs, equity_premium_stress=0.0):
         "risk_free_rate": rf,
         "equity_risk_premium": premium,
         "unlevered_beta": inputs["unlevered_beta"],
-        "beta": beta,
-        "cost_of_equity": ke,
+        "capm_unlevered_cost": capm_cost,
+        "transaction_premium": transaction_premium,
+        "unlevered_cost_of_capital": rates["unlevered_cost_of_capital"],
         "cost_of_debt": inputs["cost_of_debt"],
-        "after_tax_cost_of_debt": after_tax_debt,
-        "cost_of_preference": inputs["cost_of_preference"],
-        "common_equity_weight": equity,
-        "debt_weight": debt,
-        "preference_weight": pref,
-        "standalone_wacc": rate,
+        "debt_weight": inputs["debt_weight"],
+        "tax_rate": inputs["tax_rate"],
+        "tax_shield": rates["tax_shield"],
+        "standalone_wacc": rates["wacc"],
         "inputs": dict(inputs),
     }
 
