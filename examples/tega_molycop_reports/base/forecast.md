@@ -16,16 +16,16 @@ Approved base revenue path. Consumables margin uses the management range; equipm
 
 | Business | Bond yield | RF | ERP | Unlevered beta | CAPM cost | Deal premium | Unlevered cost | Debt cost | Debt weight | Tax rate | Tax shield | WACC | Weight EV INR m | EV weight |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Tega INR | 6.975% | 5.105% | 7.080% | 0.89 | 11.407% | 0.000% | 11.407% | 6.56% | 12.81% | 24.46% | 0.205% | 11.201% | 25,259.42 | 15.06% |
-| Molycop USD / constant INR | 4.790% | 4.790% | 4.230% | 0.94 | 8.766% | 3.435% | 12.202% | 9.00% | 48.11% | 27.00% | 1.169% | 11.033% | 142,455.00 | 84.94% |
+| Tega INR | 6.975% | 5.105% | 7.080% | 0.89 | 11.407% | 0.000% | 11.407% | 6.56% | 12.81% | 24.46% | 0.205% | 11.201% | 25,259.42 | 8.59% |
+| Molycop USD / constant INR | 4.790% | 4.790% | 4.230% | 0.94 | 8.766% | 0.000% | 8.766% | 9.00% | 48.11% | 27.00% | 1.169% | 7.597% | 268,763.79 | 91.41% |
 
 ## Blended WACC and valuation diagnostics
 
 | Item | Value |
 | --- | --- |
-| Blended WACC | 11.0580% |
+| Blended WACC | 7.9068% |
 | Tega standalone calculated EV (audit only) | 25,259.42 |
-| Molycop standalone calculated EV (NCI only) | 142,455.00 |
+| Molycop standalone calculated EV (NCI only) | 268,763.79 |
 | EV weighting basis | Each business's standalone DCF enterprise value from this model's own forecast, discounted at its own WACC; market or deal values are not used as weights because they price different cash flows. |
 | FX convention | ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast. |
 
@@ -155,53 +155,53 @@ Approved base revenue path. Consumables margin uses the management range; equipm
 
 | FY end | FCFF | Discount years | PV FCFF |
 | --- | --- | --- | --- |
-| 2027 | 4,433.81 | 0.7507 | 4,098.11 |
-| 2028 | 12,058.36 | 1.7534 | 10,032.75 |
-| 2029 | 13,679.33 | 2.7534 | 10,248.19 |
-| 2030 | 14,823.31 | 3.7534 | 9,999.48 |
-| 2031 | 15,797.48 | 4.7534 | 9,595.56 |
-| 2032 | 16,620.27 | 5.7562 | 9,087.53 |
-| 2033 | 17,542.15 | 6.7562 | 8,636.56 |
-| 2034 | 18,590.20 | 7.7562 | 8,241.24 |
+| 2027 | 4,433.81 | 0.7507 | 4,187.63 |
+| 2028 | 12,058.36 | 1.7534 | 10,552.13 |
+| 2029 | 13,679.33 | 2.7534 | 11,093.48 |
+| 2030 | 14,823.31 | 3.7534 | 11,140.37 |
+| 2031 | 15,797.48 | 4.7534 | 11,002.56 |
+| 2032 | 16,620.27 | 5.7562 | 10,725.18 |
+| 2033 | 17,542.15 | 6.7562 | 10,490.61 |
+| 2034 | 18,590.20 | 7.7562 | 10,302.76 |
 
 ## Consolidated terminal value and enterprise value
 
 | Item | Value |
 | --- | --- |
-| wacc | 0.11 |
+| wacc | 0.08 |
 | terminal growth | 0.04 |
 | terminal roic | 0.16 |
-| pv forecast fcff | 69,939.43 |
+| pv forecast fcff | 79,494.72 |
 | terminal nopat | 20,789.80 |
 | terminal reinvestment | 5,197.45 |
 | terminal fcff | 15,592.35 |
-| terminal value | 220,917.95 |
-| pv terminal value | 97,935.33 |
-| enterprise value | 167,874.76 |
-| terminal share of ev | 0.58 |
+| terminal value | 399,112.67 |
+| pv terminal value | 221,189.70 |
+| enterprise value | 300,684.42 |
+| terminal share of ev | 0.74 |
 
 ## Explicit equity value bridge
 
 | Item | Amount |
 | --- | --- |
-| Combined enterprise value | 167,874.76 |
+| Combined enterprise value | 300,684.42 |
 | Legacy net debt (new term loan already included) | 18,695.14 |
 | Molycop post-refinancing net debt | 63,867.32 |
 | Less net debt: consolidated, after pro-forma issue cash | 81,608.46 |
 | Less: Apollo preference fair-value claim, 100% | 25,641.90 |
-| Less: earnout PV, 100% | 3,877.16 |
+| Less: earnout PV, 100% | 4,309.32 |
 | Less: other senior claims, 100% | 4,748.50 |
-| Molycop standalone common equity, after claims | 44,320.11 |
-| Less: Apollo common minority interest | 7,012.02 |
+| Molycop standalone common equity, after claims | 170,196.74 |
+| Less: Apollo common minority interest | 26,927.36 |
 | Add: nonoperating assets | 325.14 |
-| Equity attributable to Tega before zero floor | 45,311.85 |
-| Equity attributable to Tega after zero floor | 45,311.85 |
+| Equity attributable to Tega before zero floor | 157,774.02 |
+| Equity attributable to Tega after zero floor | 157,774.02 |
 | Pre-November shares | 66,535,492.00 |
 | November 2025 shares added (already in FY26) | 8,592,206.00 |
 | Follow-on shares assumed issued | 478,435.00 |
 | Diluted pro-forma shares | 75,606,133.00 |
 | Follow-on cash included once (INR m) | 954.00 |
-| Value per diluted share (INR) | 599.31 |
+| Value per diluted share (INR) | 2,086.79 |
 
 ## Legacy operating schedule (INR m)
 

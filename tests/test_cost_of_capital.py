@@ -61,18 +61,29 @@ def test_borrowing_never_raises_the_wacc_above_the_unlevered_cost(
     assert rates["wacc"] <= rates["unlevered_cost_of_capital"]
 
 
-def test_molycop_premium_reproduces_the_june_2026_deal_value():
+def test_molycop_deal_check_reproduces_the_june_2026_price():
     facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
     assumptions = _json("tega_molycop_assumptions.json")
-    stored = assumptions["pro_forma"]["wacc"]["molycop"]["transaction_premium"]
-    model = build_acquisition_model(facts, assumptions)
-    value = model["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
-    assert value == pytest.approx(
-        facts["deal"]["headline_enterprise_value_inr_m_approx"], abs=1.0
+    # Stored inputs use industry inputs only; the deal calibration is a cross-check.
+    assert assumptions["pro_forma"]["wacc"]["molycop"]["transaction_premium"] == 0.0
+    deal = facts["deal"]["headline_enterprise_value_inr_m_approx"]
+    calibration = calibrate_molycop_premium(facts, assumptions)
+    assert calibration["calibrated_enterprise_value_inr_m"] == pytest.approx(
+        deal, abs=1.0
     )
-    assert calibrate_molycop_premium(facts, assumptions)[
-        "transaction_premium"
-    ] == pytest.approx(stored, abs=1e-7)
+    check = market_implied_group_wacc(facts, assumptions)["molycop_deal_check"]
+    model = build_acquisition_model(facts, assumptions)
+    assert check["model_molycop_enterprise_value_inr_m"] == pytest.approx(
+        model["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+    )
+    assert check["model_to_deal_ratio"] == pytest.approx(
+        check["model_molycop_enterprise_value_inr_m"] / deal
+    )
+    assert check["calibrated_molycop_wacc"] > check["model_molycop_wacc"]
+    assert (
+        check["value_per_share_if_calibrated_inr"]
+        < model["equity_bridge"]["value_per_share_inr"]
+    )
 
 
 def test_implied_rate_solves_and_refuses_to_extrapolate():
@@ -135,8 +146,9 @@ def test_tega_scenarios_use_the_same_business_rates():
     for business in ("tega", "molycop"):
         assert len({w[business]["standalone_wacc"] for w in models}) == 1
     # The blend moves only with each scenario's business mix.
-    blends = [w["blended_wacc"] for w in models]
-    assert max(blends) - min(blends) < 0.001
+    for w in models:
+        rates = (w["tega"]["standalone_wacc"], w["molycop"]["standalone_wacc"])
+        assert min(rates) <= w["blended_wacc"] <= max(rates)
 
 
 def test_tega_market_implied_rate_reproduces_the_price():
@@ -150,7 +162,6 @@ def test_tega_market_implied_rate_reproduces_the_price():
     assert at_implied["equity_bridge"]["value_per_share_inr"] == pytest.approx(
         1696.80, abs=0.01
     )
-    assert check["implied_group_wacc"] < check["model_group_wacc"]
 
 
 def test_tega_override_only_moves_the_group_rate():

@@ -195,12 +195,12 @@ notebooks/       walkthrough of the ratio engine
 
 - The valuations are conditional on stated assumptions, several of them
   provisional, and are not investment advice or price targets.
-- Both DCFs value their companies well below the market: Tega at ₹599 against
-  ₹1,697 (analysts' average target ₹1,799), and Wabag at ₹646 against ₹2,008.
-  At a manufacturing-sector P/E the values would be ₹1,134 and ₹2,362. With
-  Molycop valued at the price paid for it, the Tega gap is the market's much
-  higher valuation of the legacy business. Wabag's working capital and five-year
-  horizon are the next forecast items to review.
+- Wabag's DCF (₹646) is far below its ₹2,008 share price; its working capital
+  and five-year horizon are the next forecast items to review.
+- Tega's DCF (₹2,087) is above its ₹1,697 valuation-date price and the
+  analysts' ₹1,799 average target. It values Molycop at 1.9 times the price paid
+  for it in June 2026; calibrated to that price, Tega would be worth ₹599. That
+  is the largest single judgement in the valuation.
 - Financial statements are loaded for two companies; the Nifty 100 universe
   has prices but not yet fundamentals.
 - Index membership is recorded from October 2026. Earlier periods need

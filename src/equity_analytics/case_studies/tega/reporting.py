@@ -11,7 +11,11 @@ from pathlib import Path
 from equity_analytics.forecasting.reporting import write_historical_reports
 from equity_analytics.valuation.multiples import pe_text
 
-from .engine import build_acquisition_model, market_implied_group_wacc
+from .engine import (
+    build_acquisition_model,
+    calibrate_molycop_premium,
+    market_implied_group_wacc,
+)
 
 
 def _n(value):
@@ -267,9 +271,9 @@ def sensitivities(facts, assumptions):
     base_wacc = build_acquisition_model(facts, assumptions)["wacc_calculation"][
         "blended_wacc"
     ]
-    molycop_premium = assumptions["pro_forma"]["wacc"]["molycop"].get(
-        "transaction_premium", 0.0
-    )
+    molycop_premium = calibrate_molycop_premium(facts, assumptions)[
+        "transaction_premium"
+    ]
     definitions = [
         (
             "Group WACC (blended)",
@@ -966,9 +970,24 @@ def write_reports(
         f"Holding the forecasts and claims fixed, that price implies {implied}, "
         f"versus {market['model_group_wacc']:.2%} from the cost-of-capital method, and a group "
         f"enterprise value of INR{market['required_group_ev_inr_m']:,.0f}m versus the model's "
-        f"INR{market['model_group_ev_inr_m']:,.0f}m. The market is either discounting these cash "
-        "flows at a lower rate or expecting more cash than the forecasts contain; this check "
-        "never changes the forecasts."
+        f"INR{market['model_group_ev_inr_m']:,.0f}m. "
+        + (
+            "The market is either discounting these cash flows at a higher rate or "
+            "expecting less cash than the forecasts contain"
+            if market["model_value_per_share_inr"] > market["price_inr"]
+            else "The market is either discounting these cash flows at a lower rate or "
+            "expecting more cash than the forecasts contain"
+        )
+        + "; this check never changes the forecasts."
+    )
+    deal = market["molycop_deal_check"]
+    market_text += (
+        f" Molycop check: at its {deal['model_molycop_wacc']:.2%} WACC the model values "
+        f"Molycop at INR{deal['model_molycop_enterprise_value_inr_m']:,.0f}m, "
+        f"{deal['model_to_deal_ratio']:.2f} times the INR{deal['deal_enterprise_value_inr_m']:,.0f}m "
+        "paid at the 1 June 2026 close. Calibrating Molycop's rate to that price "
+        f"(a {deal['calibrated_premium']:.2%} premium, WACC {deal['calibrated_molycop_wacc']:.2%}) "
+        f"would give INR{deal['value_per_share_if_calibrated_inr']:,.2f} per share."
     )
     consensus_md, consensus_html, consensus_pe = _consensus_parts(
         market["consensus_comparison"], market["pe_cross_check"]

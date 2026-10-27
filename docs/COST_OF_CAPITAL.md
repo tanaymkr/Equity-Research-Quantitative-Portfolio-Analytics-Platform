@@ -11,7 +11,7 @@ away.
 ```text
 Risk-free rate            = 10-year government bond yield − sovereign default spread
 Unlevered cost of capital = risk-free rate + industry unlevered beta × equity risk premium
-                            (+ a deal-calibrated premium for Molycop only)
+                            (+ an optional deal-calibrated premium; zero in the stored inputs)
 WACC                      = unlevered cost of capital − D/V × tax rate × pre-tax cost of debt
 ```
 
@@ -64,8 +64,8 @@ better (see open items).
 | Wabag (linked model, FY27) | Engineering/Construction | 1.14 | 13.32% | – | 1.7% | 8.65% | 0.04% | 13.29% |
 | Wabag (generic DCF) | Engineering/Construction | 1.14 | 13.32% | – | 1.8% | 7.80% | 0.03% | 13.29% |
 | Tega legacy business | Machinery | 0.89 | 11.41% | – | 12.8% | 6.56% | 0.21% | 11.20% |
-| Molycop (USD) | Steel | 0.94 | 8.77% | 3.44% | 48.1% | 9.00% | 1.17% | 11.03% |
-| Tega + Molycop group (base) | | | | | | | | 11.06% |
+| Molycop (USD) | Steel | 0.94 | 8.77% | – | 48.1% | 9.00% | 1.17% | 7.60% |
+| Tega + Molycop group (base) | | | | | | | | 7.91% |
 
 Notes on the inputs:
 
@@ -82,36 +82,39 @@ Notes on the inputs:
     disclosed). Molycop's 27% tax rate is also unsourced.
 - **The group blend** weights each business by its standalone DCF value in this
   model (its own cash flows at its own WACC): ₹25,259m for legacy Tega and
-  ₹142,455m for Molycop in the base case, or 15.1% and 84.9%. One blended rate
-  then nearly reproduces the sum of the two valuations. Because the mix differs
-  by scenario, the blend is 11.05% / 11.06% / 11.06% (downside / base / upside).
+  ₹268,764m for Molycop in the base case, or 8.6% and 91.4%. One blended rate
+  then reproduces the sum of the two valuations to within about 2%. Because the
+  mix differs by scenario, the blend is 7.85% / 7.91% / 7.98% (downside / base /
+  upside).
 
-## Why Molycop carries a deal-calibrated premium
+## Molycop: industry inputs versus the price paid
 
-With industry inputs alone, Molycop's WACC would be 7.60%. That values Molycop
-at ₹268,764m, almost twice the ₹142,455m that Tega and Apollo paid at arm's
-length on 1 June 2026, four months before this valuation date. A recent
-arm's-length price is the best market evidence of a private company's value. So
-Molycop's unlevered cost carries a **3.44% premium**, set so that its base-case
-DCF equals the price paid. That gives a WACC of 11.03%.
+On industry inputs, Molycop's WACC is 7.60% and the model values it at
+₹268,764m. That is 1.89 times the ₹142,455m that Tega and Apollo paid at arm's
+length on 1 June 2026, four months before this valuation date. The stored model
+uses the industry inputs. Each report also shows the deal-calibrated
+alternative: the premium over CAPM at which Molycop's base-case DCF equals the
+price paid.
 
-The premium stands for risk that a US steel beta and the mature-market premium
-leave out:
+That premium (3.44%) would stand for risk that a US steel beta and the
+mature-market premium leave out:
 
 - a B+ credit rating (S&P)
 - private ownership
 - an earnout tied to emerging-market mines (Cobre Panama and Grasberg)
 
-It is calibrated once, on the base case, and every scenario uses the same rate.
-If the price paid excluded the forecast cost savings, the true premium would be
-lower. `engine.calibrate_molycop_premium` recomputes it, and a test fails if
-the stored premium stops reproducing the deal value.
+If the price paid excluded the forecast cost savings, the premium would be
+lower. `engine.calibrate_molycop_premium` computes it, and a test checks that it
+reproduces the deal value.
 
 | Molycop premium | Molycop WACC | Tega down / base / up (₹ per share) |
 | ---: | ---: | --- |
-| 0 (industry inputs only) | 7.60% | 1,419 / 2,087 / 2,312 |
+| **0 (industry inputs, stored)** | **7.60%** | **1,419 / 2,087 / 2,312** |
 | 1.72% (half) | 9.32% | base 1,105 |
-| **3.44% (deal-calibrated)** | **11.03%** | **270 / 599 / 743** |
+| 3.44% (calibrated to the price paid) | 11.03% | 270 / 599 / 743 |
+
+The choice between the first and last rows is the largest single judgement in
+the Tega valuation.
 
 ## Why the beta isn't relevered
 
@@ -140,7 +143,7 @@ legacy business) and 14.0% (Wabag).
 | Model | Terminal growth | Why |
 | --- | ---: | --- |
 | Wabag (both models) | 5% | Rupee cash flows: the RBI's 4% inflation target for 2026–2031 ([Outlook Money, 26 March 2026](https://www.outlookmoney.com/banking/rbi-to-maintain-4-per-cent-inflation-target-until-2031-centre)) plus about 1% real growth. It stays below the 5.25% default-free rupee rate, so the business never outgrows the risk-free rate. |
-| Tega + Molycop | 4% | About 85% of the group's value is Molycop, whose cash flows are in dollars. 5% would exceed the 4.79% US risk-free rate, the usual ceiling for perpetual growth. |
+| Tega + Molycop | 4% | About 91% of the group's value is Molycop, whose cash flows are in dollars. 5% would exceed the 4.79% US risk-free rate, the usual ceiling for perpetual growth. |
 
 ## Tega legacy capex
 
@@ -162,7 +165,7 @@ to 9% of revenue, against 4–6% historically.
 | --- | --- | --- |
 | Discount-rate formula | Regression or assumed betas; CAPM equity cost weighted with debt and preference costs | Unlevered cost of capital less the interest tax shield |
 | Tega legacy business | Regression beta 0.67 × 5.97% historical premium; WACC 9.9% | Machinery beta, India premiums; WACC 11.20% |
-| Molycop | Risk-free 4.5%, ERP 5%, beta 1.10, all unsourced; WACC 8.8% | Treasury 4.79%, mature ERP 4.23%, Steel beta, premium calibrated to the deal price; WACC 11.03% |
+| Molycop | Risk-free 4.5%, ERP 5%, beta 1.10, all unsourced; WACC 8.8% | Treasury 4.79%, mature ERP 4.23%, Steel beta; WACC 7.60% (11.03% if calibrated to the deal price, shown as a cross-check) |
 | Tega blend weights | Legacy ₹80,000m (unsourced) / Molycop USD1,455m | Each business's standalone DCF value in this model |
 | Tega scenarios | Premium stress +2 / 0 / −0.5 points, terminal growth 3 / 4 / 4.5%, terminal ROIC 13 / 16 / 18% (downside / base / upside) | Same business rates; 4% growth and 16% ROIC in every case |
 | Tega legacy capex from FY2028 | 7.38% of revenue (FY2024–FY2026) | 5.21% (FY2022–FY2024, before the expansions) |
@@ -171,7 +174,7 @@ to 9% of revenue, against 4–6% historically.
 
 | INR per share (downside / base / upside) | Before | After |
 | --- | --- | --- |
-| Tega + Molycop | 294.22 / 1,171.99 / 1,734.08 | 269.70 / 599.31 / 743.36 |
+| Tega + Molycop | 294.22 / 1,171.99 / 1,734.08 | 1,419.17 / 2,086.79 / 2,311.88 |
 | Wabag linked model | 424.27 / 579.30 / 716.59 | 472.85 / 646.15 / 800.51 |
 | Wabag generic DCF | 497.90 / 808.15 / 1,037.41 | 537.37 / 726.48 / 826.05 |
 
@@ -183,17 +186,22 @@ forecasts.
 
 | Model | Price | Model value (base) | Model WACC | Market-implied WACC |
 | --- | --- | ---: | ---: | ---: |
-| Tega + Molycop | ₹1,696.80 on 30 Jun 2026 (valuation date) | ₹599.31 | 11.06% | **8.69%** |
+| Tega + Molycop | ₹1,696.80 on 30 Jun 2026 (valuation date) | ₹2,086.79 | 7.91% | **8.34%** |
 | Wabag linked model | ₹2,008.40 on 25 Sep 2026 | ₹646.15 at the 31 Mar anchor | 13.29% | **8.00%** |
 | Wabag generic DCF | ₹2,008.40 on 25 Sep 2026 | ₹726.48 at the 31 Mar anchor | 13.29% | **8.01%** |
 
 For Wabag, the anchor value is rolled forward to the price date at the same
 rate. Prices come from the platform's Yahoo Finance snapshots.
 
-**Reading it.** A Wabag WACC of 8.0% would be below the 12.3% expected return on
-an average Indian stock under these inputs (5.25% + 1.0 × 7.08%). So the gap
-cannot be a discount-rate problem; it sits in the cash flows. The market
-expects far more cash than the forecasts contain.
+**Reading it.** The two companies point in opposite directions.
+
+- **Wabag** is valued well below its price. A Wabag WACC of 8.0% would be below
+  the 12.3% expected return on an average Indian stock under these inputs
+  (5.25% + 1.0 × 7.08%). So the gap cannot be a discount-rate problem; it sits
+  in the cash flows. The market expects far more cash than the forecasts
+  contain.
+- **Tega** is valued above its price: the price implies 8.34% against the
+  model's 7.91%.
 
 - **Wabag: working capital.** Each extra rupee of revenue ties up about 48
   paise of working capital (61 paise in FY2027, as the ratio returns to its
@@ -202,17 +210,15 @@ expects far more cash than the forecasts contain.
   after-tax operating profit (₹4,248m), and free cash flow is negative.
   Ninety-one per cent of enterprise value sits in the terminal value. The
   market is pricing in faster cash conversion or a longer period of high growth.
-- **Tega: legacy Tega and leverage.**
-  - Molycop is valued at the price paid. The legacy business alone is valued at
-    ₹25,259m, about 7.4 times FY2025 EBITDA, by its own forecast at its own
-    WACC.
-  - The market valued legacy Tega at about ₹139,000m before the deal. At
-    ₹1,697–2,094 a share it still implies ₹108,000–138,000m for it, about 32–41
-    times EBITDA.
-  - Claims of ₹122,888m sit ahead of shareholders against a group enterprise
-    value of ₹167,875m: net debt, preference shares, earnout, other claims and
+- **Tega: Molycop and leverage.**
+  - Most of the model's Tega value is Molycop, valued at 1.89 times the price
+    paid in June.
+  - Legacy Tega is valued at only ₹25,259m, about 7.4 times FY2025 EBITDA. The
+    market valued it at about ₹139,000m before the deal.
+  - Claims of ₹143,236m sit ahead of shareholders against a group enterprise
+    value of ₹300,684m: net debt, preference shares, earnout, other claims and
     minority interest. Each percentage point of group WACC therefore moves the
-    value by about ₹270–360 per share.
+    value by about ₹800–1,345 per share.
 
 ## P/E cross-check
 
@@ -228,7 +234,7 @@ Each company report shows that value beside the DCF
 
 | Model | FY2028 EPS | Value at 28.2x | Share price / FY2028 EPS | DCF value / FY2028 EPS |
 | --- | ---: | ---: | ---: | ---: |
-| Tega + Molycop (pro forma, after interest, preference return and minorities) | ₹40.26 | ₹1,133.84 | 42.1x | 14.9x |
+| Tega + Molycop (pro forma, after interest, preference return and minorities) | ₹40.26 | ₹1,133.84 | 42.1x | 51.8x |
 | Tega at consensus FY2028 EPS (MarketScreener, 9 Oct 2026) | ₹93.60 | ₹2,635.78 | 20.7x at ₹1,935 | n/a |
 | Wabag linked model | ₹83.86 | ₹2,361.50 | 23.9x | 7.7x |
 
@@ -261,17 +267,24 @@ and 28x
 
 The generic SQL DCF has no earnings forecast, so it has no P/E cross-check.
 
-**Why the two methods disagree.** With discount rates of 11–13% and terminal
-returns on capital of 15–16%, the terminal value is only about 8–11 times
-after-tax operating profit. Growth adds little value when returns are close to
-the cost of capital. A P/E value inherits whatever growth and returns the
-market currently prices in. The gap between the two is the market's optimism
-relative to these forecasts, not an arithmetic error.
+**Why the two methods disagree.** A DCF's terminal value depends heavily on the
+gap between the discount rate and growth. Terminal value as a multiple of
+after-tax operating profit:
+
+- **Wabag:** about 8 times (13.3% WACC, 5% growth, 15% return on capital).
+  Growth adds little value when returns are close to the cost of capital.
+- **Tega:** about 19 times (7.9% WACC, 4% growth, 16% return).
+
+A P/E value instead inherits whatever growth and returns the market currently
+prices in. The gaps between the two views reflect different expectations, not
+arithmetic errors.
 
 ## Open items
 
-- Molycop's debt cost and tax rate are unsourced estimates, and its premium
-  rests on the deal price and the model's Molycop forecast.
+- Molycop's debt cost and tax rate are unsourced estimates. On industry inputs
+  the model values Molycop at 1.89 times the price paid in June 2026;
+  calibrated to that price, Tega's base value would be ₹599. This is the main
+  valuation risk.
 - The industry betas are US samples. An emerging-market or India sample from the
   same dataset should be compared.
 - The two models use G-sec observations from their own research dates (2 and

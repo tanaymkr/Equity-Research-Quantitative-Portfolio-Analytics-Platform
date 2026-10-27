@@ -1159,6 +1159,35 @@ def market_implied_group_wacc(facts: dict, assumptions: dict) -> dict:
             bridge["value_per_share_inr"],
         ),
         "consensus_comparison": consensus_comparison(facts, base),
+        "molycop_deal_check": molycop_deal_check(facts, assumptions, base),
+    }
+
+
+def molycop_deal_check(facts: dict, assumptions: dict, base: dict) -> dict:
+    """Compare the model's Molycop value with the price paid, and show the
+    per-share value if Molycop's rate were calibrated to that price."""
+    deal = facts["deal"]["headline_enterprise_value_inr_m_approx"]
+    model_value = base["standalone_values_for_audit_inr_m"]["molycop"][
+        "enterprise_value"
+    ]
+    calibration = calibrate_molycop_premium(facts, assumptions)
+    calibrated = deepcopy(assumptions)
+    calibrated["pro_forma"]["wacc"]["molycop"]["transaction_premium"] = calibration[
+        "transaction_premium"
+    ]
+    at_deal = build_acquisition_model(facts, calibrated)
+    return {
+        "deal_enterprise_value_inr_m": deal,
+        "model_molycop_enterprise_value_inr_m": model_value,
+        "model_to_deal_ratio": model_value / deal,
+        "model_molycop_wacc": base["wacc_calculation"]["molycop"]["standalone_wacc"],
+        "calibrated_premium": calibration["transaction_premium"],
+        "calibrated_molycop_wacc": at_deal["wacc_calculation"]["molycop"][
+            "standalone_wacc"
+        ],
+        "value_per_share_if_calibrated_inr": at_deal["equity_bridge"][
+            "value_per_share_inr"
+        ],
     }
 
 

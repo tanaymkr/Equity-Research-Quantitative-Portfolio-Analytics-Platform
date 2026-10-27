@@ -2,11 +2,11 @@
   "price_date": "2026-06-30",
   "price_inr": 1696.8,
   "source_id": "tega_prices",
-  "model_value_per_share_inr": 599.3145058673493,
-  "model_group_wacc": 0.11057983391846267,
-  "implied_group_wacc": 0.08690564095973967,
-  "model_group_ev_inr_m": 167874.7603863579,
-  "required_group_ev_inr_m": 250851.3946213218,
+  "model_value_per_share_inr": 2086.788671856823,
+  "model_group_wacc": 0.0790675455487658,
+  "implied_group_wacc": 0.08339073836803436,
+  "model_group_ev_inr_m": 300684.4187744216,
+  "required_group_ev_inr_m": 271198.8833815213,
   "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection.",
   "pe_cross_check": {
     "benchmark": {
@@ -22,8 +22,8 @@
     "pe_value_per_share": 1133.8368547509656,
     "market_price": 1696.8,
     "market_pe": 42.14176651586682,
-    "dcf_value_per_share": 599.3145058673493,
-    "dcf_pe": 14.884589801882328
+    "dcf_value_per_share": 2086.788671856823,
+    "dcf_pe": 51.8275347579833
   },
   "consensus_comparison": {
     "source_id": "marketscreener_consensus",
@@ -190,5 +190,14 @@
       "high_inr": 1880.0,
       "low_inr": 1740.0
     }
+  },
+  "molycop_deal_check": {
+    "deal_enterprise_value_inr_m": 142455.0,
+    "model_molycop_enterprise_value_inr_m": 268763.7860022374,
+    "model_to_deal_ratio": 1.88665744271691,
+    "model_molycop_wacc": 0.07597127835051545,
+    "calibrated_premium": 0.03435456426814196,
+    "calibrated_molycop_wacc": 0.11032584261865741,
+    "value_per_share_if_calibrated_inr": 599.3145058673493
   }
 }

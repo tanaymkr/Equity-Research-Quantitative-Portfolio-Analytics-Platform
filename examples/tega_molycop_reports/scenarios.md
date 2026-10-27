@@ -4,15 +4,15 @@ PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion IN
 
 | Scenario | Provisional INR / share | Raw equity INR m | Group WACC | Group terminal growth |
 | --- | --- | --- | --- | --- |
-| Downside | INR 269.70 | 20,391.01 | 11.1% | 4.0% |
-| Base | INR 599.31 | 45,311.85 | 11.1% | 4.0% |
-| Upside | INR 743.36 | 56,202.60 | 11.1% | 4.0% |
+| Downside | INR 1,419.17 | 107,297.71 | 7.8% | 4.0% |
+| Base | INR 2,086.79 | 157,774.02 | 7.9% | 4.0% |
+| Upside | INR 2,311.88 | 174,792.35 | 8.0% | 4.0% |
 
 ## What the market price implies
 
-Tega closed at INR1,696.80 on 30 June 2026, the valuation date, against the base-case value of INR599.31. Holding the forecasts and claims fixed, that price implies a group WACC of 8.69%, versus 11.06% from the cost-of-capital method, and a group enterprise value of INR250,851m versus the model's INR167,875m. The market is either discounting these cash flows at a lower rate or expecting more cash than the forecasts contain; this check never changes the forecasts.
+Tega closed at INR1,696.80 on 30 June 2026, the valuation date, against the base-case value of INR2,086.79. Holding the forecasts and claims fixed, that price implies a group WACC of 8.34%, versus 7.91% from the cost-of-capital method, and a group enterprise value of INR271,199m versus the model's INR300,684m. The market is either discounting these cash flows at a higher rate or expecting less cash than the forecasts contain; this check never changes the forecasts. Molycop check: at its 7.60% WACC the model values Molycop at INR268,764m, 1.89 times the INR142,455m paid at the 1 June 2026 close. Calibrating Molycop's rate to that price (a 3.44% premium, WACC 11.03%) would give INR599.31 per share.
 
-P/E cross-check: at the Nifty India Manufacturing three-year median 28.2x P/E (trailing earnings; 23 October 2026), Tega's FY2028 EPS of INR40.26 gives INR1,133.84 per share. On the same EPS the share price is 42.1x and the DCF value 14.9x. The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF. FY2028 is the first full year with Molycop; its pro-forma EPS is after interest, the preference return and minority interest. Consensus FY2028 EPS is INR93.60 (MarketScreener, 9 October 2026): at the same 28.2x it gives INR2,635.78, and the INR1,935 price then was 20.7x consensus EPS against 48.1x the model's.
+P/E cross-check: at the Nifty India Manufacturing three-year median 28.2x P/E (trailing earnings; 23 October 2026), Tega's FY2028 EPS of INR40.26 gives INR1,133.84 per share. On the same EPS the share price is 42.1x and the DCF value 51.8x. The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF. FY2028 is the first full year with Molycop; its pro-forma EPS is after interest, the preference return and minority interest. Consensus FY2028 EPS is INR93.60 (MarketScreener, 9 October 2026): at the same 28.2x it gives INR2,635.78, and the INR1,935 price then was 20.7x consensus EPS against 48.1x the model's.
 
 ## Model versus consensus
 
@@ -69,45 +69,45 @@ Rates are decimals. All other assumptions remain at base. No probabilities assig
 
 | Input changed | Value | INR/share |
 | --- | --- | --- |
-| Group WACC (blended) | 0.1006 | 958.95 |
-| Group WACC (blended) | 0.1106 | 599.31 |
-| Group WACC (blended) | 0.1206 | 328.27 |
+| Group WACC (blended) | 0.0691 | 3,431.38 |
+| Group WACC (blended) | 0.0791 | 2,086.79 |
+| Group WACC (blended) | 0.0891 | 1,288.63 |
 | Molycop deal-calibrated premium | 0.0000 | 2,086.79 |
 | Molycop deal-calibrated premium | 0.0172 | 1,105.36 |
 | Molycop deal-calibrated premium | 0.0344 | 599.31 |
-| Equity premium stress for both businesses | -0.0100 | 887.59 |
-| Equity premium stress for both businesses | 0.0000 | 599.31 |
-| Equity premium stress for both businesses | 0.0100 | 377.69 |
-| Conversion INR per USD | 90.0000 | 594.43 |
-| Conversion INR per USD | 94.9700 | 599.31 |
-| Conversion INR per USD | 100.0000 | 604.26 |
-| Group terminal growth | 0.0300 | 531.30 |
-| Group terminal growth | 0.0400 | 599.31 |
-| Group terminal growth | 0.0500 | 687.64 |
-| Group terminal ROIC | 0.1300 | 512.39 |
-| Group terminal ROIC | 0.1600 | 599.31 |
-| Group terminal ROIC | 0.1900 | 658.78 |
-| Preference current fair value (INR m) | 25,641.90 | 599.31 |
-| Preference current fair value (INR m) | 31,340.10 | 535.87 |
-| Preference current fair value (INR m) | 37,988.00 | 461.85 |
-| Other claims reserve (INR m) | 0.00 | 652.18 |
-| Other claims reserve (INR m) | 4,748.50 | 599.31 |
-| Other claims reserve (INR m) | 9,497.00 | 546.45 |
-| Earnout cash payment (INR m) | 0.00 | 642.48 |
-| Earnout cash payment (INR m) | 5,698.20 | 599.31 |
-| Earnout cash payment (INR m) | 11,396.40 | 556.15 |
-| Legacy Q1 cash flow estimate (INR m) | 0.00 | 591.39 |
-| Legacy Q1 cash flow estimate (INR m) | 600.00 | 599.32 |
-| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 607.26 |
-| Molycop forecast NWC / revenue | 0.1800 | 638.90 |
-| Molycop forecast NWC / revenue | 0.2000 | 599.31 |
-| Molycop forecast NWC / revenue | 0.2300 | 539.92 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 495.67 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 599.31 |
-| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 702.95 |
-| Cost savings after FY2027 / base ramp | 0.0000 | 463.69 |
-| Cost savings after FY2027 / base ramp | 0.5000 | 531.50 |
-| Cost savings after FY2027 / base ramp | 1.0000 | 599.31 |
+| Equity premium stress for both businesses | -0.0100 | 3,188.83 |
+| Equity premium stress for both businesses | 0.0000 | 2,086.79 |
+| Equity premium stress for both businesses | 0.0100 | 1,427.89 |
+| Conversion INR per USD | 90.0000 | 1,990.56 |
+| Conversion INR per USD | 94.9700 | 2,086.79 |
+| Conversion INR per USD | 100.0000 | 2,184.23 |
+| Group terminal growth | 0.0300 | 1,709.32 |
+| Group terminal growth | 0.0400 | 2,086.79 |
+| Group terminal growth | 0.0500 | 2,740.11 |
+| Group terminal ROIC | 0.1300 | 1,894.10 |
+| Group terminal ROIC | 0.1600 | 2,086.79 |
+| Group terminal ROIC | 0.1900 | 2,218.61 |
+| Preference current fair value (INR m) | 25,641.90 | 2,086.79 |
+| Preference current fair value (INR m) | 31,340.10 | 2,023.35 |
+| Preference current fair value (INR m) | 37,988.00 | 1,949.33 |
+| Other claims reserve (INR m) | 0.00 | 2,139.66 |
+| Other claims reserve (INR m) | 4,748.50 | 2,086.79 |
+| Other claims reserve (INR m) | 9,497.00 | 2,033.92 |
+| Earnout cash payment (INR m) | 0.00 | 2,134.77 |
+| Earnout cash payment (INR m) | 5,698.20 | 2,086.79 |
+| Earnout cash payment (INR m) | 11,396.40 | 2,038.81 |
+| Legacy Q1 cash flow estimate (INR m) | 0.00 | 2,078.86 |
+| Legacy Q1 cash flow estimate (INR m) | 600.00 | 2,086.80 |
+| Legacy Q1 cash flow estimate (INR m) | 1,200.00 | 2,094.73 |
+| Molycop forecast NWC / revenue | 0.1800 | 2,131.92 |
+| Molycop forecast NWC / revenue | 0.2000 | 2,086.79 |
+| Molycop forecast NWC / revenue | 0.2300 | 2,018.93 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | -949.70 | 1,892.18 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 0.00 | 2,086.79 |
+| Molycop FY26 EBITDA operating adjustment (INR m) | 949.70 | 2,281.27 |
+| Cost savings after FY2027 / base ramp | 0.0000 | 1,826.98 |
+| Cost savings after FY2027 / base ramp | 0.5000 | 1,956.91 |
+| Cost savings after FY2027 / base ramp | 1.0000 | 2,086.79 |
 
 ## Material limitations
 
