@@ -195,6 +195,7 @@ Each company report shows that value beside the DCF
 | Model | FY2028 EPS | Value at 28.2x | Share price / FY2028 EPS | DCF value / FY2028 EPS |
 | --- | ---: | ---: | ---: | ---: |
 | Tega + Molycop (pro forma, after interest, preference return and minorities) | ₹40.26 | ₹1,133.84 | 42.1x | 18.5x |
+| Tega at consensus FY2028 EPS (MarketScreener, 9 Oct 2026) | ₹93.60 | ₹2,635.78 | 20.7x at ₹1,935 | n/a |
 | Wabag linked model | ₹83.86 | ₹2,361.50 | 23.9x | 7.7x |
 
 Three caveats apply:
@@ -206,6 +207,12 @@ Three caveats apply:
 - **It is a broad index.** It covers Indian manufacturers in general, not
   direct peers. Nifty Capital Goods was not used: its 44x is driven by defence
   and electrical stocks, and its P/E history only starts in June 2026.
+
+Tega's model EPS is less than half of consensus although its revenue and
+EBITDA are at or above consensus. The difference arises below EBITDA: interest
+including the preference return, other income and tax
+([details](guides/tega-model.md)). This is why the share price looks like 42x
+the model's FY2028 EPS but about 20x consensus EPS.
 
 For Wabag, Motilal Oswal's target multiples were 22x FY2028 EPS
 ([26 May 2026](https://www.businesstoday.in/amp/markets/stocks/story/va-tech-wabag-share-price-targets-hint-at-up-to-31-upside-in-12-months-533312-2026-05-26))

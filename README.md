@@ -38,7 +38,7 @@ Built by [Tanay Malekar](https://github.com/tanaymkr).
 - **Data-quality auditing.** Automated calendar checks and an audit of the
   vendor data that found unadjusted demergers, a mis-dated split and
   placeholder rows on market holidays ([findings](docs/guides/universe.md#price-data-problems-found-in-the-first-nifty-100-download)).
-- **Tested.** 306 automated tests run in continuous integration on every push.
+- **Tested.** 307 automated tests run in continuous integration on every push.
 
 ## Screenshots
 
@@ -142,7 +142,7 @@ src/equity_analytics/
   market/        price snapshots, returns, reports
 scripts/         command-line entry points and Windows launchers
 examples/        sourced inputs, assumptions and reference outputs
-tests/           306 automated tests
+tests/           307 automated tests
 docs/            guides and method notes
 notebooks/       walkthrough of the ratio engine
 ```

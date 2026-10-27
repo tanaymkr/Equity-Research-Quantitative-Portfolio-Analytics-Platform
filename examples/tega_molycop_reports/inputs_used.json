@@ -132,6 +132,12 @@
         "title": "Stock Analysis: Tega Industries cash-flow and income statements",
         "url": "https://stockanalysis.com/quote/nse/TEGA/financials/cash-flow-statement/",
         "location": "Capital expenditure FY2022 INR409.99m and FY2023 INR922.11m; revenue FY2022 INR9,518m and FY2023 INR12,140m. Figures from Tega's FY2022-FY2023 annual reports, retrieved 26 October 2026 from this secondary source; its FY2024 values match the audited statements used here"
+      },
+      "marketscreener_consensus": {
+        "date": "2026-10-09",
+        "title": "MarketScreener: Tega Industries financial estimates (analyst consensus)",
+        "url": "https://www.marketscreener.com/quote/stock/TEGA-INDUSTRIES-LIMITED-130615467/finances/",
+        "location": "FY2027-FY2029 consensus: net sales, EBITDA, EBIT, interest paid, earnings before tax, net income, EPS; P/E 29.2x FY2027 and 20.7x FY2028 at the 9 October 2026 close of INR1,935. Observed after this model's cutoff; definitions (reported or adjusted) and analyst count not shown"
       }
     },
     "deal": {
@@ -355,6 +361,41 @@
       "observed_on": "23 October 2026",
       "url": "https://www.indexpe.in/nifty-india-manufacturing",
       "note": "The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF."
+    },
+    "consensus_snapshot": {
+      "source_id": "marketscreener_consensus",
+      "price_date": "2026-10-09",
+      "price_inr": 1935.0,
+      "note": "Comparison only. Observed after the model's 11 September 2026 cutoff; MarketScreener does not show whether figures are reported or adjusted, or how many analysts contribute.",
+      "years": {
+        "2027": {
+          "revenue": 144964.0,
+          "ebitda": 18217.0,
+          "ebit": 12061.0,
+          "interest": 7588.0,
+          "profit_before_tax": 6868.0,
+          "owners_net_income": 4971.0,
+          "eps": 66.2
+        },
+        "2028": {
+          "revenue": 176285.0,
+          "ebitda": 23021.0,
+          "ebit": 15641.0,
+          "interest": 8082.0,
+          "profit_before_tax": 9745.0,
+          "owners_net_income": 7035.0,
+          "eps": 93.6
+        },
+        "2029": {
+          "revenue": 182585.0,
+          "ebitda": 23911.0,
+          "ebit": 16296.0,
+          "interest": 6382.0,
+          "profit_before_tax": 10950.0,
+          "owners_net_income": 7897.0,
+          "eps": 105.1
+        }
+      }
     },
     "tega_fy2026": {
       "source_ids": [

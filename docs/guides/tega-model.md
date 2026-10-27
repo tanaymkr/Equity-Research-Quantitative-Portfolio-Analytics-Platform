@@ -56,7 +56,23 @@ point of WACC moves the value by roughly INR310–420 per share.
 
 **P/E cross-check.** At 28.2x, the Nifty India Manufacturing three-year median
 P/E, FY2028 pro-forma EPS of INR40.26 gives INR1,133.84 per share. The share
-price is 42.1x the same EPS and the DCF value 18.5x. The method, the terminal
+price is 42.1x the same EPS and the DCF value 18.5x.
+
+**Model versus consensus.** MarketScreener's consensus (9 October 2026) has
+FY2028 EPS of INR93.60, so the INR1,935 price then was 20.7x consensus earnings
+but 48.1x the model's. The model's revenue and EBITDA are at or above
+consensus. The difference arises below EBITDA. For FY2028:
+
+| Item | Model vs consensus (INR m) | Reason |
+| --- | ---: | --- |
+| Interest, including the preference return | 2,283 higher | Follows management's guidance and the reported June quarter; the 12% preference return is an estimate |
+| Other income | 2,090 lower | Consensus profit before tax exceeds EBIT less interest by an amount MarketScreener does not explain |
+| Tax and minority interest | 927 higher | Mainly the non-deductible preference return |
+| EBIT | 1,309 higher | Offsets part of the above |
+
+Net income to Tega shareholders ends INR3,991m lower. The report's "Model versus
+consensus" table shows FY2027–FY2029 line by line. Consensus is comparison only
+and never enters the valuation. The method, the terminal
 growth choice (4%, because most of the value is in dollars) and the legacy
 capex basis are in [the cost-of-capital note](../COST_OF_CAPITAL.md).
 

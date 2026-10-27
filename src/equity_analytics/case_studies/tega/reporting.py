@@ -175,6 +175,78 @@ def _legacy_statement_tables(result):
     )
 
 
+def _consensus_parts(comparison, pe_check):
+    """Markdown lines, HTML and a P/E sentence for the consensus comparison."""
+    if comparison is None:
+        return [], "", ""
+    years = comparison["years"]
+    headers = ["INR million unless stated"] + [
+        f"FY{y['fiscal_year']} {who}" for y in years for who in ("model", "consensus")
+    ]
+    rows = []
+    for i, line in enumerate(years[0]["lines"]):
+        rows.append(
+            [line["line"]]
+            + [_n(y["lines"][i][who]) for y in years for who in ("model", "consensus")]
+        )
+    rows.append(
+        [
+            f"P/E at INR{comparison['price_inr']:,.0f} ({_long_date(comparison['price_date'])})"
+        ]
+        + [
+            "n/a" if pe is None else f"{pe:.1f}x"
+            for y in years
+            for pe in (
+                y["model_pe_at_snapshot_price"],
+                y["consensus_pe_at_snapshot_price"],
+            )
+        ]
+    )
+    fy28 = next(y for y in years if y["fiscal_year"] == 2028)
+    line = {item["line"]: item for item in fy28["lines"]}
+    ebit = line["EBIT"]["difference"]
+    interest = line["Interest (model: incl. preference return)"]["difference"]
+    pbt = line["Profit before tax"]["difference"]
+    owners = line["Net income to Tega shareholders"]["difference"]
+    other = pbt - ebit + interest
+    tax_minorities = pbt - owners
+    explanation = (
+        f"FY2028: the model's EBIT is INR{ebit:,.0f}m {'above' if ebit >= 0 else 'below'} "
+        f"consensus, but its interest including the preference return is INR{interest:,.0f}m "
+        f"higher, its other income is INR{-other:,.0f}m lower (consensus profit before tax "
+        "exceeds EBIT less interest by an amount MarketScreener does not explain), and its "
+        f"tax and minority interest are INR{tax_minorities:,.0f}m higher, mainly because the "
+        "preference return is not tax-deductible. Net income to shareholders is therefore "
+        f"INR{-owners:,.0f}m lower. The model's interest follows management's guidance and "
+        "the reported June quarter; its 12% preference return is an estimate. "
+        + comparison["note"]
+    )
+    consensus_eps = line["EPS (INR)"]["consensus"]
+    pe_sentence = (
+        f" Consensus FY2028 EPS is INR{consensus_eps:,.2f} (MarketScreener, "
+        f"{_long_date(comparison['price_date'])}): at the same "
+        f"{pe_check['benchmark']['pe']:.1f}x it gives "
+        f"INR{pe_check['benchmark']['pe'] * consensus_eps:,.2f}, and the "
+        f"INR{comparison['price_inr']:,.0f} price then was "
+        f"{fy28['consensus_pe_at_snapshot_price']:.1f}x consensus EPS against "
+        f"{fy28['model_pe_at_snapshot_price']:.1f}x the model's."
+    )
+    md = [
+        "## Model versus consensus",
+        "",
+        _table(headers, rows),
+        "",
+        explanation,
+        "",
+    ]
+    html = (
+        "<section><h2>Model versus consensus</h2>"
+        + _table(headers, rows, True)
+        + f"<p>{escape(explanation)}</p></section>"
+    )
+    return md, html, pe_sentence
+
+
 def _long_date(text):
     day = date.fromisoformat(text)
     return f"{day.day} {day:%B %Y}"
@@ -873,9 +945,16 @@ def write_reports(
         "flows at a lower rate or expecting more cash than the forecasts contain; this check "
         "never changes the forecasts."
     )
-    pe_paragraph = pe_text(market["pe_cross_check"], "Tega") + (
-        " FY2028 is the first full year with Molycop; its pro-forma EPS is after "
-        "interest, the preference return and minority interest."
+    consensus_md, consensus_html, consensus_pe = _consensus_parts(
+        market["consensus_comparison"], market["pe_cross_check"]
+    )
+    pe_paragraph = (
+        pe_text(market["pe_cross_check"], "Tega")
+        + (
+            " FY2028 is the first full year with Molycop; its pro-forma EPS is after "
+            "interest, the preference return and minority interest."
+        )
+        + consensus_pe
     )
     md = [
         f"# {title}",
@@ -890,6 +969,7 @@ def write_reports(
         "",
         pe_paragraph,
         "",
+        *consensus_md,
         timing,
         "",
     ]
@@ -899,6 +979,7 @@ def write_reports(
         f"<h1>{title}</h1><p class='notice'>{escape(intro)}</p>",
         _table(headers, summary_rows, True),
         f"<section><h2>What the market price implies</h2><p>{escape(market_text)}</p><p>{escape(pe_paragraph)}</p></section>",
+        consensus_html,
         f"<p>{escape(timing)}</p>",
         "<nav><a href='#assumptions'>Assumptions</a><a href='#base'>Base</a><a href='#downside'>Downside</a><a href='#upside'>Upside</a><a href='#sensitivity'>Sensitivity</a><a href='#sources'>Sources</a></nav>",
     ]

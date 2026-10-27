@@ -170,7 +170,7 @@ optimised. No management ROE target is relabelled as a ROIC forecast.
 
 ## Validation
 
-The full suite (306 tests and 13 subtests) passes; Ruff passes. The Wabag addition
+The full suite (307 tests and 13 subtests) passes; Ruff passes. The Wabag addition
 includes tests for cash/equity dividend timing, debt draw/interest/tax effects,
 capex and valuation, bank-charge classification, allowance double counting,
 lease reinvestment, depreciation limits, historical driver scaling, missing

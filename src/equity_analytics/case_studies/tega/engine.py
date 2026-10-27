@@ -1158,4 +1158,68 @@ def market_implied_group_wacc(facts: dict, assumptions: dict) -> dict:
             price,
             bridge["value_per_share_inr"],
         ),
+        "consensus_comparison": consensus_comparison(facts, base),
+    }
+
+
+CONSENSUS_LINES = (
+    ("revenue", "Revenue", "revenue"),
+    ("ebitda", "EBITDA", "operating_ebitda"),
+    ("ebit", "EBIT", "ebit_after_integration"),
+    ("interest", "Interest (model: incl. preference return)", None),
+    ("profit_before_tax", "Profit before tax", "profit_before_tax_proxy"),
+    ("owners_net_income", "Net income to Tega shareholders", "owners_net_income_proxy"),
+    ("eps", "EPS (INR)", "pro_forma_eps_inr"),
+)
+
+
+def consensus_comparison(facts: dict, model: dict) -> dict | None:
+    """Line up the model's pro-forma income with a dated consensus snapshot.
+
+    Comparison only: consensus never feeds the forecasts or the valuation.
+    """
+    snapshot = facts.get("consensus_snapshot")
+    if snapshot is None:
+        return None
+    rows = model["consolidated_statements_inr_m"]["full_fiscal_year_income"]["rows"]
+    income = {str(r["fiscal_year"]): r["income"] for r in rows}
+    years = []
+    for year, consensus in snapshot["years"].items():
+        if year not in income:
+            raise AcquisitionInputError(f"Model has no FY{year} income to compare")
+        mine = income[year]
+        lines = []
+        for key, label, model_key in CONSENSUS_LINES:
+            value = (
+                mine["bank_and_lease_finance_cost"]
+                + mine["preference_return_economic_charge"]
+                if model_key is None
+                else mine[model_key]
+            )
+            lines.append(
+                {
+                    "line": label,
+                    "model": value,
+                    "consensus": consensus[key],
+                    "difference": value - consensus[key],
+                }
+            )
+        years.append(
+            {
+                "fiscal_year": int(year),
+                "lines": lines,
+                "consensus_pe_at_snapshot_price": snapshot["price_inr"]
+                / consensus["eps"],
+                "model_pe_at_snapshot_price": snapshot["price_inr"]
+                / mine["pro_forma_eps_inr"]
+                if mine["pro_forma_eps_inr"] > 0
+                else None,
+            }
+        )
+    return {
+        "source_id": snapshot["source_id"],
+        "price_date": snapshot["price_date"],
+        "price_inr": snapshot["price_inr"],
+        "note": snapshot["note"],
+        "years": years,
     }

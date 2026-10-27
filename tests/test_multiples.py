@@ -77,3 +77,33 @@ def test_both_models_use_one_benchmark_and_fy2028_eps():
     assert wabag["dcf_value_per_share"] == pytest.approx(
         wabag_model["dcf"]["implied_value_per_share"]
     )
+
+
+def test_tega_consensus_comparison_lines_up_with_the_model():
+    facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
+    assumptions = json.loads((EXAMPLES / "tega_molycop_assumptions.json").read_text())
+    comparison = market_implied_group_wacc(facts, assumptions)["consensus_comparison"]
+    model = build_acquisition_model(facts, assumptions)
+    rows = model["consolidated_statements_inr_m"]["full_fiscal_year_income"]["rows"]
+    income = {r["fiscal_year"]: r["income"] for r in rows}
+    assert [y["fiscal_year"] for y in comparison["years"]] == [2027, 2028, 2029]
+    fy28 = next(y for y in comparison["years"] if y["fiscal_year"] == 2028)
+    lines = {line["line"]: line for line in fy28["lines"]}
+    assert lines["EPS (INR)"]["consensus"] == 93.6
+    assert lines["EPS (INR)"]["model"] == pytest.approx(
+        income[2028]["pro_forma_eps_inr"]
+    )
+    interest = lines["Interest (model: incl. preference return)"]
+    assert interest["model"] == pytest.approx(
+        income[2028]["bank_and_lease_finance_cost"]
+        + income[2028]["preference_return_economic_charge"]
+    )
+    for line in fy28["lines"]:
+        assert line["difference"] == pytest.approx(line["model"] - line["consensus"])
+    assert fy28["consensus_pe_at_snapshot_price"] == pytest.approx(1935 / 93.6)
+    # Consensus never reaches the valuation.
+    without = dict(facts)
+    without.pop("consensus_snapshot")
+    assert build_acquisition_model(without, assumptions)["equity_bridge"][
+        "value_per_share_inr"
+    ] == pytest.approx(model["equity_bridge"]["value_per_share_inr"])
