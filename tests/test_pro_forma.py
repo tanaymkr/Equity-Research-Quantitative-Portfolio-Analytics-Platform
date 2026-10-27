@@ -20,32 +20,38 @@ def inputs():
     return f, json.loads((ROOT / "examples/tega_molycop_assumptions.json").read_text())
 
 
-def test_hand_calculated_wacc_includes_nondeductible_preference():
+def test_hand_calculated_wacc_with_tax_shield_and_premium():
     x = {
-        "risk_free_rate": 0.04,
+        "government_bond_yield": 0.05,
+        "sovereign_default_spread": 0.01,
         "equity_risk_premium": 0.06,
-        "beta": 1.2,
+        "unlevered_beta": 0.6,
         "cost_of_debt": 0.08,
         "tax_rate": 0.25,
         "debt_weight": 0.4,
-        "preference_weight": 0.1,
-        "cost_of_preference": 0.12,
         "currency": "USD",
     }
     w = standalone_wacc(x)
-    assert w["cost_of_equity"] == pytest.approx(0.112)
-    assert w["standalone_wacc"] == pytest.approx(
-        0.5 * 0.112 + 0.4 * 0.08 * 0.75 + 0.1 * 0.12
-    )
+    # Unlevered cost 4% + 0.6 x 6% = 7.6%; shield 40% x 25% x 8% = 0.8%
+    assert w["risk_free_rate"] == pytest.approx(0.04)
+    assert w["unlevered_cost_of_capital"] == pytest.approx(0.076)
+    assert w["tax_shield"] == pytest.approx(0.008)
+    assert w["standalone_wacc"] == pytest.approx(0.068)
+    premium = standalone_wacc({**x, "transaction_premium": 0.02})
+    assert premium["standalone_wacc"] == pytest.approx(0.088)
+    with pytest.raises(ValueError):
+        standalone_wacc({**x, "transaction_premium": -0.01})
 
 
 @pytest.mark.parametrize(
     "key,value",
     [
         ("debt_weight", 1.1),
-        ("preference_weight", -0.1),
+        ("debt_weight", -0.1),
         ("tax_rate", 1.1),
-        ("beta", float("nan")),
+        ("unlevered_beta", float("nan")),
+        ("unlevered_beta", 0.0),
+        ("sovereign_default_spread", 0.2),
     ],
 )
 def test_invalid_wacc_rejected(inputs, key, value):
@@ -55,15 +61,27 @@ def test_invalid_wacc_rejected(inputs, key, value):
         standalone_wacc(x)
 
 
-def test_ev_weights_are_business_operating_values_not_ownership(inputs):
-    w = blended_wacc(inputs[1]["pro_forma"], "base")
-    share = 80000 / (80000 + 1455 * 94.97)
+def test_blend_weights_are_the_models_own_business_values(inputs):
+    f, a = inputs
+    m = build_acquisition_model(f, a)
+    w = m["wacc_calculation"]
+    values = m["standalone_values_for_audit_inr_m"]
+    tega, molycop = (values[k]["enterprise_value"] for k in ("tega", "molycop"))
+    share = tega / (tega + molycop)
     assert w["tega_ev_weight"] == pytest.approx(share)
     assert w["molycop_ev_weight"] == pytest.approx(1 - share)
     assert w["blended_wacc"] == pytest.approx(
         share * w["tega"]["standalone_wacc"]
         + (1 - share) * w["molycop"]["standalone_wacc"]
     )
+    # One blended rate approximately reproduces the sum of the two valuations;
+    # the gap grows with the difference between the two rates.
+    group = m["group_dcf_inr_m"]["enterprise_value"]
+    assert group == pytest.approx(tega + molycop, rel=0.03)
+    direct = blended_wacc(a["pro_forma"], "base", tega, molycop)
+    assert direct["blended_wacc"] == pytest.approx(w["blended_wacc"])
+    with pytest.raises(ValueError):
+        blended_wacc(a["pro_forma"], "base", -1.0, molycop)
 
 
 @pytest.mark.parametrize("case", ["downside", "base", "upside"])
@@ -145,7 +163,9 @@ def test_fx_input_reconverts_usd_origins_and_preserves_reported_inr(inputs):
     assert m["equity_bridge"]["preference_fair_value_full_inr_m"] == pytest.approx(
         270 * 100
     )
-    assert m["wacc_calculation"]["molycop_weight_ev_inr_m"] == pytest.approx(1455 * 100)
+    assert m["wacc_calculation"]["molycop_weight_ev_inr_m"] == pytest.approx(
+        m["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+    )
     assert m["fy27_stub_bridge"]["actual_ytd_revenue"] == pytest.approx(
         f0["q1_fy2027"]["group_revenue"]
     )
@@ -213,7 +233,7 @@ def test_intercompany_eliminations_change_presentation_not_cashflow(inputs):
 def test_higher_entity_risk_changes_blend_and_value(inputs):
     f, a = deepcopy(inputs)
     before = build_acquisition_model(f, a)
-    a["pro_forma"]["wacc"]["molycop"]["beta"] += 0.3
+    a["pro_forma"]["wacc"]["molycop"]["unlevered_beta"] += 0.3
     after = build_acquisition_model(f, a)
     assert (
         after["wacc_calculation"]["blended_wacc"]

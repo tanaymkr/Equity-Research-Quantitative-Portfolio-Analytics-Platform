@@ -124,7 +124,13 @@ def test_approved_operating_forecasts_and_molycop_schedules_are_unchanged(inputs
     baseline = json.loads(
         (ROOT / "tests/fixtures/legacy_update_baseline.json").read_text()
     )
-    model = build_acquisition_model(*inputs, case)
+    facts, assumptions = deepcopy(inputs)
+    # The October 2026 capex review changed this input on purpose. Restore the
+    # pinned value so the test still proves the operating engine is unchanged.
+    pinned = baseline["cases"][case]["scenario_assumptions"]
+    for key in ("legacy_later_capex_revenue_fraction",):
+        assumptions["scenarios"][case][key] = pinned[key]
+    model = build_acquisition_model(facts, assumptions, case)
     for key, expected in baseline["cases"][case].items():
         # DCF/bridge and group structure intentionally superseded by consolidation.
         # Preserve every original business operating row and Molycop funding view.

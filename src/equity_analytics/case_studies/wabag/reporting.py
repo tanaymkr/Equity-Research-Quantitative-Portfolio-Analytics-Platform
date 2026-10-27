@@ -1,8 +1,11 @@
 """Offline, auditable statement report; no network calls or runtime dependencies."""
 
 import json
+from datetime import date
 from html import escape
 from pathlib import Path
+
+from equity_analytics.valuation.multiples import pe_text
 
 from .layout import BS_ROWS, CF_ROWS, IS_ROWS, LABELS
 
@@ -29,6 +32,41 @@ def table(headers, rows):
         for row in rows
     )
     return f'<div class="scroll"><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
+
+
+def _long_date(text):
+    day = date.fromisoformat(text)
+    return f"{day.day} {day:%B %Y}"
+
+
+def broker_text(multiples):
+    brokers = multiples["broker_target_multiples"]
+    if not brokers:
+        return ""
+    quoted = "; ".join(
+        f"{b['broker']} {b['pe']:g}x FY{b['eps_year']} EPS ({_long_date(b['date'])})"
+        for b in brokers
+    )
+    return f" Broker target multiples for comparison: {quoted}."
+
+
+def market_text(check):
+    """Plain-language reading of the market-implied discount rate."""
+    implied = (
+        f"a WACC of {check['implied_wacc']:.2%}"
+        if check["implied_wacc"] is not None
+        else "a WACC outside the 4.5%-30% search range"
+    )
+    return (
+        f"Wabag closed at INR{check['price_inr']:,.2f} on {_long_date(check['price_date'])}. "
+        f"This case values it at INR{check['model_value_per_share_inr']:,.2f} as of the "
+        f"{_long_date(check['anchor_date'])} anchor, discounting at "
+        f"{check['model_wacc_first_year']:.2%} in FY27. "
+        f"Holding these cash flows fixed, the price implies {implied} for every year, with the anchor "
+        "value rolled forward to the price date at that rate. The market is either discounting "
+        "at a lower rate or expecting more cash than this forecast contains; this check never "
+        "changes the forecast."
+    )
 
 
 def section(identifier, title, body):
@@ -66,6 +104,20 @@ def report_html(payload):
     )
     parts.append(
         "<p>Edit <code>examples/wabag_linked/assumptions.json</code> and rerun <code>scripts/Run_Wabag_Forecast.bat</code>. Each input includes its source and rationale. The old SQL-only DCF remains a separate legacy example.</p>"
+    )
+    parts.append(
+        section(
+            "market",
+            "What the market price implies",
+            "<p>"
+            + escape(market_text(payload["market_check"]))
+            + "</p><p>"
+            + escape(
+                pe_text(payload["market_check"]["pe_cross_check"], "Wabag")
+                + broker_text(payload["forecast_references"]["multiples"])
+            )
+            + "</p>",
+        )
     )
     for key, identifier, title, fields in (
         ("income_statement", "income", "Consolidated profit and loss", IS_ROWS),
@@ -172,15 +224,15 @@ def report_html(payload):
                         "market_equity",
                         "average_gross_debt",
                         "unlevered_beta",
-                        "relevered_beta",
                     )
                     else r["wacc"][k]
                 )
                 for r in years
             ]
         )
-    wacc_note = f"<p>Price reference: {escape(rates['price_date'])}; INR{rates['share_price']:,.2f}. Observed levered beta {rates['levered_beta']:.4f}, from {len(rates['beta_observations'])} weekly Wabag / NIFTY50 price-return pairs. This is a local-index estimate with limited explanatory power (R² {rates['beta_statistics']['r_squared']:.3f}), not a forecast beta supplied by Wabag.</p>"
-    wacc_note += "<p>Default-free INR rate = Indian 10-year G-sec yield − sovereign default spread. Cost of equity = default-free rate + relevered beta × mature-market ERP + India country-risk premium × country loading. Beta is unlevered using reported gross debt and market equity, then relevered using each year’s average forecast debt. Country risk is not added twice. Book debt approximates market debt; equity value is held at the dated reference price × basic shares to avoid circular valuation.</p>"
+    basis = rates["beta_basis"]
+    wacc_note = f"<p>Price reference: {escape(rates['price_date'])}; INR{rates['share_price']:,.2f}. Beta: {escape(basis['industry'])} unlevered beta {rates['unlevered_beta']:.2f} ({escape(basis['measure'].lower())}; {escape(basis['dataset'])}). Cross-check only: Wabag's own weekly regression beta is {rates['regression_beta']:.4f} from {len(rates['beta_observations'])} Wabag / NIFTY50 return pairs, with R² {rates['beta_statistics']['r_squared']:.3f}, too imprecise to value the company.</p>"
+    wacc_note += "<p>Platform cost-of-capital method, shared with every model: default-free INR rate = Indian 10-year G-sec yield − sovereign default spread; unlevered cost of capital = default-free rate + unlevered beta × India equity risk premium (mature-market premium + country risk premium); WACC = unlevered cost of capital − debt weight × tax rate × pre-tax cost of debt. The debt weight uses each year's average forecast debt against the dated market equity. Book debt approximates market debt; equity value is held at the dated reference price × basic shares to avoid circular valuation.</p>"
     parts.append(
         section(
             "wacc", "WACC and capital structure", wacc_note + table(headers, wacc_rows)
@@ -235,6 +287,8 @@ def report_html(payload):
             ]
         )
         for name, ref in payload["forecast_references"].items():
+            if name == "multiples":
+                continue
             if r["year"] in ref["years"]:
                 j = ref["years"].index(r["year"])
                 comparisons.append(

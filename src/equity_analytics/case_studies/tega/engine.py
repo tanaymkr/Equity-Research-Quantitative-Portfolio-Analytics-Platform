@@ -11,6 +11,9 @@ from copy import deepcopy
 from datetime import date
 from math import isfinite
 
+from equity_analytics.valuation.cost_of_capital import implied_discount_rate
+from equity_analytics.valuation.multiples import pe_cross_check
+
 from .consolidation import (
     consolidate_operating,
     consolidate_statements,
@@ -25,7 +28,7 @@ from .legacy_statements import (
     statement_parameters,
 )
 from .statements import linked_statements
-from .wacc import blended_wacc
+from .wacc import blended_wacc, standalone_rates
 
 REFERENCE_FX_DATE = "2026-09-02"
 REFERENCE_FX_INR_PER_USD = 94.97
@@ -141,7 +144,10 @@ def _validate(facts, assumptions, case):
     if retired.intersection(a):
         raise AcquisitionInputError("Separate business DCF assumptions are retired")
     w, g, r = (
-        blended_wacc(assumptions["pro_forma"], case)["blended_wacc"],
+        min(
+            rate["standalone_wacc"]
+            for rate in standalone_rates(assumptions["pro_forma"], case)
+        ),
         a["group_terminal_growth_inr"],
         a["group_terminal_roic"],
     )
@@ -600,8 +606,19 @@ def _financing(legacy, molycop, bridge, facts, s, a, ownership, statement_policy
     return result
 
 
-def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> dict:
-    """Build a reproducible, explicitly provisional post-acquisition valuation."""
+def build_acquisition_model(
+    facts: dict,
+    assumptions: dict,
+    scenario="base",
+    *,
+    group_wacc_override: float | None = None,
+) -> dict:
+    """Build a reproducible, explicitly provisional post-acquisition valuation.
+
+    ``group_wacc_override`` replaces only the blended group discount rate (group
+    DCF and earnout). It exists to solve for the market-implied rate and is
+    never set by the stored assumptions.
+    """
     _finite(facts)
     _finite(assumptions)
     try:
@@ -610,7 +627,14 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         raise AcquisitionInputError(str(exc)) from exc
     _validate(facts, assumptions, scenario)
     assumptions["_active_scenario"] = scenario
-    wacc = blended_wacc(assumptions["pro_forma"], scenario)
+    tega_rate, molycop_rate = standalone_rates(assumptions["pro_forma"], scenario)
+    if group_wacc_override is not None and (
+        isinstance(group_wacc_override, bool)
+        or not isinstance(group_wacc_override, (int, float))
+        or not isfinite(group_wacc_override)
+        or not 0 < group_wacc_override < 1
+    ):
+        raise AcquisitionInputError("Group WACC override must be in (0, 1)")
     a, s = deepcopy(assumptions["scenarios"][scenario]), assumptions["shared"]
     h, q, d, mh = (
         facts["tega_fy2026"],
@@ -843,15 +867,10 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         s["earned_income_tax_rate_molycop"],
         assumptions["pro_forma"],
     )
-    group_value = _dcf(
-        group,
-        wacc["blended_wacc"],
-        a["group_terminal_growth_inr"],
-        a["group_terminal_roic"],
-    )
 
-    # Auxiliary business EVs ONLY determine NCI and show audit diagnostics.
-    # They are never summed to replace the requested consolidated group DCF.
+    # Standalone business EVs set the WACC blend weights, value the NCI and are
+    # shown as diagnostics. They are never summed to replace the requested
+    # consolidated group DCF.
     def standalone_rows(rows, tax):
         result = deepcopy(rows)
         for row in result:
@@ -864,17 +883,34 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
     standalone_values = {
         "tega": _dcf(
             legacy_only,
-            wacc["tega"]["standalone_wacc"],
+            tega_rate["standalone_wacc"],
             a["group_terminal_growth_inr"],
             a["group_terminal_roic"],
         ),
         "molycop": _dcf(
             mc_only,
-            wacc["molycop_wacc_inr_constant_fx"],
+            molycop_rate["standalone_wacc"],
             a["group_terminal_growth_inr"],
             a["group_terminal_roic"],
         ),
     }
+    try:
+        wacc = blended_wacc(
+            assumptions["pro_forma"],
+            scenario,
+            standalone_values["tega"]["enterprise_value"],
+            standalone_values["molycop"]["enterprise_value"],
+        )
+    except ValueError as exc:
+        raise AcquisitionInputError(str(exc)) from exc
+    if group_wacc_override is not None:
+        wacc = {**wacc, "blended_wacc": group_wacc_override}
+    group_value = _dcf(
+        group,
+        wacc["blended_wacc"],
+        a["group_terminal_growth_inr"],
+        a["group_terminal_roic"],
+    )
     earn_years = (
         date.fromisoformat(a["earnout_payment_date"])
         - date.fromisoformat(facts["valuation_date"])
@@ -923,7 +959,7 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "June 30 valuation retains June actuals outside future FCFF. FY27 consolidation is June-March (10 months); future DCF covers July-March (9 months).",
         "Blended WACC is a requested approximation: differing business risk and evolving business mix are not exactly represented by a single fixed discount rate.",
         assumptions["pro_forma"]["_fx_note"],
-        assumptions["pro_forma"]["_tega_ev_note"],
+        "Blend weights are each business's standalone DCF value from this model, so the single group rate matches the cash flows it discounts.",
         "NCI is explicitly valued using an auxiliary standalone Molycop EV at its own WACC; that EV is not added to consolidated EV.",
         "Preference claim is deducted once at full fair-value proxy. Closing filing calls the instrument redeemable; no unsupported maturity is imposed. 12% return is an analyst assumption.",
         "Main diluted count and matching cash assume the proposed 478435-share issue completes. November 2025 shares and proceeds already in FY26 opening data are not added again.",
@@ -1067,4 +1103,186 @@ def build_acquisition_model(facts: dict, assumptions: dict, scenario="base") -> 
         "checks": checks,
         "scenario_assumptions": a,
         "shared_assumptions": deepcopy(s),
+    }
+
+
+def market_implied_group_wacc(facts: dict, assumptions: dict) -> dict:
+    """Solve for the group discount rate that reproduces the valuation-date price.
+
+    Forecasts, claims and the NCI valuation stay fixed; only the blended group
+    rate moves. The answer explains the gap to the market and never feeds back
+    into the stored assumptions.
+    """
+    reference = facts["market_reference"]
+    if reference["date"] != facts["valuation_date"]:
+        raise AcquisitionInputError("Market reference must be the valuation-date close")
+    price = reference["close_inr"]
+    if isinstance(price, bool) or not isinstance(price, (int, float)) or price <= 0:
+        raise AcquisitionInputError("Market reference price must be positive")
+    base = build_acquisition_model(facts, assumptions)
+    growth = base["group_dcf_inr_m"]["terminal_growth"]
+
+    def value_at(rate):
+        return build_acquisition_model(facts, assumptions, group_wacc_override=rate)[
+            "equity_bridge"
+        ]["value_per_share_inr"]
+
+    implied = implied_discount_rate(value_at, price, low=growth + 0.005, high=0.30)
+    bridge = base["equity_bridge"]
+    required_ev = (
+        price * bridge["diluted_shares"] / 1_000_000
+        + bridge["total_bridge_deductions_inr_m"]
+        - bridge["nonoperating_assets_inr_m"]
+    )
+    fy2028 = next(
+        row
+        for row in base["consolidated_statements_inr_m"]["full_fiscal_year_income"][
+            "rows"
+        ]
+        if row["fiscal_year"] == 2028
+    )
+    return {
+        "price_date": reference["date"],
+        "price_inr": price,
+        "source_id": reference["source_id"],
+        "model_value_per_share_inr": bridge["value_per_share_inr"],
+        "model_group_wacc": base["wacc_calculation"]["blended_wacc"],
+        "implied_group_wacc": implied,
+        "model_group_ev_inr_m": bridge["group_enterprise_value_inr_m"],
+        "required_group_ev_inr_m": required_ev,
+        "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection.",
+        "pe_cross_check": pe_cross_check(
+            facts["pe_benchmark"],
+            2028,
+            fy2028["income"]["pro_forma_eps_inr"],
+            price,
+            bridge["value_per_share_inr"],
+        ),
+        "consensus_comparison": consensus_comparison(facts, base),
+        "molycop_deal_check": molycop_deal_check(facts, assumptions, base),
+    }
+
+
+def molycop_deal_check(facts: dict, assumptions: dict, base: dict) -> dict:
+    """Compare the model's Molycop value with the price paid, and show the
+    per-share value if Molycop's rate were calibrated to that price."""
+    deal = facts["deal"]["headline_enterprise_value_inr_m_approx"]
+    model_value = base["standalone_values_for_audit_inr_m"]["molycop"][
+        "enterprise_value"
+    ]
+    calibration = calibrate_molycop_premium(facts, assumptions)
+    calibrated = deepcopy(assumptions)
+    calibrated["pro_forma"]["wacc"]["molycop"]["transaction_premium"] = calibration[
+        "transaction_premium"
+    ]
+    at_deal = build_acquisition_model(facts, calibrated)
+    return {
+        "deal_enterprise_value_inr_m": deal,
+        "model_molycop_enterprise_value_inr_m": model_value,
+        "model_to_deal_ratio": model_value / deal,
+        "model_molycop_wacc": base["wacc_calculation"]["molycop"]["standalone_wacc"],
+        "calibrated_premium": calibration["transaction_premium"],
+        "calibrated_molycop_wacc": at_deal["wacc_calculation"]["molycop"][
+            "standalone_wacc"
+        ],
+        "value_per_share_if_calibrated_inr": at_deal["equity_bridge"][
+            "value_per_share_inr"
+        ],
+    }
+
+
+CONSENSUS_LINES = (
+    ("revenue", "Revenue", "revenue"),
+    ("ebitda", "EBITDA", "operating_ebitda"),
+    ("ebit", "EBIT", "ebit_after_integration"),
+    ("interest", "Interest (model: incl. preference return)", None),
+    ("profit_before_tax", "Profit before tax", "profit_before_tax_proxy"),
+    ("owners_net_income", "Net income to Tega shareholders", "owners_net_income_proxy"),
+    ("eps", "EPS (INR)", "pro_forma_eps_inr"),
+)
+
+
+def consensus_comparison(facts: dict, model: dict) -> dict | None:
+    """Line up the model's pro-forma income with a dated consensus snapshot.
+
+    Comparison only: consensus never feeds the forecasts or the valuation.
+    """
+    snapshot = facts.get("consensus_snapshot")
+    if snapshot is None:
+        return None
+    rows = model["consolidated_statements_inr_m"]["full_fiscal_year_income"]["rows"]
+    income = {str(r["fiscal_year"]): r["income"] for r in rows}
+    years = []
+    for year, consensus in snapshot["years"].items():
+        if year not in income:
+            raise AcquisitionInputError(f"Model has no FY{year} income to compare")
+        mine = income[year]
+        lines = []
+        for key, label, model_key in CONSENSUS_LINES:
+            value = (
+                mine["bank_and_lease_finance_cost"]
+                + mine["preference_return_economic_charge"]
+                if model_key is None
+                else mine[model_key]
+            )
+            lines.append(
+                {
+                    "line": label,
+                    "model": value,
+                    "consensus": consensus[key],
+                    "difference": value - consensus[key],
+                }
+            )
+        years.append(
+            {
+                "fiscal_year": int(year),
+                "lines": lines,
+                "consensus_pe_at_snapshot_price": snapshot["price_inr"]
+                / consensus["eps"],
+                "model_pe_at_snapshot_price": snapshot["price_inr"]
+                / mine["pro_forma_eps_inr"]
+                if mine["pro_forma_eps_inr"] > 0
+                else None,
+            }
+        )
+    return {
+        "source_id": snapshot["source_id"],
+        "price_date": snapshot["price_date"],
+        "price_inr": snapshot["price_inr"],
+        "note": snapshot["note"],
+        "years": years,
+        "targets": snapshot.get("targets"),
+    }
+
+
+def calibrate_molycop_premium(facts: dict, assumptions: dict) -> dict:
+    """Premium over CAPM at which the base-case Molycop DCF equals the deal EV.
+
+    The June 2026 purchase is an arm's-length price for Molycop's operations. Its
+    implied premium captures risk that the US steel beta and mature-market ERP
+    leave out (credit quality, emerging-market mines, private ownership).
+    Calibrated once on the base case; every scenario then uses the same rate.
+    """
+    target = facts["deal"]["headline_enterprise_value_inr_m_approx"]
+
+    def molycop_ev(premium):
+        trial = deepcopy(assumptions)
+        trial["pro_forma"]["wacc"]["molycop"]["transaction_premium"] = premium
+        model = build_acquisition_model(facts, trial)
+        return model["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+
+    def value_at(rate):
+        # implied_discount_rate expects a value that falls as the input rises.
+        return molycop_ev(rate - 0.10)
+
+    shifted = implied_discount_rate(
+        value_at, target, low=0.10, high=0.25, tolerance=1e-9
+    )
+    if shifted is None:
+        raise AcquisitionInputError("Deal EV is outside the calibration range")
+    premium = shifted - 0.10
+    return {
+        "target_enterprise_value_inr_m": target,
+        "transaction_premium": premium,
+        "calibrated_enterprise_value_inr_m": molycop_ev(premium),
     }

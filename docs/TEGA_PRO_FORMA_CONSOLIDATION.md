@@ -12,7 +12,7 @@ Precomputed results are in `examples/tega_molycop_reports/`.
 | Module | Responsibility |
 | --- | --- |
 | `case_studies/tega/consolidation.py` | 100% line-by-line IS, BS, CF and FCFF; eliminate parent investment and internal dividends; annual FY27 income and future-period views |
-| `case_studies/tega/wacc.py` | Separate CAPM and financing costs, including non-tax-deductible preference funding; operating-EV-weighted blend |
+| `case_studies/tega/wacc.py` | Standalone costs of capital using the platform method, including non-tax-deductible preference funding; operating-EV-weighted blend |
 | `case_studies/tega/equity_bridge.py` | Full capital claims, common NCI, share roll-forward and matching issue cash |
 | `case_studies/tega/currency.py` | Reconvert an explicit registry of USD-origin inputs using the adjustable FX rate |
 | `case_studies/tega/engine.py` | Business operating/financing schedules, consolidation orchestration and valuation |
@@ -26,17 +26,21 @@ reinvestment deduction under the existing lease-as-financing convention.
 
 ## WACC and currency convention
 
-For each business:
+For each business, using the platform method in
+[the cost-of-capital note](COST_OF_CAPITAL.md):
 
-`Ke = risk-free rate + beta × equity risk premium`
+`Unlevered cost = (bond yield − sovereign default spread) + industry unlevered beta × equity risk premium`
 
-`WACC = common equity weight × Ke + debt weight × Kd × (1 − tax rate) + preference weight × Kp`
+`WACC = unlevered cost − debt weight × tax rate × pre-tax cost of debt`
 
-Preference funding has no assumed tax shield. It is a distinct capital class,
-not bank debt or ordinary equity. Its inclusion in the capital cost does not
-replace its explicit deduction in the EV-to-common-equity bridge.
+Preference funding has no tax shield, so it does not change the WACC. Its claim
+is deducted explicitly in the EV-to-common-equity bridge.
 
-`Blended WACC = legacy standalone EV weight × legacy WACC + Molycop standalone EV weight × Molycop WACC`
+`Blended WACC = legacy weight × legacy WACC + Molycop weight × Molycop WACC`
+
+The weights are each business's standalone DCF value from this model: its own
+forecast cash flows at its own WACC. A market or deal value would weight the
+blend by cash flows the model does not contain.
 
 All inputs live under **`pro_forma` in `examples/tega_molycop_assumptions.json`**.
 Every new parameter group has adjacent `_note` fields. Decimal rates are used.
@@ -44,20 +48,37 @@ Every new parameter group has adjacent `_note` fields. Decimal rates are used.
 | Editable input | Default / status |
 | --- | --- |
 | `fx_inr_per_usd` | 94.97, retained September 2 reference |
-| `tega_ev_weight_inr_m` | 80,000; **unsourced analyst operating-EV proxy**, not a disclosed deal or group market cap |
-| `molycop_ev_weight_usd_m` | 1,455; user's requested first-pass weight; closing filing rounds EV to 1,500 |
-| Tega risk-free / ERP / beta | 6.9754% / 5.974538% / 0.674868; carried from prior September 2 CAPM research |
-| Tega debt cost / debt weight | 7% / 20%; provisional analyst inputs |
+| `molycop_ev_weight_usd_m` | 1,455 deal EV (closing filing rounds to 1,500); sets Molycop's capital-structure weights at close, not the blend |
+| Tega bond yield / default spread / ERP | 6.9754% G-sec (2 September 2026) / 1.87% / 7.08% India total premium (Damodaran, January 2026) |
+| Tega beta | Machinery unlevered beta corrected for cash 0.89 (Damodaran, January 2026); unlevered cost 11.41% |
+| Tega debt cost / debt weight | 6.56%, FY2025–FY2026 borrowing interest paid / average borrowings / 12.81%, the industry D/E |
 | Tega tax | Existing 24.4558% historical effective proxy; not a marginal statutory tax rate |
-| Molycop RF / ERP / beta | 4.5% / 5% / 1.10; **unsourced analyst starting assumptions** |
-| Molycop debt cost / tax | 9% / 27%; provisional existing proxies |
-| Molycop common / debt / preference weights | 37% / 45% / 18%; provisional target market-value weights |
-| Preference cost | 12%; stress assumption, **not a verified contractual coupon** |
-| Down / base / up equity-premium stress | +2 / 0 / −0.5 percentage points to both CAPMs |
+| Molycop bond yield / ERP | 4.79% US 10-year Treasury (2 September 2026) / 4.23% mature-market premium |
+| Molycop beta | Steel unlevered beta corrected for cash 0.94; CAPM unlevered cost 8.77% |
+| Molycop deal premium | 0 (industry inputs). The deal-calibrated alternative, 3.44%, makes the base-case Molycop DCF equal the INR142,455m paid at the 1 June 2026 close; it is reported as a cross-check (`engine.calibrate_molycop_premium`) |
+| Molycop debt weight | 48.11%: term loan INR66,479m against the USD1,455m deal EV |
+| Molycop debt cost / tax | 9% / 27%; **unsourced estimates** (contractual rates not disclosed) |
+| Equity-premium stress by scenario | 0 in every scenario; the stress is tested in the sensitivity table only |
 
-The CAPM reference calculations, observations and source URLs are included in
-`examples/tega_capm_reference_20260902.json`. Observed TEGA beta spans the acquisition
-period and is an imperfect standalone legacy beta. No consensus WACC is claimed.
+Results: Tega legacy WACC 11.20% and Molycop 7.60% in every scenario. The base
+blend is 7.91% (legacy 8.6% / Molycop 91.4% of standalone value); downside and
+upside blends are 7.85% and 7.98% because the business mix differs. Terminal
+growth (4%) and terminal ROIC (16%) are the same in every scenario. On these
+inputs the model values Molycop at 1.89 times the price paid in June 2026;
+calibrated to that price, the base value would be INR599.31 per share. The
+report and sensitivity table show both.
+
+`examples/tega_capm_reference_20260902.json` keeps the earlier CAPM research:
+a weekly regression beta of 0.67 with R² 0.05 and a historical Nifty premium.
+It is a cross-check only. No consensus WACC is claimed.
+
+The report also solves for the **market-implied group WACC**: the single group
+rate at which the base case equals Tega's INR1,696.80 close on 30 June 2026, the
+valuation date, with forecasts, claims and the NCI valuation held fixed. It is
+8.34%, against 7.91% from the method above. The same file holds a P/E
+cross-check: 28.2x (Nifty India Manufacturing three-year median) times FY2028
+pro-forma EPS of INR40.26 gives INR1,133.84. Neither result changes the
+forecasts.
 
 The model retains the user's **constant expected INR/USD** convention through the
 forecast and terminal period. Under this explicit expectation, the USD discount
@@ -170,5 +191,8 @@ Tests (`tests/test_pro_forma.py` and the other `test_acquisition*` files) cover 
 bridge arithmetic, full-ownership FCFF, minority loss floors, source FX conversion,
 share dilution with cash, no duplicate paydown/loan deductions, investment/dividend
 eliminations, frozen opening allocations, consolidated cash/BS roll-forwards and
-stub timing. Original business operating forecasts are regression-tested unchanged.
+stub timing. `tests/test_cost_of_capital.py` checks the shared cost-of-capital
+arithmetic, that every scenario uses the same business rates, and that the market-implied
+rate reproduces the valuation-date price. Original business operating forecasts
+are regression-tested unchanged.
 Passing tests establishes arithmetic consistency, not the validity of unsourced inputs.

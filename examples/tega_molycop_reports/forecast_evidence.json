@@ -832,19 +832,21 @@
       "basis": "historical",
       "period": "FY2028-FY2034",
       "source_ids": [
-        "annual26"
+        "annual26",
+        "capex_history",
+        "crisil_2025"
       ],
-      "method": "Mean FY24-FY26 cash capex / revenue; does not repeat FY27 Chile expansion ratio.",
+      "method": "Reviewed 26 October 2026. Mean FY22-FY24 cash capex / revenue (4.31%, 7.60%, 3.71%; mean 5.21%), the years before the Chile and Dahej expansions. FY25-FY26 (10.39%, 8.03%) included that expansion capex (CRISIL, July 2025), and FY27 carries the remaining Chile spend separately. Cross-check: CRISIL's INR70-80 crore annual maintenance capex is 4.4-4.7% of FY25-FY26 revenue.",
       "status": "Applied",
       "reviewed_values": {
-        "scenarios.downside.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-        "scenarios.base.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-        "scenarios.upside.legacy_later_capex_revenue_fraction": 0.07377294292230359
+        "scenarios.downside.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+        "scenarios.base.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+        "scenarios.upside.legacy_later_capex_revenue_fraction": 0.052051071365418616
       },
       "current_values": {
-        "scenarios.downside.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-        "scenarios.base.legacy_later_capex_revenue_fraction": 0.07377294292230359,
-        "scenarios.upside.legacy_later_capex_revenue_fraction": 0.07377294292230359
+        "scenarios.downside.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+        "scenarios.base.legacy_later_capex_revenue_fraction": 0.052051071365418616,
+        "scenarios.upside.legacy_later_capex_revenue_fraction": 0.052051071365418616
       },
       "changed_since_review": false
     },
@@ -1018,26 +1020,30 @@
     },
     {
       "line_item": "Group WACC and terminal parameters",
-      "basis": "unresolved",
+      "basis": "platform_method",
       "period": "FY2027-FY2034",
-      "source_ids": [],
-      "method": "WACC superseded by pro_forma.wacc CAPM and EV-weight blend. Terminal assumptions remain provisional.",
-      "status": "WACC refactored; inputs individually labeled",
+      "source_ids": [
+        "damodaran_country_risk",
+        "damodaran_industry_betas",
+        "us_treasury_20260902"
+      ],
+      "method": "Reviewed 23 October 2026. One discount rate for every scenario: the platform cost-of-capital method (industry unlevered cost of capital less the interest tax shield; Damodaran January 2026 risk premiums) sets the standalone WACCs in pro_forma.wacc. Terminal growth 4% and terminal ROIC 16% are analyst assumptions held equal across scenarios; scenarios change operating drivers only, and the sensitivity table tests both.",
+      "status": "Applied; terminal parameters remain analyst assumptions",
       "reviewed_values": {
-        "scenarios.downside.group_terminal_growth_inr": 0.03,
-        "scenarios.downside.group_terminal_roic": 0.13,
+        "scenarios.downside.group_terminal_growth_inr": 0.04,
+        "scenarios.downside.group_terminal_roic": 0.16,
         "scenarios.base.group_terminal_growth_inr": 0.04,
         "scenarios.base.group_terminal_roic": 0.16,
-        "scenarios.upside.group_terminal_growth_inr": 0.045,
-        "scenarios.upside.group_terminal_roic": 0.18
+        "scenarios.upside.group_terminal_growth_inr": 0.04,
+        "scenarios.upside.group_terminal_roic": 0.16
       },
       "current_values": {
-        "scenarios.downside.group_terminal_growth_inr": 0.03,
-        "scenarios.downside.group_terminal_roic": 0.13,
+        "scenarios.downside.group_terminal_growth_inr": 0.04,
+        "scenarios.downside.group_terminal_roic": 0.16,
         "scenarios.base.group_terminal_growth_inr": 0.04,
         "scenarios.base.group_terminal_roic": 0.16,
-        "scenarios.upside.group_terminal_growth_inr": 0.045,
-        "scenarios.upside.group_terminal_roic": 0.18
+        "scenarios.upside.group_terminal_growth_inr": 0.04,
+        "scenarios.upside.group_terminal_roic": 0.16
       },
       "changed_since_review": false
     },
@@ -1273,16 +1279,14 @@
         "q1_results",
         "pending_issue"
       ],
-      "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. See adjacent input notes.",
+      "method": "100% consolidation with investment/dividend eliminations; full preference/net-debt deductions plus common NCI; main count includes follow-on pro forma. Reviewed 27 October 2026: standalone WACCs use the platform method (unlevered cost of capital less the interest tax shield), Molycop uses industry inputs with no deal premium (the deal-calibrated value is reported as a cross-check), and the blend is weighted by each business's standalone DCF value from this model. See adjacent input notes.",
       "status": "Provisional; not statutory accounts",
       "reviewed_values": {
         "pro_forma": {
           "fx_inr_per_usd": 94.97,
           "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
           "molycop_ev_weight_usd_m": 1455.0,
-          "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
-          "tega_ev_weight_inr_m": 80000.0,
-          "_tega_ev_note": "UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.",
+          "_ev_note": "Deal enterprise value USD1,455m (user first-pass; the closing filing rounds it to USD1.5bn). It is used only to derive Molycop's capital-structure weights at close. The WACC blend is weighted by each business's standalone DCF value from this model, not by deal or market values.",
           "molycop_nci_fraction_override": null,
           "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
           "shares": {
@@ -1309,36 +1313,36 @@
           },
           "wacc": {
             "tega": {
-              "risk_free_rate": 0.069754,
-              "equity_risk_premium": 0.05974537984183599,
-              "beta": 0.6748675556411455,
-              "cost_of_debt": 0.07,
+              "government_bond_yield": 0.069754,
+              "sovereign_default_spread": 0.0187,
+              "equity_risk_premium": 0.0708,
+              "unlevered_beta": 0.89,
+              "cost_of_debt": 0.06556427856889312,
               "tax_rate": 0.2445576703365335,
-              "debt_weight": 0.2,
-              "preference_weight": 0.0,
-              "cost_of_preference": 0.0,
+              "debt_weight": 0.12808440142994157,
               "currency": "INR",
-              "_note": "CAPM inputs carried from 2 September research calculation (included separately). Observed TEGA beta includes acquisition-period risk, so imperfect standalone proxy. Debt cost 7% and target debt weight 20% are UNSOURCED analyst assumptions; tax uses existing historical effective proxy, not statutory marginal rate.",
-              "_market_return_note": "Reference NIFTY TRI arithmetic annual return 12.94993798%; ERP input equals this minus the 6.9754% reference RF. ERP is directly adjustable; historical market-return calculation is in tega_capm_reference_20260902.json."
+              "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md): WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026); unlevered beta = Machinery, corrected for cash, 0.89 (Damodaran, January 2026). Debt weight 12.81% from the industry's 14.69% D/E, because the pre-deal balance sheet held acquisition funding. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
+              "_regression_beta_note": "The 0.6749 weekly regression beta in tega_capm_reference_20260902.json has R-squared 0.05 (standard error about 0.29) and is kept only as a cross-check."
             },
             "molycop": {
-              "risk_free_rate": 0.045,
-              "equity_risk_premium": 0.05,
-              "beta": 1.1,
+              "government_bond_yield": 0.0479,
+              "sovereign_default_spread": 0.0,
+              "equity_risk_premium": 0.0423,
+              "unlevered_beta": 0.94,
               "cost_of_debt": 0.09,
               "tax_rate": 0.27,
-              "debt_weight": 0.45,
-              "preference_weight": 0.18,
-              "cost_of_preference": 0.12,
+              "debt_weight": 0.4810996563573883,
               "currency": "USD",
-              "_note": "ALL UNSOURCED analyst starting assumptions: US/global RF4.5%, ERP5%, beta1.10, debt9%, tax27%, target bank-debt45%, preference18%, common37%. Preference12% is not disclosed contractual coupon; non-tax-deductible. Replace with sourced inputs. Geographic exposures extend beyond US."
+              "_note": "Platform cost-of-capital method in USD: WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not in the sources. Unlevered beta = Steel, corrected for cash, 0.94 (Damodaran, January 2026). Debt weight 48.11% = term loan INR66,479m at close / the USD1,455m deal EV. The Apollo preference shares earn no tax shield, so they do not change the WACC; their claim is deducted in the equity bridge. No premium is added; see _transaction_premium_note for the deal-price cross-check. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed) and 27% tax.",
+              "transaction_premium": 0.0,
+              "_transaction_premium_note": "Zero: Molycop uses industry inputs only (decision of 27 October 2026). This values Molycop at about 1.9 times the INR142,455m headline EV paid at the 1 June 2026 close. The report shows the deal-calibrated alternative as a cross-check: a premium of about 3.4% over CAPM (WACC about 11.0%) makes the base-case Molycop DCF equal the price paid. Such a premium would stand for risk the US steel beta and mature-market ERP omit: B+ credit, private ownership and emerging-market mines (the earnout depends on Cobre Panama and Grasberg)."
             },
             "scenario_risk_premium": {
-              "downside": 0.02,
+              "downside": 0.0,
               "base": 0.0,
-              "upside": -0.005
+              "upside": 0.0
             },
-            "_scenario_note": "ASSUMPTION: additive equity risk premium stress to BOTH entity CAPMs; no direct group WACC constant. Capital weights are adjustable target market-value proxies and must not be book-equity weights."
+            "_scenario_note": "Scenarios change operating drivers only, so every case uses the same discount rate. The equity risk premium stress remains available to the sensitivity table, never to a scenario."
           },
           "fx_translation_paths": [
             [
@@ -1633,9 +1637,7 @@
           "fx_inr_per_usd": 94.97,
           "_fx_note": "ASSUMPTION: adjustable constant conversion rate; default retains 2 September 2026 reference. No expected currency appreciation/depreciation is modeled. Local-currency WACCs are numerically comparable ONLY under this explicit constant-FX expectation; this is not a currency hedge or parity forecast.",
           "molycop_ev_weight_usd_m": 1455.0,
-          "_ev_note": "USER FIRST-PASS WEIGHT: USD1455m. Closing filing rounds deal EV to USD1500m. Weight is not purchase equity consideration. No disclosed legacy Tega acquisition EV exists; use the separately labeled operating EV proxy below, not post-acquisition Tega market capitalization.",
-          "tega_ev_weight_inr_m": 80000.0,
-          "_tega_ev_note": "UNSOURCED analyst starting proxy INR80000m (INR8000 crore), for standalone legacy operating EV only. Replace with an independently supported legacy operating EV. Not market consensus and not a disclosed transaction EV.",
+          "_ev_note": "Deal enterprise value USD1,455m (user first-pass; the closing filing rounds it to USD1.5bn). It is used only to derive Molycop's capital-structure weights at close. The WACC blend is weighted by each business's standalone DCF value from this model, not by deal or market values.",
           "molycop_nci_fraction_override": null,
           "_ownership_note": "Closing ordinary contribution ratio gives Apollo 15.8213105%; user 84.12%/15.82% fails 100% check. Override can be supplied; Tega always equals 1 minus NCI.",
           "shares": {
@@ -1662,36 +1664,36 @@
           },
           "wacc": {
             "tega": {
-              "risk_free_rate": 0.069754,
-              "equity_risk_premium": 0.05974537984183599,
-              "beta": 0.6748675556411455,
-              "cost_of_debt": 0.07,
+              "government_bond_yield": 0.069754,
+              "sovereign_default_spread": 0.0187,
+              "equity_risk_premium": 0.0708,
+              "unlevered_beta": 0.89,
+              "cost_of_debt": 0.06556427856889312,
               "tax_rate": 0.2445576703365335,
-              "debt_weight": 0.2,
-              "preference_weight": 0.0,
-              "cost_of_preference": 0.0,
+              "debt_weight": 0.12808440142994157,
               "currency": "INR",
-              "_note": "CAPM inputs carried from 2 September research calculation (included separately). Observed TEGA beta includes acquisition-period risk, so imperfect standalone proxy. Debt cost 7% and target debt weight 20% are UNSOURCED analyst assumptions; tax uses existing historical effective proxy, not statutory marginal rate.",
-              "_market_return_note": "Reference NIFTY TRI arithmetic annual return 12.94993798%; ERP input equals this minus the 6.9754% reference RF. ERP is directly adjustable; historical market-return calculation is in tega_capm_reference_20260902.json."
+              "_note": "Platform cost-of-capital method (docs/COST_OF_CAPITAL.md): WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year G-sec 6.9754% on 2 September 2026 less India's 1.87% default spread; ERP = India total 7.08% (Damodaran, January 2026); unlevered beta = Machinery, corrected for cash, 0.89 (Damodaran, January 2026). Debt weight 12.81% from the industry's 14.69% D/E, because the pre-deal balance sheet held acquisition funding. Debt cost = FY2025-FY2026 borrowing interest paid 355.56 / average borrowings 5,423.08 (audited statements). Tax uses the existing FY24-FY26 effective-rate proxy.",
+              "_regression_beta_note": "The 0.6749 weekly regression beta in tega_capm_reference_20260902.json has R-squared 0.05 (standard error about 0.29) and is kept only as a cross-check."
             },
             "molycop": {
-              "risk_free_rate": 0.045,
-              "equity_risk_premium": 0.05,
-              "beta": 1.1,
+              "government_bond_yield": 0.0479,
+              "sovereign_default_spread": 0.0,
+              "equity_risk_premium": 0.0423,
+              "unlevered_beta": 0.94,
               "cost_of_debt": 0.09,
               "tax_rate": 0.27,
-              "debt_weight": 0.45,
-              "preference_weight": 0.18,
-              "cost_of_preference": 0.12,
+              "debt_weight": 0.4810996563573883,
               "currency": "USD",
-              "_note": "ALL UNSOURCED analyst starting assumptions: US/global RF4.5%, ERP5%, beta1.10, debt9%, tax27%, target bank-debt45%, preference18%, common37%. Preference12% is not disclosed contractual coupon; non-tax-deductible. Replace with sourced inputs. Geographic exposures extend beyond US."
+              "_note": "Platform cost-of-capital method in USD: WACC = unlevered cost of capital - debt weight x tax rate x pre-tax cost of debt. Risk-free = 10-year US Treasury 4.79% on 2 September 2026; ERP = mature-market 4.23% (Damodaran, January 2026), with no operating-country premium added because Molycop's revenue by country is not in the sources. Unlevered beta = Steel, corrected for cash, 0.94 (Damodaran, January 2026). Debt weight 48.11% = term loan INR66,479m at close / the USD1,455m deal EV. The Apollo preference shares earn no tax shield, so they do not change the WACC; their claim is deducted in the equity bridge. No premium is added; see _transaction_premium_note for the deal-price cross-check. STILL UNSOURCED: 9% debt cost (contractual rates not disclosed) and 27% tax.",
+              "transaction_premium": 0.0,
+              "_transaction_premium_note": "Zero: Molycop uses industry inputs only (decision of 27 October 2026). This values Molycop at about 1.9 times the INR142,455m headline EV paid at the 1 June 2026 close. The report shows the deal-calibrated alternative as a cross-check: a premium of about 3.4% over CAPM (WACC about 11.0%) makes the base-case Molycop DCF equal the price paid. Such a premium would stand for risk the US steel beta and mature-market ERP omit: B+ credit, private ownership and emerging-market mines (the earnout depends on Cobre Panama and Grasberg)."
             },
             "scenario_risk_premium": {
-              "downside": 0.02,
+              "downside": 0.0,
               "base": 0.0,
-              "upside": -0.005
+              "upside": 0.0
             },
-            "_scenario_note": "ASSUMPTION: additive equity risk premium stress to BOTH entity CAPMs; no direct group WACC constant. Capital weights are adjustable target market-value proxies and must not be book-equity weights."
+            "_scenario_note": "Scenarios change operating drivers only, so every case uses the same discount rate. The equity risk premium stress remains available to the sensitivity table, never to a scenario."
           },
           "fx_translation_paths": [
             [

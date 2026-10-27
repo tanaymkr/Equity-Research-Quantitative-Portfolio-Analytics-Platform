@@ -20,7 +20,11 @@ Python 3.11+; no third-party runtime packages.
 - Separate editable company assumptions: `examples/wabag_dcf_assumptions.json`.
 - Five forecast years: revenue, operating EBIT, NOPAT, D&A, capex, operating
   working capital, change in working capital, FCFF and discounted FCFF.
-- CAPM cost of equity and weighted after-tax cost of capital.
+- Cost of capital from the platform's [shared method](../COST_OF_CAPITAL.md):
+  industry unlevered cost of capital less the interest tax shield, India risk
+  premiums, the same inputs in every scenario.
+- The WACC implied by a dated market price, holding the base-case cash flows
+  fixed.
 - Downside, base and upside assumptions and results.
 - Terminal reinvestment based on growth and ROIC.
 - Enterprise-to-equity bridge with cash, debt, nonoperating assets, minority
@@ -87,9 +91,10 @@ visible assumptions; a downside case may fall below management guidance.
   assumptions available later, through September 28, 2026. It is not a
   September spot valuation, a contemporaneous March valuation, or a backtest.
   There is no quarterly stub-period or interim balance-sheet roll-forward.
-- Risk-free rate, beta, ERP and target debt weight are illustrative CAPM inputs,
-  not verified current market observations. Cost of debt uses historical
-  borrowing interest/average lease-inclusive debt, not all finance costs.
+- Cost-of-capital inputs are dated observations (G-sec on 25 September 2026;
+  Damodaran January 2026 risk premiums and US industry beta) and the same as
+  the linked model's. Cost of debt uses historical borrowing interest/average
+  lease-inclusive debt, not all finance costs.
 - Shares use ending issued shares plus incremental diluted-EPS options as a
   proxy. A current treasury-stock dilution calculation is not yet implemented.
 - Investment and minority adjustments use book-value proxies, not fair values.
@@ -97,7 +102,10 @@ visible assumptions; a downside case may fall below management guidance.
   contingent-liability reviews remain necessary before investment use.
 - Physical capex is not all business reinvestment: contract working capital
   is explicitly forecast. Provisions and detailed HAM project models are not.
-- No live stock price or upside/downside versus market is reported.
+- The market check uses the 25 September 2026 close (INR2,008.40), not a live
+  quote. With the stored inputs the base case is INR726.48 at a 13.29% WACC
+  and 5% terminal growth, and the price implies 8.01%. This model has no
+  earnings forecast, so it has no P/E cross-check.
 
 These limitations are shown in the output, not hidden behind a price target.
 The next refinement is a dated market-input and claims review and a

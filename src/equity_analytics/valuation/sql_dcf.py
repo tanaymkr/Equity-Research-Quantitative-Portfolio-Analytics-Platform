@@ -9,6 +9,12 @@ from pathlib import Path
 
 from equity_analytics.data import DataStoreError
 
+from .cost_of_capital import (
+    default_free_rate,
+    implied_discount_rate,
+    unlevered_cost_of_capital,
+    wacc_with_tax_shield,
+)
 from .dcf import (
     DCFAssumptions,
     HistoricalSnapshot,
@@ -18,37 +24,75 @@ from .dcf import (
 )
 from .sensitivity import sensitivity_matrix
 
+WACC_INPUTS = {
+    "government_bond_yield",
+    "sovereign_default_spread",
+    "equity_risk_premium",
+    "unlevered_beta",
+    "pretax_cost_of_debt",
+    "debt_weight",
+}
+
 
 def capm_wacc(inputs, tax_rate):
-    required = {
-        "risk_free_rate",
-        "beta",
-        "equity_risk_premium",
-        "pretax_cost_of_debt",
-        "debt_weight",
-    }
-    if set(inputs) != required:
-        raise ValueError(
-            "WACC requires exactly risk-free, beta, ERP, debt cost and debt weight"
-        )
+    """Platform cost-of-capital method; see equity_analytics.valuation.cost_of_capital."""
+    if set(inputs) != WACC_INPUTS:
+        raise ValueError("WACC requires exactly: " + ", ".join(sorted(WACC_INPUTS)))
     for name, value in inputs.items():
         _finite(name, value)
         if value < 0:
             raise ValueError(f"{name} cannot be negative")
-        if name != "beta":
+        if name != "unlevered_beta":
             _validate_rate(name, value)
     _validate_rate("tax_rate", tax_rate)
-    cost_of_equity = (
-        inputs["risk_free_rate"] + inputs["beta"] * inputs["equity_risk_premium"]
+    risk_free = default_free_rate(
+        inputs["government_bond_yield"], inputs["sovereign_default_spread"]
     )
-    cost_of_debt = inputs["pretax_cost_of_debt"] * (1 - tax_rate)
-    weight = inputs["debt_weight"]
-    wacc = cost_of_equity * (1 - weight) + cost_of_debt * weight
-    _validate_rate("wacc", wacc)
+    rates = wacc_with_tax_shield(
+        unlevered_cost_of_capital(
+            risk_free, inputs["unlevered_beta"], inputs["equity_risk_premium"]
+        ),
+        inputs["debt_weight"],
+        tax_rate,
+        inputs["pretax_cost_of_debt"],
+    )
+    _validate_rate("wacc", rates["wacc"])
     return {
-        "cost_of_equity": cost_of_equity,
-        "aftertax_cost_of_debt": cost_of_debt,
-        "wacc": wacc,
+        "risk_free_rate": risk_free,
+        "unlevered_cost_of_capital": rates["unlevered_cost_of_capital"],
+        "tax_shield": rates["tax_shield"],
+        "aftertax_cost_of_debt": inputs["pretax_cost_of_debt"] * (1 - tax_rate),
+        "wacc": rates["wacc"],
+    }
+
+
+def market_check(snapshot, values, reference, anchor_date, model_value, model_wacc):
+    """Single discount rate at which the base case matches the market price."""
+    price = reference["price"]
+    _finite("market price", price)
+    if price <= 0:
+        raise ValueError("Market reference price must be positive")
+    years = (
+        date.fromisoformat(reference["date"]) - date.fromisoformat(anchor_date)
+    ).days / 365
+    if years < 0:
+        raise ValueError("Market reference must not precede the anchor date")
+
+    def value_at(rate):
+        assumptions = DCFAssumptions.from_sequences(**values, wacc=rate)
+        value = calculate_dcf(snapshot, assumptions).implied_value_per_share
+        return value * (1 + rate) ** years
+
+    return {
+        "price_date": reference["date"],
+        "price": price,
+        "source": reference["source"],
+        "model_value_per_share": model_value,
+        "model_wacc": model_wacc,
+        "implied_wacc": implied_discount_rate(
+            value_at, price, low=values["terminal_growth"] + 0.005, high=0.30
+        ),
+        "method": "Base-case cash flows fixed; one rate solved by bisection; anchor value rolled forward to the price date at that rate.",
     }
 
 
@@ -118,6 +162,17 @@ def build_sql_dcf(store, config_path):
     sensitivity = sensitivity_matrix(
         snapshot, assumptions_by_case["base"], **config["sensitivity"]
     )
+    market = None
+    if "market_reference" in config:
+        base_case = output["base"]
+        market = market_check(
+            snapshot,
+            config["scenarios"]["base"]["forecast"],
+            config["market_reference"],
+            config["anchor_date"],
+            base_case["result"]["implied_value_per_share"],
+            base_case["wacc_build"]["wacc"],
+        )
     history_payload = asdict(history)
     history_bytes = json.dumps(history_payload, default=str, sort_keys=True).encode()
     return {
@@ -132,6 +187,7 @@ def build_sql_dcf(store, config_path):
         "snapshot": asdict(snapshot),
         "scenarios": output,
         "sensitivity": sensitivity,
+        "market_check": market,
         "warning": "Annual model anchored at fiscal year-end, using later information. Not a current-date target price or a point-in-time backtest. WACC and equity adjustments include estimates.",
     }
 
@@ -168,7 +224,11 @@ def export_sql_dcf(store, config_path, output):
                 ["Metric", "Value"],
                 [
                     ["WACC", f"{r['wacc']:.2%}"],
-                    ["Cost of equity", f"{case['wacc_build']['cost_of_equity']:.2%}"],
+                    [
+                        "Unlevered cost of capital",
+                        f"{case['wacc_build']['unlevered_cost_of_capital']:.2%}",
+                    ],
+                    ["Debt tax shield", f"{case['wacc_build']['tax_shield']:.3%}"],
                     ["Enterprise value", f"{r['enterprise_value']:,.2f}"],
                     ["Add cash", r["cash"]],
                     ["Add nonoperating assets (proxy)", r["nonoperating_assets"]],
@@ -225,6 +285,24 @@ def export_sql_dcf(store, config_path, output):
         ],
     )
     config_text = escape(json.dumps(payload["configuration"], indent=2))
+    market = payload["market_check"]
+    market_html = ""
+    if market is not None:
+        implied = (
+            f"a WACC of {market['implied_wacc']:.2%}"
+            if market["implied_wacc"] is not None
+            else "a WACC outside the search range"
+        )
+        market_html = (
+            "<h2>What the market price implies</h2><p>"
+            + escape(
+                f"The share closed at {market['price']:,.2f} on {market['price_date']} "
+                f"({market['source']}). The base case gives {market['model_value_per_share']:,.2f} "
+                f"at a {market['model_wacc']:.2%} WACC. Holding its cash flows fixed, the price "
+                f"implies {implied}. This check never changes the forecast."
+            )
+            + "</p>"
+        )
     html = f"""<!doctype html><html lang="en"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>SQL DCF research model</title>
 <style>body{{font:15px/1.5 system-ui;background:#f4f6f8;color:#173451}}main{{max-width:1200px;margin:24px auto;background:white;padding:28px}}
@@ -233,7 +311,7 @@ table{{border-collapse:collapse;width:100%}}.scroll{{overflow:auto}}pre{{white-s
 .notice{{background:#fff3cd;padding:16px}}</style><main><h1>{escape(payload["snapshot"]["company_name"])} — SQL DCF</h1>
 <p>Money in {currency} million; shares in million; value/share in {currency}. Anchor: {payload["anchor_date"]}; information cutoff: {payload["information_as_of"]}.</p>
 <p class="notice">{escape(payload["warning"])}</p>
-{"".join(sections)}<h2>Base case sensitivity: {currency}/share</h2>{sensitivity}
+{market_html}{"".join(sections)}<h2>Base case sensitivity: {currency}/share</h2>{sensitivity}
 <h2>Assumptions, mapping and evidence</h2><p>Rates use decimals. All scenario inputs and their rationale are reproduced below.</p><pre>{config_text}</pre>
 <p>Complete SQL history, sources, forecasts and reproducibility hashes: valuation.json.</p></main></html>"""
     output.mkdir(parents=True, exist_ok=True)

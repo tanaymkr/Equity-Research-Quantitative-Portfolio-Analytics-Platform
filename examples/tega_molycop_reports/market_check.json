@@ -1,0 +1,203 @@
+{
+  "price_date": "2026-06-30",
+  "price_inr": 1696.8,
+  "source_id": "tega_prices",
+  "model_value_per_share_inr": 2086.788671856823,
+  "model_group_wacc": 0.0790675455487658,
+  "implied_group_wacc": 0.08339073836803436,
+  "model_group_ev_inr_m": 300684.4187744216,
+  "required_group_ev_inr_m": 271198.8833815213,
+  "method": "Base case; forecasts, claims and NCI held fixed; one group rate solved by bisection.",
+  "pe_cross_check": {
+    "benchmark": {
+      "name": "Nifty India Manufacturing three-year median",
+      "pe": 28.16,
+      "basis": "trailing earnings",
+      "observed_on": "23 October 2026",
+      "url": "https://www.indexpe.in/nifty-india-manufacturing",
+      "note": "The benchmark is a trailing-earnings multiple, so applying it to FY2028 forecast earnings is generous. It was observed after this model's information cutoff and is a cross-check only; it never changes the DCF."
+    },
+    "eps_year": 2028,
+    "eps": 40.26409285337236,
+    "pe_value_per_share": 1133.8368547509656,
+    "market_price": 1696.8,
+    "market_pe": 42.14176651586682,
+    "dcf_value_per_share": 2086.788671856823,
+    "dcf_pe": 51.8275347579833
+  },
+  "consensus_comparison": {
+    "source_id": "marketscreener_consensus",
+    "price_date": "2026-10-09",
+    "price_inr": 1935.0,
+    "note": "Comparison only. Observed after the model's 11 September 2026 cutoff; MarketScreener does not show whether figures are reported or adjusted, or how many analysts contribute.",
+    "years": [
+      {
+        "fiscal_year": 2027,
+        "lines": [
+          {
+            "line": "Revenue",
+            "model": 145332.53702788224,
+            "consensus": 144964.0,
+            "difference": 368.53702788223745
+          },
+          {
+            "line": "EBITDA",
+            "model": 19611.86928223099,
+            "consensus": 18217.0,
+            "difference": 1394.8692822309895
+          },
+          {
+            "line": "EBIT",
+            "model": 11434.450323358495,
+            "consensus": 12061.0,
+            "difference": -626.5496766415054
+          },
+          {
+            "line": "Interest (model: incl. preference return)",
+            "model": 9429.471720670534,
+            "consensus": 7588.0,
+            "difference": 1841.4717206705336
+          },
+          {
+            "line": "Profit before tax",
+            "model": 2260.2934727791735,
+            "consensus": 6868.0,
+            "difference": -4607.7065272208265
+          },
+          {
+            "line": "Net income to Tega shareholders",
+            "model": 531.693191064218,
+            "consensus": 4971.0,
+            "difference": -4439.306808935782
+          },
+          {
+            "line": "EPS (INR)",
+            "model": 7.032408218315014,
+            "consensus": 66.2,
+            "difference": -59.16759178168499
+          }
+        ],
+        "consensus_pe_at_snapshot_price": 29.229607250755286,
+        "model_pe_at_snapshot_price": 275.1546753159946
+      },
+      {
+        "fiscal_year": 2028,
+        "lines": [
+          {
+            "line": "Revenue",
+            "model": 180951.0160561316,
+            "consensus": 176285.0,
+            "difference": 4666.016056131601
+          },
+          {
+            "line": "EBITDA",
+            "model": 24989.578861418333,
+            "consensus": 23021.0,
+            "difference": 1968.578861418333
+          },
+          {
+            "line": "EBIT",
+            "model": 16950.307481907024,
+            "consensus": 15641.0,
+            "difference": 1309.3074819070243
+          },
+          {
+            "line": "Interest (model: incl. preference return)",
+            "model": 10365.401419219808,
+            "consensus": 8082.0,
+            "difference": 2283.4014192198083
+          },
+          {
+            "line": "Profit before tax",
+            "model": 6680.779222808835,
+            "consensus": 9745.0,
+            "difference": -3064.2207771911653
+          },
+          {
+            "line": "Net income to Tega shareholders",
+            "model": 3044.21235939642,
+            "consensus": 7035.0,
+            "difference": -3990.78764060358
+          },
+          {
+            "line": "EPS (INR)",
+            "model": 40.26409285337236,
+            "consensus": 93.6,
+            "difference": -53.33590714662763
+          }
+        ],
+        "consensus_pe_at_snapshot_price": 20.673076923076923,
+        "model_pe_at_snapshot_price": 48.057707572019275
+      },
+      {
+        "fiscal_year": 2029,
+        "lines": [
+          {
+            "line": "Revenue",
+            "model": 191937.00040384821,
+            "consensus": 182585.0,
+            "difference": 9352.000403848215
+          },
+          {
+            "line": "EBITDA",
+            "model": 27345.24409324103,
+            "consensus": 23911.0,
+            "difference": 3434.244093241032
+          },
+          {
+            "line": "EBIT",
+            "model": 18663.38877739325,
+            "consensus": 16296.0,
+            "difference": 2367.388777393251
+          },
+          {
+            "line": "Interest (model: incl. preference return)",
+            "model": 10221.270569428187,
+            "consensus": 6382.0,
+            "difference": 3839.2705694281867
+          },
+          {
+            "line": "Profit before tax",
+            "model": 8537.99136808668,
+            "consensus": 10950.0,
+            "difference": -2412.0086319133206
+          },
+          {
+            "line": "Net income to Tega shareholders",
+            "model": 4143.537384468772,
+            "consensus": 7897.0,
+            "difference": -3753.462615531228
+          },
+          {
+            "line": "EPS (INR)",
+            "model": 54.804249603253375,
+            "consensus": 105.1,
+            "difference": -50.29575039674662
+          }
+        ],
+        "consensus_pe_at_snapshot_price": 18.411037107516652,
+        "model_pe_at_snapshot_price": 35.30748097105834
+      }
+    ],
+    "targets": {
+      "source_id": "analyst_targets",
+      "price_date": "2026-10-01",
+      "price_inr": 2093.85,
+      "analysts": 4,
+      "rating": "Hold",
+      "average_inr": 1799.0,
+      "median_inr": 1788.0,
+      "high_inr": 1880.0,
+      "low_inr": 1740.0
+    }
+  },
+  "molycop_deal_check": {
+    "deal_enterprise_value_inr_m": 142455.0,
+    "model_molycop_enterprise_value_inr_m": 268763.7860022374,
+    "model_to_deal_ratio": 1.88665744271691,
+    "model_molycop_wacc": 0.07597127835051545,
+    "calibrated_premium": 0.03435456426814196,
+    "calibrated_molycop_wacc": 0.11032584261865741,
+    "value_per_share_if_calibrated_inr": 599.3145058673493
+  }
+}

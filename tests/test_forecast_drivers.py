@@ -71,10 +71,14 @@ def test_history_uses_three_unique_years_and_actual_cash_capex(inputs):
     facts, assumptions = inputs
     history = facts["historical_drivers"]
     assert history["years"] == [2024, 2025, 2026]
-    expected = (554.12 / 14927.14 + 1701.80 / 16386.51 + 1359.36 / 16919.36) / 3
-    assert assumptions["scenarios"]["base"][
-        "legacy_later_capex_revenue_fraction"
-    ] == pytest.approx(expected)
+    recent = (554.12 / 14927.14 + 1701.80 / 16386.51 + 1359.36 / 16919.36) / 3
+    assert history["averages"]["cash_capex_revenue_fraction"] == pytest.approx(recent)
+    # Later capex uses FY22-FY24, before the Chile and Dahej expansion years.
+    normal = (409.99 / 9518 + 922.11 / 12140 + 554.12 / 14927.14) / 3
+    for case in ("downside", "base", "upside"):
+        assert assumptions["scenarios"][case][
+            "legacy_later_capex_revenue_fraction"
+        ] == pytest.approx(normal)
     assert assumptions["scenarios"]["base"]["equipment_operating_ebitda_margin"][
         0
     ] == pytest.approx((251.29 / 2156.61 + 340.09 / 2687.53) / 2)
