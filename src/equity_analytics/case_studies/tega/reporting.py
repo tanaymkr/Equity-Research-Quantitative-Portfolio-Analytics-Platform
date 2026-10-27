@@ -938,7 +938,13 @@ def write_reports(
         f"PROVISIONAL economic pro-forma model. Valuation date 30 June 2026; conversion INR{fx:.4f}/USD. "
         "100% consolidated operating cash flows discounted at an EV-weighted blend of standalone WACCs. "
         "Full net debt, preferences and ordinary minority interest are explicit bridge deductions. "
-        "Discount rates follow the platform cost-of-capital method (industry unlevered cost of capital less the interest tax shield; January 2026 risk premiums). Molycop's rate adds a premium calibrated to the June 2026 purchase price; its debt cost and tax rate remain unsourced estimates. "
+        "Discount rates follow the platform cost-of-capital method (industry unlevered cost of capital less the interest tax shield; January 2026 risk premiums). "
+        + (
+            "Molycop's rate adds a premium calibrated to the June 2026 purchase price"
+            if assumptions["pro_forma"]["wacc"]["molycop"].get("transaction_premium", 0)
+            else "Molycop uses industry inputs with no deal premium; the deal-calibrated value is shown below"
+        )
+        + "; its debt cost and tax rate remain unsourced estimates. "
         "These outputs are conditional scenario values, not validated current price targets. "
         "Consolidated balances use frozen unallocated acquisition opening accounts against reported control totals; "
         "this does not validate purchase accounting or resolve the separate legacy June gap. "
@@ -948,7 +954,7 @@ def write_reports(
         "FY27 full-year revenue includes twelve months of Tega and ten months of Molycop from 1 June. "
         "Forecast income/cash-flow columns and DCF include only July–March (nine months) after the June valuation. "
         "Future balance-sheet columns are at 31 March. Subsequent years have twelve months. "
-        "Auxiliary standalone EVs support NCI/audit only; the combined EV is calculated from the consolidated stream. "
+        "Standalone business EVs set the WACC blend weights and value the minority interest; the combined EV is calculated from the consolidated stream. "
         "All monetary figures are INR million except per-share figures. Constant expected FX is an explicit assumption."
     )
     headers = [
