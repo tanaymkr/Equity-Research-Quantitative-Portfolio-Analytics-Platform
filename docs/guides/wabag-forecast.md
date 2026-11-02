@@ -22,11 +22,40 @@ checks that the detailed model agrees with the annual SQL summary.
 - Debt, current maturities, revolving facilities, lease interest and repayments.
 - Owned PPE, land, right-of-use assets, software, depreciation and amortisation.
 - Operating working capital, tax, provisions, credit losses, dividends and equity.
-- Dated market inputs, observed beta, market-equity weights and annual WACC.
+- Dated market inputs, an industry unlevered beta, market-equity weights and
+  annual WACC, using the platform's
+  [cost-of-capital method](../COST_OF_CAPITAL.md).
+- The WACC implied by the share price, so the gap to the market is measured.
 - Base, upside and downside operating cases, each with linked FCFF, terminal
   reinvestment, equity bridge and WACC/growth sensitivity.
 - Consensus/broker comparisons, an input register, flagged zero assumptions,
   historical reconciliations and forecast accounting checks.
+
+## Results with the stored inputs
+
+| INR per diluted share | Downside | Base | Upside |
+| --- | ---: | ---: | ---: |
+| DCF value at the 31 March 2026 anchor | 472.85 | 646.15 | 800.51 |
+
+The FY27 WACC is 13.29% in every case: an unlevered cost of capital of 13.32%
+(5.25% default-free rate + Engineering/Construction unlevered beta 1.14 ×
+India's 7.08% equity risk premium) less a 0.04% interest tax shield. Terminal growth is 5%
+(the RBI's 4% inflation target plus about 1% real growth) and terminal ROIC
+15%.
+
+Wabag closed at INR2,008.40 on 25 September 2026. Holding the base-case cash
+flows fixed, that price implies a WACC of 8.00%. That is below the 12.3%
+expected return on an average Indian stock under the same inputs, so the gap is
+in the cash flows, not the discount rate. Each extra rupee of revenue ties up
+about 48 paise of working capital, so growth of 12–18% a year absorbs most of
+the profit. In FY27, free cash flow is −INR91m against after-tax operating
+profit of INR4,248m.
+
+**P/E cross-check.** At 28.2x, the Nifty India Manufacturing three-year median
+P/E, FY28 EPS of INR83.86 gives INR2,361.50 per share. The share price is
+23.9x the same EPS and the DCF value 7.7x. For comparison, Motilal Oswal's
+target multiples were 22x FY28 EPS (May 2026) and 28x (October 2026). See
+[the cost-of-capital note](../COST_OF_CAPITAL.md#pe-cross-check).
 
 ## Edit assumptions
 
@@ -56,9 +85,10 @@ A declaration is paid in the following financial year.
 
 The `policy` section holds terminal growth/ROIC, debt-rate proxies, repayment
 assumptions and the cash exclusion. `wacc_overrides` can override `share_price`,
-`gsec_yield`, `sovereign_default_spread`, `mature_erp`, `country_risk_premium`,
-`country_loading` or `levered_beta`. The original dated evidence remains in
-`wacc_reference.json`; document any new observations when updating the model.
+`gsec_yield`, `sovereign_default_spread`, `mature_erp`, `country_risk_premium`
+or `unlevered_beta`. The original dated evidence remains in
+`wacc_reference.json`, including Wabag's own regression beta as a cross-check;
+document any new observations when updating the model.
 
 Nonzero OCI, asset disposals and new equity issuance require additional
 accounting schedules and are rejected. Other missing future flows are explicitly

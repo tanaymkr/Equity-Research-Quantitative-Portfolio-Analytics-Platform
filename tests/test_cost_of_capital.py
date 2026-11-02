@@ -1,0 +1,205 @@
+"""The shared cost-of-capital method and its use across every model."""
+
+import json
+from pathlib import Path
+
+import pytest
+
+from equity_analytics.case_studies.tega import build_acquisition_model
+from equity_analytics.case_studies.tega.engine import (
+    calibrate_molycop_premium,
+    market_implied_group_wacc,
+)
+from equity_analytics.case_studies.tega.history import load_acquisition_facts
+from equity_analytics.case_studies.wabag.model import build_model, load_inputs
+from equity_analytics.valuation.cost_of_capital import (
+    default_free_rate,
+    implied_discount_rate,
+    unlevered_cost_of_capital,
+    wacc_with_tax_shield,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+EXAMPLES = ROOT / "examples"
+
+
+def _json(name):
+    return json.loads((EXAMPLES / name).read_text(encoding="utf-8"))
+
+
+def test_default_free_rate_removes_sovereign_spread():
+    assert default_free_rate(0.071194, 0.0187) == pytest.approx(0.052494)
+    with pytest.raises(ValueError):
+        default_free_rate(0.05, 0.06)
+    with pytest.raises(ValueError):
+        default_free_rate(0.05, -0.01)
+
+
+def test_unlevered_cost_is_capm_with_an_asset_beta():
+    assert unlevered_cost_of_capital(0.0479, 0.94, 0.0423) == pytest.approx(0.087662)
+    for bad in ((0.05, 0.0, 0.07), (0.05, float("nan"), 0.07), (-0.01, 1.0, 0.07)):
+        with pytest.raises((TypeError, ValueError)):
+            unlevered_cost_of_capital(*bad)
+
+
+def test_wacc_is_unlevered_cost_less_the_tax_shield():
+    # Molycop inputs: 8.7662% - 48.11% x 27% x 9% = 7.5972%
+    rates = wacc_with_tax_shield(0.087662, 0.4811, 0.27, 0.09)
+    assert rates["tax_shield"] == pytest.approx(0.4811 * 0.27 * 0.09)
+    assert rates["wacc"] == pytest.approx(0.087662 - 0.4811 * 0.27 * 0.09)
+    for bad in ((0.1, 1.0, 0.25, 0.08), (0.1, 0.4, 1.0, 0.08), (0.1, -0.1, 0.25, 0.08)):
+        with pytest.raises(ValueError):
+            wacc_with_tax_shield(*bad)
+
+
+@pytest.mark.parametrize("debt_weight", [0.0, 0.2, 0.5, 0.8])
+@pytest.mark.parametrize("cost_of_debt", [0.04, 0.09, 0.15])
+def test_borrowing_never_raises_the_wacc_above_the_unlevered_cost(
+    debt_weight, cost_of_debt
+):
+    rates = wacc_with_tax_shield(0.0877, debt_weight, 0.27, cost_of_debt)
+    assert rates["wacc"] <= rates["unlevered_cost_of_capital"]
+
+
+def test_molycop_deal_check_reproduces_the_june_2026_price():
+    facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
+    assumptions = _json("tega_molycop_assumptions.json")
+    # Stored inputs use industry inputs only; the deal calibration is a cross-check.
+    assert assumptions["pro_forma"]["wacc"]["molycop"]["transaction_premium"] == 0.0
+    deal = facts["deal"]["headline_enterprise_value_inr_m_approx"]
+    calibration = calibrate_molycop_premium(facts, assumptions)
+    assert calibration["calibrated_enterprise_value_inr_m"] == pytest.approx(
+        deal, abs=1.0
+    )
+    check = market_implied_group_wacc(facts, assumptions)["molycop_deal_check"]
+    model = build_acquisition_model(facts, assumptions)
+    assert check["model_molycop_enterprise_value_inr_m"] == pytest.approx(
+        model["standalone_values_for_audit_inr_m"]["molycop"]["enterprise_value"]
+    )
+    assert check["model_to_deal_ratio"] == pytest.approx(
+        check["model_molycop_enterprise_value_inr_m"] / deal
+    )
+    assert check["calibrated_molycop_wacc"] > check["model_molycop_wacc"]
+    assert (
+        check["value_per_share_if_calibrated_inr"]
+        < model["equity_bridge"]["value_per_share_inr"]
+    )
+
+
+def test_implied_rate_solves_and_refuses_to_extrapolate():
+    def value_at(rate):
+        return 100 / (rate - 0.04)
+
+    rate = implied_discount_rate(value_at, 1000, low=0.05, high=0.30)
+    assert rate == pytest.approx(0.14, abs=1e-6)
+    assert implied_discount_rate(value_at, 1.0, low=0.05, high=0.2) is None
+
+
+def test_every_model_uses_the_same_india_risk_premiums():
+    tega = _json("tega_molycop_assumptions.json")["pro_forma"]["wacc"]["tega"]
+    linked = _json("wabag_linked/wacc_reference.json")
+    generic = _json("wabag_dcf_assumptions.json")["scenarios"]
+    india_erp = linked["mature_erp"] + linked["country_risk_premium"]
+    assert india_erp == pytest.approx(0.0708)
+    assert tega["equity_risk_premium"] == pytest.approx(india_erp)
+    assert tega["sovereign_default_spread"] == linked["sovereign_default_spread"]
+    for case in generic.values():
+        w = case["wacc_inputs"]
+        assert w["equity_risk_premium"] == pytest.approx(india_erp)
+        assert w["sovereign_default_spread"] == linked["sovereign_default_spread"]
+        assert w["government_bond_yield"] == linked["gsec_yield"]
+        assert w["unlevered_beta"] == linked["unlevered_beta"]
+
+
+def test_scenarios_share_discount_and_terminal_parameters():
+    tega = _json("tega_molycop_assumptions.json")
+    stress = tega["pro_forma"]["wacc"]["scenario_risk_premium"]
+    assert set(stress.values()) == {0.0}
+    terminal = {
+        (c["group_terminal_growth_inr"], c["group_terminal_roic"])
+        for c in tega["scenarios"].values()
+    }
+    assert terminal == {(0.04, 0.16)}
+    generic = _json("wabag_dcf_assumptions.json")["scenarios"]
+    assert (
+        len({json.dumps(c["wacc_inputs"], sort_keys=True) for c in generic.values()})
+        == 1
+    )
+    assert {
+        (c["forecast"]["terminal_growth"], c["forecast"]["terminal_roic"])
+        for c in generic.values()
+    } == {(0.05, 0.15)}
+    linked = _json("wabag_linked/assumptions.json")["policy"]
+    assert (linked["terminal_growth"]["value"], linked["terminal_roic"]["value"]) == (
+        0.05,
+        0.15,
+    )
+
+
+def test_tega_scenarios_use_the_same_business_rates():
+    facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
+    assumptions = _json("tega_molycop_assumptions.json")
+    models = [
+        build_acquisition_model(facts, assumptions, case)["wacc_calculation"]
+        for case in ("downside", "base", "upside")
+    ]
+    for business in ("tega", "molycop"):
+        assert len({w[business]["standalone_wacc"] for w in models}) == 1
+    # The blend moves only with each scenario's business mix.
+    for w in models:
+        rates = (w["tega"]["standalone_wacc"], w["molycop"]["standalone_wacc"])
+        assert min(rates) <= w["blended_wacc"] <= max(rates)
+
+
+def test_tega_market_implied_rate_reproduces_the_price():
+    facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
+    assumptions = _json("tega_molycop_assumptions.json")
+    check = market_implied_group_wacc(facts, assumptions)
+    assert check["price_inr"] == pytest.approx(1696.80)
+    at_implied = build_acquisition_model(
+        facts, assumptions, group_wacc_override=check["implied_group_wacc"]
+    )
+    assert at_implied["equity_bridge"]["value_per_share_inr"] == pytest.approx(
+        1696.80, abs=0.01
+    )
+
+
+def test_tega_override_only_moves_the_group_rate():
+    facts, _, _ = load_acquisition_facts(EXAMPLES / "tega_molycop_facts.json")
+    assumptions = _json("tega_molycop_assumptions.json")
+    base = build_acquisition_model(facts, assumptions)
+    rate = base["wacc_calculation"]["blended_wacc"]
+    same = build_acquisition_model(facts, assumptions, group_wacc_override=rate)
+    assert same["equity_bridge"]["value_per_share_inr"] == pytest.approx(
+        base["equity_bridge"]["value_per_share_inr"]
+    )
+    with pytest.raises(ValueError):
+        build_acquisition_model(facts, assumptions, group_wacc_override=1.5)
+
+
+def test_wabag_market_implied_rate_reproduces_the_price():
+    model = build_model(load_inputs(EXAMPLES / "wabag_linked"))
+    check = model["market_check"]
+    rate = check["implied_wacc"]
+    assert rate is not None and rate < check["model_wacc_first_year"]
+    # Rebuild the per-share value at the implied rate, independently of the model.
+    dcf = model["dcf"]
+    factor, pv = 1.0, 0.0
+    for row in dcf["forecast"]:
+        factor /= 1 + rate
+        pv += row["fcff"] * factor
+    nopat = dcf["forecast"][-1]["nopat"] * (1 + dcf["terminal_growth"])
+    terminal = nopat * (1 - dcf["terminal_growth"] / dcf["terminal_roic"])
+    terminal /= rate - dcf["terminal_growth"]
+    equity = (
+        pv
+        + terminal * factor
+        + dcf["cash"]
+        + dcf["nonoperating_assets"]
+        - dcf["debt"]
+        - dcf["minority_interest"]
+        - dcf["other_claims"]
+    )
+    years = (178) / 365  # 31 March to 25 September 2026
+    value = equity / dcf["shares_million"] * (1 + rate) ** years
+    assert value == pytest.approx(check["price_inr"], rel=1e-5)

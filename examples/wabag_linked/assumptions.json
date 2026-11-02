@@ -6,9 +6,9 @@
   "convention": "FY2026 year-end anchor with later information; illustrative annual valuation, not a September target price or point-in-time backtest.",
   "policy": {
     "terminal_growth": {
-      "value": 0.04,
-      "source": "analyst",
-      "reason": "Editable long-run INR growth assumption, not company guidance."
+      "value": 0.05,
+      "source": "analyst/rbi_target",
+      "reason": "Long-run nominal INR growth: the RBI's 4% inflation target (2026-2031) plus about 1% real growth. It stays below the 5.25% default-free INR rate, so the business does not outgrow the risk-free rate in perpetuity."
     },
     "terminal_roic": {
       "value": 0.15,

@@ -49,7 +49,17 @@
     "erp": {
       "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
       "date": "2026-01-05",
-      "locator": "India sovereign default spread1.87%, CRP2.85%, totalERP7.08%; mature ERP4.23%. Analyst framework: default-free INR rate=Gsec less default spread; Ke=Rf+beta*mature ERP+India CRP (country loading1)."
+      "locator": "India: Baa3, sovereign default spread 1.87%, country risk premium 2.85%, total ERP 7.08%; mature-market ERP 4.23%. Platform method: default-free INR rate = G-sec less default spread; Ke = Rf + relevered beta x total ERP."
+    },
+    "industry_betas": {
+      "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+      "date": "2026-01-31",
+      "locator": "Betas by sector (US), January 2026: Engineering/Construction unlevered beta corrected for cash 1.14 (48 firms). Exact publication day not stated; end of January used as a conservative availability date."
+    },
+    "rbi_target": {
+      "url": "https://www.outlookmoney.com/banking/rbi-to-maintain-4-per-cent-inflation-target-until-2031-centre",
+      "date": "2026-03-26",
+      "locator": "Government retains the RBI's 4% CPI inflation target, with a 2-6% band, for 1 April 2026 to 31 March 2031."
     }
   },
   "annuals": [

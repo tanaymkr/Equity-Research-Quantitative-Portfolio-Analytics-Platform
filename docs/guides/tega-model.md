@@ -39,19 +39,57 @@ FY2026 statements. Python 3.11+; no third-party runtime packages.
   audited statements, notes, debt/asset/equity roll-forwards and checks.
 - The same folder holds the HTML report and full JSON model output.
 
-With the stored assumptions the model gives **INR294.22 (downside),
-INR1,171.99 (base) and INR1,734.08 (upside) per share** on 75,606,133 diluted
-shares. These reproduce the stored assumptions; they are not current price
-targets.
+With the stored assumptions the model gives **INR1,419.17 (downside),
+INR2,086.79 (base) and INR2,311.88 (upside) per share** on 75,606,133 diluted
+shares, at a base group WACC of 7.91%. These reproduce the stored assumptions;
+they are not current price targets. For comparison, the four analysts' average
+target was INR1,799 (range INR1,740–1,880) on 1 October 2026.
+
+**Molycop check.** On industry inputs (7.60% WACC) the model values Molycop at
+INR268,764m, 1.89 times the INR142,455m paid at the 1 June 2026 close.
+Calibrating Molycop's rate to that price (a 3.44% premium, 11.03% WACC) would
+give INR599.31 per share. The report shows both; this is the largest single
+judgement in the valuation.
+
+Tega closed at INR1,696.80 on 30 June 2026, the valuation date. Holding the
+forecasts fixed, that price implies a group WACC of 8.34%
+([`market_check.json`](../../examples/tega_molycop_reports/market_check.json)),
+against the model's 7.91%, so the model values Tega above the market. Leverage
+magnifies any difference: group claims of INR143,236m (net debt, preference
+shares, earnout, other claims and minority interest) sit ahead of shareholders
+against an enterprise value of INR300,684m. Each percentage point of WACC
+therefore moves the value by roughly INR800–1,345 per share.
+
+**P/E cross-check.** At 28.2x, the Nifty India Manufacturing three-year median
+P/E, FY2028 pro-forma EPS of INR40.26 gives INR1,133.84 per share. The share
+price is 42.1x the same EPS and the DCF value 51.8x.
+
+**Model versus consensus.** MarketScreener's consensus (9 October 2026) has
+FY2028 EPS of INR93.60, so the INR1,935 price then was 20.7x consensus earnings
+but 48.1x the model's. The model's revenue and EBITDA are at or above
+consensus. The difference arises below EBITDA. For FY2028:
+
+| Item | Model vs consensus (INR m) | Reason |
+| --- | ---: | --- |
+| Interest, including the preference return | 2,283 higher | Follows management's guidance and the reported June quarter; the 12% preference return is an estimate |
+| Other income | 2,090 lower | Consensus profit before tax exceeds EBIT less interest by an amount MarketScreener does not explain |
+| Tax and minority interest | 927 higher | Mainly the non-deductible preference return |
+| EBIT | 1,309 higher | Offsets part of the above |
+
+Net income to Tega shareholders ends INR3,991m lower. The report's "Model versus
+consensus" table shows FY2027–FY2029 line by line. Consensus is comparison only
+and never enters the valuation. The method, the terminal
+growth choice (4%, because most of the value is in dollars) and the legacy
+capex basis are in [the cost-of-capital note](../COST_OF_CAPITAL.md).
 
 ## Inputs
 
 | File | Contents |
 | --- | --- |
-| `examples/tega_molycop_assumptions.json` | Forecast scenarios. Group valuation settings are `group_wacc_inr`, `group_terminal_growth_inr` and `group_terminal_roic`; FX, WACC, EV weights and consolidation proxies are under `pro_forma` |
+| `examples/tega_molycop_assumptions.json` | Forecast scenarios, with `group_terminal_growth_inr` and `group_terminal_roic` (equal in every scenario); FX, cost-of-capital inputs and consolidation proxies are under `pro_forma` |
 | `examples/tega_fy2026_reported_statements.json` | Audited FY2026 actuals (FY2025 comparatives) |
 | `examples/tega_fy2025_reported_statements.json` | Audited FY2025 actuals |
-| `examples/tega_molycop_facts.json` | Deal and post-close disclosures, with sources |
+| `examples/tega_molycop_facts.json` | Deal and post-close disclosures, risk-premium and price sources, and the valuation-date market price |
 
 Historical facts stay separate from estimates. `0.15` means 15%. Currency
 metadata records the conversion date and source; changing it alone does not

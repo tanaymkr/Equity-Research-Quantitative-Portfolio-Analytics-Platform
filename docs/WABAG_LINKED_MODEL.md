@@ -127,21 +127,33 @@ within cash equivalents. This allocation is not verified and can overexclude
 cash; it is explicitly editable. Book associate/other-investment/loan values
 and minority interests are valuation proxies, not measured market values.
 
-Observed weekly beta is recomputed from 125 stored Wabag and NIFTY50 price-return
-pairs. Both instruments use matching observation dates within consecutive calendar
+The valuation beta is the Engineering/Construction unlevered beta corrected for
+cash, 1.14 (Damodaran, US industries, January 2026). Wabag's own weekly beta is
+kept only as a cross-check. It is recomputed from 125 stored Wabag and NIFTY50
+price-return pairs. Both instruments use matching observation dates within consecutive calendar
 weeks; holidays can make the interval six or eight days. There is no missing-price
 fill or implied dividend-reinvestment claim. These are later vendor snapshots,
-not historical point-in-time prices. The observed R-squared is about 0.152.
+not historical point-in-time prices. The observed beta is 1.43 with an
+R-squared of about 0.152, a standard error near 0.31: too imprecise to value
+the company.
 
 Default-free INR rate = 7.1194% G-sec yield − 1.87% sovereign default spread.
-Cost of equity = default-free INR rate + relevered beta × 4.23% mature-market
-ERP + 2.85% India CRP × country loading. This is an analyst-selected CAPM/country-risk
-framework. Beta is unlevered at reported gross debt and dated market equity,
-then relevered at each forecast year's average gross debt. Market equity remains
+Unlevered cost of capital = default-free INR rate + unlevered beta × 7.08% India
+equity risk premium (4.23% mature-market premium + 2.85% country risk premium).
+WACC = unlevered cost − debt weight × tax rate × pre-tax cost of debt, with the
+debt weight from each forecast year's average gross debt against the dated
+market equity. This is the platform method in
+[the cost-of-capital note](COST_OF_CAPITAL.md). Market equity remains
 reference price × basic shares; it is not replaced with book equity or the DCF
 result. Debt approximates market value using its book amount. Forecast WACC
 therefore changes with debt, borrowing rates and tax while market observations
-are held constant. It is not a published Wabag or consensus WACC.
+are held constant. It is not a published Wabag or consensus WACC. The FY27
+WACC is 13.29%.
+
+The report also solves for the single WACC at which the base-case value,
+rolled forward from the 31 March anchor, equals the 25 September close of
+INR2,008.40. It is 8.00%, so the market expects much more cash than this
+forecast contains. A P/E cross-check (28.2x FY28 EPS) is reported beside it.
 
 Explicit FCFF uses operating NOPAT (no negative-profit tax benefit), D&A, cash
 capex, noncash lease additions and operating NWC. The CFO reconciliation removes
@@ -151,13 +163,15 @@ dividends and non-operating asset allocation do not become operating cash flow.
 
 Discounting uses the product of annual (1 + WACC) factors. Terminal FCFF uses
 NOPAT × (1 + growth) × (1 − growth / ROIC), avoiding a second terminal deduction
-for capex or NWC. Terminal growth 4% and ROIC 15% are editable analyst choices.
+for capex or NWC. Terminal growth 5% (the RBI's 4% inflation target plus about
+1% real growth, below the 5.25% default-free rate) and ROIC 15% are editable
+analyst choices.
 The last forecast WACC is the terminal WACC; terminal financing is not separately
 optimised. No management ROE target is relabelled as a ROIC forecast.
 
 ## Validation
 
-After the scenario correction: 246 tests and 13 subtests pass; Ruff passes. The Wabag addition
+The full suite (320 tests and 13 subtests) passes; Ruff passes. The Wabag addition
 includes tests for cash/equity dividend timing, debt draw/interest/tax effects,
 capex and valuation, bank-charge classification, allowance double counting,
 lease reinvestment, depreciation limits, historical driver scaling, missing

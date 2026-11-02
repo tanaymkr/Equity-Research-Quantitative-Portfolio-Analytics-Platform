@@ -114,16 +114,19 @@ def test_nonfinite_inputs_fail(bad):
 def test_capm_weights_tax_only_debt():
     x = capm_wacc(
         {
-            "risk_free_rate": 0.06,
-            "beta": 1.2,
+            "government_bond_yield": 0.07,
+            "sovereign_default_spread": 0.01,
+            "unlevered_beta": 1.0,
             "equity_risk_premium": 0.05,
             "pretax_cost_of_debt": 0.08,
             "debt_weight": 0.25,
         },
         0.25,
     )
-    assert x["cost_of_equity"] == pytest.approx(0.12)
-    assert x["wacc"] == pytest.approx(0.12 * 0.75 + 0.08 * 0.75 * 0.25)
+    # Unlevered cost 6% + 1.0 x 5% = 11%; shield 25% x 25% x 8% = 0.5%
+    assert x["unlevered_cost_of_capital"] == pytest.approx(0.11)
+    assert x["tax_shield"] == pytest.approx(0.005)
+    assert x["wacc"] == pytest.approx(0.105)
 
 
 def test_terminal_reinvestment_validation():
@@ -131,3 +134,18 @@ def test_terminal_reinvestment_validation():
         DCFAssumptions(
             (0.1,), (0.2,), 0.25, 0.02, 0.03, 0.1, 0.1, 0.04, terminal_roic=0.03
         )
+
+
+def test_market_check_reproduces_the_price(store):
+    p = build_sql_dcf(store, ROOT / "examples/wabag_dcf_assumptions.json")
+    check = p["market_check"]
+    rate = check["implied_wacc"]
+    values = p["configuration"]["scenarios"]["base"]["forecast"]
+    snapshot = HistoricalSnapshot(**p["snapshot"])
+    value = calculate_dcf(
+        snapshot, DCFAssumptions.from_sequences(**values, wacc=rate)
+    ).implied_value_per_share
+    assert value * (1 + rate) ** (178 / 365) == pytest.approx(check["price"], rel=1e-5)
+    assert rate < check["model_wacc"]
+    wacc = {c["wacc_build"]["wacc"] for c in p["scenarios"].values()}
+    assert len(wacc) == 1

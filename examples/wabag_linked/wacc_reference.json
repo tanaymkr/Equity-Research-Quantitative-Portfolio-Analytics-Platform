@@ -5,9 +5,18 @@
   "sovereign_default_spread": 0.0187,
   "mature_erp": 0.0423,
   "country_risk_premium": 0.0285,
-  "country_loading": 1,
-  "levered_beta": 1.4316874326603788,
-  "beta_method": "OLS with intercept, weekly simple price returns versus NIFTY50 price index, exact common dates, no fills. Gross debt treated as financing; cash not netted. Latest vendor snapshot, not historical point-in-time data.",
+  "unlevered_beta": 1.14,
+  "beta_basis": {
+    "industry": "Engineering/Construction",
+    "measure": "Unlevered beta corrected for cash",
+    "firms": 48,
+    "industry_debt_to_equity": 0.1401,
+    "dataset": "Damodaran, betas by sector (US), January 2026",
+    "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+    "note": "Relevered each year at average forecast gross debt / reference market equity. Wabag earns most of its revenue from engineering, procurement and construction contracts, so Engineering/Construction is used rather than Environmental & Waste Services (0.82)."
+  },
+  "regression_beta": 1.4316874326603788,
+  "beta_method": "Cross-check only: OLS with intercept, weekly simple price returns versus NIFTY50 price index, exact common dates, no fills. R-squared 0.15 over 125 weeks gives a standard error near 0.30, too wide to value the company. Latest vendor snapshot, not historical point-in-time data.",
   "beta_observations": [
     {
       "start": "2024-04-05",
@@ -783,7 +792,12 @@
   "notes": [
     "Price at latest populated completed common date in the verified snapshot; not current intraday quote.",
     "Market equity=current price times FY26 ending basic shares; later issuances not incorporated. Share count is an explicitly dated proxy.",
-    "G-sec observed2026-09-25; ERP framework January2026. Inputs held constant beyond reference date, not forecasts supplied by management.",
+    "G-sec observed2026-09-25; Default spread, mature-market ERP and India country risk premium from Damodaran, January 2026 (India Baa3: 1.87% / 4.23% / 2.85%). Inputs held constant beyond reference date, not forecasts supplied by management.",
     "Debt market value approximated by book value, supported by AR note16; forecast equity denominator held at reference market equity to avoid a valuation circularity."
-  ]
+  ],
+  "erp_source": {
+    "dataset": "Damodaran, country default spreads and risk premiums, January 2026",
+    "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+    "india": "Baa3; default spread 1.87%; country risk premium 2.85%; total equity risk premium 7.08%"
+  }
 }
